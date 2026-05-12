@@ -1,0 +1,29 @@
+services:
+  ai:
+    build: .
+    container_name: movicol-ai
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://movicol:movicol_dev@db:5432/movicol
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    depends_on:
+      - db
+    volumes:
+      - ./app:/app/app
+      - ./models:/app/models
+
+  db:
+    image: postgis/postgis:16-3.4
+    container_name: movicol-ai-db
+    environment:
+      POSTGRES_USER: movicol
+      POSTGRES_PASSWORD: movicol_dev
+      POSTGRES_DB: movicol
+    ports:
+      - "5432:5432"
+    volumes:
+      - movicol_pgdata:/var/lib/postgresql/data
+
+volumes:
+  movicol_pgdata:

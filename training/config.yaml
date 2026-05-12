@@ -1,0 +1,24 @@
+# GNN Training Hyperparameters
+model:
+  type: GAT  # Graph Attention Network
+  hidden_channels: 64
+  num_heads: 4
+  num_layers: 3
+  dropout: 0.3
+
+training:
+  epochs: 200
+  learning_rate: 0.001
+  weight_decay: 0.0005
+  batch_size: 32
+  patience: 20  # Early stopping
+
+data:
+  train_split: 0.7
+  val_split: 0.15
+  test_split: 0.15
+  temporal_features:
+    - day_of_week
+    - hour
+    - is_holiday
+    - is_rush_hour

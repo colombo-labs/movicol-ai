@@ -1,0 +1,24 @@
+# Models (regenerate with `make train`)
+models/*.pt
+models/*.pth
+models/*.graphml
+!models/.gitkeep
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+.venv/
+venv/
+
+# Environment
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+.github/workflows/
