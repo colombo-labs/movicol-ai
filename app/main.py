@@ -8,6 +8,8 @@ from app.modules.agent.router import router as agent_router
 from app.modules.graph.router import router as graph_router
 from app.modules.health.router import router as health_router
 from app.modules.predictions.router import router as predictions_router
+from app.modules.demand_prediction.router import router as demand_router
+from app.modules.route_prediction.router import router as route_prediction_router
 
 settings = get_settings()
 
@@ -33,6 +35,10 @@ def create_app() -> FastAPI:
     application.include_router(predictions_router, prefix="/predictions", tags=["Predictions"])
     application.include_router(graph_router, prefix="/graph", tags=["Graph"])
     application.include_router(agent_router, prefix="/agent", tags=["Agent"])
+    application.include_router(
+        route_prediction_router, prefix="/api/v1/predict-route", tags=["Route Prediction"]
+    )
+    application.include_router(demand_router, prefix="/demand", tags=["Demand Prediction"])
 
     return application
 

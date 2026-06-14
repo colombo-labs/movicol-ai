@@ -21,8 +21,8 @@ class Settings(BaseSettings):
     llm_model: str = "gpt-4o-mini"
 
     # Model paths
-    model_path: str = "models/gat_model.pt"
-    graph_path: str = "models/graph.graphml"
+    model_path: str = "models/gat_best.pt"
+    graph_path: str = "models/graph_clean.graphml"
 
     class Config:
         env_file = ".env"

@@ -16,6 +16,18 @@ async def graph_stats():
     return service.stats
 
 
+@router.get("/analysis")
+async def graph_analysis():
+    """Get advanced graph analysis: degree distribution, components, density."""
+    return service.analysis
+
+
+@router.get("/heatmap")
+async def congestion_heatmap(hour: int = Query(default=8, ge=0, le=23)):
+    """Get GNN congestion predictions for all stations at a given hour."""
+    return service.get_heatmap(hour)
+
+
 @router.get("/stations", response_model=list[StationResponse])
 async def list_stations(
     limit: int = Query(default=100, le=500),
@@ -58,3 +70,41 @@ async def find_route(origin: str, destination: str):
     if not route:
         raise StationNotFoundError(f"{origin} -> {destination}")
     return route
+
+
+@router.get("/nearby")
+async def nearby_stations(
+    lat: float = Query(..., description="Latitude"),
+    lon: float = Query(..., description="Longitude"),
+    radius_km: float = Query(default=1.0, le=5.0),
+    limit: int = Query(default=10, le=50),
+):
+    """Find stations within radius of a point."""
+    return service.get_nearby(lat, lon, radius_km, limit)
+
+
+@router.get("/compare-hours")
+async def compare_hours(station_id: str = Query(..., description="Station ID")):
+    """Compare congestion levels across all hours for a station."""
+    return service.compare_hours(station_id)
+
+
+@router.get("/edges")
+async def get_edges(
+    type: str = Query(default="all", description="all | tm | sitp"),
+    limit: int = Query(default=500, le=5000),
+):
+    """Get graph edges as coordinate pairs for map rendering."""
+    return service.get_edges(type, limit)
+
+
+@router.get("/tm/troncales")
+async def get_tm_troncales():
+    """Get TransMilenio trunk lines GeoJSON for map rendering."""
+    return service.get_tm_troncales()
+
+
+@router.get("/tm/estaciones")
+async def get_tm_estaciones():
+    """Get TransMilenio stations GeoJSON for map rendering."""
+    return service.get_tm_estaciones()
