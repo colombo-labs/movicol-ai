@@ -1,0 +1,3067 @@
+source,source_name,target,target_name,troncal,id_trazado,weight_distance_m,tipo_via
+624,Estacion_0,625,Estacion_1,Autopista Norte,TZ002,0.0,1
+625,Estacion_1,624,Estacion_0,Autopista Norte,TZ002,0.0,1
+625,Estacion_1,635,Estacion_11,Autopista Norte,TZ002,0.0,1
+635,Estacion_11,625,Estacion_1,Autopista Norte,TZ002,0.0,1
+635,Estacion_11,632,Estacion_8,Autopista Norte,TZ002,0.0,1
+632,Estacion_8,635,Estacion_11,Autopista Norte,TZ002,0.0,1
+632,Estacion_8,636,Estacion_12,Autopista Norte,TZ002,0.0,1
+636,Estacion_12,632,Estacion_8,Autopista Norte,TZ002,0.0,1
+636,Estacion_12,639,Estacion_15,Autopista Norte,TZ002,0.0,1
+639,Estacion_15,636,Estacion_12,Autopista Norte,TZ002,0.0,1
+639,Estacion_15,654,Estacion_30,Autopis|ta Norte,TZ002,0.0,1
+654,Estacion_30,639,Estacion_15,Autopista Norte,TZ002,0.0,1
+654,Estacion_30,645,Estacion_21,Autopista Norte,TZ002,0.0,1
+645,Estacion_21,654,Estacion_30,Autopista Norte,TZ002,0.0,1
+645,Estacion_21,655,Estacion_31,Autopista Norte,TZ002,0.0,1
+655,Estacion_31,645,Estacion_21,Autopista Norte,TZ002,0.0,1
+655,Estacion_31,651,Estacion_27,Autopista Norte,TZ002,0.0,1
+651,Estacion_27,655,Estacion_31,Autopista Norte,TZ002,0.0,1
+651,Estacion_27,649,Estacion_25,Autopista Norte,TZ002,0.0,1
+649,Estacion_25,651,Estacion_27,Autopista Norte,TZ002,0.0,1
+649,Estacion_25,652,Estacion_28,Autopista Norte,TZ002,0.0,1
+652,Estacion_28,649,Estacion_25,Autopista Norte,TZ002,0.0,1
+652,Estacion_28,660,Estacion_36,Autopista Norte,TZ002,0.0,1
+660,Estacion_36,652,Estacion_28,Autopista Norte,TZ002,0.0,1
+660,Estacion_36,661,Estacion_37,Autopista Norte,TZ002,0.0,1
+661,Estacion_37,660,Estacion_36,Autopista Norte,TZ002,0.0,1
+661,Estacion_37,663,Estacion_39,Autopista Norte,TZ002,0.0,1
+663,Estacion_39,661,Estacion_37,Autopista Norte,TZ002,0.0,1
+663,Estacion_39,657,Estacion_33,Autopista Norte,TZ002,0.0,1
+657,Estacion_33,663,Estacion_39,Autopista Norte,TZ002,0.0,1
+657,Estacion_33,723,Estacion_99,Autopista Norte,TZ002,0.0,1
+723,Estacion_99,657,Estacion_33,Autopista Norte,TZ002,0.0,1
+723,Estacion_99,725,Estacion_101,Autopista Norte,TZ002,0.0,1
+725,Estacion_101,723,Estacion_99,Autopista Norte,TZ002,0.0,1
+725,Estacion_101,726,Estacion_102,Autopista Norte,TZ002,0.0,1
+726,Estacion_102,725,Estacion_101,Autopista Norte,TZ002,0.0,1
+726,Estacion_102,707,Estacion_83,Autopista Norte,TZ002,0.0,1
+707,Estacion_83,726,Estacion_102,Autopista Norte,TZ002,0.0,1
+707,Estacion_83,746,Estacion_122,Autopista Norte,TZ002,0.0,1
+746,Estacion_122,707,Estacion_83,Autopista Norte,TZ002,0.0,1
+746,Estacion_122,742,Estacion_118,Autopista Norte,TZ002,0.0,1
+742,Estacion_118,746,Estacion_122,Autopista Norte,TZ002,0.0,1
+742,Estacion_118,737,Estacion_113,Autopista Norte,TZ002,0.0,1
+737,Estacion_113,742,Estacion_118,Autopista Norte,TZ002,0.0,1
+737,Estacion_113,736,Estacion_112,Autopista Norte,TZ002,0.0,1
+736,Estacion_112,737,Estacion_113,Autopista Norte,TZ002,0.0,1
+736,Estacion_112,705,Estacion_81,Autopista Norte,TZ002,0.0,1
+705,Estacion_81,736,Estacion_112,Autopista Norte,TZ002,0.0,1
+705,Estacion_81,697,Estacion_73,Autopista Norte,TZ002,0.0,1
+697,Estacion_73,705,Estacion_81,Autopista Norte,TZ002,0.0,1
+697,Estacion_73,696,Estacion_72,Autopista Norte,TZ002,0.0,1
+696,Estacion_72,697,Estacion_73,Autopista Norte,TZ002,0.0,1
+696,Estacion_72,689,Estacion_65,Autopista Norte,TZ002,0.0,1
+689,Estacion_65,696,Estacion_72,Autopista Norte,TZ002,0.0,1
+689,Estacion_65,770,Estacion_146,Autopista Norte,TZ002,0.0,1
+770,Estacion_146,689,Estacion_65,Autopista Norte,TZ002,0.0,1
+770,Estacion_146,761,Estacion_137,Autopista Norte,TZ002,0.0,1
+761,Estacion_137,770,Estacion_146,Autopista Norte,TZ002,0.0,1
+761,Estacion_137,760,Estacion_136,Autopista Norte,TZ002,0.0,1
+760,Estacion_136,761,Estacion_137,Autopista Norte,TZ002,0.0,1
+760,Estacion_136,759,Estacion_135,Autopista Norte,TZ002,0.0,1
+759,Estacion_135,760,Estacion_136,Autopista Norte,TZ002,0.0,1
+759,Estacion_135,931,Estacion_148,Autopista Norte,TZ002,0.0,1
+931,Estacion_148,759,Estacion_135,Autopista Norte,TZ002,0.0,1
+931,Estacion_148,669,Estacion_45,Autopista Norte,TZ002,132.2035063581361,1
+669,Estacion_45,931,Estacion_148,Autopista Norte,TZ002,132.2035063581361,1
+669,Estacion_45,676,Estacion_52,Autopista Norte,TZ002,613.8891340015164,1
+676,Estacion_52,669,Estacion_45,Autopista Norte,TZ002,613.8891340015164,1
+676,Estacion_52,675,Estacion_51,Autopista Norte,TZ002,980.0030927759223,1
+675,Estacion_51,676,Estacion_52,Autopista Norte,TZ002,980.0030927759223,1
+675,Estacion_51,671,Estacion_47,Autopista Norte,TZ002,944.6027439044144,1
+671,Estacion_47,675,Estacion_51,Autopista Norte,TZ002,944.6027439044144,1
+671,Estacion_47,681,Estacion_57,Autopista Norte,TZ002,479.4820506581,1
+681,Estacion_57,671,Estacion_47,Autopista Norte,TZ002,479.4820506581,1
+681,Estacion_57,748,Estacion_124,Autopista Norte,TZ002,303.5267826786062,1
+748,Estacion_124,681,Estacion_57,Autopista Norte,TZ002,303.5267826786062,1
+748,Estacion_124,638,Estacion_14,Autopista Norte,TZ002,456.47265375216193,1
+638,Estacion_14,748,Estacion_124,Autopista Norte,TZ002,456.47265375216193,1
+638,Estacion_14,683,Estacion_59,Autopista Norte,TZ002,62.16899091526602,1
+683,Estacion_59,638,Estacion_14,Autopista Norte,TZ002,62.16899091526602,1
+683,Estacion_59,665,Estacion_41,Autopista Norte,TZ002,200.84334558765022,1
+665,Estacion_41,683,Estacion_59,Autopista Norte,TZ002,200.84334558765022,1
+665,Estacion_41,678,Estacion_54,Autopista Norte,TZ002,213.1884671824746,1
+678,Estacion_54,665,Estacion_41,Autopista Norte,TZ002,213.1884671824746,1
+678,Estacion_54,768,Estacion_144,Autopista Norte,TZ002,131.36164892540364,1
+768,Estacion_144,678,Estacion_54,Autopista Norte,TZ002,131.36164892540364,1
+768,Estacion_144,674,Estacion_50,Autopista Norte,TZ002,322.18125326013796,1
+674,Estacion_50,768,Estacion_144,Autopista Norte,TZ002,322.18125326013796,1
+674,Estacion_50,722,Estacion_98,Autopista Norte,TZ002,349.4444240369294,1
+722,Estacion_98,674,Estacion_50,Autopista Norte,TZ002,349.4444240369294,1
+722,Estacion_98,677,Estacion_53,Autopista Norte,TZ002,288.93424161567054,1
+677,Estacion_53,722,Estacion_98,Autopista Norte,TZ002,288.93424161567054,1
+677,Estacion_53,749,Estacion_125,Autopista Norte,TZ002,410.75683546428445,1
+749,Estacion_125,677,Estacion_53,Autopista Norte,TZ002,410.75683546428445,1
+749,Estacion_125,668,Estacion_44,Autopista Norte,TZ002,329.17591609363626,1
+668,Estacion_44,749,Estacion_125,Autopista Norte,TZ002,329.17591609363626,1
+668,Estacion_44,637,Estacion_13,Autopista Norte,TZ002,637.9246245089307,1
+637,Estacion_13,668,Estacion_44,Autopista Norte,TZ002,637.9246245089307,1
+637,Estacion_13,679,Estacion_55,Autopista Norte,TZ002,474.42955320655165,1
+679,Estacion_55,637,Estacion_13,Autopista Norte,TZ002,474.42955320655165,1
+679,Estacion_55,731,Estacion_107,Autopista Norte,TZ002,91.21255050504442,1
+731,Estacion_107,679,Estacion_55,Autopista Norte,TZ002,91.21255050504442,1
+731,Estacion_107,718,Estacion_94,Autopista Norte,TZ002,359.6653666197408,1
+718,Estacion_94,731,Estacion_107,Autopista Norte,TZ002,359.6653666197408,1
+718,Estacion_94,672,Estacion_48,Autopista Norte,TZ002,279.2868108233206,1
+672,Estacion_48,718,Estacion_94,Autopista Norte,TZ002,279.2868108233206,1
+672,Estacion_48,630,Estacion_6,Autopista Norte,TZ002,58.039300888822254,1
+630,Estacion_6,672,Estacion_48,Autopista Norte,TZ002,58.039300888822254,1
+630,Estacion_6,763,Estacion_139,Autopista Norte,TZ002,91.32024812729105,1
+763,Estacion_139,630,Estacion_6,Autopista Norte,TZ002,91.32024812729105,1
+763,Estacion_139,659,Estacion_35,Autopista Norte,TZ002,55.46358081551443,1
+659,Estacion_35,763,Estacion_139,Autopista Norte,TZ002,55.46358081551443,1
+659,Estacion_35,664,Estacion_40,Autopista Norte,TZ002,158.31021054632947,1
+664,Estacion_40,659,Estacion_35,Autopista Norte,TZ002,158.31021054632947,1
+664,Estacion_40,682,Estacion_58,Autopista Norte,TZ002,213.92971366811435,1
+682,Estacion_58,664,Estacion_40,Autopista Norte,TZ002,213.92971366811435,1
+682,Estacion_58,628,Estacion_4,Autopista Norte,TZ002,114.42131658599828,1
+628,Estacion_4,682,Estacion_58,Autopista Norte,TZ002,114.42131658599828,1
+628,Estacion_4,757,Estacion_133,Autopista Norte,TZ002,61.90486302805766,1
+757,Estacion_133,628,Estacion_4,Autopista Norte,TZ002,61.90486302805766,1
+757,Estacion_133,745,Estacion_121,Autopista Norte,TZ002,0.0,1
+745,Estacion_121,757,Estacion_133,Autopista Norte,TZ002,0.0,1
+745,Estacion_121,633,Estacion_9,Autopista Norte,TZ002,299.27394548217853,1
+633,Estacion_9,745,Estacion_121,Autopista Norte,TZ002,299.27394548217853,1
+633,Estacion_9,740,Estacion_116,Autopista Norte,TZ002,274.77277851805775,1
+740,Estacion_116,633,Estacion_9,Autopista Norte,TZ002,274.77277851805775,1
+740,Estacion_116,631,Estacion_7,Autopista Norte,TZ002,57.454294869869045,1
+631,Estacion_7,740,Estacion_116,Autopista Norte,TZ002,57.454294869869045,1
+631,Estacion_7,673,Estacion_49,Autopista Norte,TZ002,205.75601330433528,1
+673,Estacion_49,631,Estacion_7,Autopista Norte,TZ002,205.75601330433528,1
+673,Estacion_49,754,Estacion_130,Autopista Norte,TZ002,19.746873832149504,1
+754,Estacion_130,673,Estacion_49,Autopista Norte,TZ002,19.746873832149504,1
+754,Estacion_130,650,Estacion_26,Autopista Norte,TZ002,179.28715914986424,1
+650,Estacion_26,754,Estacion_130,Autopista Norte,TZ002,179.28715914986424,1
+650,Estacion_26,762,Estacion_138,Autopista Norte,TZ002,323.91069969081946,1
+762,Estacion_138,650,Estacion_26,Autopista Norte,TZ002,323.91069969081946,1
+762,Estacion_138,685,Estacion_61,Autopista Norte,TZ002,68.62458430531115,1
+685,Estacion_61,762,Estacion_138,Autopista Norte,TZ002,68.62458430531115,1
+685,Estacion_61,670,Estacion_46,Autopista Norte,TZ002,300.0250052460142,1
+670,Estacion_46,685,Estacion_61,Autopista Norte,TZ002,300.0250052460142,1
+670,Estacion_46,717,Estacion_93,Autopista Norte,TZ002,66.5720062371638,1
+717,Estacion_93,670,Estacion_46,Autopista Norte,TZ002,66.5720062371638,1
+717,Estacion_93,751,Estacion_127,Autopista Norte,TZ002,59.69648343341214,1
+751,Estacion_127,717,Estacion_93,Autopista Norte,TZ002,59.69648343341214,1
+751,Estacion_127,686,Estacion_62,Autopista Norte,TZ002,27.98988623499099,1
+686,Estacion_62,751,Estacion_127,Autopista Norte,TZ002,27.98988623499099,1
+686,Estacion_62,662,Estacion_38,Autopista Norte,TZ002,154.05271198972878,1
+662,Estacion_38,686,Estacion_62,Autopista Norte,TZ002,154.05271198972878,1
+662,Estacion_38,714,Estacion_90,Autopista Norte,TZ002,105.51922392877168,1
+714,Estacion_90,662,Estacion_38,Autopista Norte,TZ002,105.51922392877168,1
+714,Estacion_90,680,Estacion_56,Autopista Norte,TZ002,467.79345989539434,1
+680,Estacion_56,714,Estacion_90,Autopista Norte,TZ002,467.79345989539434,1
+680,Estacion_56,684,Estacion_60,Autopista Norte,TZ002,257.26764993858706,1
+684,Estacion_60,680,Estacion_56,Autopista Norte,TZ002,257.26764993858706,1
+684,Estacion_60,687,Estacion_63,Autopista Norte,TZ002,0.0,1
+687,Estacion_63,684,Estacion_60,Autopista Norte,TZ002,0.0,1
+687,Estacion_63,667,Estacion_43,Autopista Norte,TZ002,0.0,1
+667,Estacion_43,687,Estacion_63,Autopista Norte,TZ002,0.0,1
+667,Estacion_43,634,Estacion_10,Autopista Norte,TZ002,0.0,1
+634,Estacion_10,667,Estacion_43,Autopista Norte,TZ002,0.0,1
+634,Estacion_10,626,Estacion_2,Autopista Norte,TZ002,0.0,1
+626,Estacion_2,634,Estacion_10,Autopista Norte,TZ002,0.0,1
+626,Estacion_2,629,Estacion_5,Autopista Norte,TZ002,0.0,1
+629,Estacion_5,626,Estacion_2,Autopista Norte,TZ002,0.0,1
+629,Estacion_5,666,Estacion_42,Autopista Norte,TZ002,0.0,1
+666,Estacion_42,629,Estacion_5,Autopista Norte,TZ002,0.0,1
+666,Estacion_42,656,Estacion_32,Autopista Norte,TZ002,0.0,1
+656,Estacion_32,666,Estacion_42,Autopista Norte,TZ002,0.0,1
+656,Estacion_32,658,Estacion_34,Autopista Norte,TZ002,0.0,1
+658,Estacion_34,656,Estacion_32,Autopista Norte,TZ002,0.0,1
+658,Estacion_34,627,Estacion_3,Autopista Norte,TZ002,0.0,1
+627,Estacion_3,658,Estacion_34,Autopista Norte,TZ002,0.0,1
+627,Estacion_3,640,Estacion_16,Autopista Norte,TZ002,0.0,1
+640,Estacion_16,627,Estacion_3,Autopista Norte,TZ002,0.0,1
+640,Estacion_16,647,Estacion_23,Autopista Norte,TZ002,0.0,1
+647,Estacion_23,640,Estacion_16,Autopista Norte,TZ002,0.0,1
+647,Estacion_23,646,Estacion_22,Autopista Norte,TZ002,0.0,1
+646,Estacion_22,647,Estacion_23,Autopista Norte,TZ002,0.0,1
+646,Estacion_22,644,Estacion_20,Autopista Norte,TZ002,0.0,1
+644,Estacion_20,646,Estacion_22,Autopista Norte,TZ002,0.0,1
+644,Estacion_20,643,Estacion_19,Autopista Norte,TZ002,0.0,1
+643,Estacion_19,644,Estacion_20,Autopista Norte,TZ002,0.0,1
+643,Estacion_19,641,Estacion_17,Autopista Norte,TZ002,0.0,1
+641,Estacion_17,643,Estacion_19,Autopista Norte,TZ002,0.0,1
+641,Estacion_17,642,Estacion_18,Autopista Norte,TZ002,0.0,1
+642,Estacion_18,641,Estacion_17,Autopista Norte,TZ002,0.0,1
+642,Estacion_18,648,Estacion_24,Autopista Norte,TZ002,0.0,1
+648,Estacion_24,642,Estacion_18,Autopista Norte,TZ002,0.0,1
+648,Estacion_24,653,Estacion_29,Autopista Norte,TZ002,0.0,1
+653,Estacion_29,648,Estacion_24,Autopista Norte,TZ002,0.0,1
+653,Estacion_29,719,Estacion_95,Autopista Norte,TZ002,0.0,1
+719,Estacion_95,653,Estacion_29,Autopista Norte,TZ002,0.0,1
+719,Estacion_95,716,Estacion_92,Autopista Norte,TZ002,0.0,1
+716,Estacion_92,719,Estacion_95,Autopista Norte,TZ002,0.0,1
+716,Estacion_92,713,Estacion_89,Autopista Norte,TZ002,0.0,1
+713,Estacion_89,716,Estacion_92,Autopista Norte,TZ002,0.0,1
+713,Estacion_89,715,Estacion_91,Autopista Norte,TZ002,0.0,1
+715,Estacion_91,713,Estacion_89,Autopista Norte,TZ002,0.0,1
+715,Estacion_91,712,Estacion_88,Autopista Norte,TZ002,0.0,1
+712,Estacion_88,715,Estacion_91,Autopista Norte,TZ002,0.0,1
+712,Estacion_88,709,Estacion_85,Autopista Norte,TZ002,0.0,1
+709,Estacion_85,712,Estacion_88,Autopista Norte,TZ002,0.0,1
+709,Estacion_85,710,Estacion_86,Autopista Norte,TZ002,0.0,1
+710,Estacion_86,709,Estacion_85,Autopista Norte,TZ002,0.0,1
+710,Estacion_86,711,Estacion_87,Autopista Norte,TZ002,0.0,1
+711,Estacion_87,710,Estacion_86,Autopista Norte,TZ002,0.0,1
+711,Estacion_87,706,Estacion_82,Autopista Norte,TZ002,0.0,1
+706,Estacion_82,711,Estacion_87,Autopista Norte,TZ002,0.0,1
+706,Estacion_82,704,Estacion_80,Autopista Norte,TZ002,0.0,1
+704,Estacion_80,706,Estacion_82,Autopista Norte,TZ002,0.0,1
+704,Estacion_80,708,Estacion_84,Autopista Norte,TZ002,0.0,1
+708,Estacion_84,704,Estacion_80,Autopista Norte,TZ002,0.0,1
+708,Estacion_84,699,Estacion_75,Autopista Norte,TZ002,0.0,1
+699,Estacion_75,708,Estacion_84,Autopista Norte,TZ002,0.0,1
+699,Estacion_75,700,Estacion_76,Autopista Norte,TZ002,0.0,1
+700,Estacion_76,699,Estacion_75,Autopista Norte,TZ002,0.0,1
+700,Estacion_76,701,Estacion_77,Autopista Norte,TZ002,0.0,1
+701,Estacion_77,700,Estacion_76,Autopista Norte,TZ002,0.0,1
+701,Estacion_77,724,Estacion_100,Autopista Norte,TZ002,0.0,1
+724,Estacion_100,701,Estacion_77,Autopista Norte,TZ002,0.0,1
+724,Estacion_100,720,Estacion_96,Autopista Norte,TZ002,0.0,1
+720,Estacion_96,724,Estacion_100,Autopista Norte,TZ002,0.0,1
+720,Estacion_96,735,Estacion_111,Autopista Norte,TZ002,0.0,1
+735,Estacion_111,720,Estacion_96,Autopista Norte,TZ002,0.0,1
+735,Estacion_111,734,Estacion_110,Autopista Norte,TZ002,0.0,1
+734,Estacion_110,735,Estacion_111,Autopista Norte,TZ002,0.0,1
+734,Estacion_110,733,Estacion_109,Autopista Norte,TZ002,0.0,1
+733,Estacion_109,734,Estacion_110,Autopista Norte,TZ002,0.0,1
+733,Estacion_109,732,Estacion_108,Autopista Norte,TZ002,0.0,1
+732,Estacion_108,733,Estacion_109,Autopista Norte,TZ002,0.0,1
+732,Estacion_108,730,Estacion_106,Autopista Norte,TZ002,0.0,1
+730,Estacion_106,732,Estacion_108,Autopista Norte,TZ002,0.0,1
+730,Estacion_106,729,Estacion_105,Autopista Norte,TZ002,0.0,1
+729,Estacion_105,730,Estacion_106,Autopista Norte,TZ002,0.0,1
+729,Estacion_105,703,Estacion_79,Autopista Norte,TZ002,0.0,1
+703,Estacion_79,729,Estacion_105,Autopista Norte,TZ002,0.0,1
+703,Estacion_79,702,Estacion_78,Autopista Norte,TZ002,0.0,1
+702,Estacion_78,703,Estacion_79,Autopista Norte,TZ002,0.0,1
+702,Estacion_78,695,Estacion_71,Autopista Norte,TZ002,0.0,1
+695,Estacion_71,702,Estacion_78,Autopista Norte,TZ002,0.0,1
+695,Estacion_71,694,Estacion_70,Autopista Norte,TZ002,0.0,1
+694,Estacion_70,695,Estacion_71,Autopista Norte,TZ002,0.0,1
+694,Estacion_70,698,Estacion_74,Autopista Norte,TZ002,0.0,1
+698,Estacion_74,694,Estacion_70,Autopista Norte,TZ002,0.0,1
+698,Estacion_74,688,Estacion_64,Autopista Norte,TZ002,0.0,1
+688,Estacion_64,698,Estacion_74,Autopista Norte,TZ002,0.0,1
+688,Estacion_64,692,Estacion_68,Autopista Norte,TZ002,0.0,1
+692,Estacion_68,688,Estacion_64,Autopista Norte,TZ002,0.0,1
+692,Estacion_68,693,Estacion_69,Autopista Norte,TZ002,0.0,1
+693,Estacion_69,692,Estacion_68,Autopista Norte,TZ002,0.0,1
+693,Estacion_69,690,Estacion_66,Autopista Norte,TZ002,0.0,1
+690,Estacion_66,693,Estacion_69,Autopista Norte,TZ002,0.0,1
+690,Estacion_66,691,Estacion_67,Autopista Norte,TZ002,0.0,1
+691,Estacion_67,690,Estacion_66,Autopista Norte,TZ002,0.0,1
+691,Estacion_67,750,Estacion_126,Autopista Norte,TZ002,0.0,1
+750,Estacion_126,691,Estacion_67,Autopista Norte,TZ002,0.0,1
+750,Estacion_126,747,Estacion_123,Autopista Norte,TZ002,0.0,1
+747,Estacion_123,750,Estacion_126,Autopista Norte,TZ002,0.0,1
+747,Estacion_123,744,Estacion_120,Autopista Norte,TZ002,0.0,1
+744,Estacion_120,747,Estacion_123,Autopista Norte,TZ002,0.0,1
+744,Estacion_120,743,Estacion_119,Autopista Norte,TZ002,0.0,1
+743,Estacion_119,744,Estacion_120,Autopista Norte,TZ002,0.0,1
+743,Estacion_119,739,Estacion_115,Autopista Norte,TZ002,0.0,1
+739,Estacion_115,743,Estacion_119,Autopista Norte,TZ002,0.0,1
+739,Estacion_115,738,Estacion_114,Autopista Norte,TZ002,0.0,1
+738,Estacion_114,739,Estacion_115,Autopista Norte,TZ002,0.0,1
+738,Estacion_114,741,Estacion_117,Autopista Norte,TZ002,0.0,1
+741,Estacion_117,738,Estacion_114,Autopista Norte,TZ002,0.0,1
+741,Estacion_117,721,Estacion_97,Autopista Norte,TZ002,0.0,1
+721,Estacion_97,741,Estacion_117,Autopista Norte,TZ002,0.0,1
+721,Estacion_97,727,Estacion_103,Autopista Norte,TZ002,0.0,1
+727,Estacion_103,721,Estacion_97,Autopista Norte,TZ002,0.0,1
+727,Estacion_103,728,Estacion_104,Autopista Norte,TZ002,0.0,1
+728,Estacion_104,727,Estacion_103,Autopista Norte,TZ002,0.0,1
+728,Estacion_104,758,Estacion_134,Autopista Norte,TZ002,0.0,1
+758,Estacion_134,728,Estacion_104,Autopista Norte,TZ002,0.0,1
+758,Estacion_134,755,Estacion_131,Autopista Norte,TZ002,0.0,1
+755,Estacion_131,758,Estacion_134,Autopista Norte,TZ002,0.0,1
+755,Estacion_131,764,Estacion_140,Autopista Norte,TZ002,0.0,1
+764,Estacion_140,755,Estacion_131,Autopista Norte,TZ002,0.0,1
+764,Estacion_140,756,Estacion_132,Autopista Norte,TZ002,0.0,1
+756,Estacion_132,764,Estacion_140,Autopista Norte,TZ002,0.0,1
+756,Estacion_132,753,Estacion_129,Autopista Norte,TZ002,0.0,1
+753,Estacion_129,756,Estacion_132,Autopista Norte,TZ002,0.0,1
+753,Estacion_129,752,Estacion_128,Autopista Norte,TZ002,0.0,1
+752,Estacion_128,753,Estacion_129,Autopista Norte,TZ002,0.0,1
+752,Estacion_128,767,Estacion_143,Autopista Norte,TZ002,0.0,1
+767,Estacion_143,752,Estacion_128,Autopista Norte,TZ002,0.0,1
+767,Estacion_143,766,Estacion_142,Autopista Norte,TZ002,0.0,1
+766,Estacion_142,767,Estacion_143,Autopista Norte,TZ002,0.0,1
+766,Estacion_142,765,Estacion_141,Autopista Norte,TZ002,0.0,1
+765,Estacion_141,766,Estacion_142,Autopista Norte,TZ002,0.0,1
+765,Estacion_141,769,Estacion_145,Autopista Norte,TZ002,0.0,1
+769,Estacion_145,765,Estacion_141,Autopista Norte,TZ002,0.0,1
+769,Estacion_145,873,Estacion_147,Autopista Norte,TZ002,0.0,1
+873,Estacion_147,769,Estacion_145,Autopista Norte,TZ002,0.0,1
+873,Estacion_147,933,Estacion_149,Autopista Norte,TZ002,0.0,1
+933,Estacion_149,873,Estacion_147,Autopista Norte,TZ002,0.0,1
+639,Estacion_15,635,Estacion_11,NQS Central,TZ008,0.0,1
+635,Estacion_11,639,Estacion_15,NQS Central,TZ008,0.0,1
+635,Estacion_11,663,Estacion_39,NQS Central,TZ008,0.0,1
+663,Estacion_39,635,Estacion_11,NQS Central,TZ008,0.0,1
+663,Estacion_39,707,Estacion_83,NQS Central,TZ008,0.0,1
+707,Estacion_83,663,Estacion_39,NQS Central,TZ008,0.0,1
+707,Estacion_83,697,Estacion_73,NQS Central,TZ008,0.0,1
+697,Estacion_73,707,Estacion_83,NQS Central,TZ008,0.0,1
+697,Estacion_73,746,Estacion_122,NQS Central,TZ008,4.059976366835073,1
+746,Estacion_122,697,Estacion_73,NQS Central,TZ008,4.059976366835073,1
+742,Estacion_118,657,Estacion_33,NQS Central,TZ008,18.017585516046275,1
+657,Estacion_33,742,Estacion_118,NQS Central,TZ008,18.017585516046275,1
+657,Estacion_33,689,Estacion_65,NQS Central,TZ008,0.0,1
+689,Estacion_65,657,Estacion_33,NQS Central,TZ008,0.0,1
+689,Estacion_65,737,Estacion_113,NQS Central,TZ008,0.0,1
+737,Estacion_113,689,Estacion_65,NQS Central,TZ008,0.0,1
+737,Estacion_113,705,Estacion_81,NQS Central,TZ008,0.0,1
+705,Estacion_81,737,Estacion_113,NQS Central,TZ008,0.0,1
+705,Estacion_81,661,Estacion_37,NQS Central,TZ008,0.0,1
+661,Estacion_37,705,Estacion_81,NQS Central,TZ008,0.0,1
+661,Estacion_37,761,Estacion_137,NQS Central,TZ008,0.0,1
+761,Estacion_137,661,Estacion_37,NQS Central,TZ008,0.0,1
+759,Estacion_135,770,Estacion_146,NQS Central,TZ008,0.0,1
+770,Estacion_146,759,Estacion_135,NQS Central,TZ008,0.0,1
+770,Estacion_146,931,Estacion_148,NQS Central,TZ008,0.0,1
+931,Estacion_148,770,Estacion_146,NQS Central,TZ008,0.0,1
+931,Estacion_148,648,Estacion_24,NQS Central,TZ008,6.0762741991534455,1
+648,Estacion_24,931,Estacion_148,NQS Central,TZ008,6.0762741991534455,1
+648,Estacion_24,715,Estacion_91,NQS Central,TZ008,0.0,1
+715,Estacion_91,648,Estacion_24,NQS Central,TZ008,0.0,1
+715,Estacion_91,704,Estacion_80,NQS Central,TZ008,0.0,1
+704,Estacion_80,715,Estacion_91,NQS Central,TZ008,0.0,1
+704,Estacion_80,729,Estacion_105,NQS Central,TZ008,0.0,1
+729,Estacion_105,704,Estacion_80,NQS Central,TZ008,0.0,1
+729,Estacion_105,743,Estacion_119,NQS Central,TZ008,6.808351159811593,1
+743,Estacion_119,729,Estacion_105,NQS Central,TZ008,6.808351159811593,1
+743,Estacion_119,732,Estacion_108,NQS Central,TZ008,0.0,1
+732,Estacion_108,743,Estacion_119,NQS Central,TZ008,0.0,1
+732,Estacion_108,753,Estacion_129,NQS Central,TZ008,0.0,1
+753,Estacion_129,732,Estacion_108,NQS Central,TZ008,0.0,1
+753,Estacion_129,765,Estacion_141,NQS Central,TZ008,0.0,1
+765,Estacion_141,753,Estacion_129,NQS Central,TZ008,0.0,1
+765,Estacion_141,701,Estacion_77,NQS Central,TZ008,0.0,1
+701,Estacion_77,765,Estacion_141,NQS Central,TZ008,0.0,1
+701,Estacion_77,720,Estacion_96,NQS Central,TZ008,8.656106162629854,1
+720,Estacion_96,701,Estacion_77,NQS Central,TZ008,8.656106162629854,1
+720,Estacion_96,693,Estacion_69,NQS Central,TZ008,0.0,1
+693,Estacion_69,720,Estacion_96,NQS Central,TZ008,0.0,1
+693,Estacion_69,695,Estacion_71,NQS Central,TZ008,0.0,1
+695,Estacion_71,693,Estacion_69,NQS Central,TZ008,0.0,1
+695,Estacion_71,719,Estacion_95,NQS Central,TZ008,0.0,1
+719,Estacion_95,695,Estacion_71,NQS Central,TZ008,0.0,1
+719,Estacion_95,634,Estacion_10,NQS Central,TZ008,0.0,1
+634,Estacion_10,719,Estacion_95,NQS Central,TZ008,0.0,1
+634,Estacion_10,767,Estacion_143,NQS Central,TZ008,0.0,1
+767,Estacion_143,634,Estacion_10,NQS Central,TZ008,0.0,1
+767,Estacion_143,739,Estacion_115,NQS Central,TZ008,0.0,1
+739,Estacion_115,767,Estacion_143,NQS Central,TZ008,0.0,1
+739,Estacion_115,750,Estacion_126,NQS Central,TZ008,0.0,1
+750,Estacion_126,739,Estacion_115,NQS Central,TZ008,0.0,1
+750,Estacion_126,756,Estacion_132,NQS Central,TZ008,0.0,1
+756,Estacion_132,750,Estacion_126,NQS Central,TZ008,0.0,1
+756,Estacion_132,873,Estacion_147,NQS Central,TZ008,0.0,1
+873,Estacion_147,756,Estacion_132,NQS Central,TZ008,0.0,1
+873,Estacion_147,667,Estacion_43,NQS Central,TZ008,8.509226305631415,1
+667,Estacion_43,873,Estacion_147,NQS Central,TZ008,8.509226305631415,1
+667,Estacion_43,744,Estacion_120,NQS Central,TZ008,0.0,1
+744,Estacion_120,667,Estacion_43,NQS Central,TZ008,0.0,1
+744,Estacion_120,687,Estacion_63,NQS Central,TZ008,7.798050908702649,1
+687,Estacion_63,744,Estacion_120,NQS Central,TZ008,7.798050908702649,1
+687,Estacion_63,698,Estacion_74,NQS Central,TZ008,0.0,1
+698,Estacion_74,687,Estacion_63,NQS Central,TZ008,0.0,1
+698,Estacion_74,716,Estacion_92,NQS Central,TZ008,0.0,1
+716,Estacion_92,698,Estacion_74,NQS Central,TZ008,0.0,1
+716,Estacion_92,730,Estacion_106,NQS Central,TZ008,0.0,1
+730,Estacion_106,716,Estacion_92,NQS Central,TZ008,0.0,1
+730,Estacion_106,721,Estacion_97,NQS Central,TZ008,0.0,1
+721,Estacion_97,730,Estacion_106,NQS Central,TZ008,0.0,1
+721,Estacion_97,738,Estacion_114,NQS Central,TZ008,6.701144100834654,1
+738,Estacion_114,721,Estacion_97,NQS Central,TZ008,6.701144100834654,1
+738,Estacion_114,733,Estacion_109,NQS Central,TZ008,0.0,1
+733,Estacion_109,738,Estacion_114,NQS Central,TZ008,0.0,1
+733,Estacion_109,735,Estacion_111,NQS Central,TZ008,12.346765917755533,1
+735,Estacion_111,733,Estacion_109,NQS Central,TZ008,12.346765917755533,1
+735,Estacion_111,699,Estacion_75,NQS Central,TZ008,0.0,1
+699,Estacion_75,735,Estacion_111,NQS Central,TZ008,0.0,1
+699,Estacion_75,653,Estacion_29,NQS Central,TZ008,0.0,1
+653,Estacion_29,699,Estacion_75,NQS Central,TZ008,0.0,1
+653,Estacion_29,764,Estacion_140,NQS Central,TZ008,0.0,1
+764,Estacion_140,653,Estacion_29,NQS Central,TZ008,0.0,1
+764,Estacion_140,641,Estacion_17,NQS Central,TZ008,0.0,1
+641,Estacion_17,764,Estacion_140,NQS Central,TZ008,0.0,1
+641,Estacion_17,646,Estacion_22,NQS Central,TZ008,6.982213751226382,1
+646,Estacion_22,641,Estacion_17,NQS Central,TZ008,6.982213751226382,1
+646,Estacion_22,723,Estacion_99,NQS Central,TZ008,432.12609220696675,1
+723,Estacion_99,646,Estacion_22,NQS Central,TZ008,432.12609220696675,1
+723,Estacion_99,629,Estacion_5,NQS Central,TZ008,301.422063394288,1
+629,Estacion_5,723,Estacion_99,NQS Central,TZ008,301.422063394288,1
+629,Estacion_5,694,Estacion_70,NQS Central,TZ008,168.78521229189994,1
+694,Estacion_70,629,Estacion_5,NQS Central,TZ008,168.78521229189994,1
+694,Estacion_70,651,Estacion_27,NQS Central,TZ008,3.001246321920462,1
+651,Estacion_27,694,Estacion_70,NQS Central,TZ008,3.001246321920462,1
+651,Estacion_27,758,Estacion_134,NQS Central,TZ008,119.5638809666973,1
+758,Estacion_134,651,Estacion_27,NQS Central,TZ008,119.5638809666973,1
+758,Estacion_134,709,Estacion_85,NQS Central,TZ008,13.458794149537198,1
+709,Estacion_85,758,Estacion_134,NQS Central,TZ008,13.458794149537198,1
+709,Estacion_85,688,Estacion_64,NQS Central,TZ008,4.6321725760667505,1
+688,Estacion_64,709,Estacion_85,NQS Central,TZ008,4.6321725760667505,1
+688,Estacion_64,766,Estacion_142,NQS Central,TZ008,22.80601305602704,1
+766,Estacion_142,688,Estacion_64,NQS Central,TZ008,22.80601305602704,1
+766,Estacion_142,666,Estacion_42,NQS Central,TZ008,20.692021487196598,1
+666,Estacion_42,766,Estacion_142,NQS Central,TZ008,20.692021487196598,1
+666,Estacion_42,642,Estacion_18,NQS Central,TZ008,21.043406392033376,1
+642,Estacion_18,666,Estacion_42,NQS Central,TZ008,21.043406392033376,1
+642,Estacion_18,656,Estacion_32,NQS Central,TZ008,23.02471653667112,1
+656,Estacion_32,642,Estacion_18,NQS Central,TZ008,23.02471653667112,1
+656,Estacion_32,692,Estacion_68,NQS Central,TZ008,15.305124995666574,1
+692,Estacion_68,656,Estacion_32,NQS Central,TZ008,15.305124995666574,1
+692,Estacion_68,755,Estacion_131,NQS Central,TZ008,20.406623572436274,1
+755,Estacion_131,692,Estacion_68,NQS Central,TZ008,20.406623572436274,1
+755,Estacion_131,728,Estacion_104,NQS Central,TZ008,178.27194782865922,1
+728,Estacion_104,755,Estacion_131,NQS Central,TZ008,178.27194782865922,1
+728,Estacion_104,658,Estacion_34,NQS Central,TZ008,140.37556154815593,1
+658,Estacion_34,728,Estacion_104,NQS Central,TZ008,140.37556154815593,1
+658,Estacion_34,708,Estacion_84,NQS Central,TZ008,107.04920801187632,1
+708,Estacion_84,658,Estacion_34,NQS Central,TZ008,107.04920801187632,1
+708,Estacion_84,724,Estacion_100,NQS Central,TZ008,0.0,1
+724,Estacion_100,708,Estacion_84,NQS Central,TZ008,0.0,1
+724,Estacion_100,747,Estacion_123,NQS Central,TZ008,147.6141319660005,1
+747,Estacion_123,724,Estacion_100,NQS Central,TZ008,147.6141319660005,1
+747,Estacion_123,933,Estacion_149,NQS Central,TZ008,178.21416619161823,1
+933,Estacion_149,747,Estacion_123,NQS Central,TZ008,178.21416619161823,1
+933,Estacion_149,752,Estacion_128,NQS Central,TZ008,141.0557434728844,1
+752,Estacion_128,933,Estacion_149,NQS Central,TZ008,141.0557434728844,1
+752,Estacion_128,627,Estacion_3,NQS Central,TZ008,188.57042018227548,1
+627,Estacion_3,752,Estacion_128,NQS Central,TZ008,188.57042018227548,1
+627,Estacion_3,706,Estacion_82,NQS Central,TZ008,170.8919279386928,1
+706,Estacion_82,627,Estacion_3,NQS Central,TZ008,170.8919279386928,1
+706,Estacion_82,691,Estacion_67,NQS Central,TZ008,381.13565052641707,1
+691,Estacion_67,706,Estacion_82,NQS Central,TZ008,381.13565052641707,1
+691,Estacion_67,734,Estacion_110,NQS Central,TZ008,12.250256764616552,1
+734,Estacion_110,691,Estacion_67,NQS Central,TZ008,12.250256764616552,1
+734,Estacion_110,703,Estacion_79,NQS Central,TZ008,0.0,1
+703,Estacion_79,734,Estacion_110,NQS Central,TZ008,0.0,1
+703,Estacion_79,647,Estacion_23,NQS Central,TZ008,92.93877043983093,1
+647,Estacion_23,703,Estacion_79,NQS Central,TZ008,92.93877043983093,1
+647,Estacion_23,769,Estacion_145,NQS Central,TZ008,99.20550376321717,1
+769,Estacion_145,647,Estacion_23,NQS Central,TZ008,99.20550376321717,1
+769,Estacion_145,711,Estacion_87,NQS Central,TZ008,225.27158588634347,1
+711,Estacion_87,769,Estacion_145,NQS Central,TZ008,225.27158588634347,1
+711,Estacion_87,643,Estacion_19,NQS Central,TZ008,111.68920573011201,1
+643,Estacion_19,711,Estacion_87,NQS Central,TZ008,111.68920573011201,1
+643,Estacion_19,702,Estacion_78,NQS Central,TZ008,32.3024315427856,1
+702,Estacion_78,643,Estacion_19,NQS Central,TZ008,32.3024315427856,1
+702,Estacion_78,684,Estacion_60,NQS Central,TZ008,193.4243579107092,1
+684,Estacion_60,702,Estacion_78,NQS Central,TZ008,193.4243579107092,1
+684,Estacion_60,640,Estacion_16,NQS Central,TZ008,73.35709302820715,1
+640,Estacion_16,684,Estacion_60,NQS Central,TZ008,73.35709302820715,1
+640,Estacion_16,654,Estacion_30,NQS Central,TZ008,373.7041412337394,1
+654,Estacion_30,640,Estacion_16,NQS Central,TZ008,373.7041412337394,1
+654,Estacion_30,644,Estacion_20,NQS Central,TZ008,75.91798191232738,1
+644,Estacion_20,654,Estacion_30,NQS Central,TZ008,75.91798191232738,1
+644,Estacion_20,741,Estacion_117,NQS Central,TZ008,134.30029269647366,1
+741,Estacion_117,644,Estacion_20,NQS Central,TZ008,134.30029269647366,1
+741,Estacion_117,660,Estacion_36,NQS Central,TZ008,361.68004834093426,1
+660,Estacion_36,741,Estacion_117,NQS Central,TZ008,361.68004834093426,1
+660,Estacion_36,700,Estacion_76,NQS Central,TZ008,345.9405313299976,1
+700,Estacion_76,660,Estacion_36,NQS Central,TZ008,345.9405313299976,1
+700,Estacion_76,626,Estacion_2,NQS Central,TZ008,76.04236444544404,1
+626,Estacion_2,700,Estacion_76,NQS Central,TZ008,76.04236444544404,1
+626,Estacion_2,625,Estacion_1,NQS Central,TZ008,8.41287961337548,1
+625,Estacion_1,626,Estacion_2,NQS Central,TZ008,8.41287961337548,1
+625,Estacion_1,655,Estacion_31,NQS Central,TZ008,348.5219950607907,1
+655,Estacion_31,625,Estacion_1,NQS Central,TZ008,348.5219950607907,1
+655,Estacion_31,713,Estacion_89,NQS Central,TZ008,126.81599281502622,1
+713,Estacion_89,655,Estacion_31,NQS Central,TZ008,126.81599281502622,1
+713,Estacion_89,710,Estacion_86,NQS Central,TZ008,31.156428914429853,1
+710,Estacion_86,713,Estacion_89,NQS Central,TZ008,31.156428914429853,1
+710,Estacion_86,696,Estacion_72,NQS Central,TZ008,523.7327106248158,1
+696,Estacion_72,710,Estacion_86,NQS Central,TZ008,523.7327106248158,1
+696,Estacion_72,645,Estacion_21,NQS Central,TZ008,255.91096115648543,1
+645,Estacion_21,696,Estacion_72,NQS Central,TZ008,255.91096115648543,1
+645,Estacion_21,649,Estacion_25,NQS Central,TZ008,26.480977053806782,1
+649,Estacion_25,645,Estacion_21,NQS Central,TZ008,26.480977053806782,1
+649,Estacion_25,727,Estacion_103,NQS Central,TZ008,165.44997929559122,1
+727,Estacion_103,649,Estacion_25,NQS Central,TZ008,165.44997929559122,1
+727,Estacion_103,736,Estacion_112,NQS Central,TZ008,101.97907280661093,1
+736,Estacion_112,727,Estacion_103,NQS Central,TZ008,101.97907280661093,1
+736,Estacion_112,725,Estacion_101,NQS Central,TZ008,503.010871332267,1
+725,Estacion_101,736,Estacion_112,NQS Central,TZ008,503.010871332267,1
+726,Estacion_102,624,Estacion_0,NQS Central,TZ008,239.28500160787826,1
+624,Estacion_0,726,Estacion_102,NQS Central,TZ008,239.28500160787826,1
+624,Estacion_0,690,Estacion_66,NQS Central,TZ008,218.47642019953128,1
+690,Estacion_66,624,Estacion_0,NQS Central,TZ008,218.47642019953128,1
+690,Estacion_66,632,Estacion_8,NQS Central,TZ008,336.53637921474365,1
+632,Estacion_8,690,Estacion_66,NQS Central,TZ008,336.53637921474365,1
+632,Estacion_8,712,Estacion_88,NQS Central,TZ008,119.87300868149305,1
+712,Estacion_88,632,Estacion_8,NQS Central,TZ008,119.87300868149305,1
+712,Estacion_88,718,Estacion_94,NQS Central,TZ008,114.9284900099392,1
+718,Estacion_94,712,Estacion_88,NQS Central,TZ008,114.9284900099392,1
+718,Estacion_94,630,Estacion_6,NQS Central,TZ008,0.0,1
+630,Estacion_6,718,Estacion_94,NQS Central,TZ008,0.0,1
+630,Estacion_6,659,Estacion_35,NQS Central,TZ008,19.295256740071636,1
+659,Estacion_35,630,Estacion_6,NQS Central,TZ008,19.295256740071636,1
+664,Estacion_40,745,Estacion_121,NQS Central,TZ008,0.0,1
+745,Estacion_121,664,Estacion_40,NQS Central,TZ008,0.0,1
+745,Estacion_121,628,Estacion_4,NQS Central,TZ008,0.0,1
+628,Estacion_4,745,Estacion_121,NQS Central,TZ008,0.0,1
+628,Estacion_4,685,Estacion_61,NQS Central,TZ008,26.95958595099728,1
+685,Estacion_61,628,Estacion_4,NQS Central,TZ008,26.95958595099728,1
+685,Estacion_61,650,Estacion_26,NQS Central,TZ008,40.9210371499521,1
+650,Estacion_26,685,Estacion_61,NQS Central,TZ008,40.9210371499521,1
+650,Estacion_26,717,Estacion_93,NQS Central,TZ008,4.051173713407479,1
+717,Estacion_93,650,Estacion_26,NQS Central,TZ008,4.051173713407479,1
+717,Estacion_93,633,Estacion_9,NQS Central,TZ008,3.4016552889916056,1
+633,Estacion_9,717,Estacion_93,NQS Central,TZ008,3.4016552889916056,1
+740,Estacion_116,662,Estacion_38,NQS Central,TZ008,76.51509735617037,1
+662,Estacion_38,740,Estacion_116,NQS Central,TZ008,76.51509735617037,1
+662,Estacion_38,652,Estacion_28,NQS Central,TZ008,194.68238507784736,1
+652,Estacion_28,662,Estacion_38,NQS Central,TZ008,194.68238507784736,1
+652,Estacion_28,751,Estacion_127,NQS Central,TZ008,81.581171191865,1
+751,Estacion_127,652,Estacion_28,NQS Central,TZ008,81.581171191865,1
+751,Estacion_127,680,Estacion_56,NQS Central,TZ008,179.7422149572667,1
+680,Estacion_56,751,Estacion_127,NQS Central,TZ008,179.7422149572667,1
+680,Estacion_56,686,Estacion_62,NQS Central,TZ008,42.16087854827856,1
+686,Estacion_62,680,Estacion_56,NQS Central,TZ008,42.16087854827856,1
+686,Estacion_62,762,Estacion_138,NQS Central,TZ008,211.45771644066554,1
+762,Estacion_138,686,Estacion_62,NQS Central,TZ008,211.45771644066554,1
+762,Estacion_138,714,Estacion_90,NQS Central,TZ008,67.24303943362611,1
+714,Estacion_90,762,Estacion_138,NQS Central,TZ008,67.24303943362611,1
+714,Estacion_90,670,Estacion_46,NQS Central,TZ008,261.1353687587998,1
+670,Estacion_46,714,Estacion_90,NQS Central,TZ008,261.1353687587998,1
+670,Estacion_46,754,Estacion_130,NQS Central,TZ008,295.65296602567105,1
+754,Estacion_130,670,Estacion_46,NQS Central,TZ008,295.65296602567105,1
+754,Estacion_130,665,Estacion_41,NQS Central,TZ008,50.09622298362774,1
+665,Estacion_41,754,Estacion_130,NQS Central,TZ008,50.09622298362774,1
+665,Estacion_41,682,Estacion_58,NQS Central,TZ008,0.0,1
+682,Estacion_58,665,Estacion_41,NQS Central,TZ008,0.0,1
+682,Estacion_58,681,Estacion_57,NQS Central,TZ008,0.0,1
+681,Estacion_57,682,Estacion_58,NQS Central,TZ008,0.0,1
+748,Estacion_124,749,Estacion_125,NQS Central,TZ008,0.0,1
+749,Estacion_125,748,Estacion_124,NQS Central,TZ008,0.0,1
+749,Estacion_125,722,Estacion_98,NQS Central,TZ008,0.0,1
+722,Estacion_98,749,Estacion_125,NQS Central,TZ008,0.0,1
+722,Estacion_98,731,Estacion_107,NQS Central,TZ008,0.0,1
+731,Estacion_107,722,Estacion_98,NQS Central,TZ008,0.0,1
+731,Estacion_107,671,Estacion_47,NQS Central,TZ008,0.0,1
+671,Estacion_47,731,Estacion_107,NQS Central,TZ008,0.0,1
+671,Estacion_47,672,Estacion_48,NQS Central,TZ008,0.0,1
+672,Estacion_48,671,Estacion_47,NQS Central,TZ008,0.0,1
+672,Estacion_48,674,Estacion_50,NQS Central,TZ008,0.0,1
+674,Estacion_50,672,Estacion_48,NQS Central,TZ008,0.0,1
+674,Estacion_50,673,Estacion_49,NQS Central,TZ008,0.0,1
+673,Estacion_49,674,Estacion_50,NQS Central,TZ008,0.0,1
+673,Estacion_49,679,Estacion_55,NQS Central,TZ008,0.0,1
+679,Estacion_55,673,Estacion_49,NQS Central,TZ008,0.0,1
+679,Estacion_55,678,Estacion_54,NQS Central,TZ008,0.0,1
+678,Estacion_54,679,Estacion_55,NQS Central,TZ008,0.0,1
+678,Estacion_54,677,Estacion_53,NQS Central,TZ008,0.0,1
+677,Estacion_53,678,Estacion_54,NQS Central,TZ008,0.0,1
+677,Estacion_53,676,Estacion_52,NQS Central,TZ008,0.0,1
+676,Estacion_52,677,Estacion_53,NQS Central,TZ008,0.0,1
+675,Estacion_51,683,Estacion_59,NQS Central,TZ008,0.0,1
+683,Estacion_59,675,Estacion_51,NQS Central,TZ008,0.0,1
+638,Estacion_14,631,Estacion_7,NQS Central,TZ008,0.0,1
+631,Estacion_7,638,Estacion_14,NQS Central,TZ008,0.0,1
+631,Estacion_7,637,Estacion_13,NQS Central,TZ008,0.0,1
+637,Estacion_13,631,Estacion_7,NQS Central,TZ008,0.0,1
+637,Estacion_13,669,Estacion_45,NQS Central,TZ008,0.0,1
+669,Estacion_45,637,Estacion_13,NQS Central,TZ008,0.0,1
+669,Estacion_45,668,Estacion_44,NQS Central,TZ008,0.0,1
+668,Estacion_44,669,Estacion_45,NQS Central,TZ008,0.0,1
+668,Estacion_44,757,Estacion_133,NQS Central,TZ008,0.0,1
+757,Estacion_133,668,Estacion_44,NQS Central,TZ008,0.0,1
+757,Estacion_133,763,Estacion_139,NQS Central,TZ008,0.0,1
+763,Estacion_139,757,Estacion_133,NQS Central,TZ008,0.0,1
+763,Estacion_139,768,Estacion_144,NQS Central,TZ008,0.0,1
+768,Estacion_144,763,Estacion_139,NQS Central,TZ008,0.0,1
+663,Estacion_39,770,Estacion_146,Americas,TZ009,238.3599549690797,1
+770,Estacion_146,663,Estacion_39,Americas,TZ009,238.3599549690797,1
+770,Estacion_146,635,Estacion_11,Americas,TZ009,550.9010631349233,1
+635,Estacion_11,770,Estacion_146,Americas,TZ009,550.9010631349233,1
+635,Estacion_11,743,Estacion_119,Americas,TZ009,187.74394024535582,1
+743,Estacion_119,635,Estacion_11,Americas,TZ009,187.74394024535582,1
+743,Estacion_119,704,Estacion_80,Americas,TZ009,237.59489270591712,1
+704,Estacion_80,743,Estacion_119,Americas,TZ009,237.59489270591712,1
+704,Estacion_80,636,Estacion_12,Americas,TZ009,27.86645787293878,1
+636,Estacion_12,704,Estacion_80,Americas,TZ009,27.86645787293878,1
+636,Estacion_12,732,Estacion_108,Americas,TZ009,157.30948177909158,1
+732,Estacion_108,636,Estacion_12,Americas,TZ009,157.30948177909158,1
+732,Estacion_108,729,Estacion_105,Americas,TZ009,282.4151032156997,1
+729,Estacion_105,732,Estacion_108,Americas,TZ009,282.4151032156997,1
+729,Estacion_105,726,Estacion_102,Americas,TZ009,161.91163668630725,1
+726,Estacion_102,729,Estacion_105,Americas,TZ009,161.91163668630725,1
+725,Estacion_101,718,Estacion_94,Americas,TZ009,58.06779108882938,1
+718,Estacion_94,725,Estacion_101,Americas,TZ009,58.06779108882938,1
+718,Estacion_94,736,Estacion_112,Americas,TZ009,225.71297133023518,1
+736,Estacion_112,718,Estacion_94,Americas,TZ009,225.71297133023518,1
+736,Estacion_112,723,Estacion_99,Americas,TZ009,116.504709983667,1
+723,Estacion_99,736,Estacion_112,Americas,TZ009,116.504709983667,1
+723,Estacion_99,648,Estacion_24,Americas,TZ009,38.70363253392725,1
+648,Estacion_24,723,Estacion_99,Americas,TZ009,38.70363253392725,1
+648,Estacion_24,630,Estacion_6,Americas,TZ009,399.07823450165733,1
+630,Estacion_6,648,Estacion_24,Americas,TZ009,399.07823450165733,1
+630,Estacion_6,651,Estacion_27,Americas,TZ009,352.80693587986616,1
+651,Estacion_27,630,Estacion_6,Americas,TZ009,352.80693587986616,1
+651,Estacion_27,645,Estacion_21,Americas,TZ009,46.33924671592558,1
+645,Estacion_21,651,Estacion_27,Americas,TZ009,46.33924671592558,1
+645,Estacion_21,659,Estacion_35,Americas,TZ009,133.06201472650537,1
+659,Estacion_35,645,Estacion_21,Americas,TZ009,133.06201472650537,1
+659,Estacion_35,696,Estacion_72,Americas,TZ009,274.1641617812884,1
+696,Estacion_72,659,Estacion_35,Americas,TZ009,274.1641617812884,1
+696,Estacion_72,748,Estacion_124,Americas,TZ009,30.151139746421904,1
+748,Estacion_124,696,Estacion_72,Americas,TZ009,30.151139746421904,1
+748,Estacion_124,665,Estacion_41,Americas,TZ009,0.0,1
+665,Estacion_41,748,Estacion_124,Americas,TZ009,0.0,1
+665,Estacion_41,638,Estacion_14,Americas,TZ009,0.0,1
+638,Estacion_14,665,Estacion_41,Americas,TZ009,0.0,1
+638,Estacion_14,664,Estacion_40,Americas,TZ009,0.0,1
+664,Estacion_40,638,Estacion_14,Americas,TZ009,0.0,1
+664,Estacion_40,628,Estacion_4,Americas,TZ009,0.0,1
+628,Estacion_4,664,Estacion_40,Americas,TZ009,0.0,1
+628,Estacion_4,655,Estacion_31,Americas,TZ009,63.51473776088278,1
+655,Estacion_31,628,Estacion_4,Americas,TZ009,63.51473776088278,1
+655,Estacion_31,745,Estacion_121,Americas,TZ009,0.0,1
+745,Estacion_121,655,Estacion_31,Americas,TZ009,0.0,1
+633,Estacion_9,768,Estacion_144,Americas,TZ009,0.0,1
+768,Estacion_144,633,Estacion_9,Americas,TZ009,0.0,1
+768,Estacion_144,722,Estacion_98,Americas,TZ009,30.405367803777153,1
+722,Estacion_98,768,Estacion_144,Americas,TZ009,30.405367803777153,1
+749,Estacion_125,740,Estacion_116,Americas,TZ009,0.0,1
+740,Estacion_116,749,Estacion_125,Americas,TZ009,0.0,1
+740,Estacion_116,625,Estacion_1,Americas,TZ009,0.0,1
+625,Estacion_1,740,Estacion_116,Americas,TZ009,0.0,1
+625,Estacion_1,674,Estacion_50,Americas,TZ009,25.048387615671345,1
+674,Estacion_50,625,Estacion_1,Americas,TZ009,25.048387615671345,1
+674,Estacion_50,675,Estacion_51,Americas,TZ009,0.0,1
+675,Estacion_51,674,Estacion_50,Americas,TZ009,0.0,1
+675,Estacion_51,678,Estacion_54,Americas,TZ009,0.0,1
+678,Estacion_54,675,Estacion_51,Americas,TZ009,0.0,1
+678,Estacion_54,683,Estacion_59,Americas,TZ009,0.0,1
+683,Estacion_59,678,Estacion_54,Americas,TZ009,0.0,1
+683,Estacion_59,685,Estacion_61,Americas,TZ009,0.0,1
+685,Estacion_61,683,Estacion_59,Americas,TZ009,0.0,1
+685,Estacion_61,671,Estacion_47,Americas,TZ009,0.0,1
+671,Estacion_47,685,Estacion_61,Americas,TZ009,0.0,1
+671,Estacion_47,676,Estacion_52,Americas,TZ009,0.0,1
+676,Estacion_52,671,Estacion_47,Americas,TZ009,0.0,1
+676,Estacion_52,637,Estacion_13,Americas,TZ009,0.0,1
+637,Estacion_13,676,Estacion_52,Americas,TZ009,0.0,1
+669,Estacion_45,731,Estacion_107,Americas,TZ009,0.0,1
+731,Estacion_107,669,Estacion_45,Americas,TZ009,0.0,1
+731,Estacion_107,650,Estacion_26,Americas,TZ009,0.0,1
+650,Estacion_26,731,Estacion_107,Americas,TZ009,0.0,1
+650,Estacion_26,681,Estacion_57,Americas,TZ009,0.0,1
+681,Estacion_57,650,Estacion_26,Americas,TZ009,0.0,1
+681,Estacion_57,763,Estacion_139,Americas,TZ009,0.0,1
+763,Estacion_139,681,Estacion_57,Americas,TZ009,0.0,1
+763,Estacion_139,652,Estacion_28,Americas,TZ009,18.48623267043422,1
+652,Estacion_28,763,Estacion_139,Americas,TZ009,18.48623267043422,1
+652,Estacion_28,668,Estacion_44,Americas,TZ009,0.0,1
+668,Estacion_44,652,Estacion_28,Americas,TZ009,0.0,1
+668,Estacion_44,679,Estacion_55,Americas,TZ009,0.0,1
+679,Estacion_55,668,Estacion_44,Americas,TZ009,0.0,1
+679,Estacion_55,677,Estacion_53,Americas,TZ009,0.0,1
+677,Estacion_53,679,Estacion_55,Americas,TZ009,0.0,1
+677,Estacion_53,673,Estacion_49,Americas,TZ009,0.0,1
+673,Estacion_49,677,Estacion_53,Americas,TZ009,0.0,1
+673,Estacion_49,682,Estacion_58,Americas,TZ009,0.0,1
+682,Estacion_58,673,Estacion_49,Americas,TZ009,0.0,1
+682,Estacion_58,686,Estacion_62,Americas,TZ009,0.0,1
+686,Estacion_62,682,Estacion_58,Americas,TZ009,0.0,1
+686,Estacion_62,672,Estacion_48,Americas,TZ009,0.0,1
+672,Estacion_48,686,Estacion_62,Americas,TZ009,0.0,1
+672,Estacion_48,670,Estacion_46,Americas,TZ009,0.0,1
+670,Estacion_46,672,Estacion_48,Americas,TZ009,0.0,1
+670,Estacion_46,662,Estacion_38,Americas,TZ009,0.0,1
+662,Estacion_38,670,Estacion_46,Americas,TZ009,0.0,1
+662,Estacion_38,660,Estacion_36,Americas,TZ009,0.0,1
+660,Estacion_36,662,Estacion_38,Americas,TZ009,0.0,1
+660,Estacion_36,624,Estacion_0,Americas,TZ009,0.0,1
+624,Estacion_0,660,Estacion_36,Americas,TZ009,0.0,1
+624,Estacion_0,631,Estacion_7,Americas,TZ009,0.0,1
+631,Estacion_7,624,Estacion_0,Americas,TZ009,0.0,1
+631,Estacion_7,632,Estacion_8,Americas,TZ009,0.0,1
+632,Estacion_8,631,Estacion_7,Americas,TZ009,0.0,1
+632,Estacion_8,754,Estacion_130,Americas,TZ009,0.0,1
+754,Estacion_130,632,Estacion_8,Americas,TZ009,0.0,1
+754,Estacion_130,751,Estacion_127,Americas,TZ009,0.0,1
+751,Estacion_127,754,Estacion_130,Americas,TZ009,0.0,1
+717,Estacion_93,649,Estacion_25,Americas,TZ009,0.0,1
+649,Estacion_25,717,Estacion_93,Americas,TZ009,0.0,1
+649,Estacion_25,757,Estacion_133,Americas,TZ009,0.0,1
+757,Estacion_133,649,Estacion_25,Americas,TZ009,0.0,1
+757,Estacion_133,762,Estacion_138,Americas,TZ009,0.0,1
+762,Estacion_138,757,Estacion_133,Americas,TZ009,0.0,1
+762,Estacion_138,755,Estacion_131,Americas,TZ009,227.66039998384258,1
+755,Estacion_131,762,Estacion_138,Americas,TZ009,227.66039998384258,1
+755,Estacion_131,654,Estacion_30,Americas,TZ009,96.09783186750883,1
+654,Estacion_30,755,Estacion_131,Americas,TZ009,96.09783186750883,1
+654,Estacion_30,714,Estacion_90,Americas,TZ009,244.09372349430942,1
+714,Estacion_90,654,Estacion_30,Americas,TZ009,244.09372349430942,1
+714,Estacion_90,710,Estacion_86,Americas,TZ009,0.0,1
+710,Estacion_86,714,Estacion_90,Americas,TZ009,0.0,1
+710,Estacion_86,692,Estacion_68,Americas,TZ009,137.56136610143312,1
+692,Estacion_68,710,Estacion_86,Americas,TZ009,137.56136610143312,1
+692,Estacion_68,680,Estacion_56,Americas,TZ009,73.37354647651227,1
+680,Estacion_56,692,Estacion_68,Americas,TZ009,73.37354647651227,1
+680,Estacion_56,640,Estacion_16,Americas,TZ009,93.45498008717004,1
+640,Estacion_16,680,Estacion_56,Americas,TZ009,93.45498008717004,1
+640,Estacion_16,626,Estacion_2,Americas,TZ009,13.628644159672149,1
+626,Estacion_2,640,Estacion_16,Americas,TZ009,13.628644159672149,1
+626,Estacion_2,656,Estacion_32,Americas,TZ009,228.2307136230529,1
+656,Estacion_32,626,Estacion_2,Americas,TZ009,228.2307136230529,1
+656,Estacion_32,712,Estacion_88,Americas,TZ009,15.132962070279973,1
+712,Estacion_88,656,Estacion_32,Americas,TZ009,15.132962070279973,1
+712,Estacion_88,690,Estacion_66,Americas,TZ009,263.28698215802706,1
+690,Estacion_66,712,Estacion_88,Americas,TZ009,263.28698215802706,1
+690,Estacion_66,727,Estacion_103,Americas,TZ009,47.06958951384604,1
+727,Estacion_103,690,Estacion_66,Americas,TZ009,47.06958951384604,1
+727,Estacion_103,644,Estacion_20,Americas,TZ009,0.0,1
+644,Estacion_20,727,Estacion_103,Americas,TZ009,0.0,1
+644,Estacion_20,715,Estacion_91,Americas,TZ009,66.12024394368291,1
+715,Estacion_91,644,Estacion_20,Americas,TZ009,66.12024394368291,1
+715,Estacion_91,643,Estacion_19,Americas,TZ009,120.36629060545692,1
+643,Estacion_19,715,Estacion_91,Americas,TZ009,120.36629060545692,1
+643,Estacion_19,713,Estacion_89,Americas,TZ009,178.569810248262,1
+713,Estacion_89,643,Estacion_19,Americas,TZ009,178.569810248262,1
+713,Estacion_89,642,Estacion_18,Americas,TZ009,10.108881571370148,1
+642,Estacion_18,713,Estacion_89,Americas,TZ009,10.108881571370148,1
+642,Estacion_18,702,Estacion_78,Americas,TZ009,57.32646659449074,1
+702,Estacion_78,642,Estacion_18,Americas,TZ009,57.32646659449074,1
+702,Estacion_78,765,Estacion_141,Americas,TZ009,22.917701432086687,1
+765,Estacion_141,702,Estacion_78,Americas,TZ009,22.917701432086687,1
+765,Estacion_141,706,Estacion_82,Americas,TZ009,162.68455822272426,1
+706,Estacion_82,765,Estacion_141,Americas,TZ009,162.68455822272426,1
+706,Estacion_82,658,Estacion_34,Americas,TZ009,54.417121656741074,1
+658,Estacion_34,706,Estacion_82,Americas,TZ009,54.417121656741074,1
+658,Estacion_34,753,Estacion_129,Americas,TZ009,24.04277025319061,1
+753,Estacion_129,658,Estacion_34,Americas,TZ009,24.04277025319061,1
+753,Estacion_129,701,Estacion_77,Americas,TZ009,0.0,1
+701,Estacion_77,753,Estacion_129,Americas,TZ009,0.0,1
+701,Estacion_77,629,Estacion_5,Americas,TZ009,0.0,1
+629,Estacion_5,701,Estacion_77,Americas,TZ009,0.0,1
+629,Estacion_5,695,Estacion_71,Americas,TZ009,5.02131864245348,1
+695,Estacion_71,629,Estacion_5,Americas,TZ009,5.02131864245348,1
+695,Estacion_71,647,Estacion_23,Americas,TZ009,95.65079710316331,1
+647,Estacion_23,695,Estacion_71,Americas,TZ009,95.65079710316331,1
+647,Estacion_23,700,Estacion_76,Americas,TZ009,0.0,1
+700,Estacion_76,647,Estacion_23,Americas,TZ009,0.0,1
+700,Estacion_76,666,Estacion_42,Americas,TZ009,95.29525548315905,1
+666,Estacion_42,700,Estacion_76,Americas,TZ009,95.29525548315905,1
+666,Estacion_42,741,Estacion_117,Americas,TZ009,71.47153394610905,1
+741,Estacion_117,666,Estacion_42,Americas,TZ009,71.47153394610905,1
+741,Estacion_117,750,Estacion_126,Americas,TZ009,117.35904019449936,1
+750,Estacion_126,741,Estacion_117,Americas,TZ009,117.35904019449936,1
+750,Estacion_126,634,Estacion_10,Americas,TZ009,20.844841812734558,1
+634,Estacion_10,750,Estacion_126,Americas,TZ009,20.844841812734558,1
+634,Estacion_10,641,Estacion_17,Americas,TZ009,64.865132706047,1
+641,Estacion_17,634,Estacion_10,Americas,TZ009,64.865132706047,1
+641,Estacion_17,756,Estacion_132,Americas,TZ009,219.45819629608468,1
+756,Estacion_132,641,Estacion_17,Americas,TZ009,219.45819629608468,1
+756,Estacion_132,767,Estacion_143,Americas,TZ009,0.0,1
+767,Estacion_143,756,Estacion_132,Americas,TZ009,0.0,1
+766,Estacion_142,684,Estacion_60,Americas,TZ009,72.63937380380048,1
+684,Estacion_60,766,Estacion_142,Americas,TZ009,72.63937380380048,1
+684,Estacion_60,691,Estacion_67,Americas,TZ009,24.235214665882268,1
+691,Estacion_67,684,Estacion_60,Americas,TZ009,24.235214665882268,1
+691,Estacion_67,711,Estacion_87,Americas,TZ009,41.45175825852766,1
+711,Estacion_87,691,Estacion_67,Americas,TZ009,41.45175825852766,1
+711,Estacion_87,719,Estacion_95,Americas,TZ009,353.4847574391397,1
+719,Estacion_95,711,Estacion_87,Americas,TZ009,353.4847574391397,1
+719,Estacion_95,693,Estacion_69,Americas,TZ009,0.0,1
+693,Estacion_69,719,Estacion_95,Americas,TZ009,0.0,1
+693,Estacion_69,769,Estacion_145,Americas,TZ009,51.247678767244906,1
+769,Estacion_145,693,Estacion_69,Americas,TZ009,51.247678767244906,1
+769,Estacion_145,653,Estacion_29,Americas,TZ009,28.302305603048808,1
+653,Estacion_29,769,Estacion_145,Americas,TZ009,28.302305603048808,1
+653,Estacion_29,703,Estacion_79,Americas,TZ009,137.9370308930802,1
+703,Estacion_79,653,Estacion_29,Americas,TZ009,137.9370308930802,1
+703,Estacion_79,688,Estacion_64,Americas,TZ009,14.316005742158268,1
+688,Estacion_64,703,Estacion_79,Americas,TZ009,14.316005742158268,1
+688,Estacion_64,667,Estacion_43,Americas,TZ009,145.55425390109122,1
+667,Estacion_43,688,Estacion_64,Americas,TZ009,145.55425390109122,1
+667,Estacion_43,720,Estacion_96,Americas,TZ009,14.181706945229962,1
+720,Estacion_96,667,Estacion_43,Americas,TZ009,14.181706945229962,1
+720,Estacion_96,744,Estacion_120,Americas,TZ009,0.0,1
+744,Estacion_120,720,Estacion_96,Americas,TZ009,0.0,1
+744,Estacion_120,933,Estacion_149,Americas,TZ009,54.623578370512405,1
+933,Estacion_149,744,Estacion_120,Americas,TZ009,54.623578370512405,1
+933,Estacion_149,708,Estacion_84,Americas,TZ009,39.91456602787184,1
+708,Estacion_84,933,Estacion_149,Americas,TZ009,39.91456602787184,1
+708,Estacion_84,738,Estacion_114,Americas,TZ009,43.916603345354815,1
+738,Estacion_114,708,Estacion_84,Americas,TZ009,43.916603345354815,1
+738,Estacion_114,747,Estacion_123,Americas,TZ009,0.0,1
+747,Estacion_123,738,Estacion_114,Americas,TZ009,0.0,1
+747,Estacion_123,627,Estacion_3,Americas,TZ009,0.0,1
+627,Estacion_3,747,Estacion_123,Americas,TZ009,0.0,1
+627,Estacion_3,646,Estacion_22,Americas,TZ009,0.0,1
+646,Estacion_22,627,Estacion_3,Americas,TZ009,0.0,1
+646,Estacion_22,687,Estacion_63,Americas,TZ009,0.0,1
+687,Estacion_63,646,Estacion_22,Americas,TZ009,0.0,1
+687,Estacion_63,735,Estacion_111,Americas,TZ009,0.0,1
+735,Estacion_111,687,Estacion_63,Americas,TZ009,0.0,1
+734,Estacion_110,739,Estacion_115,Americas,TZ009,0.0,1
+739,Estacion_115,734,Estacion_110,Americas,TZ009,0.0,1
+739,Estacion_115,716,Estacion_92,Americas,TZ009,0.0,1
+716,Estacion_92,739,Estacion_115,Americas,TZ009,0.0,1
+716,Estacion_92,699,Estacion_75,Americas,TZ009,0.0,1
+699,Estacion_75,716,Estacion_92,Americas,TZ009,0.0,1
+699,Estacion_75,698,Estacion_74,Americas,TZ009,0.0,1
+698,Estacion_74,699,Estacion_75,Americas,TZ009,0.0,1
+698,Estacion_74,709,Estacion_85,Americas,TZ009,0.0,1
+709,Estacion_85,698,Estacion_74,Americas,TZ009,0.0,1
+709,Estacion_85,694,Estacion_70,Americas,TZ009,0.0,1
+694,Estacion_70,709,Estacion_85,Americas,TZ009,0.0,1
+694,Estacion_70,873,Estacion_147,Americas,TZ009,0.0,1
+873,Estacion_147,694,Estacion_70,Americas,TZ009,0.0,1
+873,Estacion_147,764,Estacion_140,Americas,TZ009,0.0,1
+764,Estacion_140,873,Estacion_147,Americas,TZ009,0.0,1
+764,Estacion_140,724,Estacion_100,Americas,TZ009,0.0,1
+724,Estacion_100,764,Estacion_140,Americas,TZ009,0.0,1
+724,Estacion_100,728,Estacion_104,Americas,TZ009,0.0,1
+728,Estacion_104,724,Estacion_100,Americas,TZ009,0.0,1
+728,Estacion_104,733,Estacion_109,Americas,TZ009,0.0,1
+733,Estacion_109,728,Estacion_104,Americas,TZ009,0.0,1
+733,Estacion_109,721,Estacion_97,Americas,TZ009,0.0,1
+721,Estacion_97,733,Estacion_109,Americas,TZ009,0.0,1
+721,Estacion_97,752,Estacion_128,Americas,TZ009,0.0,1
+752,Estacion_128,721,Estacion_97,Americas,TZ009,0.0,1
+752,Estacion_128,758,Estacion_134,Americas,TZ009,0.0,1
+758,Estacion_134,752,Estacion_128,Americas,TZ009,0.0,1
+758,Estacion_134,730,Estacion_106,Americas,TZ009,0.0,1
+730,Estacion_106,758,Estacion_134,Americas,TZ009,0.0,1
+730,Estacion_106,761,Estacion_137,Americas,TZ009,278.50076042537876,1
+761,Estacion_137,730,Estacion_106,Americas,TZ009,278.50076042537876,1
+761,Estacion_137,657,Estacion_33,Americas,TZ009,559.8320905059118,1
+657,Estacion_33,761,Estacion_137,Americas,TZ009,559.8320905059118,1
+657,Estacion_33,760,Estacion_136,Americas,TZ009,0.0,1
+760,Estacion_136,657,Estacion_33,Americas,TZ009,0.0,1
+760,Estacion_136,705,Estacion_81,Americas,TZ009,0.0,1
+705,Estacion_81,760,Estacion_136,Americas,TZ009,0.0,1
+705,Estacion_81,689,Estacion_65,Americas,TZ009,0.0,1
+689,Estacion_65,705,Estacion_81,Americas,TZ009,0.0,1
+689,Estacion_65,661,Estacion_37,Americas,TZ009,0.0,1
+661,Estacion_37,689,Estacion_65,Americas,TZ009,0.0,1
+661,Estacion_37,737,Estacion_113,Americas,TZ009,0.0,1
+737,Estacion_113,661,Estacion_37,Americas,TZ009,0.0,1
+737,Estacion_113,931,Estacion_148,Americas,TZ009,0.0,1
+931,Estacion_148,737,Estacion_113,Americas,TZ009,0.0,1
+931,Estacion_148,746,Estacion_122,Americas,TZ009,140.77913751768574,1
+746,Estacion_122,931,Estacion_148,Americas,TZ009,140.77913751768574,1
+746,Estacion_122,759,Estacion_135,Americas,TZ009,134.84048208509194,1
+759,Estacion_135,746,Estacion_122,Americas,TZ009,134.84048208509194,1
+759,Estacion_135,742,Estacion_118,Americas,TZ009,925.5752298122134,1
+742,Estacion_118,759,Estacion_135,Americas,TZ009,925.5752298122134,1
+742,Estacion_118,697,Estacion_73,Americas,TZ009,783.9720664498327,1
+697,Estacion_73,742,Estacion_118,Americas,TZ009,783.9720664498327,1
+697,Estacion_73,639,Estacion_15,Americas,TZ009,1234.1134792167722,1
+639,Estacion_15,697,Estacion_73,Americas,TZ009,1234.1134792167722,1
+627,Estacion_3,631,Estacion_7,Eje Ambiental,TZ015,0.0,1
+631,Estacion_7,627,Estacion_3,Eje Ambiental,TZ015,0.0,1
+631,Estacion_7,652,Estacion_28,Eje Ambiental,TZ015,0.0,1
+652,Estacion_28,631,Estacion_7,Eje Ambiental,TZ015,0.0,1
+652,Estacion_28,675,Estacion_51,Eje Ambiental,TZ015,0.0,1
+675,Estacion_51,652,Estacion_28,Eje Ambiental,TZ015,0.0,1
+679,Estacion_55,680,Estacion_56,Eje Ambiental,TZ015,0.0,1
+680,Estacion_56,679,Estacion_55,Eje Ambiental,TZ015,0.0,1
+680,Estacion_56,681,Estacion_57,Eje Ambiental,TZ015,0.0,1
+681,Estacion_57,680,Estacion_56,Eje Ambiental,TZ015,0.0,1
+682,Estacion_58,668,Estacion_44,Eje Ambiental,TZ015,0.0,1
+668,Estacion_44,682,Estacion_58,Eje Ambiental,TZ015,0.0,1
+668,Estacion_44,671,Estacion_47,Eje Ambiental,TZ015,0.0,1
+671,Estacion_47,668,Estacion_44,Eje Ambiental,TZ015,0.0,1
+671,Estacion_47,683,Estacion_59,Eje Ambiental,TZ015,0.0,1
+683,Estacion_59,671,Estacion_47,Eje Ambiental,TZ015,0.0,1
+683,Estacion_59,686,Estacion_62,Eje Ambiental,TZ015,0.0,1
+686,Estacion_62,683,Estacion_59,Eje Ambiental,TZ015,0.0,1
+686,Estacion_62,684,Estacion_60,Eje Ambiental,TZ015,0.0,1
+684,Estacion_60,686,Estacion_62,Eje Ambiental,TZ015,0.0,1
+684,Estacion_60,672,Estacion_48,Eje Ambiental,TZ015,0.0,1
+672,Estacion_48,684,Estacion_60,Eje Ambiental,TZ015,0.0,1
+672,Estacion_48,673,Estacion_49,Eje Ambiental,TZ015,0.0,1
+673,Estacion_49,672,Estacion_48,Eje Ambiental,TZ015,0.0,1
+674,Estacion_50,662,Estacion_38,Eje Ambiental,TZ015,0.0,1
+662,Estacion_38,674,Estacion_50,Eje Ambiental,TZ015,0.0,1
+662,Estacion_38,669,Estacion_45,Eje Ambiental,TZ015,0.0,1
+669,Estacion_45,662,Estacion_38,Eje Ambiental,TZ015,0.0,1
+669,Estacion_45,670,Estacion_46,Eje Ambiental,TZ015,0.0,1
+670,Estacion_46,669,Estacion_45,Eje Ambiental,TZ015,0.0,1
+670,Estacion_46,751,Estacion_127,Eje Ambiental,TZ015,0.0,1
+751,Estacion_127,670,Estacion_46,Eje Ambiental,TZ015,0.0,1
+751,Estacion_127,741,Estacion_117,Eje Ambiental,TZ015,0.0,1
+741,Estacion_117,751,Estacion_127,Eje Ambiental,TZ015,0.0,1
+741,Estacion_117,727,Estacion_103,Eje Ambiental,TZ015,0.0,1
+727,Estacion_103,741,Estacion_117,Eje Ambiental,TZ015,0.0,1
+727,Estacion_103,714,Estacion_90,Eje Ambiental,TZ015,0.0,1
+714,Estacion_90,727,Estacion_103,Eje Ambiental,TZ015,0.0,1
+714,Estacion_90,713,Estacion_89,Eje Ambiental,TZ015,0.0,1
+713,Estacion_89,714,Estacion_90,Eje Ambiental,TZ015,0.0,1
+713,Estacion_89,712,Estacion_88,Eje Ambiental,TZ015,0.0,1
+712,Estacion_88,713,Estacion_89,Eje Ambiental,TZ015,0.0,1
+712,Estacion_88,711,Estacion_87,Eje Ambiental,TZ015,0.0,1
+711,Estacion_87,712,Estacion_88,Eje Ambiental,TZ015,0.0,1
+711,Estacion_87,700,Estacion_76,Eje Ambiental,TZ015,0.0,1
+700,Estacion_76,711,Estacion_87,Eje Ambiental,TZ015,0.0,1
+700,Estacion_76,703,Estacion_79,Eje Ambiental,TZ015,0.0,1
+703,Estacion_79,700,Estacion_76,Eje Ambiental,TZ015,0.0,1
+703,Estacion_79,690,Estacion_66,Eje Ambiental,TZ015,0.0,1
+690,Estacion_66,703,Estacion_79,Eje Ambiental,TZ015,0.0,1
+690,Estacion_66,734,Estacion_110,Eje Ambiental,TZ015,0.0,1
+734,Estacion_110,690,Estacion_66,Eje Ambiental,TZ015,0.0,1
+734,Estacion_110,757,Estacion_133,Eje Ambiental,TZ015,0.0,1
+757,Estacion_133,734,Estacion_110,Eje Ambiental,TZ015,0.0,1
+757,Estacion_133,754,Estacion_130,Eje Ambiental,TZ015,0.0,1
+754,Estacion_130,757,Estacion_133,Eje Ambiental,TZ015,0.0,1
+754,Estacion_130,769,Estacion_145,Eje Ambiental,TZ015,0.0,1
+769,Estacion_145,754,Estacion_130,Eje Ambiental,TZ015,0.0,1
+769,Estacion_145,762,Estacion_138,Eje Ambiental,TZ015,0.0,1
+762,Estacion_138,769,Estacion_145,Eje Ambiental,TZ015,0.0,1
+762,Estacion_138,752,Estacion_128,Eje Ambiental,TZ015,0.0,1
+752,Estacion_128,762,Estacion_138,Eje Ambiental,TZ015,0.0,1
+752,Estacion_128,747,Estacion_123,Eje Ambiental,TZ015,69.57154978845165,1
+747,Estacion_123,752,Estacion_128,Eje Ambiental,TZ015,69.57154978845165,1
+747,Estacion_123,653,Estacion_29,Eje Ambiental,TZ015,149.64804736190598,1
+653,Estacion_29,747,Estacion_123,Eje Ambiental,TZ015,149.64804736190598,1
+653,Estacion_29,643,Estacion_19,Eje Ambiental,TZ015,0.0,1
+643,Estacion_19,653,Estacion_29,Eje Ambiental,TZ015,0.0,1
+643,Estacion_19,647,Estacion_23,Eje Ambiental,TZ015,0.0,1
+647,Estacion_23,643,Estacion_19,Eje Ambiental,TZ015,0.0,1
+647,Estacion_23,645,Estacion_21,Eje Ambiental,TZ015,0.0,1
+645,Estacion_21,647,Estacion_23,Eje Ambiental,TZ015,0.0,1
+654,Estacion_30,630,Estacion_6,Eje Ambiental,TZ015,0.0,1
+630,Estacion_6,654,Estacion_30,Eje Ambiental,TZ015,0.0,1
+630,Estacion_6,655,Estacion_31,Eje Ambiental,TZ015,0.0,1
+655,Estacion_31,630,Estacion_6,Eje Ambiental,TZ015,0.0,1
+655,Estacion_31,648,Estacion_24,Eje Ambiental,TZ015,0.0,1
+648,Estacion_24,655,Estacion_31,Eje Ambiental,TZ015,0.0,1
+648,Estacion_24,651,Estacion_27,Eje Ambiental,TZ015,0.0,1
+651,Estacion_27,648,Estacion_24,Eje Ambiental,TZ015,0.0,1
+651,Estacion_27,657,Estacion_33,Eje Ambiental,TZ015,0.0,1
+657,Estacion_33,651,Estacion_27,Eje Ambiental,TZ015,0.0,1
+657,Estacion_33,638,Estacion_14,Eje Ambiental,TZ015,0.0,1
+638,Estacion_14,657,Estacion_33,Eje Ambiental,TZ015,0.0,1
+638,Estacion_14,637,Estacion_13,Eje Ambiental,TZ015,0.0,1
+637,Estacion_13,638,Estacion_14,Eje Ambiental,TZ015,0.0,1
+637,Estacion_13,666,Estacion_42,Eje Ambiental,TZ015,0.0,1
+666,Estacion_42,637,Estacion_13,Eje Ambiental,TZ015,0.0,1
+666,Estacion_42,649,Estacion_25,Eje Ambiental,TZ015,0.0,1
+649,Estacion_25,666,Estacion_42,Eje Ambiental,TZ015,0.0,1
+649,Estacion_25,650,Estacion_26,Eje Ambiental,TZ015,0.0,1
+650,Estacion_26,649,Estacion_25,Eje Ambiental,TZ015,0.0,1
+650,Estacion_26,626,Estacion_2,Eje Ambiental,TZ015,0.0,1
+626,Estacion_2,650,Estacion_26,Eje Ambiental,TZ015,0.0,1
+625,Estacion_1,632,Estacion_8,Eje Ambiental,TZ015,0.0,1
+632,Estacion_8,625,Estacion_1,Eje Ambiental,TZ015,0.0,1
+632,Estacion_8,633,Estacion_9,Eje Ambiental,TZ015,0.0,1
+633,Estacion_9,632,Estacion_8,Eje Ambiental,TZ015,0.0,1
+633,Estacion_9,634,Estacion_10,Eje Ambiental,TZ015,0.0,1
+634,Estacion_10,633,Estacion_9,Eje Ambiental,TZ015,0.0,1
+634,Estacion_10,644,Estacion_20,Eje Ambiental,TZ015,0.0,1
+644,Estacion_20,634,Estacion_10,Eje Ambiental,TZ015,0.0,1
+644,Estacion_20,641,Estacion_17,Eje Ambiental,TZ015,0.0,1
+641,Estacion_17,644,Estacion_20,Eje Ambiental,TZ015,0.0,1
+642,Estacion_18,640,Estacion_16,Eje Ambiental,TZ015,0.0,1
+640,Estacion_16,642,Estacion_18,Eje Ambiental,TZ015,0.0,1
+640,Estacion_16,639,Estacion_15,Eje Ambiental,TZ015,0.0,1
+639,Estacion_15,640,Estacion_16,Eje Ambiental,TZ015,0.0,1
+639,Estacion_15,746,Estacion_122,Eje Ambiental,TZ015,0.0,1
+746,Estacion_122,639,Estacion_15,Eje Ambiental,TZ015,0.0,1
+746,Estacion_122,743,Estacion_119,Eje Ambiental,TZ015,0.0,1
+743,Estacion_119,746,Estacion_122,Eje Ambiental,TZ015,0.0,1
+743,Estacion_119,660,Estacion_36,Eje Ambiental,TZ015,0.0,1
+660,Estacion_36,743,Estacion_119,Eje Ambiental,TZ015,0.0,1
+660,Estacion_36,685,Estacion_61,Eje Ambiental,TZ015,0.0,1
+685,Estacion_61,660,Estacion_36,Eje Ambiental,TZ015,0.0,1
+685,Estacion_61,667,Estacion_43,Eje Ambiental,TZ015,0.0,1
+667,Estacion_43,685,Estacion_61,Eje Ambiental,TZ015,0.0,1
+667,Estacion_43,656,Estacion_32,Eje Ambiental,TZ015,0.0,1
+656,Estacion_32,667,Estacion_43,Eje Ambiental,TZ015,0.0,1
+658,Estacion_34,659,Estacion_35,Eje Ambiental,TZ015,0.0,1
+659,Estacion_35,658,Estacion_34,Eje Ambiental,TZ015,0.0,1
+659,Estacion_35,663,Estacion_39,Eje Ambiental,TZ015,0.0,1
+663,Estacion_39,659,Estacion_35,Eje Ambiental,TZ015,0.0,1
+661,Estacion_37,665,Estacion_41,Eje Ambiental,TZ015,0.0,1
+665,Estacion_41,661,Estacion_37,Eje Ambiental,TZ015,0.0,1
+665,Estacion_41,664,Estacion_40,Eje Ambiental,TZ015,0.0,1
+664,Estacion_40,665,Estacion_41,Eje Ambiental,TZ015,0.0,1
+664,Estacion_40,701,Estacion_77,Eje Ambiental,TZ015,0.0,1
+701,Estacion_77,664,Estacion_40,Eje Ambiental,TZ015,0.0,1
+701,Estacion_77,695,Estacion_71,Eje Ambiental,TZ015,0.0,1
+695,Estacion_71,701,Estacion_77,Eje Ambiental,TZ015,0.0,1
+695,Estacion_71,696,Estacion_72,Eje Ambiental,TZ015,0.0,1
+696,Estacion_72,695,Estacion_71,Eje Ambiental,TZ015,0.0,1
+696,Estacion_72,688,Estacion_64,Eje Ambiental,TZ015,0.0,1
+688,Estacion_64,696,Estacion_72,Eje Ambiental,TZ015,0.0,1
+688,Estacion_64,717,Estacion_93,Eje Ambiental,TZ015,0.0,1
+717,Estacion_93,688,Estacion_64,Eje Ambiental,TZ015,0.0,1
+717,Estacion_93,710,Estacion_86,Eje Ambiental,TZ015,0.0,1
+710,Estacion_86,717,Estacion_93,Eje Ambiental,TZ015,0.0,1
+710,Estacion_86,708,Estacion_84,Eje Ambiental,TZ015,0.0,1
+708,Estacion_84,710,Estacion_86,Eje Ambiental,TZ015,0.0,1
+708,Estacion_84,702,Estacion_78,Eje Ambiental,TZ015,0.0,1
+702,Estacion_78,708,Estacion_84,Eje Ambiental,TZ015,0.0,1
+702,Estacion_78,707,Estacion_83,Eje Ambiental,TZ015,0.0,1
+707,Estacion_83,702,Estacion_78,Eje Ambiental,TZ015,0.0,1
+707,Estacion_83,704,Estacion_80,Eje Ambiental,TZ015,0.0,1
+704,Estacion_80,707,Estacion_83,Eje Ambiental,TZ015,0.0,1
+706,Estacion_82,705,Estacion_81,Eje Ambiental,TZ015,0.0,1
+705,Estacion_81,706,Estacion_82,Eje Ambiental,TZ015,0.0,1
+705,Estacion_81,719,Estacion_95,Eje Ambiental,TZ015,0.0,1
+719,Estacion_95,705,Estacion_81,Eje Ambiental,TZ015,0.0,1
+719,Estacion_95,718,Estacion_94,Eje Ambiental,TZ015,0.0,1
+718,Estacion_94,719,Estacion_95,Eje Ambiental,TZ015,0.0,1
+718,Estacion_94,715,Estacion_91,Eje Ambiental,TZ015,0.0,1
+715,Estacion_91,718,Estacion_94,Eje Ambiental,TZ015,0.0,1
+715,Estacion_91,697,Estacion_73,Eje Ambiental,TZ015,0.0,1
+697,Estacion_73,715,Estacion_91,Eje Ambiental,TZ015,0.0,1
+697,Estacion_73,692,Estacion_68,Eje Ambiental,TZ015,0.0,1
+692,Estacion_68,697,Estacion_73,Eje Ambiental,TZ015,0.0,1
+693,Estacion_69,689,Estacion_65,Eje Ambiental,TZ015,0.0,1
+689,Estacion_65,693,Estacion_69,Eje Ambiental,TZ015,0.0,1
+689,Estacion_65,691,Estacion_67,Eje Ambiental,TZ015,0.0,1
+691,Estacion_67,689,Estacion_65,Eje Ambiental,TZ015,0.0,1
+750,Estacion_126,748,Estacion_124,Eje Ambiental,TZ015,0.0,1
+748,Estacion_124,750,Estacion_126,Eje Ambiental,TZ015,0.0,1
+748,Estacion_124,745,Estacion_121,Eje Ambiental,TZ015,0.0,1
+745,Estacion_121,748,Estacion_124,Eje Ambiental,TZ015,0.0,1
+745,Estacion_121,744,Estacion_120,Eje Ambiental,TZ015,0.0,1
+744,Estacion_120,745,Estacion_121,Eje Ambiental,TZ015,0.0,1
+744,Estacion_120,749,Estacion_125,Eje Ambiental,TZ015,0.0,1
+749,Estacion_125,744,Estacion_120,Eje Ambiental,TZ015,0.0,1
+749,Estacion_125,723,Estacion_99,Eje Ambiental,TZ015,0.0,1
+723,Estacion_99,749,Estacion_125,Eje Ambiental,TZ015,0.0,1
+723,Estacion_99,722,Estacion_98,Eje Ambiental,TZ015,0.0,1
+722,Estacion_98,723,Estacion_99,Eje Ambiental,TZ015,0.0,1
+722,Estacion_98,720,Estacion_96,Eje Ambiental,TZ015,0.0,1
+720,Estacion_96,722,Estacion_98,Eje Ambiental,TZ015,0.0,1
+720,Estacion_96,732,Estacion_108,Eje Ambiental,TZ015,0.0,1
+732,Estacion_108,720,Estacion_96,Eje Ambiental,TZ015,0.0,1
+729,Estacion_105,731,Estacion_107,Eje Ambiental,TZ015,0.0,1
+731,Estacion_107,729,Estacion_105,Eje Ambiental,TZ015,0.0,1
+731,Estacion_107,742,Estacion_118,Eje Ambiental,TZ015,0.0,1
+742,Estacion_118,731,Estacion_107,Eje Ambiental,TZ015,0.0,1
+742,Estacion_118,736,Estacion_112,Eje Ambiental,TZ015,0.0,1
+736,Estacion_112,742,Estacion_118,Eje Ambiental,TZ015,0.0,1
+726,Estacion_102,721,Estacion_97,Eje Ambiental,TZ015,0.0,1
+721,Estacion_97,726,Estacion_102,Eje Ambiental,TZ015,0.0,1
+721,Estacion_97,740,Estacion_116,Eje Ambiental,TZ015,0.0,1
+740,Estacion_116,721,Estacion_97,Eje Ambiental,TZ015,0.0,1
+740,Estacion_116,737,Estacion_113,Eje Ambiental,TZ015,0.0,1
+737,Estacion_113,740,Estacion_116,Eje Ambiental,TZ015,0.0,1
+737,Estacion_113,738,Estacion_114,Eje Ambiental,TZ015,0.0,1
+738,Estacion_114,737,Estacion_113,Eje Ambiental,TZ015,0.0,1
+738,Estacion_114,767,Estacion_143,Eje Ambiental,TZ015,0.0,1
+767,Estacion_143,738,Estacion_114,Eje Ambiental,TZ015,0.0,1
+767,Estacion_143,763,Estacion_139,Eje Ambiental,TZ015,0.0,1
+763,Estacion_139,767,Estacion_143,Eje Ambiental,TZ015,0.0,1
+763,Estacion_139,761,Estacion_137,Eje Ambiental,TZ015,0.0,1
+761,Estacion_137,763,Estacion_139,Eje Ambiental,TZ015,0.0,1
+760,Estacion_136,765,Estacion_141,Eje Ambiental,TZ015,0.0,1
+765,Estacion_141,760,Estacion_136,Eje Ambiental,TZ015,0.0,1
+765,Estacion_141,756,Estacion_132,Eje Ambiental,TZ015,0.0,1
+756,Estacion_132,765,Estacion_141,Eje Ambiental,TZ015,0.0,1
+756,Estacion_132,759,Estacion_135,Eje Ambiental,TZ015,0.0,1
+759,Estacion_135,756,Estacion_132,Eje Ambiental,TZ015,0.0,1
+759,Estacion_135,755,Estacion_131,Eje Ambiental,TZ015,0.0,1
+755,Estacion_131,759,Estacion_135,Eje Ambiental,TZ015,0.0,1
+755,Estacion_131,635,Estacion_11,Eje Ambiental,TZ015,0.0,1
+635,Estacion_11,755,Estacion_131,Eje Ambiental,TZ015,0.0,1
+635,Estacion_11,636,Estacion_12,Eje Ambiental,TZ015,0.0,1
+636,Estacion_12,635,Estacion_11,Eje Ambiental,TZ015,0.0,1
+636,Estacion_12,628,Estacion_4,Eje Ambiental,TZ015,0.0,1
+628,Estacion_4,636,Estacion_12,Eje Ambiental,TZ015,0.0,1
+628,Estacion_4,629,Estacion_5,Eje Ambiental,TZ015,0.0,1
+629,Estacion_5,628,Estacion_4,Eje Ambiental,TZ015,0.0,1
+629,Estacion_5,624,Estacion_0,Eje Ambiental,TZ015,0.0,1
+624,Estacion_0,629,Estacion_5,Eje Ambiental,TZ015,0.0,1
+624,Estacion_0,933,Estacion_149,Eje Ambiental,TZ015,0.0,1
+933,Estacion_149,624,Estacion_0,Eje Ambiental,TZ015,0.0,1
+933,Estacion_149,931,Estacion_148,Eje Ambiental,TZ015,0.0,1
+931,Estacion_148,933,Estacion_149,Eje Ambiental,TZ015,0.0,1
+770,Estacion_146,753,Estacion_129,Eje Ambiental,TZ015,0.0,1
+753,Estacion_129,770,Estacion_146,Eje Ambiental,TZ015,0.0,1
+753,Estacion_129,768,Estacion_144,Eje Ambiental,TZ015,0.0,1
+768,Estacion_144,753,Estacion_129,Eje Ambiental,TZ015,0.0,1
+768,Estacion_144,766,Estacion_142,Eje Ambiental,TZ015,0.0,1
+766,Estacion_142,768,Estacion_144,Eje Ambiental,TZ015,0.0,1
+766,Estacion_142,694,Estacion_70,Eje Ambiental,TZ015,3.9929537708712814,1
+694,Estacion_70,766,Estacion_142,Eje Ambiental,TZ015,3.9929537708712814,1
+694,Estacion_70,735,Estacion_111,Eje Ambiental,TZ015,3.9029291699080204,1
+735,Estacion_111,694,Estacion_70,Eje Ambiental,TZ015,3.9029291699080204,1
+735,Estacion_111,646,Estacion_22,Eje Ambiental,TZ015,6.867309028441468,1
+646,Estacion_22,735,Estacion_111,Eje Ambiental,TZ015,6.867309028441468,1
+646,Estacion_22,709,Estacion_85,Eje Ambiental,TZ015,93.65698863516002,1
+709,Estacion_85,646,Estacion_22,Eje Ambiental,TZ015,93.65698863516002,1
+709,Estacion_85,687,Estacion_63,Eje Ambiental,TZ015,126.20579530423856,1
+687,Estacion_63,709,Estacion_85,Eje Ambiental,TZ015,126.20579530423856,1
+687,Estacion_63,739,Estacion_115,Eje Ambiental,TZ015,0.0,1
+739,Estacion_115,687,Estacion_63,Eje Ambiental,TZ015,0.0,1
+739,Estacion_115,733,Estacion_109,Eje Ambiental,TZ015,0.0,1
+733,Estacion_109,739,Estacion_115,Eje Ambiental,TZ015,0.0,1
+733,Estacion_109,698,Estacion_74,Eje Ambiental,TZ015,0.0,1
+698,Estacion_74,733,Estacion_109,Eje Ambiental,TZ015,0.0,1
+730,Estacion_106,873,Estacion_147,Eje Ambiental,TZ015,0.0,1
+873,Estacion_147,730,Estacion_106,Eje Ambiental,TZ015,0.0,1
+764,Estacion_140,699,Estacion_75,Eje Ambiental,TZ015,17.559421335840852,1
+699,Estacion_75,764,Estacion_140,Eje Ambiental,TZ015,17.559421335840852,1
+699,Estacion_75,758,Estacion_134,Eje Ambiental,TZ015,77.41286617345872,1
+758,Estacion_134,699,Estacion_75,Eje Ambiental,TZ015,77.41286617345872,1
+758,Estacion_134,724,Estacion_100,Eje Ambiental,TZ015,278.22858365577144,1
+724,Estacion_100,758,Estacion_134,Eje Ambiental,TZ015,278.22858365577144,1
+735,Estacion_111,764,Estacion_140,Carrera 10,TZ018,340.7362627237679,1
+764,Estacion_140,735,Estacion_111,Carrera 10,TZ018,340.7362627237679,1
+764,Estacion_140,753,Estacion_129,Carrera 10,TZ018,70.74254100474991,1
+753,Estacion_129,764,Estacion_140,Carrera 10,TZ018,70.74254100474991,1
+753,Estacion_129,738,Estacion_114,Carrera 10,TZ018,232.52227703437597,1
+738,Estacion_114,753,Estacion_129,Carrera 10,TZ018,232.52227703437597,1
+721,Estacion_97,765,Estacion_141,Carrera 10,TZ018,153.2568609528969,1
+765,Estacion_141,721,Estacion_97,Carrera 10,TZ018,153.2568609528969,1
+765,Estacion_141,698,Estacion_74,Carrera 10,TZ018,41.327338313906466,1
+698,Estacion_74,765,Estacion_141,Carrera 10,TZ018,41.327338313906466,1
+698,Estacion_74,744,Estacion_120,Carrera 10,TZ018,427.3270327788291,1
+744,Estacion_120,698,Estacion_74,Carrera 10,TZ018,427.3270327788291,1
+667,Estacion_43,715,Estacion_91,Carrera 10,TZ018,320.5704114294995,1
+715,Estacion_91,667,Estacion_43,Carrera 10,TZ018,320.5704114294995,1
+715,Estacion_91,742,Estacion_118,Carrera 10,TZ018,362.7533882049438,1
+742,Estacion_118,715,Estacion_91,Carrera 10,TZ018,362.7533882049438,1
+742,Estacion_118,716,Estacion_92,Carrera 10,TZ018,61.66232060780885,1
+716,Estacion_92,742,Estacion_118,Carrera 10,TZ018,61.66232060780885,1
+719,Estacion_95,648,Estacion_24,Carrera 10,TZ018,17.12575814686943,1
+648,Estacion_24,719,Estacion_95,Carrera 10,TZ018,17.12575814686943,1
+648,Estacion_24,704,Estacion_80,Carrera 10,TZ018,291.4038075466224,1
+704,Estacion_80,648,Estacion_24,Carrera 10,TZ018,291.4038075466224,1
+704,Estacion_80,746,Estacion_122,Carrera 10,TZ018,0.0,1
+746,Estacion_122,704,Estacion_80,Carrera 10,TZ018,0.0,1
+746,Estacion_122,729,Estacion_105,Carrera 10,TZ018,0.0,1
+729,Estacion_105,746,Estacion_122,Carrera 10,TZ018,0.0,1
+729,Estacion_105,770,Estacion_146,Carrera 10,TZ018,0.0,1
+770,Estacion_146,729,Estacion_105,Carrera 10,TZ018,0.0,1
+770,Estacion_146,756,Estacion_132,Carrera 10,TZ018,7.854291789114086,1
+756,Estacion_132,770,Estacion_146,Carrera 10,TZ018,7.854291789114086,1
+756,Estacion_132,761,Estacion_137,Carrera 10,TZ018,0.0,1
+761,Estacion_137,756,Estacion_132,Carrera 10,TZ018,0.0,1
+761,Estacion_137,759,Estacion_135,Carrera 10,TZ018,0.0,1
+759,Estacion_135,761,Estacion_137,Carrera 10,TZ018,0.0,1
+931,Estacion_148,689,Estacion_65,Carrera 10,TZ018,0.0,1
+689,Estacion_65,931,Estacion_148,Carrera 10,TZ018,0.0,1
+705,Estacion_81,634,Estacion_10,Carrera 10,TZ018,0.0,1
+634,Estacion_10,705,Estacion_81,Carrera 10,TZ018,0.0,1
+634,Estacion_10,657,Estacion_33,Carrera 10,TZ018,0.0,1
+657,Estacion_33,634,Estacion_10,Carrera 10,TZ018,0.0,1
+657,Estacion_33,737,Estacion_113,Carrera 10,TZ018,0.0,1
+737,Estacion_113,657,Estacion_33,Carrera 10,TZ018,0.0,1
+737,Estacion_113,701,Estacion_77,Carrera 10,TZ018,4.9903596117706,1
+701,Estacion_77,737,Estacion_113,Carrera 10,TZ018,4.9903596117706,1
+701,Estacion_77,661,Estacion_37,Carrera 10,TZ018,0.0,1
+661,Estacion_37,701,Estacion_77,Carrera 10,TZ018,0.0,1
+661,Estacion_37,750,Estacion_126,Carrera 10,TZ018,0.0,1
+750,Estacion_126,661,Estacion_37,Carrera 10,TZ018,0.0,1
+750,Estacion_126,732,Estacion_108,Carrera 10,TZ018,0.0,1
+732,Estacion_108,750,Estacion_126,Carrera 10,TZ018,0.0,1
+743,Estacion_119,760,Estacion_136,Carrera 10,TZ018,0.0,1
+760,Estacion_136,743,Estacion_119,Carrera 10,TZ018,0.0,1
+760,Estacion_136,767,Estacion_143,Carrera 10,TZ018,5.157139906265002,1
+767,Estacion_143,760,Estacion_136,Carrera 10,TZ018,5.157139906265002,1
+767,Estacion_143,693,Estacion_69,Carrera 10,TZ018,7.758351923985174,1
+693,Estacion_69,767,Estacion_143,Carrera 10,TZ018,7.758351923985174,1
+720,Estacion_96,873,Estacion_147,Carrera 10,TZ018,478.5665755312607,1
+873,Estacion_147,720,Estacion_96,Carrera 10,TZ018,478.5665755312607,1
+730,Estacion_106,739,Estacion_115,Carrera 10,TZ018,0.0,1
+739,Estacion_115,730,Estacion_106,Carrera 10,TZ018,0.0,1
+739,Estacion_115,646,Estacion_22,Carrera 10,TZ018,134.0146531041055,1
+646,Estacion_22,739,Estacion_115,Carrera 10,TZ018,134.0146531041055,1
+641,Estacion_17,697,Estacion_73,Carrera 10,TZ018,0.0,1
+697,Estacion_73,641,Estacion_17,Carrera 10,TZ018,0.0,1
+697,Estacion_73,653,Estacion_29,Carrera 10,TZ018,0.0,1
+653,Estacion_29,697,Estacion_73,Carrera 10,TZ018,0.0,1
+653,Estacion_29,635,Estacion_11,Carrera 10,TZ018,0.0,1
+635,Estacion_11,653,Estacion_29,Carrera 10,TZ018,0.0,1
+663,Estacion_39,639,Estacion_15,Carrera 10,TZ018,0.0,1
+639,Estacion_15,663,Estacion_39,Carrera 10,TZ018,0.0,1
+639,Estacion_15,707,Estacion_83,Carrera 10,TZ018,0.0,1
+707,Estacion_83,639,Estacion_15,Carrera 10,TZ018,0.0,1
+707,Estacion_83,695,Estacion_71,Carrera 10,TZ018,0.0,1
+695,Estacion_71,707,Estacion_83,Carrera 10,TZ018,0.0,1
+695,Estacion_71,636,Estacion_12,Carrera 10,TZ018,0.0,1
+636,Estacion_12,695,Estacion_71,Carrera 10,TZ018,0.0,1
+636,Estacion_12,645,Estacion_21,Carrera 10,TZ018,55.49669578090379,1
+645,Estacion_21,636,Estacion_12,Carrera 10,TZ018,55.49669578090379,1
+647,Estacion_23,638,Estacion_14,Carrera 10,TZ018,0.0,1
+638,Estacion_14,647,Estacion_23,Carrera 10,TZ018,0.0,1
+637,Estacion_13,654,Estacion_30,Carrera 10,TZ018,0.0,1
+654,Estacion_30,637,Estacion_13,Carrera 10,TZ018,0.0,1
+654,Estacion_30,680,Estacion_56,Carrera 10,TZ018,0.0,1
+680,Estacion_56,654,Estacion_30,Carrera 10,TZ018,0.0,1
+680,Estacion_56,682,Estacion_58,Carrera 10,TZ018,0.0,1
+682,Estacion_58,680,Estacion_56,Carrera 10,TZ018,0.0,1
+679,Estacion_55,632,Estacion_8,Carrera 10,TZ018,0.0,1
+632,Estacion_8,679,Estacion_55,Carrera 10,TZ018,0.0,1
+632,Estacion_8,630,Estacion_6,Carrera 10,TZ018,0.0,1
+630,Estacion_6,632,Estacion_8,Carrera 10,TZ018,0.0,1
+630,Estacion_6,633,Estacion_9,Carrera 10,TZ018,0.0,1
+633,Estacion_9,630,Estacion_6,Carrera 10,TZ018,0.0,1
+740,Estacion_116,741,Estacion_117,Carrera 10,TZ018,0.0,1
+741,Estacion_117,740,Estacion_116,Carrera 10,TZ018,0.0,1
+741,Estacion_117,736,Estacion_112,Carrera 10,TZ018,0.0,1
+736,Estacion_112,741,Estacion_117,Carrera 10,TZ018,0.0,1
+736,Estacion_112,734,Estacion_110,Carrera 10,TZ018,0.0,1
+734,Estacion_110,736,Estacion_112,Carrera 10,TZ018,0.0,1
+734,Estacion_110,727,Estacion_103,Carrera 10,TZ018,0.0,1
+727,Estacion_103,734,Estacion_110,Carrera 10,TZ018,0.0,1
+727,Estacion_103,712,Estacion_88,Carrera 10,TZ018,0.0,1
+712,Estacion_88,727,Estacion_103,Carrera 10,TZ018,0.0,1
+718,Estacion_94,686,Estacion_62,Carrera 10,TZ018,0.0,1
+686,Estacion_62,718,Estacion_94,Carrera 10,TZ018,0.0,1
+686,Estacion_62,675,Estacion_51,Carrera 10,TZ018,0.0,1
+675,Estacion_51,686,Estacion_62,Carrera 10,TZ018,0.0,1
+676,Estacion_52,681,Estacion_57,Carrera 10,TZ018,0.0,1
+681,Estacion_57,676,Estacion_52,Carrera 10,TZ018,0.0,1
+681,Estacion_57,685,Estacion_61,Carrera 10,TZ018,0.0,1
+685,Estacion_61,681,Estacion_57,Carrera 10,TZ018,0.0,1
+685,Estacion_61,684,Estacion_60,Carrera 10,TZ018,0.0,1
+684,Estacion_60,685,Estacion_61,Carrera 10,TZ018,0.0,1
+684,Estacion_60,683,Estacion_59,Carrera 10,TZ018,0.0,1
+683,Estacion_59,684,Estacion_60,Carrera 10,TZ018,0.0,1
+683,Estacion_59,659,Estacion_35,Carrera 10,TZ018,0.0,1
+659,Estacion_35,683,Estacion_59,Carrera 10,TZ018,0.0,1
+659,Estacion_35,672,Estacion_48,Carrera 10,TZ018,0.0,1
+672,Estacion_48,659,Estacion_35,Carrera 10,TZ018,0.0,1
+674,Estacion_50,671,Estacion_47,Carrera 10,TZ018,0.0,1
+671,Estacion_47,674,Estacion_50,Carrera 10,TZ018,0.0,1
+668,Estacion_44,665,Estacion_41,Carrera 10,TZ018,0.0,1
+665,Estacion_41,668,Estacion_44,Carrera 10,TZ018,0.0,1
+665,Estacion_41,669,Estacion_45,Carrera 10,TZ018,0.0,1
+669,Estacion_45,665,Estacion_41,Carrera 10,TZ018,0.0,1
+662,Estacion_38,664,Estacion_40,Carrera 10,TZ018,0.0,1
+664,Estacion_40,662,Estacion_38,Carrera 10,TZ018,0.0,1
+664,Estacion_40,660,Estacion_36,Carrera 10,TZ018,0.0,1
+660,Estacion_36,664,Estacion_40,Carrera 10,TZ018,0.0,1
+660,Estacion_36,649,Estacion_25,Carrera 10,TZ018,0.0,1
+649,Estacion_25,660,Estacion_36,Carrera 10,TZ018,0.0,1
+649,Estacion_25,714,Estacion_90,Carrera 10,TZ018,0.0,1
+714,Estacion_90,649,Estacion_25,Carrera 10,TZ018,0.0,1
+714,Estacion_90,700,Estacion_76,Carrera 10,TZ018,0.0,1
+700,Estacion_76,714,Estacion_90,Carrera 10,TZ018,0.0,1
+700,Estacion_76,696,Estacion_72,Carrera 10,TZ018,0.0,1
+696,Estacion_72,700,Estacion_76,Carrera 10,TZ018,0.0,1
+696,Estacion_72,690,Estacion_66,Carrera 10,TZ018,0.0,1
+690,Estacion_66,696,Estacion_72,Carrera 10,TZ018,0.0,1
+690,Estacion_66,749,Estacion_125,Carrera 10,TZ018,0.0,1
+749,Estacion_125,690,Estacion_66,Carrera 10,TZ018,0.0,1
+748,Estacion_124,751,Estacion_127,Carrera 10,TZ018,0.0,1
+751,Estacion_127,748,Estacion_124,Carrera 10,TZ018,0.0,1
+751,Estacion_127,745,Estacion_121,Carrera 10,TZ018,0.0,1
+745,Estacion_121,751,Estacion_127,Carrera 10,TZ018,0.0,1
+745,Estacion_121,731,Estacion_107,Carrera 10,TZ018,0.0,1
+731,Estacion_107,745,Estacion_121,Carrera 10,TZ018,0.0,1
+731,Estacion_107,726,Estacion_102,Carrera 10,TZ018,0.0,1
+726,Estacion_102,731,Estacion_107,Carrera 10,TZ018,0.0,1
+725,Estacion_101,717,Estacion_93,Carrera 10,TZ018,0.0,1
+717,Estacion_93,725,Estacion_101,Carrera 10,TZ018,0.0,1
+717,Estacion_93,706,Estacion_82,Carrera 10,TZ018,0.0,1
+706,Estacion_82,717,Estacion_93,Carrera 10,TZ018,0.0,1
+711,Estacion_87,702,Estacion_78,Carrera 10,TZ018,0.0,1
+702,Estacion_78,711,Estacion_87,Carrera 10,TZ018,0.0,1
+702,Estacion_78,691,Estacion_67,Carrera 10,TZ018,0.0,1
+691,Estacion_67,702,Estacion_78,Carrera 10,TZ018,0.0,1
+691,Estacion_67,703,Estacion_79,Carrera 10,TZ018,0.0,1
+703,Estacion_79,691,Estacion_67,Carrera 10,TZ018,0.0,1
+703,Estacion_79,710,Estacion_86,Carrera 10,TZ018,0.0,1
+710,Estacion_86,703,Estacion_79,Carrera 10,TZ018,0.0,1
+713,Estacion_89,722,Estacion_98,Carrera 10,TZ018,0.0,1
+722,Estacion_98,713,Estacion_89,Carrera 10,TZ018,0.0,1
+722,Estacion_98,757,Estacion_133,Carrera 10,TZ018,0.0,1
+757,Estacion_133,722,Estacion_98,Carrera 10,TZ018,0.0,1
+763,Estacion_139,762,Estacion_138,Carrera 10,TZ018,0.0,1
+762,Estacion_138,763,Estacion_139,Carrera 10,TZ018,0.0,1
+754,Estacion_130,644,Estacion_20,Carrera 10,TZ018,0.0,1
+644,Estacion_20,754,Estacion_130,Carrera 10,TZ018,0.0,1
+643,Estacion_19,640,Estacion_16,Carrera 10,TZ018,0.0,1
+640,Estacion_16,643,Estacion_19,Carrera 10,TZ018,0.0,1
+640,Estacion_16,655,Estacion_31,Carrera 10,TZ018,0.0,1
+655,Estacion_31,640,Estacion_16,Carrera 10,TZ018,0.0,1
+655,Estacion_31,652,Estacion_28,Carrera 10,TZ018,0.0,1
+652,Estacion_28,655,Estacion_31,Carrera 10,TZ018,0.0,1
+652,Estacion_28,650,Estacion_26,Carrera 10,TZ018,0.0,1
+650,Estacion_26,652,Estacion_28,Carrera 10,TZ018,0.0,1
+650,Estacion_26,631,Estacion_7,Carrera 10,TZ018,0.0,1
+631,Estacion_7,650,Estacion_26,Carrera 10,TZ018,0.0,1
+626,Estacion_2,628,Estacion_4,Carrera 10,TZ018,0.0,1
+628,Estacion_4,626,Estacion_2,Carrera 10,TZ018,0.0,1
+628,Estacion_4,768,Estacion_144,Carrera 10,TZ018,0.0,1
+768,Estacion_144,628,Estacion_4,Carrera 10,TZ018,0.0,1
+768,Estacion_144,627,Estacion_3,Carrera 10,TZ018,162.3944157759497,1
+627,Estacion_3,768,Estacion_144,Carrera 10,TZ018,162.3944157759497,1
+627,Estacion_3,933,Estacion_149,Carrera 10,TZ018,310.71221561666243,1
+933,Estacion_149,627,Estacion_3,Carrera 10,TZ018,310.71221561666243,1
+933,Estacion_149,755,Estacion_131,Carrera 10,TZ018,44.17611940744064,1
+755,Estacion_131,933,Estacion_149,Carrera 10,TZ018,44.17611940744064,1
+755,Estacion_131,658,Estacion_34,Carrera 10,TZ018,0.0,1
+658,Estacion_34,755,Estacion_131,Carrera 10,TZ018,0.0,1
+658,Estacion_34,692,Estacion_68,Carrera 10,TZ018,0.0,1
+692,Estacion_68,658,Estacion_34,Carrera 10,TZ018,0.0,1
+692,Estacion_68,752,Estacion_128,Carrera 10,TZ018,47.82132608167922,1
+752,Estacion_128,692,Estacion_68,Carrera 10,TZ018,47.82132608167922,1
+752,Estacion_128,708,Estacion_84,Carrera 10,TZ018,194.32104141105356,1
+708,Estacion_84,752,Estacion_128,Carrera 10,TZ018,194.32104141105356,1
+708,Estacion_84,747,Estacion_123,Carrera 10,TZ018,10.695418019346107,1
+747,Estacion_123,708,Estacion_84,Carrera 10,TZ018,10.695418019346107,1
+747,Estacion_123,656,Estacion_32,Carrera 10,TZ018,11.805599858063943,1
+656,Estacion_32,747,Estacion_123,Carrera 10,TZ018,11.805599858063943,1
+656,Estacion_32,724,Estacion_100,Carrera 10,TZ018,0.7664852769939898,1
+724,Estacion_100,656,Estacion_32,Carrera 10,TZ018,0.7664852769939898,1
+724,Estacion_100,651,Estacion_27,Carrera 10,TZ018,108.28509342107373,1
+651,Estacion_27,724,Estacion_100,Carrera 10,TZ018,108.28509342107373,1
+651,Estacion_27,642,Estacion_18,Carrera 10,TZ018,81.0186185594057,1
+642,Estacion_18,651,Estacion_27,Carrera 10,TZ018,81.0186185594057,1
+766,Estacion_142,728,Estacion_104,Carrera 10,TZ018,13.432854599516759,1
+728,Estacion_104,766,Estacion_142,Carrera 10,TZ018,13.432854599516759,1
+728,Estacion_104,688,Estacion_64,Carrera 10,TZ018,109.78828339633947,1
+688,Estacion_64,728,Estacion_104,Carrera 10,TZ018,109.78828339633947,1
+758,Estacion_134,629,Estacion_5,Carrera 10,TZ018,8.76966811242346,1
+629,Estacion_5,758,Estacion_134,Carrera 10,TZ018,8.76966811242346,1
+723,Estacion_99,694,Estacion_70,Carrera 10,TZ018,1.4956767456005764,1
+694,Estacion_70,723,Estacion_99,Carrera 10,TZ018,1.4956767456005764,1
+626,Estacion_2,627,Estacion_3,Suba,TZ004,0.0,2
+627,Estacion_3,626,Estacion_2,Suba,TZ004,0.0,2
+627,Estacion_3,628,Estacion_4,Suba,TZ004,0.0,2
+628,Estacion_4,627,Estacion_3,Suba,TZ004,0.0,2
+629,Estacion_5,630,Estacion_6,Suba,TZ004,0.0,2
+630,Estacion_6,629,Estacion_5,Suba,TZ004,0.0,2
+630,Estacion_6,631,Estacion_7,Suba,TZ004,0.0,2
+631,Estacion_7,630,Estacion_6,Suba,TZ004,0.0,2
+634,Estacion_10,635,Estacion_11,Suba,TZ004,0.0,2
+635,Estacion_11,634,Estacion_10,Suba,TZ004,0.0,2
+636,Estacion_12,637,Estacion_13,Suba,TZ004,0.0,2
+637,Estacion_13,636,Estacion_12,Suba,TZ004,0.0,2
+638,Estacion_14,639,Estacion_15,Suba,TZ004,0.0,2
+639,Estacion_15,638,Estacion_14,Suba,TZ004,0.0,2
+640,Estacion_16,641,Estacion_17,Suba,TZ004,0.0,2
+641,Estacion_17,640,Estacion_16,Suba,TZ004,0.0,2
+642,Estacion_18,643,Estacion_19,Suba,TZ004,0.0,2
+643,Estacion_19,642,Estacion_18,Suba,TZ004,0.0,2
+644,Estacion_20,645,Estacion_21,Suba,TZ004,0.0,2
+645,Estacion_21,644,Estacion_20,Suba,TZ004,0.0,2
+645,Estacion_21,646,Estacion_22,Suba,TZ004,0.0,2
+646,Estacion_22,645,Estacion_21,Suba,TZ004,0.0,2
+647,Estacion_23,648,Estacion_24,Suba,TZ004,0.0,2
+648,Estacion_24,647,Estacion_23,Suba,TZ004,0.0,2
+648,Estacion_24,649,Estacion_25,Suba,TZ004,0.0,2
+649,Estacion_25,648,Estacion_24,Suba,TZ004,0.0,2
+650,Estacion_26,651,Estacion_27,Suba,TZ004,0.0,2
+651,Estacion_27,650,Estacion_26,Suba,TZ004,0.0,2
+651,Estacion_27,652,Estacion_28,Suba,TZ004,0.0,2
+652,Estacion_28,651,Estacion_27,Suba,TZ004,0.0,2
+652,Estacion_28,653,Estacion_29,Suba,TZ004,0.0,2
+653,Estacion_29,652,Estacion_28,Suba,TZ004,0.0,2
+653,Estacion_29,654,Estacion_30,Suba,TZ004,0.0,2
+654,Estacion_30,653,Estacion_29,Suba,TZ004,0.0,2
+654,Estacion_30,655,Estacion_31,Suba,TZ004,0.0,2
+655,Estacion_31,654,Estacion_30,Suba,TZ004,0.0,2
+655,Estacion_31,656,Estacion_32,Suba,TZ004,0.0,2
+656,Estacion_32,655,Estacion_31,Suba,TZ004,0.0,2
+659,Estacion_35,660,Estacion_36,Suba,TZ004,0.0,2
+660,Estacion_36,659,Estacion_35,Suba,TZ004,0.0,2
+660,Estacion_36,663,Estacion_39,Suba,TZ004,0.0,2
+663,Estacion_39,660,Estacion_36,Suba,TZ004,0.0,2
+663,Estacion_39,662,Estacion_38,Suba,TZ004,0.0,2
+662,Estacion_38,663,Estacion_39,Suba,TZ004,0.0,2
+662,Estacion_38,665,Estacion_41,Suba,TZ004,0.0,2
+665,Estacion_41,662,Estacion_38,Suba,TZ004,0.0,2
+664,Estacion_40,668,Estacion_44,Suba,TZ004,0.0,2
+668,Estacion_44,664,Estacion_40,Suba,TZ004,0.0,2
+669,Estacion_45,666,Estacion_42,Suba,TZ004,0.0,2
+666,Estacion_42,669,Estacion_45,Suba,TZ004,0.0,2
+666,Estacion_42,667,Estacion_43,Suba,TZ004,0.0,2
+667,Estacion_43,666,Estacion_42,Suba,TZ004,0.0,2
+667,Estacion_43,670,Estacion_46,Suba,TZ004,0.0,2
+670,Estacion_46,667,Estacion_43,Suba,TZ004,0.0,2
+670,Estacion_46,671,Estacion_47,Suba,TZ004,0.0,2
+671,Estacion_47,670,Estacion_46,Suba,TZ004,0.0,2
+671,Estacion_47,673,Estacion_49,Suba,TZ004,0.0,2
+673,Estacion_49,671,Estacion_47,Suba,TZ004,0.0,2
+672,Estacion_48,680,Estacion_56,Suba,TZ004,0.0,2
+680,Estacion_56,672,Estacion_48,Suba,TZ004,0.0,2
+681,Estacion_57,674,Estacion_50,Suba,TZ004,0.0,2
+674,Estacion_50,681,Estacion_57,Suba,TZ004,0.0,2
+679,Estacion_55,684,Estacion_60,Suba,TZ004,0.0,2
+684,Estacion_60,679,Estacion_55,Suba,TZ004,0.0,2
+685,Estacion_61,682,Estacion_58,Suba,TZ004,0.0,2
+682,Estacion_58,685,Estacion_61,Suba,TZ004,0.0,2
+682,Estacion_58,683,Estacion_59,Suba,TZ004,0.0,2
+683,Estacion_59,682,Estacion_58,Suba,TZ004,0.0,2
+686,Estacion_62,687,Estacion_63,Suba,TZ004,0.0,2
+687,Estacion_63,686,Estacion_62,Suba,TZ004,0.0,2
+687,Estacion_63,689,Estacion_65,Suba,TZ004,0.0,2
+689,Estacion_65,687,Estacion_63,Suba,TZ004,0.0,2
+689,Estacion_65,688,Estacion_64,Suba,TZ004,0.0,2
+688,Estacion_64,689,Estacion_65,Suba,TZ004,0.0,2
+688,Estacion_64,720,Estacion_96,Suba,TZ004,0.0,2
+720,Estacion_96,688,Estacion_64,Suba,TZ004,0.0,2
+720,Estacion_96,721,Estacion_97,Suba,TZ004,0.0,2
+721,Estacion_97,720,Estacion_96,Suba,TZ004,0.0,2
+721,Estacion_97,690,Estacion_66,Suba,TZ004,0.0,2
+690,Estacion_66,721,Estacion_97,Suba,TZ004,0.0,2
+691,Estacion_67,692,Estacion_68,Suba,TZ004,0.0,2
+692,Estacion_68,691,Estacion_67,Suba,TZ004,0.0,2
+693,Estacion_69,694,Estacion_70,Suba,TZ004,0.0,2
+694,Estacion_70,693,Estacion_69,Suba,TZ004,0.0,2
+697,Estacion_73,698,Estacion_74,Suba,TZ004,0.0,2
+698,Estacion_74,697,Estacion_73,Suba,TZ004,0.0,2
+701,Estacion_77,702,Estacion_78,Suba,TZ004,0.0,2
+702,Estacion_78,701,Estacion_77,Suba,TZ004,0.0,2
+703,Estacion_79,704,Estacion_80,Suba,TZ004,0.0,2
+704,Estacion_80,703,Estacion_79,Suba,TZ004,0.0,2
+704,Estacion_80,705,Estacion_81,Suba,TZ004,0.0,2
+705,Estacion_81,704,Estacion_80,Suba,TZ004,0.0,2
+706,Estacion_82,707,Estacion_83,Suba,TZ004,0.0,2
+707,Estacion_83,706,Estacion_82,Suba,TZ004,0.0,2
+707,Estacion_83,708,Estacion_84,Suba,TZ004,0.0,2
+708,Estacion_84,707,Estacion_83,Suba,TZ004,0.0,2
+708,Estacion_84,709,Estacion_85,Suba,TZ004,0.0,2
+709,Estacion_85,708,Estacion_84,Suba,TZ004,0.0,2
+714,Estacion_90,715,Estacion_91,Suba,TZ004,0.0,2
+715,Estacion_91,714,Estacion_90,Suba,TZ004,0.0,2
+715,Estacion_91,716,Estacion_92,Suba,TZ004,0.0,2
+716,Estacion_92,715,Estacion_91,Suba,TZ004,0.0,2
+716,Estacion_92,717,Estacion_93,Suba,TZ004,0.0,2
+717,Estacion_93,716,Estacion_92,Suba,TZ004,0.0,2
+717,Estacion_93,718,Estacion_94,Suba,TZ004,0.0,2
+718,Estacion_94,717,Estacion_93,Suba,TZ004,0.0,2
+719,Estacion_95,736,Estacion_112,Suba,TZ004,0.0,2
+736,Estacion_112,719,Estacion_95,Suba,TZ004,0.0,2
+737,Estacion_113,722,Estacion_98,Suba,TZ004,0.0,2
+722,Estacion_98,737,Estacion_113,Suba,TZ004,0.0,2
+723,Estacion_99,724,Estacion_100,Suba,TZ004,0.0,2
+724,Estacion_100,723,Estacion_99,Suba,TZ004,0.0,2
+724,Estacion_100,725,Estacion_101,Suba,TZ004,0.0,2
+725,Estacion_101,724,Estacion_100,Suba,TZ004,0.0,2
+726,Estacion_102,727,Estacion_103,Suba,TZ004,0.0,2
+727,Estacion_103,726,Estacion_102,Suba,TZ004,0.0,2
+728,Estacion_104,729,Estacion_105,Suba,TZ004,0.0,2
+729,Estacion_105,728,Estacion_104,Suba,TZ004,0.0,2
+730,Estacion_106,731,Estacion_107,Suba,TZ004,0.0,2
+731,Estacion_107,730,Estacion_106,Suba,TZ004,0.0,2
+731,Estacion_107,732,Estacion_108,Suba,TZ004,0.0,2
+732,Estacion_108,731,Estacion_107,Suba,TZ004,0.0,2
+735,Estacion_111,744,Estacion_120,Suba,TZ004,0.0,2
+744,Estacion_120,735,Estacion_111,Suba,TZ004,0.0,2
+745,Estacion_121,738,Estacion_114,Suba,TZ004,0.0,2
+738,Estacion_114,745,Estacion_121,Suba,TZ004,0.0,2
+739,Estacion_115,740,Estacion_116,Suba,TZ004,0.0,2
+740,Estacion_116,739,Estacion_115,Suba,TZ004,0.0,2
+741,Estacion_117,742,Estacion_118,Suba,TZ004,0.0,2
+742,Estacion_118,741,Estacion_117,Suba,TZ004,0.0,2
+742,Estacion_118,743,Estacion_119,Suba,TZ004,0.0,2
+743,Estacion_119,742,Estacion_118,Suba,TZ004,0.0,2
+743,Estacion_119,751,Estacion_127,Suba,TZ004,0.0,2
+751,Estacion_127,743,Estacion_119,Suba,TZ004,0.0,2
+751,Estacion_127,750,Estacion_126,Suba,TZ004,0.0,2
+750,Estacion_126,751,Estacion_127,Suba,TZ004,0.0,2
+747,Estacion_123,749,Estacion_125,Suba,TZ004,0.0,2
+749,Estacion_125,747,Estacion_123,Suba,TZ004,0.0,2
+749,Estacion_125,755,Estacion_131,Suba,TZ004,0.0,2
+755,Estacion_131,749,Estacion_125,Suba,TZ004,0.0,2
+755,Estacion_131,754,Estacion_130,Suba,TZ004,0.0,2
+754,Estacion_130,755,Estacion_131,Suba,TZ004,0.0,2
+754,Estacion_130,753,Estacion_129,Suba,TZ004,0.0,2
+753,Estacion_129,754,Estacion_130,Suba,TZ004,0.0,2
+752,Estacion_128,931,Estacion_148,Suba,TZ004,0.0,2
+931,Estacion_148,752,Estacion_128,Suba,TZ004,0.0,2
+931,Estacion_148,769,Estacion_145,Suba,TZ004,0.0,2
+769,Estacion_145,931,Estacion_148,Suba,TZ004,0.0,2
+769,Estacion_145,770,Estacion_146,Suba,TZ004,0.0,2
+770,Estacion_146,769,Estacion_145,Suba,TZ004,0.0,2
+770,Estacion_146,873,Estacion_147,Suba,TZ004,0.0,2
+873,Estacion_147,770,Estacion_146,Suba,TZ004,0.0,2
+756,Estacion_132,757,Estacion_133,Suba,TZ004,0.0,2
+757,Estacion_133,756,Estacion_132,Suba,TZ004,0.0,2
+757,Estacion_133,758,Estacion_134,Suba,TZ004,0.0,2
+758,Estacion_134,757,Estacion_133,Suba,TZ004,0.0,2
+758,Estacion_134,759,Estacion_135,Suba,TZ004,0.0,2
+759,Estacion_135,758,Estacion_134,Suba,TZ004,0.0,2
+761,Estacion_137,762,Estacion_138,Suba,TZ004,0.0,2
+762,Estacion_138,761,Estacion_137,Suba,TZ004,0.0,2
+763,Estacion_139,764,Estacion_140,Suba,TZ004,0.0,2
+764,Estacion_140,763,Estacion_139,Suba,TZ004,0.0,2
+764,Estacion_140,766,Estacion_142,Suba,TZ004,0.0,2
+766,Estacion_142,764,Estacion_140,Suba,TZ004,0.0,2
+765,Estacion_141,767,Estacion_143,Suba,TZ004,0.0,2
+767,Estacion_143,765,Estacion_141,Suba,TZ004,0.0,2
+767,Estacion_143,768,Estacion_144,Suba,TZ004,0.0,2
+768,Estacion_144,767,Estacion_143,Suba,TZ004,0.0,2
+768,Estacion_144,933,Estacion_149,Suba,TZ004,0.0,2
+933,Estacion_149,768,Estacion_144,Suba,TZ004,0.0,2
+933,Estacion_149,748,Estacion_124,Suba,TZ004,212.10967882324007,2
+748,Estacion_124,933,Estacion_149,Suba,TZ004,212.10967882324007,2
+748,Estacion_124,657,Estacion_33,Suba,TZ004,1201.9769706820186,2
+657,Estacion_33,748,Estacion_124,Suba,TZ004,1201.9769706820186,2
+657,Estacion_33,661,Estacion_37,Suba,TZ004,0.0,2
+661,Estacion_37,657,Estacion_33,Suba,TZ004,0.0,2
+661,Estacion_37,746,Estacion_122,Suba,TZ004,0.0,2
+746,Estacion_122,661,Estacion_37,Suba,TZ004,0.0,2
+746,Estacion_122,760,Estacion_136,Suba,TZ004,0.0,2
+760,Estacion_136,746,Estacion_122,Suba,TZ004,0.0,2
+628,Estacion_4,630,Estacion_6,NQS Central,TZ007,0.0,1
+630,Estacion_6,628,Estacion_4,NQS Central,TZ007,0.0,1
+629,Estacion_5,631,Estacion_7,NQS Central,TZ007,0.0,1
+631,Estacion_7,629,Estacion_5,NQS Central,TZ007,0.0,1
+632,Estacion_8,638,Estacion_14,NQS Central,TZ007,0.0,1
+638,Estacion_14,632,Estacion_8,NQS Central,TZ007,0.0,1
+638,Estacion_14,633,Estacion_9,NQS Central,TZ007,0.0,1
+633,Estacion_9,638,Estacion_14,NQS Central,TZ007,0.0,1
+633,Estacion_9,635,Estacion_11,NQS Central,TZ007,0.0,1
+635,Estacion_11,633,Estacion_9,NQS Central,TZ007,0.0,1
+639,Estacion_15,637,Estacion_13,NQS Central,TZ007,0.0,1
+637,Estacion_13,639,Estacion_15,NQS Central,TZ007,0.0,1
+637,Estacion_13,642,Estacion_18,NQS Central,TZ007,0.0,1
+642,Estacion_18,637,Estacion_13,NQS Central,TZ007,0.0,1
+640,Estacion_16,652,Estacion_28,NQS Central,TZ007,0.0,1
+652,Estacion_28,640,Estacion_16,NQS Central,TZ007,0.0,1
+652,Estacion_28,654,Estacion_30,NQS Central,TZ007,0.0,1
+654,Estacion_30,652,Estacion_28,NQS Central,TZ007,0.0,1
+654,Estacion_30,643,Estacion_19,NQS Central,TZ007,0.0,1
+643,Estacion_19,654,Estacion_30,NQS Central,TZ007,0.0,1
+645,Estacion_21,650,Estacion_26,NQS Central,TZ007,0.0,1
+650,Estacion_26,645,Estacion_21,NQS Central,TZ007,0.0,1
+651,Estacion_27,661,Estacion_37,NQS Central,TZ007,0.0,1
+661,Estacion_37,651,Estacion_27,NQS Central,TZ007,0.0,1
+658,Estacion_34,657,Estacion_33,NQS Central,TZ007,0.0,1
+657,Estacion_33,658,Estacion_34,NQS Central,TZ007,0.0,1
+657,Estacion_33,656,Estacion_32,NQS Central,TZ007,0.0,1
+656,Estacion_32,657,Estacion_33,NQS Central,TZ007,0.0,1
+656,Estacion_32,680,Estacion_56,NQS Central,TZ007,0.0,1
+680,Estacion_56,656,Estacion_32,NQS Central,TZ007,0.0,1
+677,Estacion_53,662,Estacion_38,NQS Central,TZ007,0.0,1
+662,Estacion_38,677,Estacion_53,NQS Central,TZ007,0.0,1
+663,Estacion_39,664,Estacion_40,NQS Central,TZ007,0.0,1
+664,Estacion_40,663,Estacion_39,NQS Central,TZ007,0.0,1
+668,Estacion_44,670,Estacion_46,NQS Central,TZ007,0.0,1
+670,Estacion_46,668,Estacion_44,NQS Central,TZ007,0.0,1
+672,Estacion_48,685,Estacion_61,NQS Central,TZ007,0.0,1
+685,Estacion_61,672,Estacion_48,NQS Central,TZ007,0.0,1
+685,Estacion_61,686,Estacion_62,NQS Central,TZ007,0.0,1
+686,Estacion_62,685,Estacion_61,NQS Central,TZ007,0.0,1
+679,Estacion_55,713,Estacion_89,NQS Central,TZ007,0.0,1
+713,Estacion_89,679,Estacion_55,NQS Central,TZ007,0.0,1
+712,Estacion_88,696,Estacion_72,NQS Central,TZ007,0.0,1
+696,Estacion_72,712,Estacion_88,NQS Central,TZ007,0.0,1
+697,Estacion_73,702,Estacion_78,NQS Central,TZ007,0.0,1
+702,Estacion_78,697,Estacion_73,NQS Central,TZ007,0.0,1
+701,Estacion_77,692,Estacion_68,NQS Central,TZ007,0.0,1
+692,Estacion_68,701,Estacion_77,NQS Central,TZ007,0.0,1
+692,Estacion_68,695,Estacion_71,NQS Central,TZ007,0.0,1
+695,Estacion_71,692,Estacion_68,NQS Central,TZ007,0.0,1
+695,Estacion_71,690,Estacion_66,NQS Central,TZ007,0.0,1
+690,Estacion_66,695,Estacion_71,NQS Central,TZ007,0.0,1
+690,Estacion_66,689,Estacion_65,NQS Central,TZ007,0.0,1
+689,Estacion_65,690,Estacion_66,NQS Central,TZ007,0.0,1
+689,Estacion_65,751,Estacion_127,NQS Central,TZ007,0.0,1
+751,Estacion_127,689,Estacion_65,NQS Central,TZ007,0.0,1
+748,Estacion_124,737,Estacion_113,NQS Central,TZ007,0.0,1
+737,Estacion_113,748,Estacion_124,NQS Central,TZ007,0.0,1
+736,Estacion_112,743,Estacion_119,NQS Central,TZ007,0.0,1
+743,Estacion_119,736,Estacion_112,NQS Central,TZ007,0.0,1
+743,Estacion_119,749,Estacion_125,NQS Central,TZ007,0.0,1
+749,Estacion_125,743,Estacion_119,NQS Central,TZ007,0.0,1
+749,Estacion_125,746,Estacion_122,NQS Central,TZ007,0.0,1
+746,Estacion_122,749,Estacion_125,NQS Central,TZ007,0.0,1
+746,Estacion_122,745,Estacion_121,NQS Central,TZ007,0.0,1
+745,Estacion_121,746,Estacion_122,NQS Central,TZ007,0.0,1
+745,Estacion_121,729,Estacion_105,NQS Central,TZ007,0.0,1
+729,Estacion_105,745,Estacion_121,NQS Central,TZ007,0.0,1
+731,Estacion_107,714,Estacion_90,NQS Central,TZ007,0.0,1
+714,Estacion_90,731,Estacion_107,NQS Central,TZ007,0.0,1
+715,Estacion_91,710,Estacion_86,NQS Central,TZ007,0.0,1
+710,Estacion_86,715,Estacion_91,NQS Central,TZ007,0.0,1
+710,Estacion_86,707,Estacion_83,NQS Central,TZ007,0.0,1
+707,Estacion_83,710,Estacion_86,NQS Central,TZ007,0.0,1
+707,Estacion_83,705,Estacion_81,NQS Central,TZ007,0.0,1
+705,Estacion_81,707,Estacion_83,NQS Central,TZ007,0.0,1
+704,Estacion_80,717,Estacion_93,NQS Central,TZ007,0.0,1
+717,Estacion_93,704,Estacion_80,NQS Central,TZ007,0.0,1
+718,Estacion_94,742,Estacion_118,NQS Central,TZ007,0.0,1
+742,Estacion_118,718,Estacion_94,NQS Central,TZ007,0.0,1
+742,Estacion_118,740,Estacion_116,NQS Central,TZ007,0.0,1
+740,Estacion_116,742,Estacion_118,NQS Central,TZ007,0.0,1
+740,Estacion_116,725,Estacion_101,NQS Central,TZ007,0.0,1
+725,Estacion_101,740,Estacion_116,NQS Central,TZ007,0.0,1
+726,Estacion_102,722,Estacion_98,NQS Central,TZ007,0.0,1
+722,Estacion_98,726,Estacion_102,NQS Central,TZ007,0.0,1
+723,Estacion_99,732,Estacion_108,NQS Central,TZ007,0.0,1
+732,Estacion_108,723,Estacion_99,NQS Central,TZ007,0.0,1
+732,Estacion_108,727,Estacion_103,NQS Central,TZ007,0.0,1
+727,Estacion_103,732,Estacion_108,NQS Central,TZ007,0.0,1
+727,Estacion_103,762,Estacion_138,NQS Central,TZ007,0.0,1
+762,Estacion_138,727,Estacion_103,NQS Central,TZ007,0.0,1
+762,Estacion_138,759,Estacion_135,NQS Central,TZ007,0.0,1
+759,Estacion_135,762,Estacion_138,NQS Central,TZ007,0.0,1
+759,Estacion_135,757,Estacion_133,NQS Central,TZ007,0.0,1
+757,Estacion_133,759,Estacion_135,NQS Central,TZ007,0.0,1
+757,Estacion_133,755,Estacion_131,NQS Central,TZ007,0.0,1
+755,Estacion_131,757,Estacion_133,NQS Central,TZ007,0.0,1
+753,Estacion_129,760,Estacion_136,NQS Central,TZ007,0.0,1
+760,Estacion_136,753,Estacion_129,NQS Central,TZ007,0.0,1
+763,Estacion_139,931,Estacion_148,NQS Central,TZ007,0.0,1
+931,Estacion_148,763,Estacion_139,NQS Central,TZ007,0.0,1
+931,Estacion_148,768,Estacion_144,NQS Central,TZ007,0.0,1
+768,Estacion_144,931,Estacion_148,NQS Central,TZ007,0.0,1
+768,Estacion_144,770,Estacion_146,NQS Central,TZ007,0.0,1
+770,Estacion_146,768,Estacion_144,NQS Central,TZ007,0.0,1
+770,Estacion_146,765,Estacion_141,NQS Central,TZ007,0.0,1
+765,Estacion_141,770,Estacion_146,NQS Central,TZ007,0.0,1
+706,Estacion_82,647,Estacion_23,NQS Central,TZ007,125.76689398706932,1
+647,Estacion_23,706,Estacion_82,NQS Central,TZ007,125.76689398706932,1
+647,Estacion_23,666,Estacion_42,NQS Central,TZ007,15.67395002366328,1
+666,Estacion_42,647,Estacion_23,NQS Central,TZ007,15.67395002366328,1
+666,Estacion_42,634,Estacion_10,NQS Central,TZ007,67.49827492970357,1
+634,Estacion_10,666,Estacion_42,NQS Central,TZ007,67.49827492970357,1
+750,Estacion_126,767,Estacion_143,NQS Central,TZ007,76.43010058507883,1
+767,Estacion_143,750,Estacion_126,NQS Central,TZ007,76.43010058507883,1
+767,Estacion_143,641,Estacion_17,NQS Central,TZ007,85.59120479108464,1
+641,Estacion_17,767,Estacion_143,NQS Central,TZ007,85.59120479108464,1
+756,Estacion_132,693,Estacion_69,NQS Central,TZ007,62.61761386427878,1
+693,Estacion_69,756,Estacion_132,NQS Central,TZ007,62.61761386427878,1
+693,Estacion_69,700,Estacion_76,NQS Central,TZ007,130.86714677556006,1
+700,Estacion_76,693,Estacion_69,NQS Central,TZ007,130.86714677556006,1
+700,Estacion_76,741,Estacion_117,NQS Central,TZ007,73.16589750895821,1
+741,Estacion_117,700,Estacion_76,NQS Central,TZ007,73.16589750895821,1
+741,Estacion_117,766,Estacion_142,NQS Central,TZ007,10.65157810261735,1
+766,Estacion_142,741,Estacion_117,NQS Central,TZ007,10.65157810261735,1
+766,Estacion_142,719,Estacion_95,NQS Central,TZ007,116.70634774159248,1
+719,Estacion_95,766,Estacion_142,NQS Central,TZ007,116.70634774159248,1
+719,Estacion_95,720,Estacion_96,NQS Central,TZ007,73.32867911273388,1
+720,Estacion_96,719,Estacion_95,NQS Central,TZ007,73.32867911273388,1
+720,Estacion_96,691,Estacion_67,NQS Central,TZ007,98.63665324412773,1
+691,Estacion_67,720,Estacion_96,NQS Central,TZ007,98.63665324412773,1
+684,Estacion_60,667,Estacion_43,NQS Central,TZ007,66.60464823744292,1
+667,Estacion_43,684,Estacion_60,NQS Central,TZ007,66.60464823744292,1
+667,Estacion_43,653,Estacion_29,NQS Central,TZ007,44.04097463294352,1
+653,Estacion_29,667,Estacion_43,NQS Central,TZ007,44.04097463294352,1
+653,Estacion_29,711,Estacion_87,NQS Central,TZ007,63.94385207121309,1
+711,Estacion_87,653,Estacion_29,NQS Central,TZ007,63.94385207121309,1
+711,Estacion_87,744,Estacion_120,NQS Central,TZ007,35.64800426071429,1
+744,Estacion_120,711,Estacion_87,NQS Central,TZ007,35.64800426071429,1
+744,Estacion_120,688,Estacion_64,NQS Central,TZ007,160.98411994705998,1
+688,Estacion_64,744,Estacion_120,NQS Central,TZ007,160.98411994705998,1
+688,Estacion_64,721,Estacion_97,NQS Central,TZ007,115.26756113569036,1
+721,Estacion_97,688,Estacion_64,NQS Central,TZ007,115.26756113569036,1
+721,Estacion_97,873,Estacion_147,NQS Central,TZ007,8.709982248588176,1
+873,Estacion_147,721,Estacion_97,NQS Central,TZ007,8.709982248588176,1
+873,Estacion_147,738,Estacion_114,NQS Central,TZ007,14.775080710802968,1
+738,Estacion_114,873,Estacion_147,NQS Central,TZ007,14.775080710802968,1
+738,Estacion_114,735,Estacion_111,NQS Central,TZ007,98.19455509352179,1
+735,Estacion_111,738,Estacion_114,NQS Central,TZ007,98.19455509352179,1
+646,Estacion_22,769,Estacion_145,NQS Central,TZ007,11.935992701412033,1
+769,Estacion_145,646,Estacion_22,NQS Central,TZ007,11.935992701412033,1
+769,Estacion_145,933,Estacion_149,NQS Central,TZ007,0.0,1
+933,Estacion_149,769,Estacion_145,NQS Central,TZ007,0.0,1
+933,Estacion_149,694,Estacion_70,NQS Central,TZ007,0.0,1
+694,Estacion_70,933,Estacion_149,NQS Central,TZ007,0.0,1
+694,Estacion_70,703,Estacion_79,NQS Central,TZ007,0.0,1
+703,Estacion_79,694,Estacion_70,NQS Central,TZ007,0.0,1
+703,Estacion_79,708,Estacion_84,NQS Central,TZ007,4.8331520239357815,1
+708,Estacion_84,703,Estacion_79,NQS Central,TZ007,4.8331520239357815,1
+709,Estacion_85,716,Estacion_92,NQS Central,TZ007,117.72371708838023,1
+716,Estacion_92,709,Estacion_85,NQS Central,TZ007,117.72371708838023,1
+716,Estacion_92,687,Estacion_63,NQS Central,TZ007,0.0,1
+687,Estacion_63,716,Estacion_92,NQS Central,TZ007,0.0,1
+739,Estacion_115,698,Estacion_74,NQS Central,TZ007,18.52016979051359,1
+698,Estacion_74,739,Estacion_115,NQS Central,TZ007,18.52016979051359,1
+698,Estacion_74,730,Estacion_106,NQS Central,TZ007,17.595481334161605,1
+730,Estacion_106,698,Estacion_74,NQS Central,TZ007,17.595481334161605,1
+730,Estacion_106,733,Estacion_109,NQS Central,TZ007,0.0,1
+733,Estacion_109,730,Estacion_106,NQS Central,TZ007,0.0,1
+733,Estacion_109,627,Estacion_3,NQS Central,TZ007,141.4634776548478,1
+627,Estacion_3,733,Estacion_109,NQS Central,TZ007,141.4634776548478,1
+627,Estacion_3,724,Estacion_100,NQS Central,TZ007,0.0,1
+724,Estacion_100,627,Estacion_3,NQS Central,TZ007,0.0,1
+724,Estacion_100,734,Estacion_110,NQS Central,TZ007,0.0,1
+734,Estacion_110,724,Estacion_100,NQS Central,TZ007,0.0,1
+734,Estacion_110,758,Estacion_134,NQS Central,TZ007,16.043531751406135,1
+758,Estacion_134,734,Estacion_110,NQS Central,TZ007,16.043531751406135,1
+758,Estacion_134,747,Estacion_123,NQS Central,TZ007,23.58466165605614,1
+747,Estacion_123,758,Estacion_134,NQS Central,TZ007,23.58466165605614,1
+747,Estacion_123,699,Estacion_75,NQS Central,TZ007,0.0,1
+699,Estacion_75,747,Estacion_123,NQS Central,TZ007,0.0,1
+699,Estacion_75,728,Estacion_104,NQS Central,TZ007,0.0,1
+728,Estacion_104,699,Estacion_75,NQS Central,TZ007,0.0,1
+728,Estacion_104,764,Estacion_140,NQS Central,TZ007,0.0,1
+764,Estacion_140,728,Estacion_104,NQS Central,TZ007,0.0,1
+764,Estacion_140,752,Estacion_128,NQS Central,TZ007,0.0,1
+752,Estacion_128,764,Estacion_140,NQS Central,TZ007,0.0,1
+649,Estacion_25,736,Estacion_112,Caracas,TZ001,0.0,1
+736,Estacion_112,649,Estacion_25,Caracas,TZ001,0.0,1
+736,Estacion_112,645,Estacion_21,Caracas,TZ001,137.62508098898047,1
+645,Estacion_21,736,Estacion_112,Caracas,TZ001,137.62508098898047,1
+696,Estacion_72,713,Estacion_89,Caracas,TZ001,92.2920341596789,1
+713,Estacion_89,696,Estacion_72,Caracas,TZ001,92.2920341596789,1
+710,Estacion_86,655,Estacion_31,Caracas,TZ001,437.0949497987342,1
+655,Estacion_31,710,Estacion_86,Caracas,TZ001,437.0949497987342,1
+655,Estacion_31,626,Estacion_2,Caracas,TZ001,81.78029291790381,1
+626,Estacion_2,655,Estacion_31,Caracas,TZ001,81.78029291790381,1
+700,Estacion_76,625,Estacion_1,Caracas,TZ001,215.35658922167295,1
+625,Estacion_1,700,Estacion_76,Caracas,TZ001,215.35658922167295,1
+625,Estacion_1,741,Estacion_117,Caracas,TZ001,393.66972380063135,1
+741,Estacion_117,625,Estacion_1,Caracas,TZ001,393.66972380063135,1
+660,Estacion_36,644,Estacion_20,Caracas,TZ001,259.9192529308257,1
+644,Estacion_20,660,Estacion_36,Caracas,TZ001,259.9192529308257,1
+654,Estacion_30,684,Estacion_60,Caracas,TZ001,143.04998339966733,1
+684,Estacion_60,654,Estacion_30,Caracas,TZ001,143.04998339966733,1
+640,Estacion_16,702,Estacion_78,Caracas,TZ001,192.50138175077336,1
+702,Estacion_78,640,Estacion_16,Caracas,TZ001,192.50138175077336,1
+711,Estacion_87,647,Estacion_23,Caracas,TZ001,380.0757997675855,1
+647,Estacion_23,711,Estacion_87,Caracas,TZ001,380.0757997675855,1
+769,Estacion_145,691,Estacion_67,Caracas,TZ001,434.69709561129,1
+691,Estacion_67,769,Estacion_145,Caracas,TZ001,434.69709561129,1
+706,Estacion_82,734,Estacion_110,Caracas,TZ001,41.41509205966304,1
+734,Estacion_110,706,Estacion_82,Caracas,TZ001,41.41509205966304,1
+703,Estacion_79,627,Estacion_3,Caracas,TZ001,523.4606442943268,1
+627,Estacion_3,703,Estacion_79,Caracas,TZ001,523.4606442943268,1
+747,Estacion_123,658,Estacion_34,Caracas,TZ001,90.59401737318785,1
+658,Estacion_34,747,Estacion_123,Caracas,TZ001,90.59401737318785,1
+724,Estacion_100,692,Estacion_68,Caracas,TZ001,103.63651062840017,1
+692,Estacion_68,724,Estacion_100,Caracas,TZ001,103.63651062840017,1
+755,Estacion_131,656,Estacion_32,Caracas,TZ001,137.84745486382144,1
+656,Estacion_32,755,Estacion_131,Caracas,TZ001,137.84745486382144,1
+656,Estacion_32,728,Estacion_104,Caracas,TZ001,105.62839315700057,1
+728,Estacion_104,656,Estacion_32,Caracas,TZ001,105.62839315700057,1
+728,Estacion_104,642,Estacion_18,Caracas,TZ001,31.586770629540297,1
+642,Estacion_18,728,Estacion_104,Caracas,TZ001,31.586770629540297,1
+766,Estacion_142,651,Estacion_27,Caracas,TZ001,4.373556184087647,1
+651,Estacion_27,766,Estacion_142,Caracas,TZ001,4.373556184087647,1
+651,Estacion_27,688,Estacion_64,Caracas,TZ001,60.20710754671836,1
+688,Estacion_64,651,Estacion_27,Caracas,TZ001,60.20710754671836,1
+758,Estacion_134,694,Estacion_70,Caracas,TZ001,29.282536696536226,1
+694,Estacion_70,758,Estacion_134,Caracas,TZ001,29.282536696536226,1
+629,Estacion_5,646,Estacion_22,Caracas,TZ001,546.3272036637027,1
+646,Estacion_22,629,Estacion_5,Caracas,TZ001,546.3272036637027,1
+646,Estacion_22,707,Estacion_83,Caracas,TZ001,151.7402871646509,1
+707,Estacion_83,646,Estacion_22,Caracas,TZ001,151.7402871646509,1
+695,Estacion_71,635,Estacion_11,Caracas,TZ001,0.0,1
+635,Estacion_11,695,Estacion_71,Caracas,TZ001,0.0,1
+634,Estacion_10,639,Estacion_15,Caracas,TZ001,0.0,1
+639,Estacion_15,634,Estacion_10,Caracas,TZ001,0.0,1
+639,Estacion_15,687,Estacion_63,Caracas,TZ001,0.0,1
+687,Estacion_63,639,Estacion_15,Caracas,TZ001,0.0,1
+687,Estacion_63,661,Estacion_37,Caracas,TZ001,0.0,1
+661,Estacion_37,687,Estacion_63,Caracas,TZ001,0.0,1
+661,Estacion_37,667,Estacion_43,Caracas,TZ001,0.0,1
+667,Estacion_43,661,Estacion_37,Caracas,TZ001,0.0,1
+667,Estacion_43,689,Estacion_65,Caracas,TZ001,0.0,1
+689,Estacion_65,667,Estacion_43,Caracas,TZ001,0.0,1
+693,Estacion_69,699,Estacion_75,Caracas,TZ001,0.0,1
+699,Estacion_75,693,Estacion_69,Caracas,TZ001,0.0,1
+697,Estacion_73,701,Estacion_77,Caracas,TZ001,0.0,1
+701,Estacion_77,697,Estacion_73,Caracas,TZ001,0.0,1
+701,Estacion_77,746,Estacion_122,Caracas,TZ001,0.0,1
+746,Estacion_122,701,Estacion_77,Caracas,TZ001,0.0,1
+746,Estacion_122,744,Estacion_120,Caracas,TZ001,0.0,1
+744,Estacion_120,746,Estacion_122,Caracas,TZ001,0.0,1
+744,Estacion_120,750,Estacion_126,Caracas,TZ001,0.0,1
+750,Estacion_126,744,Estacion_120,Caracas,TZ001,0.0,1
+750,Estacion_126,719,Estacion_95,Caracas,TZ001,0.0,1
+719,Estacion_95,750,Estacion_126,Caracas,TZ001,0.0,1
+705,Estacion_81,733,Estacion_109,Caracas,TZ001,0.0,1
+733,Estacion_109,705,Estacion_81,Caracas,TZ001,0.0,1
+732,Estacion_108,735,Estacion_111,Caracas,TZ001,0.0,1
+735,Estacion_111,732,Estacion_108,Caracas,TZ001,0.0,1
+735,Estacion_111,729,Estacion_105,Caracas,TZ001,0.0,1
+729,Estacion_105,735,Estacion_111,Caracas,TZ001,0.0,1
+729,Estacion_105,738,Estacion_114,Caracas,TZ001,0.0,1
+738,Estacion_114,729,Estacion_105,Caracas,TZ001,0.0,1
+738,Estacion_114,730,Estacion_106,Caracas,TZ001,0.0,1
+730,Estacion_106,738,Estacion_114,Caracas,TZ001,0.0,1
+720,Estacion_96,739,Estacion_115,Caracas,TZ001,0.0,1
+739,Estacion_115,720,Estacion_96,Caracas,TZ001,0.0,1
+739,Estacion_115,742,Estacion_118,Caracas,TZ001,0.0,1
+742,Estacion_118,739,Estacion_115,Caracas,TZ001,0.0,1
+743,Estacion_119,737,Estacion_113,Caracas,TZ001,0.0,1
+737,Estacion_113,743,Estacion_119,Caracas,TZ001,0.0,1
+737,Estacion_113,761,Estacion_137,Caracas,TZ001,0.0,1
+761,Estacion_137,737,Estacion_113,Caracas,TZ001,0.0,1
+761,Estacion_137,764,Estacion_140,Caracas,TZ001,0.0,1
+764,Estacion_140,761,Estacion_137,Caracas,TZ001,0.0,1
+764,Estacion_140,767,Estacion_143,Caracas,TZ001,0.0,1
+767,Estacion_143,764,Estacion_140,Caracas,TZ001,0.0,1
+759,Estacion_135,663,Estacion_39,Caracas,TZ001,0.0,1
+663,Estacion_39,759,Estacion_135,Caracas,TZ001,0.0,1
+663,Estacion_39,641,Estacion_17,Caracas,TZ001,0.0,1
+641,Estacion_17,663,Estacion_39,Caracas,TZ001,0.0,1
+641,Estacion_17,653,Estacion_29,Caracas,TZ001,0.0,1
+653,Estacion_29,641,Estacion_17,Caracas,TZ001,0.0,1
+648,Estacion_24,657,Estacion_33,Caracas,TZ001,0.0,1
+657,Estacion_33,648,Estacion_24,Caracas,TZ001,0.0,1
+657,Estacion_33,636,Estacion_12,Caracas,TZ001,0.0,1
+636,Estacion_12,657,Estacion_33,Caracas,TZ001,0.0,1
+636,Estacion_12,753,Estacion_129,Caracas,TZ001,0.0,1
+753,Estacion_129,636,Estacion_12,Caracas,TZ001,0.0,1
+760,Estacion_136,873,Estacion_147,Caracas,TZ001,0.0,1
+873,Estacion_147,760,Estacion_136,Caracas,TZ001,0.0,1
+931,Estacion_148,681,Estacion_57,Caracas,TZ001,118.37044532633172,1
+681,Estacion_57,931,Estacion_148,Caracas,TZ001,118.37044532633172,1
+681,Estacion_57,678,Estacion_54,Caracas,TZ001,0.0,1
+678,Estacion_54,681,Estacion_57,Caracas,TZ001,0.0,1
+678,Estacion_54,680,Estacion_56,Caracas,TZ001,0.0,1
+680,Estacion_56,678,Estacion_54,Caracas,TZ001,0.0,1
+680,Estacion_56,675,Estacion_51,Caracas,TZ001,0.0,1
+675,Estacion_51,680,Estacion_56,Caracas,TZ001,0.0,1
+674,Estacion_50,677,Estacion_53,Caracas,TZ001,0.0,1
+677,Estacion_53,674,Estacion_50,Caracas,TZ001,0.0,1
+676,Estacion_52,673,Estacion_49,Caracas,TZ001,0.0,1
+673,Estacion_49,676,Estacion_52,Caracas,TZ001,0.0,1
+670,Estacion_46,679,Estacion_55,Caracas,TZ001,0.0,1
+679,Estacion_55,670,Estacion_46,Caracas,TZ001,0.0,1
+679,Estacion_55,686,Estacion_62,Caracas,TZ001,0.0,1
+686,Estacion_62,679,Estacion_55,Caracas,TZ001,0.0,1
+659,Estacion_35,662,Estacion_38,Caracas,TZ001,0.0,1
+662,Estacion_38,659,Estacion_35,Caracas,TZ001,0.0,1
+662,Estacion_38,630,Estacion_6,Caracas,TZ001,0.0,1
+630,Estacion_6,662,Estacion_38,Caracas,TZ001,0.0,1
+637,Estacion_13,633,Estacion_9,Caracas,TZ001,0.0,1
+633,Estacion_9,637,Estacion_13,Caracas,TZ001,0.0,1
+632,Estacion_8,624,Estacion_0,Caracas,TZ001,0.0,1
+624,Estacion_0,632,Estacion_8,Caracas,TZ001,0.0,1
+624,Estacion_0,628,Estacion_4,Caracas,TZ001,0.0,1
+628,Estacion_4,624,Estacion_0,Caracas,TZ001,0.0,1
+628,Estacion_4,650,Estacion_26,Caracas,TZ001,0.0,1
+650,Estacion_26,628,Estacion_4,Caracas,TZ001,0.0,1
+751,Estacion_127,749,Estacion_125,Caracas,TZ001,0.0,1
+749,Estacion_125,751,Estacion_127,Caracas,TZ001,0.0,1
+745,Estacion_121,740,Estacion_116,Caracas,TZ001,0.0,1
+740,Estacion_116,745,Estacion_121,Caracas,TZ001,0.0,1
+725,Estacion_101,722,Estacion_98,Caracas,TZ001,0.0,1
+722,Estacion_98,725,Estacion_101,Caracas,TZ001,0.0,1
+726,Estacion_102,714,Estacion_90,Caracas,TZ001,0.0,1
+714,Estacion_90,726,Estacion_102,Caracas,TZ001,0.0,1
+714,Estacion_90,717,Estacion_93,Caracas,TZ001,0.0,1
+717,Estacion_93,714,Estacion_90,Caracas,TZ001,0.0,1
+718,Estacion_94,668,Estacion_44,Caracas,TZ001,0.0,1
+668,Estacion_44,718,Estacion_94,Caracas,TZ001,0.0,1
+664,Estacion_40,671,Estacion_47,Caracas,TZ001,0.0,1
+671,Estacion_47,664,Estacion_40,Caracas,TZ001,0.0,1
+671,Estacion_47,763,Estacion_139,Caracas,TZ001,0.0,1
+763,Estacion_139,671,Estacion_47,Caracas,TZ001,0.0,1
+763,Estacion_139,754,Estacion_130,Caracas,TZ001,0.0,1
+754,Estacion_130,763,Estacion_139,Caracas,TZ001,0.0,1
+762,Estacion_138,768,Estacion_144,Caracas,TZ001,0.0,1
+768,Estacion_144,762,Estacion_138,Caracas,TZ001,0.0,1
+689,Estacion_65,760,Estacion_136,NQS Sur,TZ010,0.0,1
+760,Estacion_136,689,Estacion_65,NQS Sur,TZ010,0.0,1
+705,Estacion_81,746,Estacion_122,NQS Sur,TZ010,477.7047961942762,1
+746,Estacion_122,705,Estacion_81,NQS Sur,TZ010,477.7047961942762,1
+759,Estacion_135,697,Estacion_73,NQS Sur,TZ010,28.266217130146742,1
+697,Estacion_73,759,Estacion_135,NQS Sur,TZ010,28.266217130146742,1
+639,Estacion_15,761,Estacion_137,NQS Sur,TZ010,805.2632808518902,1
+761,Estacion_137,639,Estacion_15,NQS Sur,TZ010,805.2632808518902,1
+770,Estacion_146,707,Estacion_83,NQS Sur,TZ010,35.57219232909483,1
+707,Estacion_83,770,Estacion_146,NQS Sur,TZ010,35.57219232909483,1
+636,Estacion_12,743,Estacion_119,NQS Sur,TZ010,382.6586508903465,1
+743,Estacion_119,636,Estacion_12,NQS Sur,TZ010,382.6586508903465,1
+704,Estacion_80,732,Estacion_108,NQS Sur,TZ010,346.1003375381206,1
+732,Estacion_108,704,Estacion_80,NQS Sur,TZ010,346.1003375381206,1
+732,Estacion_108,701,Estacion_77,NQS Sur,TZ010,138.64356512777886,1
+701,Estacion_77,732,Estacion_108,NQS Sur,TZ010,138.64356512777886,1
+701,Estacion_77,729,Estacion_105,NQS Sur,TZ010,46.78873058612862,1
+729,Estacion_105,701,Estacion_77,NQS Sur,TZ010,46.78873058612862,1
+729,Estacion_105,767,Estacion_143,NQS Sur,TZ010,324.1539607152163,1
+767,Estacion_143,729,Estacion_105,NQS Sur,TZ010,324.1539607152163,1
+750,Estacion_126,693,Estacion_69,NQS Sur,TZ010,1.8386451074775323,1
+693,Estacion_69,750,Estacion_126,NQS Sur,TZ010,1.8386451074775323,1
+693,Estacion_69,739,Estacion_115,NQS Sur,TZ010,56.18353734373795,1
+739,Estacion_115,693,Estacion_69,NQS Sur,TZ010,56.18353734373795,1
+739,Estacion_115,873,Estacion_147,NQS Sur,TZ010,0.0,1
+873,Estacion_147,739,Estacion_115,NQS Sur,TZ010,0.0,1
+720,Estacion_96,648,Estacion_24,NQS Sur,TZ010,152.1942321267352,1
+648,Estacion_24,720,Estacion_96,NQS Sur,TZ010,152.1942321267352,1
+648,Estacion_24,634,Estacion_10,NQS Sur,TZ010,148.78440912873157,1
+634,Estacion_10,648,Estacion_24,NQS Sur,TZ010,148.78440912873157,1
+634,Estacion_10,756,Estacion_132,NQS Sur,TZ010,462.8854100869794,1
+756,Estacion_132,634,Estacion_10,NQS Sur,TZ010,462.8854100869794,1
+756,Estacion_132,715,Estacion_91,NQS Sur,TZ010,50.22548553480647,1
+715,Estacion_91,756,Estacion_132,NQS Sur,TZ010,50.22548553480647,1
+715,Estacion_91,719,Estacion_95,NQS Sur,TZ010,498.98860300834076,1
+719,Estacion_95,715,Estacion_91,NQS Sur,TZ010,498.98860300834076,1
+719,Estacion_95,765,Estacion_141,NQS Sur,TZ010,355.0454479902892,1
+765,Estacion_141,719,Estacion_95,NQS Sur,TZ010,355.0454479902892,1
+765,Estacion_141,667,Estacion_43,NQS Sur,TZ010,370.0945810395933,1
+667,Estacion_43,765,Estacion_141,NQS Sur,TZ010,370.0945810395933,1
+667,Estacion_43,716,Estacion_92,NQS Sur,TZ010,0.0,1
+716,Estacion_92,667,Estacion_43,NQS Sur,TZ010,0.0,1
+730,Estacion_106,744,Estacion_120,NQS Sur,TZ010,7.986628801700135,1
+744,Estacion_120,730,Estacion_106,NQS Sur,TZ010,7.986628801700135,1
+687,Estacion_63,721,Estacion_97,NQS Sur,TZ010,596.5453443586885,1
+721,Estacion_97,687,Estacion_63,NQS Sur,TZ010,596.5453443586885,1
+721,Estacion_97,698,Estacion_74,NQS Sur,TZ010,23.697227975770147,1
+698,Estacion_74,721,Estacion_97,NQS Sur,TZ010,23.697227975770147,1
+698,Estacion_74,753,Estacion_129,NQS Sur,TZ010,163.6981242353122,1
+753,Estacion_129,698,Estacion_74,NQS Sur,TZ010,163.6981242353122,1
+753,Estacion_129,733,Estacion_109,NQS Sur,TZ010,132.8769352717136,1
+733,Estacion_109,753,Estacion_129,NQS Sur,TZ010,132.8769352717136,1
+738,Estacion_114,695,Estacion_71,NQS Sur,TZ010,211.57075212356904,1
+695,Estacion_71,738,Estacion_114,NQS Sur,TZ010,211.57075212356904,1
+695,Estacion_71,764,Estacion_140,NQS Sur,TZ010,13.9731861174605,1
+764,Estacion_140,695,Estacion_71,NQS Sur,TZ010,13.9731861174605,1
+735,Estacion_111,653,Estacion_29,NQS Sur,TZ010,76.77649331571047,1
+653,Estacion_29,735,Estacion_111,NQS Sur,TZ010,76.77649331571047,1
+699,Estacion_75,641,Estacion_17,NQS Sur,TZ010,18.23365009817462,1
+641,Estacion_17,699,Estacion_75,NQS Sur,TZ010,18.23365009817462,1
+641,Estacion_17,638,Estacion_14,NQS Sur,TZ010,14.141136017287863,1
+638,Estacion_14,641,Estacion_17,NQS Sur,TZ010,14.141136017287863,1
+638,Estacion_14,644,Estacion_20,NQS Sur,TZ010,0.0,1
+644,Estacion_20,638,Estacion_14,NQS Sur,TZ010,0.0,1
+644,Estacion_20,637,Estacion_13,NQS Sur,TZ010,0.0,1
+637,Estacion_13,644,Estacion_20,NQS Sur,TZ010,0.0,1
+633,Estacion_9,640,Estacion_16,NQS Sur,TZ010,0.0,1
+640,Estacion_16,633,Estacion_9,NQS Sur,TZ010,0.0,1
+651,Estacion_27,631,Estacion_7,NQS Sur,TZ010,0.0,1
+631,Estacion_7,651,Estacion_27,NQS Sur,TZ010,0.0,1
+624,Estacion_0,686,Estacion_62,NQS Sur,TZ010,0.0,1
+686,Estacion_62,624,Estacion_0,NQS Sur,TZ010,0.0,1
+683,Estacion_59,681,Estacion_57,NQS Sur,TZ010,0.0,1
+681,Estacion_57,683,Estacion_59,NQS Sur,TZ010,0.0,1
+679,Estacion_55,675,Estacion_51,NQS Sur,TZ010,0.0,1
+675,Estacion_51,679,Estacion_55,NQS Sur,TZ010,0.0,1
+671,Estacion_47,656,Estacion_32,NQS Sur,TZ010,0.0,1
+656,Estacion_32,671,Estacion_47,NQS Sur,TZ010,0.0,1
+656,Estacion_32,670,Estacion_46,NQS Sur,TZ010,0.0,1
+670,Estacion_46,656,Estacion_32,NQS Sur,TZ010,0.0,1
+668,Estacion_44,666,Estacion_42,NQS Sur,TZ010,0.0,1
+666,Estacion_42,668,Estacion_44,NQS Sur,TZ010,0.0,1
+666,Estacion_42,665,Estacion_41,NQS Sur,TZ010,0.0,1
+665,Estacion_41,666,Estacion_42,NQS Sur,TZ010,0.0,1
+662,Estacion_38,658,Estacion_34,NQS Sur,TZ010,0.0,1
+658,Estacion_34,662,Estacion_38,NQS Sur,TZ010,0.0,1
+658,Estacion_34,660,Estacion_36,NQS Sur,TZ010,0.0,1
+660,Estacion_36,658,Estacion_34,NQS Sur,TZ010,0.0,1
+659,Estacion_35,649,Estacion_25,NQS Sur,TZ010,0.0,1
+649,Estacion_25,659,Estacion_35,NQS Sur,TZ010,0.0,1
+649,Estacion_25,703,Estacion_79,NQS Sur,TZ010,0.0,1
+703,Estacion_79,649,Estacion_25,NQS Sur,TZ010,0.0,1
+703,Estacion_79,692,Estacion_68,NQS Sur,TZ010,0.0,1
+692,Estacion_68,703,Estacion_79,NQS Sur,TZ010,0.0,1
+692,Estacion_68,694,Estacion_70,NQS Sur,TZ010,0.0,1
+694,Estacion_70,692,Estacion_68,NQS Sur,TZ010,0.0,1
+694,Estacion_70,688,Estacion_64,NQS Sur,TZ010,0.0,1
+688,Estacion_64,694,Estacion_70,NQS Sur,TZ010,0.0,1
+688,Estacion_64,718,Estacion_94,NQS Sur,TZ010,0.0,1
+718,Estacion_94,688,Estacion_64,NQS Sur,TZ010,0.0,1
+717,Estacion_93,713,Estacion_89,NQS Sur,TZ010,0.0,1
+713,Estacion_89,717,Estacion_93,NQS Sur,TZ010,0.0,1
+714,Estacion_90,712,Estacion_88,NQS Sur,TZ010,0.0,1
+712,Estacion_88,714,Estacion_90,NQS Sur,TZ010,0.0,1
+706,Estacion_82,708,Estacion_84,NQS Sur,TZ010,0.0,1
+708,Estacion_84,706,Estacion_82,NQS Sur,TZ010,0.0,1
+708,Estacion_84,690,Estacion_66,NQS Sur,TZ010,0.0,1
+690,Estacion_66,708,Estacion_84,NQS Sur,TZ010,0.0,1
+691,Estacion_67,696,Estacion_72,NQS Sur,TZ010,0.0,1
+696,Estacion_72,691,Estacion_67,NQS Sur,TZ010,0.0,1
+700,Estacion_76,702,Estacion_78,NQS Sur,TZ010,0.0,1
+702,Estacion_78,700,Estacion_76,NQS Sur,TZ010,0.0,1
+702,Estacion_78,722,Estacion_98,NQS Sur,TZ010,0.0,1
+722,Estacion_98,702,Estacion_78,NQS Sur,TZ010,0.0,1
+722,Estacion_98,734,Estacion_110,NQS Sur,TZ010,0.0,1
+734,Estacion_110,722,Estacion_98,NQS Sur,TZ010,0.0,1
+734,Estacion_110,731,Estacion_107,NQS Sur,TZ010,0.0,1
+731,Estacion_107,734,Estacion_110,NQS Sur,TZ010,0.0,1
+731,Estacion_107,728,Estacion_104,NQS Sur,TZ010,0.0,1
+728,Estacion_104,731,Estacion_107,NQS Sur,TZ010,0.0,1
+728,Estacion_104,723,Estacion_99,NQS Sur,TZ010,0.0,1
+723,Estacion_99,728,Estacion_104,NQS Sur,TZ010,0.0,1
+724,Estacion_100,645,Estacion_21,NQS Sur,TZ010,0.0,1
+645,Estacion_21,724,Estacion_100,NQS Sur,TZ010,0.0,1
+645,Estacion_21,642,Estacion_18,NQS Sur,TZ010,0.0,1
+642,Estacion_18,645,Estacion_21,NQS Sur,TZ010,0.0,1
+646,Estacion_22,650,Estacion_26,NQS Sur,TZ010,0.0,1
+650,Estacion_26,646,Estacion_22,NQS Sur,TZ010,0.0,1
+628,Estacion_4,632,Estacion_8,NQS Sur,TZ010,0.0,1
+632,Estacion_8,628,Estacion_4,NQS Sur,TZ010,0.0,1
+627,Estacion_3,751,Estacion_127,NQS Sur,TZ010,0.0,1
+751,Estacion_127,627,Estacion_3,NQS Sur,TZ010,0.0,1
+748,Estacion_124,747,Estacion_123,NQS Sur,TZ010,0.0,1
+747,Estacion_123,748,Estacion_124,NQS Sur,TZ010,0.0,1
+747,Estacion_123,745,Estacion_121,NQS Sur,TZ010,0.0,1
+745,Estacion_121,747,Estacion_123,NQS Sur,TZ010,0.0,1
+745,Estacion_121,736,Estacion_112,NQS Sur,TZ010,0.0,1
+736,Estacion_112,745,Estacion_121,NQS Sur,TZ010,0.0,1
+740,Estacion_116,727,Estacion_103,NQS Sur,TZ010,0.0,1
+727,Estacion_103,740,Estacion_116,NQS Sur,TZ010,0.0,1
+725,Estacion_101,758,Estacion_134,NQS Sur,TZ010,0.0,1
+758,Estacion_134,725,Estacion_101,NQS Sur,TZ010,0.0,1
+752,Estacion_128,757,Estacion_133,NQS Sur,TZ010,0.0,1
+757,Estacion_133,752,Estacion_128,NQS Sur,TZ010,0.0,1
+755,Estacion_131,766,Estacion_142,NQS Sur,TZ010,0.0,1
+766,Estacion_142,755,Estacion_131,NQS Sur,TZ010,0.0,1
+766,Estacion_142,763,Estacion_139,NQS Sur,TZ010,0.0,1
+763,Estacion_139,766,Estacion_142,NQS Sur,TZ010,0.0,1
+769,Estacion_145,768,Estacion_144,NQS Sur,TZ010,0.0,1
+768,Estacion_144,769,Estacion_145,NQS Sur,TZ010,0.0,1
+737,Estacion_113,746,Estacion_122,Caracas Sur,TZ014,0.0,1
+746,Estacion_122,737,Estacion_113,Caracas Sur,TZ014,0.0,1
+742,Estacion_118,705,Estacion_81,Caracas Sur,TZ014,0.0,1
+705,Estacion_81,742,Estacion_118,Caracas Sur,TZ014,0.0,1
+697,Estacion_73,689,Estacion_65,Caracas Sur,TZ014,0.0,1
+689,Estacion_65,697,Estacion_73,Caracas Sur,TZ014,0.0,1
+931,Estacion_148,761,Estacion_137,Caracas Sur,TZ014,0.0,1
+761,Estacion_137,931,Estacion_148,Caracas Sur,TZ014,0.0,1
+759,Estacion_135,743,Estacion_119,Caracas Sur,TZ014,134.67789742269625,1
+743,Estacion_119,759,Estacion_135,Caracas Sur,TZ014,134.67789742269625,1
+732,Estacion_108,770,Estacion_146,Caracas Sur,TZ014,413.03143393053927,1
+770,Estacion_146,732,Estacion_108,Caracas Sur,TZ014,413.03143393053927,1
+770,Estacion_146,701,Estacion_77,Caracas Sur,TZ014,186.05550420631891,1
+701,Estacion_77,770,Estacion_146,Caracas Sur,TZ014,186.05550420631891,1
+701,Estacion_77,707,Estacion_83,Caracas Sur,TZ014,82.08327886628445,1
+707,Estacion_83,701,Estacion_77,Caracas Sur,TZ014,82.08327886628445,1
+639,Estacion_15,704,Estacion_80,Caracas Sur,TZ014,26.227386094526537,1
+704,Estacion_80,639,Estacion_15,Caracas Sur,TZ014,26.227386094526537,1
+704,Estacion_80,663,Estacion_39,Caracas Sur,TZ014,16.103587879495763,1
+663,Estacion_39,704,Estacion_80,Caracas Sur,TZ014,16.103587879495763,1
+635,Estacion_11,729,Estacion_105,Caracas Sur,TZ014,20.33619560448915,1
+729,Estacion_105,635,Estacion_11,Caracas Sur,TZ014,20.33619560448915,1
+729,Estacion_105,636,Estacion_12,Caracas Sur,TZ014,0.0,1
+636,Estacion_12,729,Estacion_105,Caracas Sur,TZ014,0.0,1
+636,Estacion_12,726,Estacion_102,Caracas Sur,TZ014,21.807598839272714,1
+726,Estacion_102,636,Estacion_12,Caracas Sur,TZ014,21.807598839272714,1
+726,Estacion_102,736,Estacion_112,Caracas Sur,TZ014,20.98997572360122,1
+736,Estacion_112,726,Estacion_102,Caracas Sur,TZ014,20.98997572360122,1
+630,Estacion_6,725,Estacion_101,Caracas Sur,TZ014,0.0,1
+725,Estacion_101,630,Estacion_6,Caracas Sur,TZ014,0.0,1
+723,Estacion_99,659,Estacion_35,Caracas Sur,TZ014,4.246341266842137,1
+659,Estacion_35,723,Estacion_99,Caracas Sur,TZ014,4.246341266842137,1
+628,Estacion_4,696,Estacion_72,Caracas Sur,TZ014,0.0,1
+696,Estacion_72,628,Estacion_4,Caracas Sur,TZ014,0.0,1
+645,Estacion_21,748,Estacion_124,Caracas Sur,TZ014,0.0,1
+748,Estacion_124,645,Estacion_21,Caracas Sur,TZ014,0.0,1
+665,Estacion_41,648,Estacion_24,Caracas Sur,TZ014,0.0,1
+648,Estacion_24,665,Estacion_41,Caracas Sur,TZ014,0.0,1
+648,Estacion_24,638,Estacion_14,Caracas Sur,TZ014,0.0,1
+638,Estacion_14,648,Estacion_24,Caracas Sur,TZ014,0.0,1
+638,Estacion_14,745,Estacion_121,Caracas Sur,TZ014,19.177590030501506,1
+745,Estacion_121,638,Estacion_14,Caracas Sur,TZ014,19.177590030501506,1
+749,Estacion_125,768,Estacion_144,Caracas Sur,TZ014,0.0,1
+768,Estacion_144,749,Estacion_125,Caracas Sur,TZ014,0.0,1
+722,Estacion_98,655,Estacion_31,Caracas Sur,TZ014,0.0,1
+655,Estacion_31,722,Estacion_98,Caracas Sur,TZ014,0.0,1
+651,Estacion_27,731,Estacion_107,Caracas Sur,TZ014,32.54879255764922,1
+731,Estacion_107,651,Estacion_27,Caracas Sur,TZ014,32.54879255764922,1
+731,Estacion_107,660,Estacion_36,Caracas Sur,TZ014,0.0,1
+660,Estacion_36,731,Estacion_107,Caracas Sur,TZ014,0.0,1
+660,Estacion_36,637,Estacion_13,Caracas Sur,TZ014,0.0,1
+637,Estacion_13,660,Estacion_36,Caracas Sur,TZ014,0.0,1
+637,Estacion_13,625,Estacion_1,Caracas Sur,TZ014,0.0,1
+625,Estacion_1,637,Estacion_13,Caracas Sur,TZ014,0.0,1
+625,Estacion_1,669,Estacion_45,Caracas Sur,TZ014,0.0,1
+669,Estacion_45,625,Estacion_1,Caracas Sur,TZ014,0.0,1
+669,Estacion_45,650,Estacion_26,Caracas Sur,TZ014,0.0,1
+650,Estacion_26,669,Estacion_45,Caracas Sur,TZ014,0.0,1
+650,Estacion_26,675,Estacion_51,Caracas Sur,TZ014,0.0,1
+675,Estacion_51,650,Estacion_26,Caracas Sur,TZ014,0.0,1
+676,Estacion_52,685,Estacion_61,Caracas Sur,TZ014,0.0,1
+685,Estacion_61,676,Estacion_52,Caracas Sur,TZ014,0.0,1
+685,Estacion_61,715,Estacion_91,Caracas Sur,TZ014,0.0,1
+715,Estacion_91,685,Estacion_61,Caracas Sur,TZ014,0.0,1
+715,Estacion_91,755,Estacion_131,Caracas Sur,TZ014,0.0,1
+755,Estacion_131,715,Estacion_91,Caracas Sur,TZ014,0.0,1
+755,Estacion_131,763,Estacion_139,Caracas Sur,TZ014,0.0,1
+763,Estacion_139,755,Estacion_131,Caracas Sur,TZ014,0.0,1
+678,Estacion_54,717,Estacion_93,Caracas Sur,TZ014,0.0,1
+717,Estacion_93,678,Estacion_54,Caracas Sur,TZ014,0.0,1
+717,Estacion_93,692,Estacion_68,Caracas Sur,TZ014,0.0,1
+692,Estacion_68,717,Estacion_93,Caracas Sur,TZ014,0.0,1
+692,Estacion_68,677,Estacion_53,Caracas Sur,TZ014,0.0,1
+677,Estacion_53,692,Estacion_68,Caracas Sur,TZ014,0.0,1
+677,Estacion_53,654,Estacion_30,Caracas Sur,TZ014,0.0,1
+654,Estacion_30,677,Estacion_53,Caracas Sur,TZ014,0.0,1
+654,Estacion_30,683,Estacion_59,Caracas Sur,TZ014,0.0,1
+683,Estacion_59,654,Estacion_30,Caracas Sur,TZ014,0.0,1
+683,Estacion_59,674,Estacion_50,Caracas Sur,TZ014,0.0,1
+674,Estacion_50,683,Estacion_59,Caracas Sur,TZ014,0.0,1
+674,Estacion_50,757,Estacion_133,Caracas Sur,TZ014,0.0,1
+757,Estacion_133,674,Estacion_50,Caracas Sur,TZ014,0.0,1
+757,Estacion_133,750,Estacion_126,Caracas Sur,TZ014,300.31135203119516,1
+750,Estacion_126,757,Estacion_133,Caracas Sur,TZ014,300.31135203119516,1
+750,Estacion_126,680,Estacion_56,Caracas Sur,TZ014,2.5015498636728353,1
+680,Estacion_56,750,Estacion_126,Caracas Sur,TZ014,2.5015498636728353,1
+673,Estacion_49,687,Estacion_63,Caracas Sur,TZ014,0.0,1
+687,Estacion_63,673,Estacion_49,Caracas Sur,TZ014,0.0,1
+684,Estacion_60,682,Estacion_58,Caracas Sur,TZ014,0.0,1
+682,Estacion_58,684,Estacion_60,Caracas Sur,TZ014,0.0,1
+666,Estacion_42,670,Estacion_46,Caracas Sur,TZ014,0.0,1
+670,Estacion_46,666,Estacion_42,Caracas Sur,TZ014,0.0,1
+670,Estacion_46,631,Estacion_7,Caracas Sur,TZ014,0.0,1
+631,Estacion_7,670,Estacion_46,Caracas Sur,TZ014,0.0,1
+632,Estacion_8,634,Estacion_10,Caracas Sur,TZ014,0.0,1
+634,Estacion_10,632,Estacion_8,Caracas Sur,TZ014,0.0,1
+634,Estacion_10,629,Estacion_5,Caracas Sur,TZ014,0.0,1
+629,Estacion_5,634,Estacion_10,Caracas Sur,TZ014,0.0,1
+624,Estacion_0,627,Estacion_3,Caracas Sur,TZ014,0.0,1
+627,Estacion_3,624,Estacion_0,Caracas Sur,TZ014,0.0,1
+626,Estacion_2,642,Estacion_18,Caracas Sur,TZ014,0.0,1
+642,Estacion_18,626,Estacion_2,Caracas Sur,TZ014,0.0,1
+642,Estacion_18,679,Estacion_55,Caracas Sur,TZ014,0.0,1
+679,Estacion_55,642,Estacion_18,Caracas Sur,TZ014,0.0,1
+679,Estacion_55,667,Estacion_43,Caracas Sur,TZ014,0.0,1
+667,Estacion_43,679,Estacion_55,Caracas Sur,TZ014,0.0,1
+667,Estacion_43,662,Estacion_38,Caracas Sur,TZ014,0.0,1
+662,Estacion_38,667,Estacion_43,Caracas Sur,TZ014,0.0,1
+662,Estacion_38,656,Estacion_32,Caracas Sur,TZ014,0.0,1
+656,Estacion_32,662,Estacion_38,Caracas Sur,TZ014,0.0,1
+658,Estacion_34,695,Estacion_71,Caracas Sur,TZ014,0.0,1
+695,Estacion_71,658,Estacion_34,Caracas Sur,TZ014,0.0,1
+695,Estacion_71,691,Estacion_67,Caracas Sur,TZ014,0.0,1
+691,Estacion_67,695,Estacion_71,Caracas Sur,TZ014,0.0,1
+690,Estacion_66,694,Estacion_70,Caracas Sur,TZ014,0.0,1
+694,Estacion_70,690,Estacion_66,Caracas Sur,TZ014,0.0,1
+694,Estacion_70,719,Estacion_95,Caracas Sur,TZ014,0.0,1
+719,Estacion_95,694,Estacion_70,Caracas Sur,TZ014,0.0,1
+708,Estacion_84,693,Estacion_69,Caracas Sur,TZ014,0.0,1
+693,Estacion_69,708,Estacion_84,Caracas Sur,TZ014,0.0,1
+693,Estacion_69,698,Estacion_74,Caracas Sur,TZ014,0.0,1
+698,Estacion_74,693,Estacion_69,Caracas Sur,TZ014,0.0,1
+688,Estacion_64,735,Estacion_111,Caracas Sur,TZ014,0.0,1
+735,Estacion_111,688,Estacion_64,Caracas Sur,TZ014,0.0,1
+730,Estacion_106,728,Estacion_104,Caracas Sur,TZ014,0.0,1
+728,Estacion_104,730,Estacion_106,Caracas Sur,TZ014,0.0,1
+728,Estacion_104,721,Estacion_97,Caracas Sur,TZ014,0.0,1
+721,Estacion_97,728,Estacion_104,Caracas Sur,TZ014,0.0,1
+721,Estacion_97,724,Estacion_100,Caracas Sur,TZ014,0.0,1
+724,Estacion_100,721,Estacion_97,Caracas Sur,TZ014,0.0,1
+724,Estacion_100,640,Estacion_16,Caracas Sur,TZ014,0.0,1
+640,Estacion_16,724,Estacion_100,Caracas Sur,TZ014,0.0,1
+643,Estacion_19,652,Estacion_28,Caracas Sur,TZ014,0.0,1
+652,Estacion_28,643,Estacion_19,Caracas Sur,TZ014,0.0,1
+653,Estacion_29,649,Estacion_25,Caracas Sur,TZ014,0.0,1
+649,Estacion_25,653,Estacion_29,Caracas Sur,TZ014,0.0,1
+649,Estacion_25,641,Estacion_17,Caracas Sur,TZ014,0.0,1
+641,Estacion_17,649,Estacion_25,Caracas Sur,TZ014,0.0,1
+641,Estacion_17,751,Estacion_127,Caracas Sur,TZ014,0.0,1
+751,Estacion_127,641,Estacion_17,Caracas Sur,TZ014,0.0,1
+751,Estacion_127,747,Estacion_123,Caracas Sur,TZ014,0.0,1
+747,Estacion_123,751,Estacion_127,Caracas Sur,TZ014,0.0,1
+744,Estacion_120,741,Estacion_117,Caracas Sur,TZ014,0.0,1
+741,Estacion_117,744,Estacion_120,Caracas Sur,TZ014,0.0,1
+741,Estacion_117,739,Estacion_115,Caracas Sur,TZ014,0.0,1
+739,Estacion_115,741,Estacion_117,Caracas Sur,TZ014,0.0,1
+738,Estacion_114,734,Estacion_110,Caracas Sur,TZ014,0.0,1
+734,Estacion_110,738,Estacion_114,Caracas Sur,TZ014,0.0,1
+734,Estacion_110,720,Estacion_96,Caracas Sur,TZ014,0.0,1
+720,Estacion_96,734,Estacion_110,Caracas Sur,TZ014,0.0,1
+720,Estacion_96,727,Estacion_103,Caracas Sur,TZ014,0.0,1
+727,Estacion_103,720,Estacion_96,Caracas Sur,TZ014,0.0,1
+727,Estacion_103,758,Estacion_134,Caracas Sur,TZ014,0.0,1
+758,Estacion_134,727,Estacion_103,Caracas Sur,TZ014,0.0,1
+758,Estacion_134,753,Estacion_129,Caracas Sur,TZ014,0.0,1
+753,Estacion_129,758,Estacion_134,Caracas Sur,TZ014,0.0,1
+753,Estacion_129,762,Estacion_138,Caracas Sur,TZ014,0.0,1
+762,Estacion_138,753,Estacion_129,Caracas Sur,TZ014,0.0,1
+762,Estacion_138,764,Estacion_140,Caracas Sur,TZ014,0.0,1
+764,Estacion_140,762,Estacion_138,Caracas Sur,TZ014,0.0,1
+756,Estacion_132,754,Estacion_130,Caracas Sur,TZ014,0.0,1
+754,Estacion_130,756,Estacion_132,Caracas Sur,TZ014,0.0,1
+754,Estacion_130,752,Estacion_128,Caracas Sur,TZ014,0.0,1
+752,Estacion_128,754,Estacion_130,Caracas Sur,TZ014,0.0,1
+628,Estacion_4,631,Estacion_7,Carrera 7,TZ019,0.0,1
+631,Estacion_7,628,Estacion_4,Carrera 7,TZ019,0.0,1
+654,Estacion_30,647,Estacion_23,Carrera 7,TZ019,0.0,1
+647,Estacion_23,654,Estacion_30,Carrera 7,TZ019,0.0,1
+647,Estacion_23,644,Estacion_20,Carrera 7,TZ019,0.0,1
+644,Estacion_20,647,Estacion_23,Carrera 7,TZ019,0.0,1
+645,Estacion_21,643,Estacion_19,Carrera 7,TZ019,0.0,1
+643,Estacion_19,645,Estacion_21,Carrera 7,TZ019,0.0,1
+649,Estacion_25,676,Estacion_52,Carrera 7,TZ019,0.0,1
+676,Estacion_52,649,Estacion_25,Carrera 7,TZ019,0.0,1
+678,Estacion_54,671,Estacion_47,Carrera 7,TZ019,0.0,1
+671,Estacion_47,678,Estacion_54,Carrera 7,TZ019,0.0,1
+659,Estacion_35,680,Estacion_56,Carrera 7,TZ019,0.0,1
+680,Estacion_56,659,Estacion_35,Carrera 7,TZ019,0.0,1
+672,Estacion_48,731,Estacion_107,Carrera 7,TZ019,0.0,1
+731,Estacion_107,672,Estacion_48,Carrera 7,TZ019,0.0,1
+731,Estacion_107,741,Estacion_117,Carrera 7,TZ019,0.0,1
+741,Estacion_117,731,Estacion_107,Carrera 7,TZ019,0.0,1
+740,Estacion_116,736,Estacion_112,Carrera 7,TZ019,0.0,1
+736,Estacion_112,740,Estacion_116,Carrera 7,TZ019,0.0,1
+736,Estacion_112,722,Estacion_98,Carrera 7,TZ019,0.0,1
+722,Estacion_98,736,Estacion_112,Carrera 7,TZ019,0.0,1
+722,Estacion_98,727,Estacion_103,Carrera 7,TZ019,0.0,1
+727,Estacion_103,722,Estacion_98,Carrera 7,TZ019,0.0,1
+726,Estacion_102,718,Estacion_94,Carrera 7,TZ019,0.0,1
+718,Estacion_94,726,Estacion_102,Carrera 7,TZ019,0.0,1
+712,Estacion_88,706,Estacion_82,Carrera 7,TZ019,0.0,1
+706,Estacion_82,712,Estacion_88,Carrera 7,TZ019,0.0,1
+710,Estacion_86,702,Estacion_78,Carrera 7,TZ019,0.0,1
+702,Estacion_78,710,Estacion_86,Carrera 7,TZ019,0.0,1
+702,Estacion_78,696,Estacion_72,Carrera 7,TZ019,0.0,1
+696,Estacion_72,702,Estacion_78,Carrera 7,TZ019,0.0,1
+700,Estacion_76,690,Estacion_66,Carrera 7,TZ019,0.0,1
+690,Estacion_66,700,Estacion_76,Carrera 7,TZ019,0.0,1
+691,Estacion_67,725,Estacion_101,Carrera 7,TZ019,0.0,1
+725,Estacion_101,691,Estacion_67,Carrera 7,TZ019,0.0,1
+725,Estacion_101,749,Estacion_125,Carrera 7,TZ019,0.0,1
+749,Estacion_125,725,Estacion_101,Carrera 7,TZ019,0.0,1
+748,Estacion_124,762,Estacion_138,Carrera 7,TZ019,0.0,1
+762,Estacion_138,748,Estacion_124,Carrera 7,TZ019,0.0,1
+763,Estacion_139,769,Estacion_145,Carrera 7,TZ019,0.0,1
+769,Estacion_145,763,Estacion_139,Carrera 7,TZ019,0.0,1
+768,Estacion_144,703,Estacion_79,Carrera 7,TZ019,220.2300414416352,1
+703,Estacion_79,768,Estacion_144,Carrera 7,TZ019,220.2300414416352,1
+734,Estacion_110,663,Estacion_39,Carrera 7,TZ019,384.06210875843806,1
+663,Estacion_39,734,Estacion_110,Carrera 7,TZ019,384.06210875843806,1
+663,Estacion_39,687,Estacion_63,Carrera 7,TZ019,0.0,1
+687,Estacion_63,663,Estacion_39,Carrera 7,TZ019,0.0,1
+687,Estacion_63,658,Estacion_34,Carrera 7,TZ019,0.0,1
+658,Estacion_34,687,Estacion_63,Carrera 7,TZ019,0.0,1
+627,Estacion_3,629,Estacion_5,Carrera 7,TZ019,0.0,1
+629,Estacion_5,627,Estacion_3,Carrera 7,TZ019,0.0,1
+635,Estacion_11,656,Estacion_32,Carrera 7,TZ019,0.0,1
+656,Estacion_32,635,Estacion_11,Carrera 7,TZ019,0.0,1
+656,Estacion_32,661,Estacion_37,Carrera 7,TZ019,0.0,1
+661,Estacion_37,656,Estacion_32,Carrera 7,TZ019,0.0,1
+666,Estacion_42,639,Estacion_15,Carrera 7,TZ019,0.0,1
+639,Estacion_15,666,Estacion_42,Carrera 7,TZ019,0.0,1
+657,Estacion_33,642,Estacion_18,Carrera 7,TZ019,0.0,1
+642,Estacion_18,657,Estacion_33,Carrera 7,TZ019,0.0,1
+642,Estacion_18,646,Estacion_22,Carrera 7,TZ019,0.0,1
+646,Estacion_22,642,Estacion_18,Carrera 7,TZ019,0.0,1
+646,Estacion_22,648,Estacion_24,Carrera 7,TZ019,0.0,1
+648,Estacion_24,646,Estacion_22,Carrera 7,TZ019,0.0,1
+651,Estacion_27,653,Estacion_29,Carrera 7,TZ019,0.0,1
+653,Estacion_29,651,Estacion_27,Carrera 7,TZ019,0.0,1
+705,Estacion_81,709,Estacion_85,Carrera 7,TZ019,0.0,1
+709,Estacion_85,705,Estacion_81,Carrera 7,TZ019,0.0,1
+708,Estacion_84,695,Estacion_71,Carrera 7,TZ019,0.0,1
+695,Estacion_71,708,Estacion_84,Carrera 7,TZ019,0.0,1
+692,Estacion_68,699,Estacion_75,Carrera 7,TZ019,0.0,1
+699,Estacion_75,692,Estacion_68,Carrera 7,TZ019,0.0,1
+699,Estacion_75,724,Estacion_100,Carrera 7,TZ019,0.0,1
+724,Estacion_100,699,Estacion_75,Carrera 7,TZ019,0.0,1
+723,Estacion_99,721,Estacion_97,Carrera 7,TZ019,0.0,1
+721,Estacion_97,723,Estacion_99,Carrera 7,TZ019,0.0,1
+721,Estacion_97,735,Estacion_111,Carrera 7,TZ019,0.0,1
+735,Estacion_111,721,Estacion_97,Carrera 7,TZ019,0.0,1
+729,Estacion_105,720,Estacion_96,Carrera 7,TZ019,0.0,1
+720,Estacion_96,729,Estacion_105,Carrera 7,TZ019,0.0,1
+720,Estacion_96,737,Estacion_113,Carrera 7,TZ019,0.0,1
+737,Estacion_113,720,Estacion_96,Carrera 7,TZ019,0.0,1
+742,Estacion_118,641,Estacion_17,Carrera 7,TZ019,0.0,1
+641,Estacion_17,742,Estacion_118,Carrera 7,TZ019,0.0,1
+641,Estacion_17,698,Estacion_74,Carrera 7,TZ019,0.0,1
+698,Estacion_74,641,Estacion_17,Carrera 7,TZ019,0.0,1
+698,Estacion_74,701,Estacion_77,Carrera 7,TZ019,0.0,1
+701,Estacion_77,698,Estacion_74,Carrera 7,TZ019,0.0,1
+688,Estacion_64,750,Estacion_126,Carrera 7,TZ019,0.0,1
+750,Estacion_126,688,Estacion_64,Carrera 7,TZ019,0.0,1
+746,Estacion_122,747,Estacion_123,Carrera 7,TZ019,0.0,1
+747,Estacion_123,746,Estacion_122,Carrera 7,TZ019,0.0,1
+747,Estacion_123,739,Estacion_115,Carrera 7,TZ019,0.0,1
+739,Estacion_115,747,Estacion_123,Carrera 7,TZ019,0.0,1
+738,Estacion_114,755,Estacion_131,Carrera 7,TZ019,0.0,1
+755,Estacion_131,738,Estacion_114,Carrera 7,TZ019,0.0,1
+755,Estacion_131,756,Estacion_132,Carrera 7,TZ019,0.0,1
+756,Estacion_132,755,Estacion_131,Carrera 7,TZ019,0.0,1
+758,Estacion_134,761,Estacion_137,Carrera 7,TZ019,0.0,1
+761,Estacion_137,758,Estacion_134,Carrera 7,TZ019,0.0,1
+760,Estacion_136,764,Estacion_140,Carrera 7,TZ019,0.0,1
+764,Estacion_140,760,Estacion_136,Carrera 7,TZ019,0.0,1
+764,Estacion_140,765,Estacion_141,Carrera 7,TZ019,0.0,1
+765,Estacion_141,764,Estacion_140,Carrera 7,TZ019,0.0,1
+766,Estacion_142,770,Estacion_146,Carrera 7,TZ019,0.0,1
+770,Estacion_146,766,Estacion_142,Carrera 7,TZ019,0.0,1
+873,Estacion_147,931,Estacion_148,Carrera 7,TZ019,0.0,1
+931,Estacion_148,873,Estacion_147,Carrera 7,TZ019,0.0,1
+655,Estacion_31,650,Estacion_26,Caracas Sur,TZ012,0.0,1
+650,Estacion_26,655,Estacion_31,Caracas Sur,TZ012,0.0,1
+652,Estacion_28,646,Estacion_22,Caracas Sur,TZ012,0.0,1
+646,Estacion_22,652,Estacion_28,Caracas Sur,TZ012,0.0,1
+647,Estacion_23,649,Estacion_25,Caracas Sur,TZ012,0.0,1
+649,Estacion_25,647,Estacion_23,Caracas Sur,TZ012,0.0,1
+649,Estacion_25,654,Estacion_30,Caracas Sur,TZ012,0.0,1
+654,Estacion_30,649,Estacion_25,Caracas Sur,TZ012,0.0,1
+654,Estacion_30,665,Estacion_41,Caracas Sur,TZ012,0.0,1
+665,Estacion_41,654,Estacion_30,Caracas Sur,TZ012,0.0,1
+666,Estacion_42,662,Estacion_38,Caracas Sur,TZ012,0.0,1
+662,Estacion_38,666,Estacion_42,Caracas Sur,TZ012,0.0,1
+683,Estacion_59,676,Estacion_52,Caracas Sur,TZ012,0.0,1
+676,Estacion_52,683,Estacion_59,Caracas Sur,TZ012,0.0,1
+678,Estacion_54,664,Estacion_40,Caracas Sur,TZ012,0.0,1
+664,Estacion_40,678,Estacion_54,Caracas Sur,TZ012,0.0,1
+664,Estacion_40,670,Estacion_46,Caracas Sur,TZ012,0.0,1
+670,Estacion_46,664,Estacion_40,Caracas Sur,TZ012,0.0,1
+669,Estacion_45,671,Estacion_47,Caracas Sur,TZ012,0.0,1
+671,Estacion_47,669,Estacion_45,Caracas Sur,TZ012,0.0,1
+668,Estacion_44,675,Estacion_51,Caracas Sur,TZ012,0.0,1
+675,Estacion_51,668,Estacion_44,Caracas Sur,TZ012,0.0,1
+679,Estacion_55,711,Estacion_87,Caracas Sur,TZ012,0.0,1
+711,Estacion_87,679,Estacion_55,Caracas Sur,TZ012,0.0,1
+711,Estacion_87,714,Estacion_90,Caracas Sur,TZ012,0.0,1
+714,Estacion_90,711,Estacion_87,Caracas Sur,TZ012,0.0,1
+713,Estacion_89,700,Estacion_76,Caracas Sur,TZ012,0.0,1
+700,Estacion_76,713,Estacion_89,Caracas Sur,TZ012,0.0,1
+696,Estacion_72,703,Estacion_79,Caracas Sur,TZ012,0.0,1
+703,Estacion_79,696,Estacion_72,Caracas Sur,TZ012,0.0,1
+702,Estacion_78,694,Estacion_70,Caracas Sur,TZ012,0.0,1
+694,Estacion_70,702,Estacion_78,Caracas Sur,TZ012,0.0,1
+690,Estacion_66,688,Estacion_64,Caracas Sur,TZ012,0.0,1
+688,Estacion_64,690,Estacion_66,Caracas Sur,TZ012,0.0,1
+688,Estacion_64,745,Estacion_121,Caracas Sur,TZ012,0.0,1
+745,Estacion_121,688,Estacion_64,Caracas Sur,TZ012,0.0,1
+745,Estacion_121,741,Estacion_117,Caracas Sur,TZ012,0.0,1
+741,Estacion_117,745,Estacion_121,Caracas Sur,TZ012,0.0,1
+736,Estacion_112,748,Estacion_124,Caracas Sur,TZ012,0.0,1
+748,Estacion_124,736,Estacion_112,Caracas Sur,TZ012,0.0,1
+747,Estacion_123,734,Estacion_110,Caracas Sur,TZ012,0.0,1
+734,Estacion_110,747,Estacion_123,Caracas Sur,TZ012,0.0,1
+734,Estacion_110,728,Estacion_104,Caracas Sur,TZ012,0.0,1
+728,Estacion_104,734,Estacion_110,Caracas Sur,TZ012,0.0,1
+731,Estacion_107,727,Estacion_103,Caracas Sur,TZ012,0.0,1
+727,Estacion_103,731,Estacion_107,Caracas Sur,TZ012,0.0,1
+726,Estacion_102,708,Estacion_84,Caracas Sur,TZ012,0.0,1
+708,Estacion_84,726,Estacion_102,Caracas Sur,TZ012,0.0,1
+710,Estacion_86,706,Estacion_82,Caracas Sur,TZ012,0.0,1
+706,Estacion_82,710,Estacion_86,Caracas Sur,TZ012,0.0,1
+706,Estacion_82,718,Estacion_94,Caracas Sur,TZ012,0.0,1
+718,Estacion_94,706,Estacion_82,Caracas Sur,TZ012,0.0,1
+717,Estacion_93,712,Estacion_88,Caracas Sur,TZ012,0.0,1
+712,Estacion_88,717,Estacion_93,Caracas Sur,TZ012,0.0,1
+712,Estacion_88,751,Estacion_127,Caracas Sur,TZ012,0.0,1
+751,Estacion_127,712,Estacion_88,Caracas Sur,TZ012,0.0,1
+751,Estacion_127,724,Estacion_100,Caracas Sur,TZ012,0.0,1
+724,Estacion_100,751,Estacion_127,Caracas Sur,TZ012,0.0,1
+723,Estacion_99,763,Estacion_139,Caracas Sur,TZ012,0.0,1
+763,Estacion_139,723,Estacion_99,Caracas Sur,TZ012,0.0,1
+762,Estacion_138,766,Estacion_142,Caracas Sur,TZ012,0.0,1
+766,Estacion_142,762,Estacion_138,Caracas Sur,TZ012,0.0,1
+766,Estacion_142,758,Estacion_134,Caracas Sur,TZ012,0.0,1
+758,Estacion_134,766,Estacion_142,Caracas Sur,TZ012,0.0,1
+695,Estacion_71,753,Estacion_129,Caracas Sur,TZ012,43.44304656493591,1
+753,Estacion_129,695,Estacion_71,Caracas Sur,TZ012,43.44304656493591,1
+765,Estacion_141,716,Estacion_92,Caracas Sur,TZ012,113.78846305947718,1
+716,Estacion_92,765,Estacion_141,Caracas Sur,TZ012,113.78846305947718,1
+730,Estacion_106,719,Estacion_95,Caracas Sur,TZ012,391.70317372166073,1
+719,Estacion_95,730,Estacion_106,Caracas Sur,TZ012,391.70317372166073,1
+756,Estacion_132,636,Estacion_12,Caracas Sur,TZ012,556.0920504632431,1
+636,Estacion_12,756,Estacion_132,Caracas Sur,TZ012,556.0920504632431,1
+636,Estacion_12,648,Estacion_24,Caracas Sur,TZ012,13.831989419390084,1
+648,Estacion_24,636,Estacion_12,Caracas Sur,TZ012,13.831989419390084,1
+635,Estacion_11,707,Estacion_83,Caracas Sur,TZ012,116.36012111711352,1
+707,Estacion_83,635,Estacion_11,Caracas Sur,TZ012,116.36012111711352,1
+663,Estacion_39,729,Estacion_105,Caracas Sur,TZ012,0.0,1
+729,Estacion_105,663,Estacion_39,Caracas Sur,TZ012,0.0,1
+729,Estacion_105,697,Estacion_73,Caracas Sur,TZ012,42.062063075509286,1
+697,Estacion_73,729,Estacion_105,Caracas Sur,TZ012,42.062063075509286,1
+704,Estacion_80,742,Estacion_118,Caracas Sur,TZ012,21.649806391329548,1
+742,Estacion_118,704,Estacion_80,Caracas Sur,TZ012,21.649806391329548,1
+746,Estacion_122,770,Estacion_146,Caracas Sur,TZ012,0.0,1
+770,Estacion_146,746,Estacion_122,Caracas Sur,TZ012,0.0,1
+759,Estacion_135,737,Estacion_113,Caracas Sur,TZ012,0.0,1
+737,Estacion_113,759,Estacion_135,Caracas Sur,TZ012,0.0,1
+705,Estacion_81,750,Estacion_126,Caracas Sur,TZ012,343.5682311636019,1
+750,Estacion_126,705,Estacion_81,Caracas Sur,TZ012,343.5682311636019,1
+750,Estacion_126,701,Estacion_77,Caracas Sur,TZ012,395.8888890988246,1
+701,Estacion_77,750,Estacion_126,Caracas Sur,TZ012,395.8888890988246,1
+701,Estacion_77,689,Estacion_65,Caracas Sur,TZ012,59.215647876063485,1
+689,Estacion_65,701,Estacion_77,Caracas Sur,TZ012,59.215647876063485,1
+661,Estacion_37,743,Estacion_119,Caracas Sur,TZ012,10.932612891401732,1
+743,Estacion_119,661,Estacion_37,Caracas Sur,TZ012,10.932612891401732,1
+732,Estacion_108,760,Estacion_136,Caracas Sur,TZ012,0.0,1
+760,Estacion_136,732,Estacion_108,Caracas Sur,TZ012,0.0,1
+760,Estacion_136,661,Estacion_37,NQS Sur,TZ011,736.8902019601077,1
+661,Estacion_37,760,Estacion_136,NQS Sur,TZ011,736.8902019601077,1
+689,Estacion_65,628,Estacion_4,NQS Sur,TZ011,506.6086184471483,1
+628,Estacion_4,689,Estacion_65,NQS Sur,TZ011,506.6086184471483,1
+626,Estacion_2,624,Estacion_0,NQS Sur,TZ011,0.0,1
+624,Estacion_0,626,Estacion_2,NQS Sur,TZ011,0.0,1
+637,Estacion_13,630,Estacion_6,NQS Sur,TZ011,0.0,1
+630,Estacion_6,637,Estacion_13,NQS Sur,TZ011,0.0,1
+630,Estacion_6,625,Estacion_1,NQS Sur,TZ011,0.0,1
+625,Estacion_1,630,Estacion_6,NQS Sur,TZ011,0.0,1
+625,Estacion_1,640,Estacion_16,NQS Sur,TZ011,0.0,1
+640,Estacion_16,625,Estacion_1,NQS Sur,TZ011,0.0,1
+653,Estacion_29,638,Estacion_14,NQS Sur,TZ011,0.0,1
+638,Estacion_14,653,Estacion_29,NQS Sur,TZ011,0.0,1
+638,Estacion_14,627,Estacion_3,NQS Sur,TZ011,0.0,1
+627,Estacion_3,638,Estacion_14,NQS Sur,TZ011,0.0,1
+627,Estacion_3,655,Estacion_31,NQS Sur,TZ011,0.0,1
+655,Estacion_31,627,Estacion_3,NQS Sur,TZ011,0.0,1
+654,Estacion_30,658,Estacion_34,NQS Sur,TZ011,0.0,1
+658,Estacion_34,654,Estacion_30,NQS Sur,TZ011,0.0,1
+656,Estacion_32,659,Estacion_35,NQS Sur,TZ011,0.0,1
+659,Estacion_35,656,Estacion_32,NQS Sur,TZ011,0.0,1
+667,Estacion_43,668,Estacion_44,NQS Sur,TZ011,0.0,1
+668,Estacion_44,667,Estacion_43,NQS Sur,TZ011,0.0,1
+686,Estacion_62,631,Estacion_7,NQS Sur,TZ011,0.0,1
+631,Estacion_7,686,Estacion_62,NQS Sur,TZ011,0.0,1
+631,Estacion_7,687,Estacion_63,NQS Sur,TZ011,0.0,1
+687,Estacion_63,631,Estacion_7,NQS Sur,TZ011,0.0,1
+687,Estacion_63,688,Estacion_64,NQS Sur,TZ011,0.0,1
+688,Estacion_64,687,Estacion_63,NQS Sur,TZ011,0.0,1
+721,Estacion_97,722,Estacion_98,NQS Sur,TZ011,0.0,1
+722,Estacion_98,721,Estacion_97,NQS Sur,TZ011,0.0,1
+735,Estacion_111,736,Estacion_112,NQS Sur,TZ011,0.0,1
+736,Estacion_112,735,Estacion_111,NQS Sur,TZ011,0.0,1
+749,Estacion_125,750,Estacion_126,NQS Sur,TZ011,0.0,1
+750,Estacion_126,749,Estacion_125,NQS Sur,TZ011,0.0,1
+750,Estacion_126,639,Estacion_15,NQS Sur,TZ011,0.0,1
+639,Estacion_15,750,Estacion_126,NQS Sur,TZ011,0.0,1
+639,Estacion_15,751,Estacion_127,NQS Sur,TZ011,0.0,1
+751,Estacion_127,639,Estacion_15,NQS Sur,TZ011,0.0,1
+751,Estacion_127,752,Estacion_128,NQS Sur,TZ011,0.0,1
+752,Estacion_128,751,Estacion_127,NQS Sur,TZ011,0.0,1
+639,Estacion_15,642,Estacion_18,Carrera 7,TZ020,0.0,2
+642,Estacion_18,639,Estacion_15,Carrera 7,TZ020,0.0,2
+641,Estacion_17,648,Estacion_24,Carrera 7,TZ020,0.0,2
+648,Estacion_24,641,Estacion_17,Carrera 7,TZ020,0.0,2
+646,Estacion_22,653,Estacion_29,Carrera 7,TZ020,0.0,2
+653,Estacion_29,646,Estacion_22,Carrera 7,TZ020,0.0,2
+661,Estacion_37,658,Estacion_34,Carrera 7,TZ020,0.0,2
+658,Estacion_34,661,Estacion_37,Carrera 7,TZ020,0.0,2
+656,Estacion_32,687,Estacion_63,Carrera 7,TZ020,0.0,2
+687,Estacion_63,656,Estacion_32,Carrera 7,TZ020,0.0,2
+687,Estacion_63,666,Estacion_42,Carrera 7,TZ020,0.0,2
+666,Estacion_42,687,Estacion_63,Carrera 7,TZ020,0.0,2
+667,Estacion_43,663,Estacion_39,Carrera 7,TZ020,0.0,2
+663,Estacion_39,667,Estacion_43,Carrera 7,TZ020,0.0,2
+663,Estacion_39,709,Estacion_85,Carrera 7,TZ020,0.0,2
+709,Estacion_85,663,Estacion_39,Carrera 7,TZ020,0.0,2
+709,Estacion_85,699,Estacion_75,Carrera 7,TZ020,0.0,2
+699,Estacion_75,709,Estacion_85,Carrera 7,TZ020,0.0,2
+699,Estacion_75,701,Estacion_77,Carrera 7,TZ020,0.0,2
+701,Estacion_77,699,Estacion_75,Carrera 7,TZ020,0.0,2
+701,Estacion_77,703,Estacion_79,Carrera 7,TZ020,0.0,2
+703,Estacion_79,701,Estacion_77,Carrera 7,TZ020,0.0,2
+703,Estacion_79,697,Estacion_73,Carrera 7,TZ020,0.0,2
+697,Estacion_73,703,Estacion_79,Carrera 7,TZ020,0.0,2
+697,Estacion_73,737,Estacion_113,Carrera 7,TZ020,0.0,2
+737,Estacion_113,697,Estacion_73,Carrera 7,TZ020,0.0,2
+737,Estacion_113,739,Estacion_115,Carrera 7,TZ020,0.0,2
+739,Estacion_115,737,Estacion_113,Carrera 7,TZ020,0.0,2
+738,Estacion_114,744,Estacion_120,Carrera 7,TZ020,0.0,2
+744,Estacion_120,738,Estacion_114,Carrera 7,TZ020,0.0,2
+750,Estacion_126,720,Estacion_96,Carrera 7,TZ020,0.0,2
+720,Estacion_96,750,Estacion_126,Carrera 7,TZ020,0.0,2
+724,Estacion_100,732,Estacion_108,Carrera 7,TZ020,0.0,2
+732,Estacion_108,724,Estacion_100,Carrera 7,TZ020,0.0,2
+735,Estacion_111,742,Estacion_118,Carrera 7,TZ020,0.0,2
+742,Estacion_118,735,Estacion_111,Carrera 7,TZ020,0.0,2
+743,Estacion_119,715,Estacion_91,Carrera 7,TZ020,0.0,2
+715,Estacion_91,743,Estacion_119,Carrera 7,TZ020,0.0,2
+716,Estacion_92,704,Estacion_80,Carrera 7,TZ020,0.0,2
+704,Estacion_80,716,Estacion_92,Carrera 7,TZ020,0.0,2
+708,Estacion_84,692,Estacion_68,Carrera 7,TZ020,0.0,2
+692,Estacion_68,708,Estacion_84,Carrera 7,TZ020,0.0,2
+688,Estacion_64,695,Estacion_71,Carrera 7,TZ020,0.0,2
+695,Estacion_71,688,Estacion_64,Carrera 7,TZ020,0.0,2
+695,Estacion_71,698,Estacion_74,Carrera 7,TZ020,0.0,2
+698,Estacion_74,695,Estacion_71,Carrera 7,TZ020,0.0,2
+694,Estacion_70,759,Estacion_135,Carrera 7,TZ020,0.0,2
+759,Estacion_135,694,Estacion_70,Carrera 7,TZ020,0.0,2
+755,Estacion_131,753,Estacion_129,Carrera 7,TZ020,0.0,2
+753,Estacion_129,755,Estacion_131,Carrera 7,TZ020,0.0,2
+752,Estacion_128,873,Estacion_147,Carrera 7,TZ020,0.0,2
+873,Estacion_147,752,Estacion_128,Carrera 7,TZ020,0.0,2
+770,Estacion_146,933,Estacion_149,Carrera 7,TZ020,0.0,2
+933,Estacion_149,770,Estacion_146,Carrera 7,TZ020,0.0,2
+931,Estacion_148,764,Estacion_140,Carrera 7,TZ020,0.0,2
+764,Estacion_140,931,Estacion_148,Carrera 7,TZ020,0.0,2
+766,Estacion_142,760,Estacion_136,Carrera 7,TZ020,0.0,2
+760,Estacion_136,766,Estacion_142,Carrera 7,TZ020,0.0,2
+758,Estacion_134,691,Estacion_67,Carrera 7,TZ020,73.76128411859855,2
+691,Estacion_67,758,Estacion_134,Carrera 7,TZ020,73.76128411859855,2
+684,Estacion_60,644,Estacion_20,Carrera 7,TZ020,596.4222747290025,2
+644,Estacion_20,684,Estacion_60,Carrera 7,TZ020,596.4222747290025,2
+696,Estacion_72,736,Estacion_112,Carrera 7,TZ020,0.0,2
+736,Estacion_112,696,Estacion_72,Carrera 7,TZ020,0.0,2
+736,Estacion_112,710,Estacion_86,Carrera 7,TZ020,0.0,2
+710,Estacion_86,736,Estacion_112,Carrera 7,TZ020,0.0,2
+710,Estacion_86,645,Estacion_21,Carrera 7,TZ020,0.0,2
+645,Estacion_21,710,Estacion_86,Carrera 7,TZ020,0.0,2
+645,Estacion_21,725,Estacion_101,Carrera 7,TZ020,67.43940189883278,2
+725,Estacion_101,645,Estacion_21,Carrera 7,TZ020,67.43940189883278,2
+726,Estacion_102,713,Estacion_89,Carrera 7,TZ020,15.849506427746292,2
+713,Estacion_89,726,Estacion_102,Carrera 7,TZ020,15.849506427746292,2
+713,Estacion_89,649,Estacion_25,Carrera 7,TZ020,325.5680634075293,2
+649,Estacion_25,713,Estacion_89,Carrera 7,TZ020,325.5680634075293,2
+712,Estacion_88,685,Estacion_61,Carrera 7,TZ020,204.4765689382848,2
+685,Estacion_61,712,Estacion_88,Carrera 7,TZ020,204.4765689382848,2
+650,Estacion_26,659,Estacion_35,Carrera 7,TZ020,0.0,2
+659,Estacion_35,650,Estacion_26,Carrera 7,TZ020,0.0,2
+659,Estacion_35,717,Estacion_93,Carrera 7,TZ020,0.0,2
+717,Estacion_93,659,Estacion_35,Carrera 7,TZ020,0.0,2
+717,Estacion_93,630,Estacion_6,Carrera 7,TZ020,0.0,2
+630,Estacion_6,717,Estacion_93,Carrera 7,TZ020,0.0,2
+652,Estacion_28,740,Estacion_116,Carrera 7,TZ020,59.25931276940355,2
+740,Estacion_116,652,Estacion_28,Carrera 7,TZ020,59.25931276940355,2
+740,Estacion_116,680,Estacion_56,Carrera 7,TZ020,36.676735758901486,2
+680,Estacion_56,740,Estacion_116,Carrera 7,TZ020,36.676735758901486,2
+686,Estacion_62,714,Estacion_90,Carrera 7,TZ020,32.47109895752237,2
+714,Estacion_90,686,Estacion_62,Carrera 7,TZ020,32.47109895752237,2
+670,Estacion_46,762,Estacion_138,Carrera 7,TZ020,114.25535560407843,2
+762,Estacion_138,670,Estacion_46,Carrera 7,TZ020,114.25535560407843,2
+762,Estacion_138,628,Estacion_4,Carrera 7,TZ020,332.55626753459546,2
+628,Estacion_4,762,Estacion_138,Carrera 7,TZ020,332.55626753459546,2
+633,Estacion_9,673,Estacion_49,Carrera 7,TZ020,53.72248537626274,2
+673,Estacion_49,633,Estacion_9,Carrera 7,TZ020,53.72248537626274,2
+631,Estacion_7,664,Estacion_40,Carrera 7,TZ020,0.0,2
+664,Estacion_40,631,Estacion_7,Carrera 7,TZ020,0.0,2
+664,Estacion_40,754,Estacion_130,Carrera 7,TZ020,0.0,2
+754,Estacion_130,664,Estacion_40,Carrera 7,TZ020,0.0,2
+754,Estacion_130,718,Estacion_94,Carrera 7,TZ020,0.0,2
+718,Estacion_94,754,Estacion_130,Carrera 7,TZ020,0.0,2
+718,Estacion_94,757,Estacion_133,Carrera 7,TZ020,628.9214548078389,2
+757,Estacion_133,718,Estacion_94,Carrera 7,TZ020,628.9214548078389,2
+757,Estacion_133,682,Estacion_58,Carrera 7,TZ020,1344.4982021972837,2
+682,Estacion_58,757,Estacion_133,Carrera 7,TZ020,1344.4982021972837,2
+682,Estacion_58,763,Estacion_139,Carrera 7,TZ020,48.50758739835146,2
+763,Estacion_139,682,Estacion_58,Carrera 7,TZ020,48.50758739835146,2
+763,Estacion_139,672,Estacion_48,Carrera 7,TZ020,215.1050249852251,2
+672,Estacion_48,763,Estacion_139,Carrera 7,TZ020,215.1050249852251,2
+731,Estacion_107,637,Estacion_13,Carrera 7,TZ020,5.203136097423339,2
+637,Estacion_13,731,Estacion_107,Carrera 7,TZ020,5.203136097423339,2
+678,Estacion_54,676,Estacion_52,Carrera 7,TZ020,0.0,2
+676,Estacion_52,678,Estacion_54,Carrera 7,TZ020,0.0,2
+677,Estacion_53,683,Estacion_59,Carrera 7,TZ020,0.0,2
+683,Estacion_59,677,Estacion_53,Carrera 7,TZ020,0.0,2
+722,Estacion_98,675,Estacion_51,Carrera 7,TZ020,0.0,2
+675,Estacion_51,722,Estacion_98,Carrera 7,TZ020,0.0,2
+675,Estacion_51,638,Estacion_14,Carrera 7,TZ020,0.0,2
+638,Estacion_14,675,Estacion_51,Carrera 7,TZ020,0.0,2
+638,Estacion_14,768,Estacion_144,Carrera 7,TZ020,0.0,2
+768,Estacion_144,638,Estacion_14,Carrera 7,TZ020,0.0,2
+636,Estacion_12,633,Estacion_9,Calle 26,TZ017,0.0,2
+633,Estacion_9,636,Estacion_12,Calle 26,TZ017,0.0,2
+637,Estacion_13,641,Estacion_17,Calle 26,TZ017,0.0,2
+641,Estacion_17,637,Estacion_13,Calle 26,TZ017,0.0,2
+640,Estacion_16,648,Estacion_24,Calle 26,TZ017,0.0,2
+648,Estacion_24,640,Estacion_16,Calle 26,TZ017,0.0,2
+649,Estacion_25,642,Estacion_18,Calle 26,TZ017,0.0,2
+642,Estacion_18,649,Estacion_25,Calle 26,TZ017,0.0,2
+647,Estacion_23,652,Estacion_28,Calle 26,TZ017,0.0,2
+652,Estacion_28,647,Estacion_23,Calle 26,TZ017,0.0,2
+653,Estacion_29,650,Estacion_26,Calle 26,TZ017,0.0,2
+650,Estacion_26,653,Estacion_29,Calle 26,TZ017,0.0,2
+651,Estacion_27,654,Estacion_30,Calle 26,TZ017,0.0,2
+654,Estacion_30,651,Estacion_27,Calle 26,TZ017,0.0,2
+655,Estacion_31,657,Estacion_33,Calle 26,TZ017,0.0,2
+657,Estacion_33,655,Estacion_31,Calle 26,TZ017,0.0,2
+681,Estacion_57,658,Estacion_34,Calle 26,TZ017,0.0,2
+658,Estacion_34,681,Estacion_57,Calle 26,TZ017,0.0,2
+669,Estacion_45,673,Estacion_49,Calle 26,TZ017,0.0,2
+673,Estacion_49,669,Estacion_45,Calle 26,TZ017,0.0,2
+685,Estacion_61,674,Estacion_50,Calle 26,TZ017,0.0,2
+674,Estacion_50,685,Estacion_61,Calle 26,TZ017,0.0,2
+687,Estacion_63,682,Estacion_58,Calle 26,TZ017,0.0,2
+682,Estacion_58,687,Estacion_63,Calle 26,TZ017,0.0,2
+683,Estacion_59,691,Estacion_67,Calle 26,TZ017,0.0,2
+691,Estacion_67,683,Estacion_59,Calle 26,TZ017,0.0,2
+688,Estacion_64,736,Estacion_112,Calle 26,TZ017,0.0,2
+736,Estacion_112,688,Estacion_64,Calle 26,TZ017,0.0,2
+736,Estacion_112,721,Estacion_97,Calle 26,TZ017,0.0,2
+721,Estacion_97,736,Estacion_112,Calle 26,TZ017,0.0,2
+723,Estacion_99,692,Estacion_68,Calle 26,TZ017,0.0,2
+692,Estacion_68,723,Estacion_99,Calle 26,TZ017,0.0,2
+717,Estacion_93,719,Estacion_95,Calle 26,TZ017,0.0,2
+719,Estacion_95,717,Estacion_93,Calle 26,TZ017,0.0,2
+720,Estacion_96,751,Estacion_127,Calle 26,TZ017,0.0,2
+751,Estacion_127,720,Estacion_96,Calle 26,TZ017,0.0,2
+751,Estacion_127,737,Estacion_113,Calle 26,TZ017,0.0,2
+737,Estacion_113,751,Estacion_127,Calle 26,TZ017,0.0,2
+739,Estacion_115,724,Estacion_100,Calle 26,TZ017,0.0,2
+724,Estacion_100,739,Estacion_115,Calle 26,TZ017,0.0,2
+735,Estacion_111,750,Estacion_126,Calle 26,TZ017,0.0,2
+750,Estacion_126,735,Estacion_111,Calle 26,TZ017,0.0,2
+750,Estacion_126,745,Estacion_121,Calle 26,TZ017,0.0,2
+745,Estacion_121,750,Estacion_126,Calle 26,TZ017,0.0,2
+741,Estacion_117,743,Estacion_119,Calle 26,TZ017,0.0,2
+743,Estacion_119,741,Estacion_117,Calle 26,TZ017,0.0,2
+744,Estacion_120,759,Estacion_135,Calle 26,TZ017,0.0,2
+759,Estacion_135,744,Estacion_120,Calle 26,TZ017,0.0,2
+933,Estacion_149,765,Estacion_141,Calle 26,TZ017,0.0,2
+765,Estacion_141,933,Estacion_149,Calle 26,TZ017,0.0,2
+768,Estacion_144,761,Estacion_137,Calle 26,TZ017,0.0,2
+761,Estacion_137,768,Estacion_144,Calle 26,TZ017,0.0,2
+766,Estacion_142,630,Estacion_6,Calle 26,TZ017,41.97639364336177,2
+630,Estacion_6,766,Estacion_142,Calle 26,TZ017,41.97639364336177,2
+630,Estacion_6,742,Estacion_118,Calle 26,TZ017,66.24088561542362,2
+742,Estacion_118,630,Estacion_6,Calle 26,TZ017,66.24088561542362,2
+742,Estacion_118,665,Estacion_41,Calle 26,TZ017,145.0983701294807,2
+665,Estacion_41,742,Estacion_118,Calle 26,TZ017,145.0983701294807,2
+661,Estacion_37,718,Estacion_94,Calle 26,TZ017,123.19580111440098,2
+718,Estacion_94,661,Estacion_37,Calle 26,TZ017,123.19580111440098,2
+718,Estacion_94,746,Estacion_122,Calle 26,TZ017,179.30732486409812,2
+746,Estacion_122,718,Estacion_94,Calle 26,TZ017,179.30732486409812,2
+760,Estacion_136,638,Estacion_14,Calle 26,TZ017,159.75303304929548,2
+638,Estacion_14,760,Estacion_136,Calle 26,TZ017,159.75303304929548,2
+653,Estacion_29,655,Estacion_31,Calle 80,TZ006,0.0,2
+655,Estacion_31,653,Estacion_29,Calle 80,TZ006,0.0,2
+680,Estacion_56,657,Estacion_33,Calle 80,TZ006,0.0,2
+657,Estacion_33,680,Estacion_56,Calle 80,TZ006,0.0,2
+661,Estacion_37,662,Estacion_38,Calle 80,TZ006,0.0,2
+662,Estacion_38,661,Estacion_37,Calle 80,TZ006,0.0,2
+664,Estacion_40,666,Estacion_42,Calle 80,TZ006,0.0,2
+666,Estacion_42,664,Estacion_40,Calle 80,TZ006,0.0,2
+684,Estacion_60,673,Estacion_49,Calle 80,TZ006,0.0,2
+673,Estacion_49,684,Estacion_60,Calle 80,TZ006,0.0,2
+686,Estacion_62,681,Estacion_57,Calle 80,TZ006,0.0,2
+681,Estacion_57,686,Estacion_62,Calle 80,TZ006,0.0,2
+683,Estacion_59,687,Estacion_63,Calle 80,TZ006,0.0,2
+687,Estacion_63,683,Estacion_59,Calle 80,TZ006,0.0,2
+687,Estacion_63,685,Estacion_61,Calle 80,TZ006,0.0,2
+685,Estacion_61,687,Estacion_63,Calle 80,TZ006,0.0,2
+685,Estacion_61,689,Estacion_65,Calle 80,TZ006,0.0,2
+689,Estacion_65,685,Estacion_61,Calle 80,TZ006,0.0,2
+744,Estacion_120,737,Estacion_113,Calle 80,TZ006,0.0,2
+737,Estacion_113,744,Estacion_120,Calle 80,TZ006,0.0,2
+735,Estacion_111,749,Estacion_125,Calle 80,TZ006,0.0,2
+749,Estacion_125,735,Estacion_111,Calle 80,TZ006,0.0,2
+749,Estacion_125,745,Estacion_121,Calle 80,TZ006,0.0,2
+745,Estacion_121,749,Estacion_125,Calle 80,TZ006,0.0,2
+750,Estacion_126,746,Estacion_122,Calle 80,TZ006,0.0,2
+746,Estacion_122,750,Estacion_126,Calle 80,TZ006,0.0,2
+747,Estacion_123,755,Estacion_131,Calle 80,TZ006,0.0,2
+755,Estacion_131,747,Estacion_123,Calle 80,TZ006,0.0,2
+752,Estacion_128,768,Estacion_144,Calle 80,TZ006,0.0,2
+768,Estacion_144,752,Estacion_128,Calle 80,TZ006,0.0,2
+767,Estacion_143,931,Estacion_148,Calle 80,TZ006,0.0,2
+931,Estacion_148,767,Estacion_143,Calle 80,TZ006,0.0,2
+933,Estacion_149,718,Estacion_94,Calle 80,TZ006,114.50924681267504,2
+718,Estacion_94,933,Estacion_149,Calle 80,TZ006,114.50924681267504,2
+718,Estacion_94,665,Estacion_41,Calle 80,TZ006,1109.696611041084,2
+665,Estacion_41,718,Estacion_94,Calle 80,TZ006,1109.696611041084,2
+873,Estacion_147,626,Estacion_2,Caracas Sur,TZ013,1371.7176841896369,1
+626,Estacion_2,873,Estacion_147,Caracas Sur,TZ013,1371.7176841896369,1
+654,Estacion_30,631,Estacion_7,Caracas Sur,TZ013,0.0,1
+631,Estacion_7,654,Estacion_30,Caracas Sur,TZ013,0.0,1
+631,Estacion_7,656,Estacion_32,Caracas Sur,TZ013,0.0,1
+656,Estacion_32,631,Estacion_7,Caracas Sur,TZ013,0.0,1
+686,Estacion_62,639,Estacion_15,Caracas Sur,TZ013,0.0,1
+639,Estacion_15,686,Estacion_62,Caracas Sur,TZ013,0.0,1
+689,Estacion_65,692,Estacion_68,Caracas Sur,TZ013,0.0,1
+692,Estacion_68,689,Estacion_65,Caracas Sur,TZ013,0.0,1
+694,Estacion_70,691,Estacion_67,Caracas Sur,TZ013,0.0,1
+691,Estacion_67,694,Estacion_70,Caracas Sur,TZ013,0.0,1
+695,Estacion_71,704,Estacion_80,Caracas Sur,TZ013,0.0,1
+704,Estacion_80,695,Estacion_71,Caracas Sur,TZ013,0.0,1
+718,Estacion_94,703,Estacion_79,Caracas Sur,TZ013,0.0,1
+703,Estacion_79,718,Estacion_94,Caracas Sur,TZ013,0.0,1
+703,Estacion_79,719,Estacion_95,Caracas Sur,TZ013,0.0,1
+719,Estacion_95,703,Estacion_79,Caracas Sur,TZ013,0.0,1
+726,Estacion_102,723,Estacion_99,Caracas Sur,TZ013,0.0,1
+723,Estacion_99,726,Estacion_102,Caracas Sur,TZ013,0.0,1
+727,Estacion_103,735,Estacion_111,Caracas Sur,TZ013,0.0,1
+735,Estacion_111,727,Estacion_103,Caracas Sur,TZ013,0.0,1
+738,Estacion_114,740,Estacion_116,Caracas Sur,TZ013,0.0,1
+740,Estacion_116,738,Estacion_114,Caracas Sur,TZ013,0.0,1
+750,Estacion_126,655,Estacion_31,Caracas Sur,TZ013,0.0,1
+655,Estacion_31,750,Estacion_126,Caracas Sur,TZ013,0.0,1
+655,Estacion_31,751,Estacion_127,Caracas Sur,TZ013,0.0,1
+751,Estacion_127,655,Estacion_31,Caracas Sur,TZ013,0.0,1
+755,Estacion_131,760,Estacion_136,Caracas Sur,TZ013,0.0,1
+760,Estacion_136,755,Estacion_131,Caracas Sur,TZ013,0.0,1
+766,Estacion_142,759,Estacion_135,Caracas Sur,TZ013,0.0,1
+759,Estacion_135,766,Estacion_142,Caracas Sur,TZ013,0.0,1
+759,Estacion_135,767,Estacion_143,Caracas Sur,TZ013,0.0,1
+767,Estacion_143,759,Estacion_135,Caracas Sur,TZ013,0.0,1
+638,Estacion_14,718,Estacion_94,Calle 80,TZ005,0.0,1
+718,Estacion_94,638,Estacion_14,Calle 80,TZ005,0.0,1
+718,Estacion_94,748,Estacion_124,Calle 80,TZ005,0.0,1
+748,Estacion_124,718,Estacion_94,Calle 80,TZ005,0.0,1
+748,Estacion_124,661,Estacion_37,Calle 80,TZ005,217.37257595210284,1
+661,Estacion_37,748,Estacion_124,Calle 80,TZ005,217.37257595210284,1
+760,Estacion_136,630,Estacion_6,Calle 80,TZ005,50.384125375469836,1
+630,Estacion_6,760,Estacion_136,Calle 80,TZ005,50.384125375469836,1
+630,Estacion_6,689,Estacion_65,Calle 80,TZ005,10.108372676094518,1
+689,Estacion_65,630,Estacion_6,Calle 80,TZ005,10.108372676094518,1
+689,Estacion_65,742,Estacion_118,Calle 80,TZ005,0.0,1
+742,Estacion_118,689,Estacion_65,Calle 80,TZ005,0.0,1
+705,Estacion_81,657,Estacion_33,Calle 80,TZ005,0.0,1
+657,Estacion_33,705,Estacion_81,Calle 80,TZ005,0.0,1
+657,Estacion_33,639,Estacion_15,Calle 80,TZ005,72.0627649893263,1
+639,Estacion_15,657,Estacion_33,Calle 80,TZ005,72.0627649893263,1
+639,Estacion_15,726,Estacion_102,Calle 80,TZ005,22.70864810376645,1
+726,Estacion_102,639,Estacion_15,Calle 80,TZ005,22.70864810376645,1
+707,Estacion_83,659,Estacion_35,Calle 80,TZ005,373.6797317296396,1
+659,Estacion_35,707,Estacion_83,Calle 80,TZ005,373.6797317296396,1
+659,Estacion_35,665,Estacion_41,Calle 80,TZ005,247.7588012374398,1
+665,Estacion_41,659,Estacion_35,Calle 80,TZ005,247.7588012374398,1
+665,Estacion_41,768,Estacion_144,Calle 80,TZ005,179.76479827904495,1
+768,Estacion_144,665,Estacion_41,Calle 80,TZ005,179.76479827904495,1
+768,Estacion_144,664,Estacion_40,Calle 80,TZ005,106.7418649340259,1
+664,Estacion_40,768,Estacion_144,Calle 80,TZ005,106.7418649340259,1
+664,Estacion_40,725,Estacion_101,Calle 80,TZ005,390.57738226034917,1
+725,Estacion_101,664,Estacion_40,Calle 80,TZ005,390.57738226034917,1
+725,Estacion_101,628,Estacion_4,Calle 80,TZ005,210.19105857004615,1
+628,Estacion_4,725,Estacion_101,Calle 80,TZ005,210.19105857004615,1
+628,Estacion_4,736,Estacion_112,Calle 80,TZ005,83.7187448937309,1
+736,Estacion_112,628,Estacion_4,Calle 80,TZ005,83.7187448937309,1
+745,Estacion_121,722,Estacion_98,Calle 80,TZ005,254.00708269944835,1
+722,Estacion_98,745,Estacion_121,Calle 80,TZ005,254.00708269944835,1
+749,Estacion_125,669,Estacion_45,Calle 80,TZ005,97.71859735383987,1
+669,Estacion_45,749,Estacion_125,Calle 80,TZ005,97.71859735383987,1
+675,Estacion_51,681,Estacion_57,Calle 80,TZ005,0.0,1
+681,Estacion_57,675,Estacion_51,Calle 80,TZ005,0.0,1
+671,Estacion_47,637,Estacion_13,Calle 80,TZ005,19.303300830581975,1
+637,Estacion_13,671,Estacion_47,Calle 80,TZ005,19.303300830581975,1
+637,Estacion_13,683,Estacion_59,Calle 80,TZ005,63.47843845551233,1
+683,Estacion_59,637,Estacion_13,Calle 80,TZ005,63.47843845551233,1
+683,Estacion_59,633,Estacion_9,Calle 80,TZ005,45.37751640017086,1
+633,Estacion_9,683,Estacion_59,Calle 80,TZ005,45.37751640017086,1
+633,Estacion_9,678,Estacion_54,Calle 80,TZ005,51.07765672236292,1
+678,Estacion_54,633,Estacion_9,Calle 80,TZ005,51.07765672236292,1
+678,Estacion_54,674,Estacion_50,Calle 80,TZ005,27.94461768316387,1
+674,Estacion_50,678,Estacion_54,Calle 80,TZ005,27.94461768316387,1
+674,Estacion_50,731,Estacion_107,Calle 80,TZ005,0.0,1
+731,Estacion_107,674,Estacion_50,Calle 80,TZ005,0.0,1
+731,Estacion_107,677,Estacion_53,Calle 80,TZ005,78.37930102759083,1
+677,Estacion_53,731,Estacion_107,Calle 80,TZ005,78.37930102759083,1
+677,Estacion_53,740,Estacion_116,Calle 80,TZ005,281.58378367594423,1
+740,Estacion_116,677,Estacion_53,Calle 80,TZ005,281.58378367594423,1
+740,Estacion_116,668,Estacion_44,Calle 80,TZ005,133.49488252905348,1
+668,Estacion_44,740,Estacion_116,Calle 80,TZ005,133.49488252905348,1
+668,Estacion_44,763,Estacion_139,Calle 80,TZ005,118.89970375974735,1
+763,Estacion_139,668,Estacion_44,Calle 80,TZ005,118.89970375974735,1
+763,Estacion_139,650,Estacion_26,Calle 80,TZ005,426.94199382149054,1
+650,Estacion_26,763,Estacion_139,Calle 80,TZ005,426.94199382149054,1
+645,Estacion_21,679,Estacion_55,Calle 80,TZ005,89.2038743234034,1
+679,Estacion_55,645,Estacion_21,Calle 80,TZ005,89.2038743234034,1
+679,Estacion_55,757,Estacion_133,Calle 80,TZ005,47.574576386879016,1
+757,Estacion_133,679,Estacion_55,Calle 80,TZ005,47.574576386879016,1
+757,Estacion_133,663,Estacion_39,Calle 80,TZ005,242.76876291024655,1
+663,Estacion_39,757,Estacion_133,Calle 80,TZ005,242.76876291024655,1
+663,Estacion_39,685,Estacion_61,Calle 80,TZ005,86.48569372539168,1
+685,Estacion_61,663,Estacion_39,Calle 80,TZ005,86.48569372539168,1
+685,Estacion_61,635,Estacion_11,Calle 80,TZ005,311.35853221104935,1
+635,Estacion_11,685,Estacion_61,Calle 80,TZ005,311.35853221104935,1
+635,Estacion_11,696,Estacion_72,Calle 80,TZ005,0.0,1
+696,Estacion_72,635,Estacion_11,Calle 80,TZ005,0.0,1
+696,Estacion_72,931,Estacion_148,Calle 80,TZ005,0.0,1
+931,Estacion_148,696,Estacion_72,Calle 80,TZ005,0.0,1
+737,Estacion_113,636,Estacion_12,Calle 80,TZ005,0.0,1
+636,Estacion_12,737,Estacion_113,Calle 80,TZ005,0.0,1
+636,Estacion_12,759,Estacion_135,Calle 80,TZ005,37.00923553862958,1
+759,Estacion_135,636,Estacion_12,Calle 80,TZ005,37.00923553862958,1
+761,Estacion_137,655,Estacion_31,Calle 80,TZ005,0.0,1
+655,Estacion_31,761,Estacion_137,Calle 80,TZ005,0.0,1
+655,Estacion_31,723,Estacion_99,Calle 80,TZ005,0.0,1
+723,Estacion_99,655,Estacion_31,Calle 80,TZ005,0.0,1
+723,Estacion_99,625,Estacion_1,Calle 80,TZ005,19.408778400303163,1
+625,Estacion_1,723,Estacion_99,Calle 80,TZ005,19.408778400303163,1
+625,Estacion_1,651,Estacion_27,Calle 80,TZ005,18.366563960038548,1
+651,Estacion_27,625,Estacion_1,Calle 80,TZ005,18.366563960038548,1
+651,Estacion_27,660,Estacion_36,Calle 80,TZ005,104.06005311862373,1
+660,Estacion_36,651,Estacion_27,Calle 80,TZ005,104.06005311862373,1
+660,Estacion_36,717,Estacion_93,Calle 80,TZ005,104.9600275856128,1
+717,Estacion_93,660,Estacion_36,Calle 80,TZ005,104.9600275856128,1
+717,Estacion_93,631,Estacion_7,Calle 80,TZ005,238.22952001034628,1
+631,Estacion_7,717,Estacion_93,Calle 80,TZ005,238.22952001034628,1
+631,Estacion_7,662,Estacion_38,Calle 80,TZ005,217.18400522336196,1
+662,Estacion_38,631,Estacion_7,Calle 80,TZ005,217.18400522336196,1
+662,Estacion_38,672,Estacion_48,Calle 80,TZ005,104.858946701077,1
+672,Estacion_48,662,Estacion_38,Calle 80,TZ005,104.858946701077,1
+672,Estacion_48,754,Estacion_130,Calle 80,TZ005,0.48411937939908967,1
+754,Estacion_130,672,Estacion_48,Calle 80,TZ005,0.48411937939908967,1
+754,Estacion_130,682,Estacion_58,Calle 80,TZ005,16.806967374640408,1
+682,Estacion_58,754,Estacion_130,Calle 80,TZ005,16.806967374640408,1
+682,Estacion_58,762,Estacion_138,Calle 80,TZ005,22.869014066041927,1
+762,Estacion_138,682,Estacion_58,Calle 80,TZ005,22.869014066041927,1
+762,Estacion_138,751,Estacion_127,Calle 80,TZ005,50.85636714693737,1
+751,Estacion_127,762,Estacion_138,Calle 80,TZ005,50.85636714693737,1
+751,Estacion_127,673,Estacion_49,Calle 80,TZ005,77.30221238593549,1
+673,Estacion_49,751,Estacion_127,Calle 80,TZ005,77.30221238593549,1
+673,Estacion_49,632,Estacion_8,Calle 80,TZ005,64.99525705125598,1
+632,Estacion_8,673,Estacion_49,Calle 80,TZ005,64.99525705125598,1
+632,Estacion_8,686,Estacion_62,Calle 80,TZ005,56.53002692473001,1
+686,Estacion_62,632,Estacion_8,Calle 80,TZ005,56.53002692473001,1
+624,Estacion_0,670,Estacion_46,Calle 80,TZ005,297.27028054254333,1
+670,Estacion_46,624,Estacion_0,Calle 80,TZ005,297.27028054254333,1
+670,Estacion_46,652,Estacion_28,Calle 80,TZ005,123.74398723122431,1
+652,Estacion_28,670,Estacion_46,Calle 80,TZ005,123.74398723122431,1
+652,Estacion_28,714,Estacion_90,Calle 80,TZ005,139.28068832581448,1
+714,Estacion_90,652,Estacion_28,Calle 80,TZ005,139.28068832581448,1
+649,Estacion_25,680,Estacion_56,Calle 80,TZ005,283.93640910499835,1
+680,Estacion_56,649,Estacion_25,Calle 80,TZ005,283.93640910499835,1
+680,Estacion_56,687,Estacion_63,Calle 80,TZ005,171.1140836651357,1
+687,Estacion_63,680,Estacion_56,Calle 80,TZ005,171.1140836651357,1
+629,Estacion_5,656,Estacion_32,Calle 80,TZ005,0.0,1
+656,Estacion_32,629,Estacion_5,Calle 80,TZ005,0.0,1
+658,Estacion_34,642,Estacion_18,Calle 80,TZ005,0.0,1
+642,Estacion_18,658,Estacion_34,Calle 80,TZ005,0.0,1
+654,Estacion_30,719,Estacion_95,Calle 80,TZ005,0.0,1
+719,Estacion_95,654,Estacion_30,Calle 80,TZ005,0.0,1
+641,Estacion_17,743,Estacion_119,Calle 26,TZ016,0.0,1
+743,Estacion_119,641,Estacion_17,Calle 26,TZ016,0.0,1
+715,Estacion_91,708,Estacion_84,Calle 26,TZ016,0.0,1
+708,Estacion_84,715,Estacion_91,Calle 26,TZ016,0.0,1
+708,Estacion_84,694,Estacion_70,Calle 26,TZ016,0.0,1
+694,Estacion_70,708,Estacion_84,Calle 26,TZ016,0.0,1
+688,Estacion_64,933,Estacion_149,Calle 26,TZ016,0.0,1
+933,Estacion_149,688,Estacion_64,Calle 26,TZ016,0.0,1
+766,Estacion_142,753,Estacion_129,Calle 26,TZ016,0.0,1
+753,Estacion_129,766,Estacion_142,Calle 26,TZ016,0.0,1
+753,Estacion_129,718,Estacion_94,Calle 26,TZ016,466.8824318026845,1
+718,Estacion_94,753,Estacion_129,Calle 26,TZ016,466.8824318026845,1
+748,Estacion_124,630,Estacion_6,Calle 26,TZ016,0.0,1
+630,Estacion_6,748,Estacion_124,Calle 26,TZ016,0.0,1
+630,Estacion_6,638,Estacion_14,Calle 26,TZ016,0.0,1
+638,Estacion_14,630,Estacion_6,Calle 26,TZ016,0.0,1
+768,Estacion_144,669,Estacion_45,Calle 26,TZ016,71.87923274338823,1
+669,Estacion_45,768,Estacion_144,Calle 26,TZ016,71.87923274338823,1
+669,Estacion_45,659,Estacion_35,Calle 26,TZ016,0.0,1
+659,Estacion_35,669,Estacion_45,Calle 26,TZ016,0.0,1
+659,Estacion_35,675,Estacion_51,Calle 26,TZ016,25.880236861755066,1
+675,Estacion_51,659,Estacion_35,Calle 26,TZ016,25.880236861755066,1
+671,Estacion_47,722,Estacion_98,Calle 26,TZ016,0.0,1
+722,Estacion_98,671,Estacion_47,Calle 26,TZ016,0.0,1
+749,Estacion_125,664,Estacion_40,Calle 26,TZ016,0.0,1
+664,Estacion_40,749,Estacion_125,Calle 26,TZ016,0.0,1
+664,Estacion_40,683,Estacion_59,Calle 26,TZ016,204.60471659373525,1
+683,Estacion_59,664,Estacion_40,Calle 26,TZ016,204.60471659373525,1
+683,Estacion_59,726,Estacion_102,Calle 26,TZ016,0.0,1
+726,Estacion_102,683,Estacion_59,Calle 26,TZ016,0.0,1
+726,Estacion_102,678,Estacion_54,Calle 26,TZ016,73.90193665380593,1
+678,Estacion_54,726,Estacion_102,Calle 26,TZ016,73.90193665380593,1
+678,Estacion_54,628,Estacion_4,Calle 26,TZ016,0.0,1
+628,Estacion_4,678,Estacion_54,Calle 26,TZ016,0.0,1
+628,Estacion_4,677,Estacion_53,Calle 26,TZ016,156.8201329345202,1
+677,Estacion_53,628,Estacion_4,Calle 26,TZ016,156.8201329345202,1
+677,Estacion_53,745,Estacion_121,Calle 26,TZ016,0.0,1
+745,Estacion_121,677,Estacion_53,Calle 26,TZ016,0.0,1
+745,Estacion_121,674,Estacion_50,Calle 26,TZ016,0.0,1
+674,Estacion_50,745,Estacion_121,Calle 26,TZ016,0.0,1
+674,Estacion_50,637,Estacion_13,Calle 26,TZ016,0.0,1
+637,Estacion_13,674,Estacion_50,Calle 26,TZ016,0.0,1
+731,Estacion_107,725,Estacion_101,Calle 26,TZ016,155.5169184132851,1
+725,Estacion_101,731,Estacion_107,Calle 26,TZ016,155.5169184132851,1
+725,Estacion_101,633,Estacion_9,Calle 26,TZ016,120.14800675010974,1
+633,Estacion_9,725,Estacion_101,Calle 26,TZ016,120.14800675010974,1
+633,Estacion_9,668,Estacion_44,Calle 26,TZ016,70.75075683482828,1
+668,Estacion_44,633,Estacion_9,Calle 26,TZ016,70.75075683482828,1
+740,Estacion_116,763,Estacion_139,Calle 26,TZ016,128.36111122919465,1
+763,Estacion_139,740,Estacion_116,Calle 26,TZ016,128.36111122919465,1
+763,Estacion_139,736,Estacion_112,Calle 26,TZ016,199.91505303407484,1
+736,Estacion_112,763,Estacion_139,Calle 26,TZ016,199.91505303407484,1
+736,Estacion_112,679,Estacion_55,Calle 26,TZ016,149.33568061986034,1
+679,Estacion_55,736,Estacion_112,Calle 26,TZ016,149.33568061986034,1
+679,Estacion_55,650,Estacion_26,Calle 26,TZ016,76.68187467191137,1
+650,Estacion_26,679,Estacion_55,Calle 26,TZ016,76.68187467191137,1
+650,Estacion_26,697,Estacion_73,Calle 26,TZ016,178.2340512891592,1
+697,Estacion_73,650,Estacion_26,Calle 26,TZ016,178.2340512891592,1
+742,Estacion_118,757,Estacion_133,Calle 26,TZ016,303.3200055198654,1
+757,Estacion_133,742,Estacion_118,Calle 26,TZ016,303.3200055198654,1
+757,Estacion_133,672,Estacion_48,Calle 26,TZ016,31.056605181815485,1
+672,Estacion_48,757,Estacion_133,Calle 26,TZ016,31.056605181815485,1
+672,Estacion_48,639,Estacion_15,Calle 26,TZ016,117.98607884056764,1
+639,Estacion_15,672,Estacion_48,Calle 26,TZ016,117.98607884056764,1
+639,Estacion_15,645,Estacion_21,Calle 26,TZ016,71.32481866097805,1
+645,Estacion_21,639,Estacion_15,Calle 26,TZ016,71.32481866097805,1
+645,Estacion_21,685,Estacion_61,Calle 26,TZ016,8.521520294577385,1
+685,Estacion_61,645,Estacion_21,Calle 26,TZ016,8.521520294577385,1
+682,Estacion_58,631,Estacion_7,Calle 26,TZ016,47.637081423930795,1
+631,Estacion_7,682,Estacion_58,Calle 26,TZ016,47.637081423930795,1
+631,Estacion_7,707,Estacion_83,Calle 26,TZ016,258.344206749106,1
+707,Estacion_83,631,Estacion_7,Calle 26,TZ016,258.344206749106,1
+707,Estacion_83,754,Estacion_130,Calle 26,TZ016,49.23411290935837,1
+754,Estacion_130,707,Estacion_83,Calle 26,TZ016,49.23411290935837,1
+754,Estacion_130,717,Estacion_93,Calle 26,TZ016,34.498602139832656,1
+717,Estacion_93,754,Estacion_130,Calle 26,TZ016,34.498602139832656,1
+717,Estacion_93,696,Estacion_72,Calle 26,TZ016,0.5169466666584412,1
+696,Estacion_72,717,Estacion_93,Calle 26,TZ016,0.5169466666584412,1
+696,Estacion_72,762,Estacion_138,Calle 26,TZ016,231.78562965598303,1
+762,Estacion_138,696,Estacion_72,Calle 26,TZ016,231.78562965598303,1
+762,Estacion_138,673,Estacion_49,Calle 26,TZ016,82.69433763952111,1
+673,Estacion_49,762,Estacion_138,Calle 26,TZ016,82.69433763952111,1
+673,Estacion_49,663,Estacion_39,Calle 26,TZ016,32.56577027198,1
+663,Estacion_39,673,Estacion_49,Calle 26,TZ016,32.56577027198,1
+662,Estacion_38,760,Estacion_136,Calle 26,TZ016,108.13710271353193,1
+760,Estacion_136,662,Estacion_38,Calle 26,TZ016,108.13710271353193,1
+661,Estacion_37,751,Estacion_127,Calle 26,TZ016,89.56948120955803,1
+751,Estacion_127,661,Estacion_37,Calle 26,TZ016,89.56948120955803,1
+751,Estacion_127,632,Estacion_8,Calle 26,TZ016,130.11613498791303,1
+632,Estacion_8,751,Estacion_127,Calle 26,TZ016,130.11613498791303,1
+686,Estacion_62,655,Estacion_31,Calle 26,TZ016,63.536643120438384,1
+655,Estacion_31,686,Estacion_62,Calle 26,TZ016,63.536643120438384,1
+657,Estacion_33,635,Estacion_11,Calle 26,TZ016,0.0,1
+635,Estacion_11,657,Estacion_33,Calle 26,TZ016,0.0,1
+635,Estacion_11,689,Estacion_65,Calle 26,TZ016,0.0,1
+689,Estacion_65,635,Estacion_11,Calle 26,TZ016,0.0,1
+689,Estacion_65,624,Estacion_0,Calle 26,TZ016,101.26931145660183,1
+624,Estacion_0,689,Estacion_65,Calle 26,TZ016,101.26931145660183,1
+624,Estacion_0,636,Estacion_12,Calle 26,TZ016,64.1137451169534,1
+636,Estacion_12,624,Estacion_0,Calle 26,TZ016,64.1137451169534,1
+636,Estacion_12,705,Estacion_81,Calle 26,TZ016,0.0,1
+705,Estacion_81,636,Estacion_12,Calle 26,TZ016,0.0,1
+705,Estacion_81,670,Estacion_46,Calle 26,TZ016,212.99422992364634,1
+670,Estacion_46,705,Estacion_81,Calle 26,TZ016,212.99422992364634,1
+714,Estacion_90,625,Estacion_1,Calle 26,TZ016,45.94685185441995,1
+625,Estacion_1,714,Estacion_90,Calle 26,TZ016,45.94685185441995,1
+625,Estacion_1,649,Estacion_25,Calle 26,TZ016,323.1951200054873,1
+649,Estacion_25,625,Estacion_1,Calle 26,TZ016,323.1951200054873,1
+649,Estacion_25,931,Estacion_148,Calle 26,TZ016,202.0639925188343,1
+931,Estacion_148,649,Estacion_25,Calle 26,TZ016,202.0639925188343,1
+931,Estacion_148,660,Estacion_36,Calle 26,TZ016,1.8269595700903665,1
+660,Estacion_36,931,Estacion_148,Calle 26,TZ016,1.8269595700903665,1
+660,Estacion_36,723,Estacion_99,Calle 26,TZ016,33.29292362252818,1
+723,Estacion_99,660,Estacion_36,Calle 26,TZ016,33.29292362252818,1
+723,Estacion_99,737,Estacion_113,Calle 26,TZ016,117.95537079390306,1
+737,Estacion_113,723,Estacion_99,Calle 26,TZ016,117.95537079390306,1
+737,Estacion_113,651,Estacion_27,Calle 26,TZ016,383.7565789924656,1
+651,Estacion_27,737,Estacion_113,Calle 26,TZ016,383.7565789924656,1
+651,Estacion_27,759,Estacion_135,Calle 26,TZ016,122.19339655412932,1
+759,Estacion_135,651,Estacion_27,Calle 26,TZ016,122.19339655412932,1
+759,Estacion_135,654,Estacion_30,Calle 26,TZ016,42.641803050349154,1
+654,Estacion_30,759,Estacion_135,Calle 26,TZ016,42.641803050349154,1
+654,Estacion_30,761,Estacion_137,Calle 26,TZ016,200.25529931653182,1
+761,Estacion_137,654,Estacion_30,Calle 26,TZ016,200.25529931653182,1
+770,Estacion_146,755,Estacion_131,Calle 26,TZ016,14.754241863814968,1
+755,Estacion_131,770,Estacion_146,Calle 26,TZ016,14.754241863814968,1
+755,Estacion_131,729,Estacion_105,Calle 26,TZ016,68.44553943708615,1
+729,Estacion_105,755,Estacion_131,Calle 26,TZ016,68.44553943708615,1
+704,Estacion_80,692,Estacion_68,Calle 26,TZ016,29.710477589890615,1
+692,Estacion_68,704,Estacion_80,Calle 26,TZ016,29.710477589890615,1
+692,Estacion_68,648,Estacion_24,Calle 26,TZ016,0.0,1
+648,Estacion_24,692,Estacion_68,Calle 26,TZ016,0.0,1
+648,Estacion_24,656,Estacion_32,Calle 26,TZ016,105.16273534419543,1
+656,Estacion_32,648,Estacion_24,Calle 26,TZ016,105.16273534419543,1
+656,Estacion_32,640,Estacion_16,Calle 26,TZ016,116.01552022063333,1
+640,Estacion_16,656,Estacion_32,Calle 26,TZ016,116.01552022063333,1
+640,Estacion_16,710,Estacion_86,Calle 26,TZ016,453.9625876881819,1
+710,Estacion_86,640,Estacion_16,Calle 26,TZ016,453.9625876881819,1
+710,Estacion_86,626,Estacion_2,Calle 26,TZ016,92.76020357800098,1
+626,Estacion_2,710,Estacion_86,Calle 26,TZ016,92.76020357800098,1
+626,Estacion_2,680,Estacion_56,Calle 26,TZ016,38.94367036175208,1
+680,Estacion_56,626,Estacion_2,Calle 26,TZ016,38.94367036175208,1
+680,Estacion_56,712,Estacion_88,Calle 26,TZ016,0.0,1
+712,Estacion_88,680,Estacion_56,Calle 26,TZ016,0.0,1
+644,Estacion_20,713,Estacion_89,Calle 26,TZ016,40.05940391575132,1
+713,Estacion_89,644,Estacion_20,Calle 26,TZ016,40.05940391575132,1
+700,Estacion_76,643,Estacion_19,Calle 26,TZ016,0.0,1
+643,Estacion_19,700,Estacion_76,Calle 26,TZ016,0.0,1
+702,Estacion_78,741,Estacion_117,Calle 26,TZ016,146.90035260458353,1
+741,Estacion_117,702,Estacion_78,Calle 26,TZ016,146.90035260458353,1
+741,Estacion_117,706,Estacion_82,Calle 26,TZ016,255.09168976101864,1
+706,Estacion_82,741,Estacion_117,Calle 26,TZ016,255.09168976101864,1
+647,Estacion_23,642,Estacion_18,Calle 26,TZ016,137.70309581690708,1
+642,Estacion_18,647,Estacion_23,Calle 26,TZ016,137.70309581690708,1
+658,Estacion_34,684,Estacion_60,Calle 26,TZ016,69.13063163832885,1
+684,Estacion_60,658,Estacion_34,Calle 26,TZ016,69.13063163832885,1
+684,Estacion_60,629,Estacion_5,Calle 26,TZ016,112.98449895804879,1
+629,Estacion_5,684,Estacion_60,Calle 26,TZ016,112.98449895804879,1
+666,Estacion_42,711,Estacion_87,Calle 26,TZ016,253.45471007865308,1
+711,Estacion_87,666,Estacion_42,Calle 26,TZ016,253.45471007865308,1
+769,Estacion_145,703,Estacion_79,Calle 26,TZ016,297.2934697843866,1
+703,Estacion_79,769,Estacion_145,Calle 26,TZ016,297.2934697843866,1
+734,Estacion_110,627,Estacion_3,Calle 26,TZ016,281.4800390098644,1
+627,Estacion_3,734,Estacion_110,Calle 26,TZ016,281.4800390098644,1
+724,Estacion_100,752,Estacion_128,Calle 26,TZ016,957.6590674812123,1
+752,Estacion_128,724,Estacion_100,Calle 26,TZ016,957.6590674812123,1
+752,Estacion_128,634,Estacion_10,Calle 26,TZ016,189.3977185573749,1
+634,Estacion_10,752,Estacion_128,Calle 26,TZ016,189.3977185573749,1
+687,Estacion_63,693,Estacion_69,Calle 26,TZ016,0.0,1
+693,Estacion_69,687,Estacion_63,Calle 26,TZ016,0.0,1
+699,Estacion_75,646,Estacion_22,Calle 26,TZ016,0.0,1
+646,Estacion_22,699,Estacion_75,Calle 26,TZ016,0.0,1
+646,Estacion_22,750,Estacion_126,Calle 26,TZ016,0.0,1
+750,Estacion_126,646,Estacion_22,Calle 26,TZ016,0.0,1
+739,Estacion_115,732,Estacion_108,Calle 26,TZ016,0.0,1
+732,Estacion_108,739,Estacion_115,Calle 26,TZ016,0.0,1
+735,Estacion_111,730,Estacion_106,Calle 26,TZ016,0.0,1
+730,Estacion_106,735,Estacion_111,Calle 26,TZ016,0.0,1
+730,Estacion_106,720,Estacion_96,Calle 26,TZ016,0.0,1
+720,Estacion_96,730,Estacion_106,Calle 26,TZ016,0.0,1
+728,Estacion_104,701,Estacion_77,Calle 26,TZ016,0.0,1
+701,Estacion_77,728,Estacion_104,Calle 26,TZ016,0.0,1
+701,Estacion_77,709,Estacion_85,Calle 26,TZ016,0.0,1
+709,Estacion_85,701,Estacion_77,Calle 26,TZ016,0.0,1
+719,Estacion_95,698,Estacion_74,Calle 26,TZ016,0.0,1
+698,Estacion_74,719,Estacion_95,Calle 26,TZ016,0.0,1
+698,Estacion_74,764,Estacion_140,Calle 26,TZ016,0.0,1
+764,Estacion_140,698,Estacion_74,Calle 26,TZ016,0.0,1
+756,Estacion_132,758,Estacion_134,Calle 26,TZ016,0.0,1
+758,Estacion_134,756,Estacion_132,Calle 26,TZ016,0.0,1
+758,Estacion_134,767,Estacion_143,Calle 26,TZ016,0.0,1
+767,Estacion_143,758,Estacion_134,Calle 26,TZ016,0.0,1
+767,Estacion_143,873,Estacion_147,Calle 26,TZ016,0.0,1
+873,Estacion_147,767,Estacion_143,Calle 26,TZ016,0.0,1
+629,Estacion_5,635,Estacion_11,Suba,TZ003,0.0,1
+635,Estacion_11,629,Estacion_5,Suba,TZ003,0.0,1
+632,Estacion_8,639,Estacion_15,Suba,TZ003,0.0,1
+639,Estacion_15,632,Estacion_8,Suba,TZ003,0.0,1
+654,Estacion_30,646,Estacion_22,Suba,TZ003,0.0,1
+646,Estacion_22,654,Estacion_30,Suba,TZ003,0.0,1
+647,Estacion_23,667,Estacion_43,Suba,TZ003,0.0,1
+667,Estacion_43,647,Estacion_23,Suba,TZ003,0.0,1
+666,Estacion_42,661,Estacion_37,Suba,TZ003,0.0,1
+661,Estacion_37,666,Estacion_42,Suba,TZ003,0.0,1
+684,Estacion_60,723,Estacion_99,Suba,TZ003,0.0,1
+723,Estacion_99,684,Estacion_60,Suba,TZ003,0.0,1
+732,Estacion_108,716,Estacion_92,Suba,TZ003,0.0,1
+716,Estacion_92,732,Estacion_108,Suba,TZ003,0.0,1
+705,Estacion_81,713,Estacion_89,Suba,TZ003,0.0,1
+713,Estacion_89,705,Estacion_81,Suba,TZ003,0.0,1
+713,Estacion_89,704,Estacion_80,Suba,TZ003,0.0,1
+704,Estacion_80,713,Estacion_89,Suba,TZ003,0.0,1
+702,Estacion_78,699,Estacion_75,Suba,TZ003,0.0,1
+699,Estacion_75,702,Estacion_78,Suba,TZ003,0.0,1
+697,Estacion_73,700,Estacion_76,Suba,TZ003,0.0,1
+700,Estacion_76,697,Estacion_73,Suba,TZ003,0.0,1
+688,Estacion_64,747,Estacion_123,Suba,TZ003,0.0,1
+747,Estacion_123,688,Estacion_64,Suba,TZ003,0.0,1
+743,Estacion_119,730,Estacion_106,Suba,TZ003,0.0,1
+730,Estacion_106,743,Estacion_119,Suba,TZ003,0.0,1
+735,Estacion_111,741,Estacion_117,Suba,TZ003,0.0,1
+741,Estacion_117,735,Estacion_111,Suba,TZ003,0.0,1
+742,Estacion_118,720,Estacion_96,Suba,TZ003,0.0,1
+720,Estacion_96,742,Estacion_118,Suba,TZ003,0.0,1
+721,Estacion_97,931,Estacion_148,Suba,TZ003,0.0,1
+931,Estacion_148,721,Estacion_97,Suba,TZ003,0.0,1
+752,Estacion_128,769,Estacion_145,Suba,TZ003,0.0,1
+769,Estacion_145,752,Estacion_128,Suba,TZ003,0.0,1
+933,Estacion_149,727,Estacion_103,Suba,TZ003,23.687708637963283,1
+727,Estacion_103,933,Estacion_149,Suba,TZ003,23.687708637963283,1
+690,Estacion_66,652,Estacion_28,Suba,TZ003,238.8452728075864,1
+652,Estacion_28,690,Estacion_66,Suba,TZ003,238.8452728075864,1
+652,Estacion_28,680,Estacion_56,Suba,TZ003,0.0,1
+680,Estacion_56,652,Estacion_28,Suba,TZ003,0.0,1
+680,Estacion_56,662,Estacion_38,Suba,TZ003,422.53927229487965,1
+662,Estacion_38,680,Estacion_56,Suba,TZ003,422.53927229487965,1
+662,Estacion_38,725,Estacion_101,Suba,TZ003,91.24854257616676,1
+725,Estacion_101,662,Estacion_38,Suba,TZ003,91.24854257616676,1
+726,Estacion_102,717,Estacion_93,Suba,TZ003,32.67479641132172,1
+717,Estacion_93,726,Estacion_102,Suba,TZ003,32.67479641132172,1
+717,Estacion_93,685,Estacion_61,Suba,TZ003,0.0,1
+685,Estacion_61,717,Estacion_93,Suba,TZ003,0.0,1
+650,Estacion_26,751,Estacion_127,Suba,TZ003,326.68704374077424,1
+751,Estacion_127,650,Estacion_26,Suba,TZ003,326.68704374077424,1
+751,Estacion_127,714,Estacion_90,Suba,TZ003,48.71045106775273,1
+714,Estacion_90,751,Estacion_127,Suba,TZ003,48.71045106775273,1
+686,Estacion_62,670,Estacion_46,Suba,TZ003,374.7579546051968,1
+670,Estacion_46,686,Estacion_62,Suba,TZ003,374.7579546051968,1
+754,Estacion_130,631,Estacion_7,Suba,TZ003,286.19397233778454,1
+631,Estacion_7,754,Estacion_130,Suba,TZ003,286.19397233778454,1
+682,Estacion_58,672,Estacion_48,Suba,TZ003,211.28622547081568,1
+672,Estacion_48,682,Estacion_58,Suba,TZ003,211.28622547081568,1
+757,Estacion_133,740,Estacion_116,Suba,TZ003,395.91684158875205,1
+740,Estacion_116,757,Estacion_133,Suba,TZ003,395.91684158875205,1
+633,Estacion_9,763,Estacion_139,Suba,TZ003,6.169855934523184,1
+763,Estacion_139,633,Estacion_9,Suba,TZ003,6.169855934523184,1
+763,Estacion_139,679,Estacion_55,Suba,TZ003,51.00708159725491,1
+679,Estacion_55,763,Estacion_139,Suba,TZ003,51.00708159725491,1
+679,Estacion_55,745,Estacion_121,Suba,TZ003,200.18532521202542,1
+745,Estacion_121,679,Estacion_55,Suba,TZ003,200.18532521202542,1
+628,Estacion_4,731,Estacion_107,Suba,TZ003,559.7817955262781,1
+731,Estacion_107,628,Estacion_4,Suba,TZ003,559.7817955262781,1
+731,Estacion_107,664,Estacion_40,Suba,TZ003,202.98619034715284,1
+664,Estacion_40,731,Estacion_107,Suba,TZ003,202.98619034715284,1
+637,Estacion_13,659,Estacion_35,Suba,TZ003,1.0521327396118068,1
+659,Estacion_35,637,Estacion_13,Suba,TZ003,1.0521327396118068,1
+659,Estacion_35,677,Estacion_53,Suba,TZ003,443.9470177674784,1
+677,Estacion_53,659,Estacion_35,Suba,TZ003,443.9470177674784,1
+677,Estacion_53,630,Estacion_6,Suba,TZ003,495.522537681044,1
+630,Estacion_6,677,Estacion_53,Suba,TZ003,495.522537681044,1
+630,Estacion_6,749,Estacion_125,Suba,TZ003,125.8535465799605,1
+749,Estacion_125,630,Estacion_6,Suba,TZ003,125.8535465799605,1
+669,Estacion_45,675,Estacion_51,Suba,TZ003,0.0,1
+675,Estacion_51,669,Estacion_45,Suba,TZ003,0.0,1
+675,Estacion_51,768,Estacion_144,Suba,TZ003,723.436265400419,1
+768,Estacion_144,675,Estacion_51,Suba,TZ003,723.436265400419,1
+768,Estacion_144,718,Estacion_94,Suba,TZ003,707.1680797089666,1
+718,Estacion_94,768,Estacion_144,Suba,TZ003,707.1680797089666,1
