@@ -17,7 +17,7 @@ jobs:
       issues: write
       pull-requests: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
       - uses: oxsecurity/megalinter@v8
@@ -26,8 +26,8 @@ jobs:
           VALIDATE_ALL_CODEBASE: false
           APPLY_FIXES: none
           DISABLE_LINTERS: SPELL_SPELL,COPYPASTE_JSCPD
-          FILTER_REGEX_EXCLUDE: "(node_modules|dist|coverage|data|\.github)/"
-      - uses: actions/upload-artifact@v4
+          FILTER_REGEX_EXCLUDE: '(node_modules|dist|coverage|data|\.github)/'
+      - uses: actions/upload-artifact@v5
         if: always()
         with:
           name: MegaLinter-reports
