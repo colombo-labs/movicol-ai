@@ -1,5 +1,7 @@
 """Graph router - station and route query endpoints."""
 
+from typing import Annotated
+
 from fastapi import APIRouter, Query
 
 from app.common.exceptions import GraphNotFoundError, StationNotFoundError
@@ -34,15 +36,15 @@ async def graph_analysis():
 
 
 @router.get("/heatmap")
-async def congestion_heatmap(hour: int = Query(default=8, ge=0, le=23)):
+async def congestion_heatmap(hour: Annotated[int, Query(ge=0, le=23)] = 8):
     """Get GNN congestion predictions for all stations at a given hour."""
     return service.get_heatmap(hour)
 
 
 @router.get("/stations", response_model=list[StationResponse])
 async def list_stations(
-    limit: int = Query(default=DEFAULT_STATION_LIMIT, le=MAX_STATION_LIMIT),
-    offset: int = Query(default=0, ge=0),
+    limit: Annotated[int, Query(le=MAX_STATION_LIMIT)] = DEFAULT_STATION_LIMIT,
+    offset: Annotated[int, Query(ge=0)] = 0,
 ):
     """List stations with pagination."""
     if not service.is_loaded:
@@ -87,8 +89,8 @@ async def find_route(origin: str, destination: str):
 async def nearby_stations(
     lat: float = Query(..., description="Latitude"),
     lon: float = Query(..., description="Longitude"),
-    radius_km: float = Query(default=DEFAULT_NEARBY_RADIUS, le=MAX_NEARBY_RADIUS),
-    limit: int = Query(default=DEFAULT_NEARBY_LIMIT, le=MAX_NEARBY_LIMIT),
+    radius_km: Annotated[float, Query(le=MAX_NEARBY_RADIUS)] = DEFAULT_NEARBY_RADIUS,
+    limit: Annotated[int, Query(le=MAX_NEARBY_LIMIT)] = DEFAULT_NEARBY_LIMIT,
 ):
     """Find stations within radius of a point."""
     return service.get_nearby(lat, lon, radius_km, limit)
@@ -102,8 +104,8 @@ async def compare_hours(station_id: str = Query(..., description="Station ID")):
 
 @router.get("/edges")
 async def get_edges(
-    type: str = Query(default="all", description="all | tm | sitp"),
-    limit: int = Query(default=DEFAULT_EDGE_LIMIT, le=MAX_EDGE_LIMIT),
+    type: Annotated[str, Query(description="all | tm | sitp")] = "all",
+    limit: Annotated[int, Query(le=MAX_EDGE_LIMIT)] = DEFAULT_EDGE_LIMIT,
 ):
     """Get graph edges as coordinate pairs for map rendering."""
     return service.get_edges(type, limit)

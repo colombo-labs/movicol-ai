@@ -9,6 +9,8 @@ from pathlib import Path
 import httpx
 import networkx as nx
 
+from app.common.congestion import risk_label as _risk_label
+from app.common.congestion import time_factor as _time_factor
 from app.config.settings import get_settings
 from app.modules.demand_prediction.st_gat_inference import DemandInference
 from app.modules.predictions.gnn_inference import GNNInference
@@ -20,46 +22,6 @@ from app.modules.route_prediction.schemas import (
 )
 
 OSRM_BASE = "https://router.project-osrm.org"
-
-
-def _risk_label(congestion: float) -> str:
-    if congestion < 0.3:
-        return "low"
-    if congestion < 0.6:
-        return "medium"
-    if congestion < 0.85:
-        return "high"
-    return "critical"
-
-
-def _time_factor(hour: int) -> float:
-    factors = {
-        0: 0.3,
-        1: 0.2,
-        2: 0.2,
-        3: 0.2,
-        4: 0.3,
-        5: 0.5,
-        6: 0.7,
-        7: 0.9,
-        8: 1.0,
-        9: 0.9,
-        10: 0.7,
-        11: 0.65,
-        12: 0.75,
-        13: 0.7,
-        14: 0.65,
-        15: 0.7,
-        16: 0.8,
-        17: 0.95,
-        18: 1.0,
-        19: 0.9,
-        20: 0.7,
-        21: 0.5,
-        22: 0.4,
-        23: 0.3,
-    }
-    return factors.get(hour, 0.7)
 
 
 def _parse_hour(departure_time: str) -> int:
