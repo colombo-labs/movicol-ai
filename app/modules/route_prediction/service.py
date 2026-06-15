@@ -62,6 +62,15 @@ def _time_factor(hour: int) -> float:
     return factors.get(hour, 0.7)
 
 
+def _parse_hour(departure_time: str) -> int:
+    """Extract hour from ISO departure time string."""
+    try:
+        dt = datetime.fromisoformat(departure_time.replace("Z", "+00:00"))
+        return dt.hour
+    except (ValueError, AttributeError):
+        return 8
+
+
 class RoutePredictionService:
     """Route prediction: TM/SITP via graph Dijkstra + GNN, vehiculo via OSRM."""
 
@@ -116,7 +125,7 @@ class RoutePredictionService:
         base = 0.5
         if self._gnn.is_loaded:
             gnn_val = self._gnn.get_congestion(node_id)
-            if gnn_val != 0.5:
+            if abs(gnn_val - 0.5) > 1e-9:
                 base = gnn_val
 
         # Boost congestion with demand prediction if available
@@ -144,15 +153,40 @@ class RoutePredictionService:
             return await self._predict_vehicle(origin, destination, departure_time)
         return self._predict_transit(origin, destination, departure_time, mode)
 
+    def _build_response(
+        self,
+        time_min: float,
+        distance_km: float,
+        cost: str,
+        mode: str,
+        risk_segments: list,
+        stations: list,
+        departure_time: str,
+    ) -> RoutePredictionResponse:
+        """Build standardized route prediction response."""
+        avg_c = (
+            sum(s.congestion_level for s in risk_segments) / max(len(risk_segments), 1)
+            if risk_segments
+            else 0.0
+        )
+        return RoutePredictionResponse(
+            route_id=str(uuid.uuid4()),
+            total_time_minutes=round(time_min, 1),
+            total_distance_km=round(distance_km, 1),
+            cost=cost,
+            mode=mode,
+            risk_segments=risk_segments,
+            overall_risk=_risk_label(avg_c),
+            explanation="",
+            stations=stations,
+            departure_time=departure_time,
+        )
+
     async def _predict_vehicle(
         self, origin: Coordinates, destination: Coordinates, departure_time: str
     ) -> RoutePredictionResponse:
         """Vehicle routing via OSRM."""
-        try:
-            dt = datetime.fromisoformat(departure_time.replace("Z", "+00:00"))
-            hour = dt.hour
-        except (ValueError, AttributeError):
-            hour = 8
+        hour = _parse_hour(departure_time)
 
         url = (
             f"{OSRM_BASE}/route/v1/driving/"
@@ -193,17 +227,8 @@ class RoutePredictionService:
             # Adjust time by congestion
             adjusted_time = duration_min * (1 + congestion * 0.3)
 
-            return RoutePredictionResponse(
-                route_id=str(uuid.uuid4()),
-                total_time_minutes=round(adjusted_time, 1),
-                total_distance_km=round(distance_km, 1),
-                cost="$0",
-                mode="vehiculo",
-                risk_segments=segments,
-                overall_risk=_risk_label(congestion),
-                explanation="",
-                stations=[],
-                departure_time=departure_time,
+            return self._build_response(
+                adjusted_time, distance_km, "$0", "vehiculo", segments, [], departure_time
             )
         except Exception:
             return self._fallback_vehicle(origin, destination, departure_time, hour)
@@ -218,25 +243,23 @@ class RoutePredictionService:
         time_min = dist * 3.0 * (1 + _time_factor(hour) * 0.3)
         congestion = _time_factor(hour) * 0.6
 
-        return RoutePredictionResponse(
-            route_id=str(uuid.uuid4()),
-            total_time_minutes=round(time_min, 1),
-            total_distance_km=round(dist, 1),
-            cost="$0",
-            mode="vehiculo",
-            risk_segments=[
-                RiskSegment(
-                    from_station="Origen",
-                    to_station="Destino",
-                    congestion_level=round(congestion, 2),
-                    risk_label=_risk_label(congestion),
-                    coordinates=[[origin.lat, origin.lng], [destination.lat, destination.lng]],
-                )
-            ],
-            overall_risk=_risk_label(congestion),
-            explanation="",
-            stations=[],
-            departure_time=departure_time,
+        segments = [
+            RiskSegment(
+                from_station="Origen",
+                to_station="Destino",
+                congestion_level=round(congestion, 2),
+                risk_label=_risk_label(congestion),
+                coordinates=[[origin.lat, origin.lng], [destination.lat, destination.lng]],
+            )
+        ]
+        return self._build_response(
+            time_min,
+            dist,
+            "$0",
+            "vehiculo",
+            segments,
+            [],
+            departure_time,
         )
 
     def _find_path(self, origin_id: str, dest_id: str, destination: "Coordinates") -> list:
@@ -273,13 +296,10 @@ class RoutePredictionService:
         self, origin: Coordinates, destination: Coordinates, departure_time: str, mode: str
     ) -> RoutePredictionResponse:
         """Transit routing (TM/SITP) via Dijkstra + GNN congestion."""
-        try:
-            dt = datetime.fromisoformat(departure_time.replace("Z", "+00:00"))
-            hour = dt.hour
-        except (ValueError, AttributeError):
-            hour = 8
+        hour = _parse_hour(departure_time)
 
-        tipo_filter = "tm" if mode == "transmilenio" else "sitp" if mode == "sitp" else None
+        tipo_map = {"transmilenio": "tm", "sitp": "sitp"}
+        tipo_filter = tipo_map.get(mode)
         origin_id = self._find_nearest_station(origin, tipo_filter)
         dest_id = self._find_nearest_station(destination, tipo_filter)
 
@@ -323,7 +343,6 @@ class RoutePredictionService:
                 )
             )
 
-        avg_c = sum(s.congestion_level for s in risk_segments) / max(len(risk_segments), 1)
         station_names = [
             self._graph.nodes.get(n, {}).get("nombre", "")
             or self._graph.nodes.get(n, {}).get("name", "")
@@ -333,15 +352,6 @@ class RoutePredictionService:
 
         cost = "$2,950" if mode == "transmilenio" else "$2,650"
 
-        return RoutePredictionResponse(
-            route_id=str(uuid.uuid4()),
-            total_time_minutes=round(total_time, 1),
-            total_distance_km=round(total_distance, 1),
-            cost=cost,
-            mode=mode,
-            risk_segments=risk_segments,
-            overall_risk=_risk_label(avg_c),
-            explanation="",
-            stations=station_names,
-            departure_time=departure_time,
+        return self._build_response(
+            total_time, total_distance, cost, mode, risk_segments, station_names, departure_time
         )
