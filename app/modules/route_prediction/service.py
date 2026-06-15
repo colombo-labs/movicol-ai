@@ -153,6 +153,22 @@ class RoutePredictionService:
             return await self._predict_vehicle(origin, destination, departure_time)
         return self._predict_transit(origin, destination, departure_time, mode)
 
+    @staticmethod
+    def _make_segment(
+        from_name: str,
+        to_name: str,
+        congestion: float,
+        coordinates: list,
+    ) -> RiskSegment:
+        """Create a standardized risk segment."""
+        return RiskSegment(
+            from_station=from_name,
+            to_station=to_name,
+            congestion_level=round(congestion, 2),
+            risk_label=_risk_label(congestion),
+            coordinates=coordinates,
+        )
+
     def _build_response(
         self,
         time_min: float,
@@ -215,12 +231,11 @@ class RoutePredictionService:
                 end_i = min(i + step_size, len(coords) - 1)
                 seg_coords = [[c[1], c[0]] for c in coords[i : end_i + 1]]
                 segments.append(
-                    RiskSegment(
-                        from_station=f"Punto {i // step_size + 1}",
-                        to_station=f"Punto {i // step_size + 2}",
-                        congestion_level=round(congestion, 2),
-                        risk_label=_risk_label(congestion),
-                        coordinates=seg_coords,
+                    self._make_segment(
+                        f"Punto {i // step_size + 1}",
+                        f"Punto {i // step_size + 2}",
+                        congestion,
+                        seg_coords,
                     )
                 )
 
@@ -244,12 +259,11 @@ class RoutePredictionService:
         congestion = _time_factor(hour) * 0.6
 
         segments = [
-            RiskSegment(
-                from_station="Origen",
-                to_station="Destino",
-                congestion_level=round(congestion, 2),
-                risk_label=_risk_label(congestion),
-                coordinates=[[origin.lat, origin.lng], [destination.lat, destination.lng]],
+            self._make_segment(
+                "Origen",
+                "Destino",
+                congestion,
+                [[origin.lat, origin.lng], [destination.lat, destination.lng]],
             )
         ]
         return self._build_response(
@@ -334,12 +348,11 @@ class RoutePredictionService:
             to_name = to_data.get("nombre", "") or to_data.get("name", "") or to_id
 
             risk_segments.append(
-                RiskSegment(
-                    from_station=from_name,
-                    to_station=to_name,
-                    congestion_level=round(congestion, 2),
-                    risk_label=_risk_label(congestion),
-                    coordinates=[[lat1, lon1], [lat2, lon2]],
+                self._make_segment(
+                    from_name,
+                    to_name,
+                    congestion,
+                    [[lat1, lon1], [lat2, lon2]],
                 )
             )
 

@@ -6,6 +6,17 @@ from app.common.exceptions import GraphNotFoundError, StationNotFoundError
 from app.modules.graph.schemas import NeighborsResponse, RouteResponse, StationResponse
 from app.modules.graph.service import GraphService
 
+# Pagination defaults
+DEFAULT_STATION_LIMIT = 100
+MAX_STATION_LIMIT = 500
+DEFAULT_EDGE_LIMIT = 500
+MAX_EDGE_LIMIT = 5000
+DEFAULT_NEARBY_LIMIT = 10
+MAX_NEARBY_LIMIT = 50
+DEFAULT_NEARBY_RADIUS = 1.0
+MAX_NEARBY_RADIUS = 5.0
+
+
 router = APIRouter()
 service = GraphService()
 
@@ -30,7 +41,7 @@ async def congestion_heatmap(hour: int = Query(default=8, ge=0, le=23)):
 
 @router.get("/stations", response_model=list[StationResponse])
 async def list_stations(
-    limit: int = Query(default=100, le=500),
+    limit: int = Query(default=DEFAULT_STATION_LIMIT, le=MAX_STATION_LIMIT),
     offset: int = Query(default=0, ge=0),
 ):
     """List stations with pagination."""
@@ -76,8 +87,8 @@ async def find_route(origin: str, destination: str):
 async def nearby_stations(
     lat: float = Query(..., description="Latitude"),
     lon: float = Query(..., description="Longitude"),
-    radius_km: float = Query(default=1.0, le=5.0),
-    limit: int = Query(default=10, le=50),
+    radius_km: float = Query(default=DEFAULT_NEARBY_RADIUS, le=MAX_NEARBY_RADIUS),
+    limit: int = Query(default=DEFAULT_NEARBY_LIMIT, le=MAX_NEARBY_LIMIT),
 ):
     """Find stations within radius of a point."""
     return service.get_nearby(lat, lon, radius_km, limit)
@@ -92,7 +103,7 @@ async def compare_hours(station_id: str = Query(..., description="Station ID")):
 @router.get("/edges")
 async def get_edges(
     type: str = Query(default="all", description="all | tm | sitp"),
-    limit: int = Query(default=500, le=5000),
+    limit: int = Query(default=DEFAULT_EDGE_LIMIT, le=MAX_EDGE_LIMIT),
 ):
     """Get graph edges as coordinate pairs for map rendering."""
     return service.get_edges(type, limit)
