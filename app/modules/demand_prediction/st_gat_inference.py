@@ -14,13 +14,17 @@ from app.config.settings import get_settings
 class STGATTransmilenio(torch.nn.Module):
     """Spatial-Temporal Graph Attention Network (matches Danna's trained architecture)."""
 
-    def __init__(self, in_channels: int = 1, hidden_channels: int = 24, out_channels: int = 1, heads: int = 4):
+    def __init__(
+        self, in_channels: int = 1, hidden_channels: int = 24, out_channels: int = 1, heads: int = 4
+    ):
         super().__init__()
         self.gat = GATConv(in_channels, hidden_channels, heads=heads, edge_dim=2, dropout=0.1)
         self.gru = torch.nn.GRU(hidden_channels * heads, hidden_channels, batch_first=True)
         self.fully_connected = torch.nn.Linear(hidden_channels, out_channels)
 
-    def forward(self, x_seq: torch.Tensor, edge_index: torch.Tensor, edge_attr: torch.Tensor) -> torch.Tensor:
+    def forward(
+        self, x_seq: torch.Tensor, edge_index: torch.Tensor, edge_attr: torch.Tensor
+    ) -> torch.Tensor:
         w_size, n_nodes, _ = x_seq.shape
         gat_outputs = []
         for t in range(w_size):
@@ -69,7 +73,9 @@ class DemandInference:
             return
 
         try:
-            self._model = STGATTransmilenio(in_channels=1, hidden_channels=24, out_channels=1, heads=4)
+            self._model = STGATTransmilenio(
+                in_channels=1, hidden_channels=24, out_channels=1, heads=4
+            )
             state_dict = torch.load(st_gat_path, map_location="cpu", weights_only=False)
             self._model.load_state_dict(state_dict)
             self._model.eval()
@@ -80,6 +86,7 @@ class DemandInference:
             csv_path = model_dir / "aristas_infraestructura_gat.csv"
             if csv_path.exists():
                 import csv
+
                 names = set()
                 with open(csv_path) as f:
                     reader = csv.DictReader(f)
@@ -92,7 +99,9 @@ class DemandInference:
             self._model = None
             self._graph_data = None
 
-    def predict_demand(self, current_demand: list[float] | None = None, window_size: int = 4) -> dict[int, float]:
+    def predict_demand(
+        self, current_demand: list[float] | None = None, window_size: int = 4
+    ) -> dict[int, float]:
         """Predict next-interval demand for all stations.
 
         Args:

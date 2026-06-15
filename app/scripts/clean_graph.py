@@ -83,10 +83,7 @@ def simplify_graph(g: nx.MultiDiGraph) -> nx.Graph:
 
     print(f"   Simple edges: {simple.number_of_edges():,}")
     pct = simple.number_of_edges() / g.number_of_edges() * 100
-    print(
-        f"   Compression: {g.number_of_edges():,} → "
-        f"{simple.number_of_edges():,} ({pct:.0f}%)"
-    )
+    print(f"   Compression: {g.number_of_edges():,} → {simple.number_of_edges():,} ({pct:.0f}%)")
     return simple
 
 

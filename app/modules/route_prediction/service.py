@@ -34,10 +34,30 @@ def _risk_label(congestion: float) -> str:
 
 def _time_factor(hour: int) -> float:
     factors = {
-        0: 0.3, 1: 0.2, 2: 0.2, 3: 0.2, 4: 0.3, 5: 0.5,
-        6: 0.7, 7: 0.9, 8: 1.0, 9: 0.9, 10: 0.7, 11: 0.65,
-        12: 0.75, 13: 0.7, 14: 0.65, 15: 0.7, 16: 0.8, 17: 0.95,
-        18: 1.0, 19: 0.9, 20: 0.7, 21: 0.5, 22: 0.4, 23: 0.3,
+        0: 0.3,
+        1: 0.2,
+        2: 0.2,
+        3: 0.2,
+        4: 0.3,
+        5: 0.5,
+        6: 0.7,
+        7: 0.9,
+        8: 1.0,
+        9: 0.9,
+        10: 0.7,
+        11: 0.65,
+        12: 0.75,
+        13: 0.7,
+        14: 0.65,
+        15: 0.7,
+        16: 0.8,
+        17: 0.95,
+        18: 1.0,
+        19: 0.9,
+        20: 0.7,
+        21: 0.5,
+        22: 0.4,
+        23: 0.3,
     }
     return factors.get(hour, 0.7)
 
@@ -75,7 +95,11 @@ class RoutePredictionService:
         for node_id, data in self._graph.nodes(data=True):
             if tipo_filter:
                 node_tipo = data.get("tipo", "")
-                if tipo_filter == "tm" and "tm" not in node_tipo.lower() and "troncal" not in node_tipo.lower():
+                if (
+                    tipo_filter == "tm"
+                    and "tm" not in node_tipo.lower()
+                    and "troncal" not in node_tipo.lower()
+                ):
                     continue
                 if tipo_filter == "sitp" and "tm" in node_tipo.lower():
                     continue
@@ -99,7 +123,9 @@ class RoutePredictionService:
         if self._demand.is_loaded:
             try:
                 idx = list(self._graph.nodes()).index(node_id)
-                demand_score = self._demand.get_station_demand_score(idx % self._demand.station_count)
+                demand_score = self._demand.get_station_demand_score(
+                    idx % self._demand.station_count
+                )
                 base = base * 0.6 + demand_score * 0.4  # Blend both models
             except (ValueError, IndexError):
                 pass
@@ -107,7 +133,11 @@ class RoutePredictionService:
         return min(1.0, base * _time_factor(hour))
 
     async def predict_route(
-        self, origin: Coordinates, destination: Coordinates, departure_time: str, mode: str = "transmilenio"
+        self,
+        origin: Coordinates,
+        destination: Coordinates,
+        departure_time: str,
+        mode: str = "transmilenio",
     ) -> RoutePredictionResponse:
         """Predict route for given mode."""
         if mode == "vehiculo":
@@ -149,14 +179,16 @@ class RoutePredictionService:
             segments = []
             for i in range(0, len(coords) - step_size, step_size):
                 end_i = min(i + step_size, len(coords) - 1)
-                seg_coords = [[c[1], c[0]] for c in coords[i:end_i + 1]]
-                segments.append(RiskSegment(
-                    from_station=f"Punto {i // step_size + 1}",
-                    to_station=f"Punto {i // step_size + 2}",
-                    congestion_level=round(congestion, 2),
-                    risk_label=_risk_label(congestion),
-                    coordinates=seg_coords,
-                ))
+                seg_coords = [[c[1], c[0]] for c in coords[i : end_i + 1]]
+                segments.append(
+                    RiskSegment(
+                        from_station=f"Punto {i // step_size + 1}",
+                        to_station=f"Punto {i // step_size + 2}",
+                        congestion_level=round(congestion, 2),
+                        risk_label=_risk_label(congestion),
+                        coordinates=seg_coords,
+                    )
+                )
 
             # Adjust time by congestion
             adjusted_time = duration_min * (1 + congestion * 0.3)
@@ -180,7 +212,9 @@ class RoutePredictionService:
         self, origin: Coordinates, destination: Coordinates, departure_time: str, hour: int
     ) -> RoutePredictionResponse:
         """Fallback when OSRM is unavailable."""
-        dist = ((origin.lat - destination.lat) ** 2 + (origin.lng - destination.lng) ** 2) ** 0.5 * 111
+        dist = (
+            (origin.lat - destination.lat) ** 2 + (origin.lng - destination.lng) ** 2
+        ) ** 0.5 * 111
         time_min = dist * 3.0 * (1 + _time_factor(hour) * 0.3)
         congestion = _time_factor(hour) * 0.6
 
@@ -190,13 +224,15 @@ class RoutePredictionService:
             total_distance_km=round(dist, 1),
             cost="$0",
             mode="vehiculo",
-            risk_segments=[RiskSegment(
-                from_station="Origen",
-                to_station="Destino",
-                congestion_level=round(congestion, 2),
-                risk_label=_risk_label(congestion),
-                coordinates=[[origin.lat, origin.lng], [destination.lat, destination.lng]],
-            )],
+            risk_segments=[
+                RiskSegment(
+                    from_station="Origen",
+                    to_station="Destino",
+                    congestion_level=round(congestion, 2),
+                    risk_label=_risk_label(congestion),
+                    coordinates=[[origin.lat, origin.lng], [destination.lat, destination.lng]],
+                )
+            ],
             overall_risk=_risk_label(congestion),
             explanation="",
             stations=[],
@@ -226,7 +262,9 @@ class RoutePredictionService:
                 best_dest, best_d = dest_id, float("inf")
                 for n in component:
                     d = self._graph.nodes[n]
-                    dist = (float(d.get("lat", 0)) - destination.lat) ** 2 + (float(d.get("lon", 0)) - destination.lng) ** 2
+                    dist = (float(d.get("lat", 0)) - destination.lat) ** 2 + (
+                        float(d.get("lon", 0)) - destination.lng
+                    ) ** 2
                     if dist < best_d:
                         best_d, best_dest = dist, n
                 path = nx.shortest_path(self._graph, origin_id, best_dest, weight="distance_km")
@@ -258,7 +296,9 @@ class RoutePredictionService:
             dist = edge.get("distance_km", ((lat1 - lat2) ** 2 + (lon1 - lon2) ** 2) ** 0.5 * 111)
             base_time = edge.get("base_time_min", dist * 2.0)
 
-            congestion = (self._get_congestion(from_id, hour) + self._get_congestion(to_id, hour)) / 2
+            congestion = (
+                self._get_congestion(from_id, hour) + self._get_congestion(to_id, hour)
+            ) / 2
             adjusted_time = base_time * (1 + congestion * 0.5)
 
             total_distance += dist
@@ -267,17 +307,21 @@ class RoutePredictionService:
             from_name = from_data.get("nombre", "") or from_data.get("name", "") or from_id
             to_name = to_data.get("nombre", "") or to_data.get("name", "") or to_id
 
-            risk_segments.append(RiskSegment(
-                from_station=from_name,
-                to_station=to_name,
-                congestion_level=round(congestion, 2),
-                risk_label=_risk_label(congestion),
-                coordinates=[[lat1, lon1], [lat2, lon2]],
-            ))
+            risk_segments.append(
+                RiskSegment(
+                    from_station=from_name,
+                    to_station=to_name,
+                    congestion_level=round(congestion, 2),
+                    risk_label=_risk_label(congestion),
+                    coordinates=[[lat1, lon1], [lat2, lon2]],
+                )
+            )
 
         avg_c = sum(s.congestion_level for s in risk_segments) / max(len(risk_segments), 1)
         station_names = [
-            self._graph.nodes.get(n, {}).get("nombre", "") or self._graph.nodes.get(n, {}).get("name", "") or n
+            self._graph.nodes.get(n, {}).get("nombre", "")
+            or self._graph.nodes.get(n, {}).get("name", "")
+            or n
             for n in display_path
         ]
 
