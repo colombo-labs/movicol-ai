@@ -239,6 +239,36 @@ class RoutePredictionService:
             departure_time=departure_time,
         )
 
+    def _find_path(self, origin_id: str, dest_id: str, destination: "Coordinates") -> list:
+        """Find shortest path with fallback for disconnected components."""
+        try:
+            return nx.shortest_path(self._graph, origin_id, dest_id, weight="distance_km")
+        except (nx.NetworkXNoPath, nx.NodeNotFound):
+            pass
+        try:
+            component = nx.node_connected_component(self._graph, origin_id)
+            best_dest, best_d = dest_id, float("inf")
+            for n in component:
+                d = self._graph.nodes[n]
+                dist = (float(d.get("lat", 0)) - destination.lat) ** 2 + (
+                    float(d.get("lon", 0)) - destination.lng
+                ) ** 2
+                if dist < best_d:
+                    best_d, best_dest = dist, n
+            return nx.shortest_path(self._graph, origin_id, best_dest, weight="distance_km")
+        except Exception:
+            return [origin_id, dest_id]
+
+    def _limit_path(self, path: list, max_display: int = 30) -> list:
+        """Limit path nodes for display."""
+        if len(path) <= max_display:
+            return path
+        step = len(path) // max_display
+        display = [path[i] for i in range(0, len(path), step)]
+        if path[-1] not in display:
+            display.append(path[-1])
+        return display
+
     def _predict_transit(
         self, origin: Coordinates, destination: Coordinates, departure_time: str, mode: str
     ) -> RoutePredictionResponse:
@@ -253,32 +283,8 @@ class RoutePredictionService:
         origin_id = self._find_nearest_station(origin, tipo_filter)
         dest_id = self._find_nearest_station(destination, tipo_filter)
 
-        # Dijkstra
-        try:
-            path = nx.shortest_path(self._graph, origin_id, dest_id, weight="distance_km")
-        except (nx.NetworkXNoPath, nx.NodeNotFound):
-            try:
-                component = nx.node_connected_component(self._graph, origin_id)
-                best_dest, best_d = dest_id, float("inf")
-                for n in component:
-                    d = self._graph.nodes[n]
-                    dist = (float(d.get("lat", 0)) - destination.lat) ** 2 + (
-                        float(d.get("lon", 0)) - destination.lng
-                    ) ** 2
-                    if dist < best_d:
-                        best_d, best_dest = dist, n
-                path = nx.shortest_path(self._graph, origin_id, best_dest, weight="distance_km")
-            except Exception:
-                path = [origin_id, dest_id]
-
-        # Limit display
-        if len(path) > 30:
-            step = len(path) // 30
-            display_path = [path[i] for i in range(0, len(path), step)]
-            if path[-1] not in display_path:
-                display_path.append(path[-1])
-        else:
-            display_path = path
+        path = self._find_path(origin_id, dest_id, destination)
+        display_path = self._limit_path(path)
 
         # Build segments with congestion
         risk_segments: list[RiskSegment] = []

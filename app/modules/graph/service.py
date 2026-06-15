@@ -349,9 +349,7 @@ class GraphService:
 
         import psycopg2
 
-        db_url = os.environ.get(
-            "DATABASE_URL", "postgresql://movicol:movicol_dev@movicol-db:5432/movicol"
-        )
+        db_url = os.environ.get("DATABASE_URL", "")
         try:
             conn = psycopg2.connect(db_url)
             cur = conn.cursor()
@@ -387,9 +385,7 @@ class GraphService:
 
         import psycopg2
 
-        db_url = os.environ.get(
-            "DATABASE_URL", "postgresql://movicol:movicol_dev@movicol-db:5432/movicol"
-        )
+        db_url = os.environ.get("DATABASE_URL", "")
         try:
             conn = psycopg2.connect(db_url)
             cur = conn.cursor()
