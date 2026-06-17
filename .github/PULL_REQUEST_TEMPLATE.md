@@ -60,11 +60,11 @@ Esta solicitud de cambios contiene:
 
 Como **Autor** de este Pull Request **declaro** que:
 
-> - He leído y entiendo las buenas prácticas para la elaboración de una Solicitud de Cambios, consignadas en [la Guía del Autor de Cambios de ColombO Labs](docs/AUTHOR_GUIDE.md)
+> - He leído y entiendo las buenas prácticas para la elaboración de una Solicitud de Cambios, consignadas en [la Guía del Autor de Cambios de Colombo Labs](docs/AUTHOR_GUIDE.md)
 > - Soy responsable de cualquier código malicioso (puerta trasera, bomba de tiempo, virus) que esta solicitud de cambios pudiera contener
 > - Soy responsable de cualquier función o rutina de código que con o sin intención perjudique, dañe, interfiera o afecte de manera adversa los archivos, datos, software o hardware de cualquier participante del proyecto MoviCol sin su debido consentimiento
 
 Cómo **Revisor** de este Pull Request, **al aprobar** este Pull Request **declaro** que:
 
-> - Realicé una revisión de código adecuada de acuerdo a [la Guía del Revisor de Cambios de ColombO Labs](docs/REVIEWER_GUIDE.md)
+> - Realicé una revisión de código adecuada de acuerdo a [la Guía del Revisor de Cambios de Colombo Labs](docs/REVIEWER_GUIDE.md)
 > - **Comparto responsabilidad** con el autor por cualquier código malicioso o malintencionado que pudiera contener.
