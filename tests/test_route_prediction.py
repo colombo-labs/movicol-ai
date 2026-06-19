@@ -71,7 +71,9 @@ class TestRoutePredictionService:
             departure_time="2026-05-20T03:00:00Z",
         )
         avg_peak = sum(s.congestion_level for s in peak.risk_segments) / len(peak.risk_segments)
-        avg_offpeak = sum(s.congestion_level for s in offpeak.risk_segments) / len(offpeak.risk_segments)
+        avg_offpeak = sum(s.congestion_level for s in offpeak.risk_segments) / len(
+            offpeak.risk_segments
+        )
         assert avg_peak > avg_offpeak
 
     def test_nearest_station_finds_correct_station(self):

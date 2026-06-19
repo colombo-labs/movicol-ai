@@ -1,3 +1,6 @@
+![CI](https://github.com/colombo-labs/movicol-ai/actions/workflows/ci.yml/badge.svg)
+[![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=colombo-labs_movicol-ai&metric=alert_status)](https://sonarcloud.io/dashboard?id=colombo-labs_movicol-ai)
+
 # 🧠 MoviCol AI
 
 Microservicio de IA para predicción de congestión y agente conversacional.

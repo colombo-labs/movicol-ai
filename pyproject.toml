@@ -1,6 +1,6 @@
 [project]
 name = "movicol-ai"
-version = "0.1.0"
+version = "0.2.0"
 description = "AI microservice for MoviCol - GNN predictions and conversational agent"
 requires-python = ">=3.11"
 dependencies = [

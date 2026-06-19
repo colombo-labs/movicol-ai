@@ -346,8 +346,10 @@ class GraphService:
         """Load TransMilenio trunk lines from PostGIS as GeoJSON."""
         import json
         import os
+
         import psycopg2
-        db_url = os.environ.get("DATABASE_URL", "postgresql://movicol:movicol_dev@movicol-db:5432/movicol")
+
+        db_url = os.environ.get("DATABASE_URL", "")
         try:
             conn = psycopg2.connect(db_url)
             cur = conn.cursor()
@@ -370,6 +372,7 @@ class GraphService:
         except Exception:
             # Fallback to file
             from pathlib import Path
+
             path = Path("models/tm_troncales.geojson")
             if path.exists():
                 return json.loads(path.read_text())
@@ -379,8 +382,10 @@ class GraphService:
         """Load TransMilenio stations from PostGIS as GeoJSON."""
         import json
         import os
+
         import psycopg2
-        db_url = os.environ.get("DATABASE_URL", "postgresql://movicol:movicol_dev@movicol-db:5432/movicol")
+
+        db_url = os.environ.get("DATABASE_URL", "")
         try:
             conn = psycopg2.connect(db_url)
             cur = conn.cursor()
@@ -403,6 +408,7 @@ class GraphService:
         except Exception:
             # Fallback to file
             from pathlib import Path
+
             path = Path("models/tm_estaciones.geojson")
             if path.exists():
                 return json.loads(path.read_text())

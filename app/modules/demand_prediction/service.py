@@ -34,12 +34,14 @@ class DemandPredictionService:
         stations = []
         for idx, passengers in sorted(preds.items(), key=lambda x: x[1], reverse=True):
             name = station_names[idx] if idx < len(station_names) else f"Estación {idx}"
-            stations.append(StationDemand(
-                station_index=idx,
-                station_name=name,
-                predicted_passengers=round(passengers, 1),
-                demand_level=_demand_level(passengers, max_val),
-            ))
+            stations.append(
+                StationDemand(
+                    station_index=idx,
+                    station_name=name,
+                    predicted_passengers=round(passengers, 1),
+                    demand_level=_demand_level(passengers, max_val),
+                )
+            )
 
         return DemandPredictionResponse(
             hour=hour,

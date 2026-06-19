@@ -1,12 +1,16 @@
 """Ingest TransMilenio GeoJSON data into PostGIS tables."""
+
 import json
 import os
+
 import psycopg2
 
 DB_URL = os.environ.get("DATABASE_URL", "postgresql://movicol:movicol@movicol-db:5432/movicol")
 
+
 def get_conn():
     return psycopg2.connect(DB_URL)
+
 
 def ingest_troncales(path="models/tm_troncales.geojson"):
     with open(path) as f:
@@ -23,12 +27,13 @@ def ingest_troncales(path="models/tm_troncales.geojson"):
         cur.execute(
             """INSERT INTO tm_troncales (troncal, nombre_trazado, tipo_trazado, geom, propiedades)
                VALUES (%s, %s, %s, ST_SetSRID(ST_GeomFromGeoJSON(%s), 4326), %s)""",
-            (troncal, nombre, tipo, geom, json.dumps(props))
+            (troncal, nombre, tipo, geom, json.dumps(props)),
         )
     conn.commit()
     print(f"Ingested {len(data.get('features', []))} troncales")
     cur.close()
     conn.close()
+
 
 def ingest_estaciones(path="models/tm_estaciones.geojson"):
     with open(path) as f:
@@ -44,12 +49,13 @@ def ingest_estaciones(path="models/tm_estaciones.geojson"):
         cur.execute(
             """INSERT INTO tm_estaciones (nombre, troncal, geom, propiedades)
                VALUES (%s, %s, ST_SetSRID(ST_GeomFromGeoJSON(%s), 4326), %s)""",
-            (nombre, troncal, geom, json.dumps(props))
+            (nombre, troncal, geom, json.dumps(props)),
         )
     conn.commit()
     print(f"Ingested {len(data.get('features', []))} estaciones")
     cur.close()
     conn.close()
+
 
 if __name__ == "__main__":
     ingest_troncales()

@@ -5,10 +5,10 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.config.settings import get_settings
 from app.modules.agent.router import router as agent_router
+from app.modules.demand_prediction.router import router as demand_router
 from app.modules.graph.router import router as graph_router
 from app.modules.health.router import router as health_router
 from app.modules.predictions.router import router as predictions_router
-from app.modules.demand_prediction.router import router as demand_router
 from app.modules.route_prediction.router import router as route_prediction_router
 
 settings = get_settings()

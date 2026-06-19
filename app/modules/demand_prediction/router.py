@@ -9,9 +9,15 @@ router = APIRouter()
 service = DemandPredictionService()
 
 
-@router.get("", response_model=DemandPredictionResponse)
+@router.get(
+    "",
+    response_model=DemandPredictionResponse,
+    responses={503: {"description": "Model not loaded"}},
+)
 async def predict_demand(hour: int = Query(..., ge=0, le=23, description="Hour of day")):
     """Predict passenger demand for all TM stations at a given hour."""
     if not service.is_loaded:
-        raise HTTPException(503, "ST-GAT model not loaded. Place st_gat_transmilenio_optimizado.pth in models/")
+        raise HTTPException(
+            503, "ST-GAT model not loaded. Place st_gat_transmilenio_optimizado.pth in models/"
+        )
     return service.predict_demand(hour)
