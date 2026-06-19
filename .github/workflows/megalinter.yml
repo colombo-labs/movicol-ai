@@ -1,0 +1,37 @@
+name: MegaLinter
+
+on:
+  push:
+    branches: [main, develop, "DOM-*"]
+  pull_request:
+    branches: [main, develop]
+
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}
+  cancel-in-progress: true
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  megalinter:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: oxsecurity/megalinter@e08c2b05e3dbc40af4c23f41172ef1e068a7d651 # v8
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_ALL_CODEBASE: false
+          APPLY_FIXES: none
+          DISABLE_LINTERS: SPELL_SPELL,COPYPASTE_JSCPD
+          FILTER_REGEX_EXCLUDE: '(node_modules|dist|coverage|data|\.github)/'
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: MegaLinter-reports
+          path: megalinter-reports/

@@ -1,8 +1,7 @@
 """Predictions router - congestion forecasting endpoints."""
 
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 
-from app.common.exceptions import ModelNotLoadedError
 from app.modules.predictions.schemas import (
     BatchPredictionRequest,
     PredictionRequest,
@@ -18,7 +17,7 @@ service = PredictionService()
 async def predict_station(request: PredictionRequest):
     """Predict congestion for a specific station."""
     if not service.is_loaded:
-        raise ModelNotLoadedError()
+        raise HTTPException(503, "GNN model not loaded. Place gat_best.pt in models/")
     return service.predict(
         station_id=request.station_id,
         day_of_week=request.day_of_week,
@@ -31,7 +30,7 @@ async def predict_station(request: PredictionRequest):
 async def predict_all_stations(request: BatchPredictionRequest):
     """Predict congestion for all stations."""
     if not service.is_loaded:
-        raise ModelNotLoadedError()
+        raise HTTPException(503, "GNN model not loaded.")
     return service.predict_all(
         day_of_week=request.day_of_week,
         hour=request.hour,

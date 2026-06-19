@@ -1,10 +1,23 @@
 """Graph router - station and route query endpoints."""
 
+from typing import Annotated
+
 from fastapi import APIRouter, Query
 
 from app.common.exceptions import GraphNotFoundError, StationNotFoundError
 from app.modules.graph.schemas import NeighborsResponse, RouteResponse, StationResponse
 from app.modules.graph.service import GraphService
+
+# Pagination defaults
+DEFAULT_STATION_LIMIT = 100
+MAX_STATION_LIMIT = 500
+DEFAULT_EDGE_LIMIT = 500
+MAX_EDGE_LIMIT = 5000
+DEFAULT_NEARBY_LIMIT = 10
+MAX_NEARBY_LIMIT = 50
+DEFAULT_NEARBY_RADIUS = 1.0
+MAX_NEARBY_RADIUS = 5.0
+
 
 router = APIRouter()
 service = GraphService()
@@ -16,10 +29,22 @@ async def graph_stats():
     return service.stats
 
 
+@router.get("/analysis")
+async def graph_analysis():
+    """Get advanced graph analysis: degree distribution, components, density."""
+    return service.analysis
+
+
+@router.get("/heatmap")
+async def congestion_heatmap(hour: Annotated[int, Query(ge=0, le=23)] = 8):
+    """Get GNN congestion predictions for all stations at a given hour."""
+    return service.get_heatmap(hour)
+
+
 @router.get("/stations", response_model=list[StationResponse])
 async def list_stations(
-    limit: int = Query(default=100, le=500),
-    offset: int = Query(default=0, ge=0),
+    limit: Annotated[int, Query(le=MAX_STATION_LIMIT)] = DEFAULT_STATION_LIMIT,
+    offset: Annotated[int, Query(ge=0)] = 0,
 ):
     """List stations with pagination."""
     if not service.is_loaded:
@@ -58,3 +83,41 @@ async def find_route(origin: str, destination: str):
     if not route:
         raise StationNotFoundError(f"{origin} -> {destination}")
     return route
+
+
+@router.get("/nearby")
+async def nearby_stations(
+    lat: float = Query(..., description="Latitude"),
+    lon: float = Query(..., description="Longitude"),
+    radius_km: Annotated[float, Query(le=MAX_NEARBY_RADIUS)] = DEFAULT_NEARBY_RADIUS,
+    limit: Annotated[int, Query(le=MAX_NEARBY_LIMIT)] = DEFAULT_NEARBY_LIMIT,
+):
+    """Find stations within radius of a point."""
+    return service.get_nearby(lat, lon, radius_km, limit)
+
+
+@router.get("/compare-hours")
+async def compare_hours(station_id: str = Query(..., description="Station ID")):
+    """Compare congestion levels across all hours for a station."""
+    return service.compare_hours(station_id)
+
+
+@router.get("/edges")
+async def get_edges(
+    type: Annotated[str, Query(description="all | tm | sitp")] = "all",
+    limit: Annotated[int, Query(le=MAX_EDGE_LIMIT)] = DEFAULT_EDGE_LIMIT,
+):
+    """Get graph edges as coordinate pairs for map rendering."""
+    return service.get_edges(type, limit)
+
+
+@router.get("/tm/troncales")
+async def get_tm_troncales():
+    """Get TransMilenio trunk lines GeoJSON for map rendering."""
+    return service.get_tm_troncales()
+
+
+@router.get("/tm/estaciones")
+async def get_tm_estaciones():
+    """Get TransMilenio stations GeoJSON for map rendering."""
+    return service.get_tm_estaciones()
