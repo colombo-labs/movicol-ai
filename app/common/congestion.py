@@ -1,5 +1,7 @@
 """Shared congestion utilities used across prediction modules."""
 
+from datetime import datetime
+
 HOUR_FACTORS: dict[int, float] = {
     0: 0.3,
     1: 0.2,
@@ -27,10 +29,22 @@ HOUR_FACTORS: dict[int, float] = {
     23: 0.3,
 }
 
+# Day of week multiplier (0=Monday, 6=Sunday)
+DAY_FACTORS: dict[int, float] = {
+    0: 1.0,  # Lunes — alta congestión
+    1: 1.0,  # Martes
+    2: 1.0,  # Miércoles
+    3: 1.0,  # Jueves
+    4: 1.05,  # Viernes — pico por salida de oficinas
+    5: 0.6,  # Sábado — menos tráfico
+    6: 0.4,  # Domingo — mínimo
+}
+
 
 def time_factor(hour: int) -> float:
-    """Time-of-day multiplier for congestion."""
-    return HOUR_FACTORS.get(hour, 0.7)
+    """Time-of-day + day-of-week multiplier for congestion."""
+    day = datetime.now().weekday()
+    return HOUR_FACTORS.get(hour, 0.7) * DAY_FACTORS.get(day, 1.0)
 
 
 def risk_label(congestion: float) -> str:

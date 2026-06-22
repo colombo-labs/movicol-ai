@@ -24,6 +24,9 @@ class Settings(BaseSettings):
     model_path: str = "models/gat_best.pt"
     graph_path: str = "models/graph_clean.graphml"
 
+    # External services
+    osrm_base_url: str = "https://router.project-osrm.org"
+
     class Config:
         env_file = ".env"
         env_file_encoding = "utf-8"

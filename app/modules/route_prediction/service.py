@@ -14,14 +14,13 @@ from app.common.congestion import time_factor as _time_factor
 from app.config.settings import get_settings
 from app.modules.demand_prediction.st_gat_inference import DemandInference
 from app.modules.predictions.gnn_inference import GNNInference
-from app.modules.route_prediction.graph_data import build_caracas_graph
+from app.modules.route_prediction.graph_data import build_caracas_graph, build_tm_graph
 from app.modules.route_prediction.schemas import (
     Coordinates,
+    NavigationStep,
     RiskSegment,
     RoutePredictionResponse,
 )
-
-OSRM_BASE = "https://router.project-osrm.org"
 
 
 def _parse_hour(departure_time: str) -> int:
@@ -39,7 +38,8 @@ class RoutePredictionService:
     def __init__(self) -> None:
         self._gnn = GNNInference()
         self._demand = DemandInference()
-        self._graph = self._load_graph()
+        self._graph = self._load_graph()  # SITP/general graph
+        self._tm_graph = build_tm_graph()  # TM-only graph (153 stations, 13 troncales)
 
     def _load_graph(self) -> nx.Graph:
         settings = get_settings()
@@ -62,18 +62,12 @@ class RoutePredictionService:
         return {"nodes": self._graph.number_of_nodes(), "edges": self._graph.number_of_edges()}
 
     def _find_nearest_station(self, coords: Coordinates, tipo_filter: str | None = None) -> str:
+        return self._find_nearest_in(coords, self._graph)
+
+    @staticmethod
+    def _find_nearest_in(coords: Coordinates, graph: nx.Graph) -> str:
         best_id, best_dist = "", float("inf")
-        for node_id, data in self._graph.nodes(data=True):
-            if tipo_filter:
-                node_tipo = data.get("tipo", "")
-                if (
-                    tipo_filter == "tm"
-                    and "tm" not in node_tipo.lower()
-                    and "troncal" not in node_tipo.lower()
-                ):
-                    continue
-                if tipo_filter == "sitp" and "tm" in node_tipo.lower():
-                    continue
+        for node_id, data in graph.nodes(data=True):
             lat = float(data.get("lat", 0))
             lon = float(data.get("lon", 0))
             d = (lat - coords.lat) ** 2 + (lon - coords.lng) ** 2
@@ -140,6 +134,8 @@ class RoutePredictionService:
         risk_segments: list,
         stations: list,
         departure_time: str,
+        route_code: str = "",
+        navigation_steps: list | None = None,
     ) -> RoutePredictionResponse:
         """Build standardized route prediction response."""
         avg_c = (
@@ -147,6 +143,12 @@ class RoutePredictionService:
             if risk_segments
             else 0.0
         )
+        # Safety score: inversely proportional to congestion + critical segments penalty
+        critical_count = sum(1 for s in risk_segments if s.risk_label == "critical")
+        high_count = sum(1 for s in risk_segments if s.risk_label == "high")
+        safety_base = max(0, 100 - int(avg_c * 60) - critical_count * 10 - high_count * 5)
+        safety_score = max(10, min(100, safety_base))
+
         return RoutePredictionResponse(
             route_id=str(uuid.uuid4()),
             total_time_minutes=round(time_min, 1),
@@ -155,25 +157,30 @@ class RoutePredictionService:
             mode=mode,
             risk_segments=risk_segments,
             overall_risk=_risk_label(avg_c),
+            safety_score=safety_score,
             explanation="",
             stations=stations,
             departure_time=departure_time,
+            route_code=route_code,
+            navigation_steps=navigation_steps or [],
         )
 
     async def _predict_vehicle(
         self, origin: Coordinates, destination: Coordinates, departure_time: str
     ) -> RoutePredictionResponse:
-        """Vehicle routing via OSRM."""
+        """Vehicle routing via OSRM with street names."""
         hour = _parse_hour(departure_time)
 
         url = (
-            f"{OSRM_BASE}/route/v1/driving/"
+            f"{get_settings().osrm_base_url}/route/v1/driving/"
             f"{origin.lng},{origin.lat};{destination.lng},{destination.lat}"
             f"?overview=full&geometries=geojson&steps=true"
         )
 
         try:
-            async with httpx.AsyncClient(timeout=10) as client:
+            async with httpx.AsyncClient(
+                timeout=15, follow_redirects=True, max_redirects=3
+            ) as client:
                 resp = await client.get(url)
                 data = resp.json()
 
@@ -181,34 +188,142 @@ class RoutePredictionService:
                 return self._fallback_vehicle(origin, destination, departure_time, hour)
 
             route = data["routes"][0]
-            duration_min = route["duration"] / 60
-            distance_km = route["distance"] / 1000
-            coords = route["geometry"]["coordinates"]  # [lng, lat] pairs
+            congestion = _time_factor(hour) * 0.7
 
-            # Build risk segments from route geometry
-            congestion = _time_factor(hour) * 0.7  # Base vehicle congestion
-            step_size = max(1, len(coords) // 10)
-            segments = []
-            for i in range(0, len(coords) - step_size, step_size):
-                end_i = min(i + step_size, len(coords) - 1)
-                seg_coords = [[c[1], c[0]] for c in coords[i : end_i + 1]]
-                segments.append(
-                    self._make_segment(
-                        f"Punto {i // step_size + 1}",
-                        f"Punto {i // step_size + 2}",
-                        congestion,
-                        seg_coords,
-                    )
-                )
+            segments, street_names, cost, adjusted_time, distance_km = self._parse_osrm_route(
+                route, congestion
+            )
 
-            # Adjust time by congestion
-            adjusted_time = duration_min * (1 + congestion * 0.3)
+            # Build navigation steps from OSRM
+            steps = route["legs"][0]["steps"]
+            nav_steps = self._build_nav_steps(steps)
 
             return self._build_response(
-                adjusted_time, distance_km, "$0", "vehiculo", segments, [], departure_time
+                adjusted_time,
+                distance_km,
+                cost,
+                "vehiculo",
+                segments,
+                street_names,
+                departure_time,
+                navigation_steps=nav_steps,
             )
         except Exception:
             return self._fallback_vehicle(origin, destination, departure_time, hour)
+
+    def _parse_osrm_route(
+        self, route: dict, congestion: float
+    ) -> tuple[list, list[str], str, float, float]:
+        """Parse an OSRM route into segments, street names, cost, time, distance."""
+        duration_min = route["duration"] / 60
+        distance_km = route["distance"] / 1000
+        adjusted_time = duration_min * (1 + congestion * 0.5)
+
+        steps = route["legs"][0]["steps"]
+        segments = []
+        for i, step in enumerate(steps[:-1]):
+            next_step = steps[i + 1]
+            from_name = step.get("name") or f"Punto {i + 1}"
+            to_name = next_step.get("name") or f"Punto {i + 2}"
+            seg_coords = [[c[1], c[0]] for c in step["geometry"]["coordinates"]]
+            step_congestion = congestion * (1 + (i % 3) * 0.1)
+            segments.append(
+                self._make_segment(from_name, to_name, min(1.0, step_congestion), seg_coords)
+            )
+
+        street_names = list(dict.fromkeys(s.get("name", "") for s in steps if s.get("name")))[:15]
+
+        cost_pesos = round(distance_km * 2000, -2)
+        cost = f"${cost_pesos:,.0f}".replace(",", ".")
+
+        return segments, street_names, cost, adjusted_time, distance_km
+
+    @staticmethod
+    def _build_nav_steps(steps: list) -> list[NavigationStep]:
+        """Build navigation steps from OSRM steps data."""
+        maneuver_labels = {
+            "turn": {
+                "left": "Gira a la izquierda",
+                "right": "Gira a la derecha",
+                "slight left": "Gira levemente a la izquierda",
+                "slight right": "Gira levemente a la derecha",
+                "sharp left": "Gira fuerte a la izquierda",
+                "sharp right": "Gira fuerte a la derecha",
+                "straight": "Continúa recto",
+            },
+            "depart": {"": "Inicia el recorrido"},
+            "arrive": {"": "Has llegado a tu destino"},
+            "new name": {"straight": "Continúa por"},
+            "merge": {"": "Incorpórate"},
+            "roundabout": {"": "Toma la rotonda"},
+            "fork": {"left": "Toma el desvío izquierdo", "right": "Toma el desvío derecho"},
+        }
+        nav_steps = []
+        for step in steps:
+            m = step.get("maneuver", {})
+            mtype = m.get("type", "")
+            modifier = m.get("modifier", "")
+            street = step.get("name", "")
+            labels = maneuver_labels.get(mtype, {})
+            label = labels.get(modifier, labels.get("", f"{mtype} {modifier}".strip()))
+            instruction = f"{label} en {street}" if street else label
+            nav_steps.append(
+                NavigationStep(
+                    instruction=instruction,
+                    street=street,
+                    distance_m=round(step.get("distance", 0)),
+                    duration_s=round(step.get("duration", 0)),
+                    maneuver=modifier or mtype,
+                )
+            )
+        return nav_steps
+
+    async def predict_vehicle_alternatives(
+        self, origin: Coordinates, destination: Coordinates, departure_time: str
+    ) -> list[RoutePredictionResponse]:
+        """Vehicle routing with multiple alternatives via OSRM."""
+        hour = _parse_hour(departure_time)
+        url = (
+            f"{get_settings().osrm_base_url}/route/v1/driving/"
+            f"{origin.lng},{origin.lat};{destination.lng},{destination.lat}"
+            f"?overview=full&geometries=geojson&steps=true&alternatives=3"
+        )
+        try:
+            async with httpx.AsyncClient(
+                timeout=15, follow_redirects=True, max_redirects=3
+            ) as client:
+                resp = await client.get(url)
+                data = resp.json()
+
+            if data.get("code") != "Ok" or not data.get("routes"):
+                return [self._fallback_vehicle(origin, destination, departure_time, hour)]
+
+            results = []
+            congestion = _time_factor(hour) * 0.7
+
+            for route in data["routes"][:3]:
+                segments, street_names, cost, adjusted_time, distance_km = self._parse_osrm_route(
+                    route, congestion
+                )
+                results.append(
+                    self._build_response(
+                        adjusted_time,
+                        distance_km,
+                        cost,
+                        "vehiculo",
+                        segments,
+                        street_names,
+                        departure_time,
+                    )
+                )
+
+            return (
+                results
+                if results
+                else [self._fallback_vehicle(origin, destination, departure_time, hour)]
+            )
+        except Exception:
+            return [self._fallback_vehicle(origin, destination, departure_time, hour)]
 
     def _fallback_vehicle(
         self, origin: Coordinates, destination: Coordinates, departure_time: str, hour: int
@@ -274,29 +389,65 @@ class RoutePredictionService:
         """Transit routing (TM/SITP) via Dijkstra + GNN congestion."""
         hour = _parse_hour(departure_time)
 
-        tipo_map = {"transmilenio": "tm", "sitp": "sitp"}
-        tipo_filter = tipo_map.get(mode)
-        origin_id = self._find_nearest_station(origin, tipo_filter)
-        dest_id = self._find_nearest_station(destination, tipo_filter)
+        # TM uses dedicated troncal graph; SITP uses general graph
+        graph = self._tm_graph if mode == "transmilenio" else self._graph
 
-        path = self._find_path(origin_id, dest_id, destination)
-        display_path = self._limit_path(path)
+        origin_id = self._find_nearest_in(origin, graph)
+        dest_id = self._find_nearest_in(destination, graph)
+
+        try:
+            path = nx.shortest_path(graph, origin_id, dest_id, weight="distance_km")
+        except (nx.NetworkXNoPath, nx.NodeNotFound):
+            path = [origin_id, dest_id]
+
+        # TM: express (fewer stops shown), SITP: all stops
+        max_display = 25 if mode == "transmilenio" else 40
+        speed_factor = 1.5 if mode == "transmilenio" else 2.5
+        display_path = self._limit_path(path, max_display)
 
         # Build segments with congestion
+        risk_segments, total_distance, total_time = self._build_transit_segments(
+            graph, display_path, speed_factor, hour
+        )
+
+        station_names = [
+            graph.nodes.get(n, {}).get("nombre", "") or graph.nodes.get(n, {}).get("name", "") or n
+            for n in display_path
+        ]
+
+        route_code = ""
+        if mode == "transmilenio":
+            route_code = self._derive_route_code(graph, display_path)
+
+        return self._build_response(
+            total_time,
+            total_distance,
+            "$3,550",
+            mode,
+            risk_segments,
+            station_names,
+            departure_time,
+            route_code=route_code,
+        )
+
+    def _build_transit_segments(
+        self, graph: nx.Graph, display_path: list, speed_factor: float, hour: int
+    ) -> tuple[list[RiskSegment], float, float]:
+        """Build risk segments for a transit path."""
         risk_segments: list[RiskSegment] = []
         total_distance, total_time = 0.0, 0.0
 
         for i in range(len(display_path) - 1):
             from_id, to_id = display_path[i], display_path[i + 1]
-            from_data = self._graph.nodes.get(from_id, {})
-            to_data = self._graph.nodes.get(to_id, {})
+            from_data = graph.nodes.get(from_id, {})
+            to_data = graph.nodes.get(to_id, {})
 
             lat1, lon1 = float(from_data.get("lat", 0)), float(from_data.get("lon", 0))
             lat2, lon2 = float(to_data.get("lat", 0)), float(to_data.get("lon", 0))
 
-            edge = self._graph.edges.get((from_id, to_id), {})
+            edge = graph.edges.get((from_id, to_id), {})
             dist = edge.get("distance_km", ((lat1 - lat2) ** 2 + (lon1 - lon2) ** 2) ** 0.5 * 111)
-            base_time = edge.get("base_time_min", dist * 2.0)
+            base_time = dist * speed_factor
 
             congestion = (
                 self._get_congestion(from_id, hour) + self._get_congestion(to_id, hour)
@@ -310,23 +461,94 @@ class RoutePredictionService:
             to_name = to_data.get("nombre", "") or to_data.get("name", "") or to_id
 
             risk_segments.append(
-                self._make_segment(
-                    from_name,
-                    to_name,
-                    congestion,
-                    [[lat1, lon1], [lat2, lon2]],
-                )
+                self._make_segment(from_name, to_name, congestion, [[lat1, lon1], [lat2, lon2]])
             )
 
-        station_names = [
-            self._graph.nodes.get(n, {}).get("nombre", "")
-            or self._graph.nodes.get(n, {}).get("name", "")
-            or n
-            for n in display_path
+        return risk_segments, total_distance, total_time
+
+    def _derive_route_code(self, graph: nx.Graph, display_path: list) -> str:
+        """Derive TM route code from path troncal data and route matching."""
+        from collections import Counter
+
+        from app.modules.route_prediction.graph_data import TM_RUTAS
+
+        troncales_in_path = [graph.nodes.get(n, {}).get("troncal", "") for n in display_path]
+        troncales_in_path = [t for t in troncales_in_path if t]
+        route_code = Counter(troncales_in_path).most_common(1)[0][0] if troncales_in_path else ""
+
+        if not TM_RUTAS or len(display_path) < 2:
+            return route_code
+
+        path_coords = [
+            (
+                float(graph.nodes.get(n, {}).get("lat", 0)),
+                float(graph.nodes.get(n, {}).get("lon", 0)),
+            )
+            for n in display_path[:5]
+        ]
+        matched = self._match_tm_ruta(path_coords)
+        return matched or route_code
+
+    @staticmethod
+    def _match_tm_ruta(path_coords: list[tuple[float, float]]) -> str:
+        """Match path coordinates to a specific TM route."""
+        from app.modules.route_prediction.graph_data import TM_RUTAS
+
+        best_ruta, best_score = "", 0
+        for ruta in TM_RUTAS:
+            coords = ruta.get("coords", [])
+            if not coords:
+                continue
+            score = sum(
+                1
+                for plat, plon in path_coords
+                if any(
+                    abs(plat - clat) < 0.003 and abs(plon - clon) < 0.003
+                    for clat, clon in coords[::20]
+                )
+            )
+            if score > best_score:
+                best_score = score
+                nombre = ruta.get("nombre", "")
+                best_ruta = nombre.split()[0] if nombre else ruta.get("codigo", "").split("-")[0]
+        return best_ruta if best_score >= 2 else ""
+
+    def get_route_safety(self, ruta: str, hour: int) -> dict:
+        """Calculate safety score for a SITP route based on avg congestion of its stops."""
+        # Find nodes that belong to this route (by name or route attribute)
+        route_nodes = [
+            n
+            for n, d in self._graph.nodes(data=True)
+            if str(d.get("route", "")) == ruta or ruta in str(d.get("name", ""))
         ]
 
-        cost = "$2,950" if mode == "transmilenio" else "$2,650"
+        if not route_nodes:
+            # Fallback: use a sample of SITP nodes
+            route_nodes = [n for n, d in self._graph.nodes(data=True) if "P_" in str(n)][:20]
 
-        return self._build_response(
-            total_time, total_distance, cost, mode, risk_segments, station_names, departure_time
-        )
+        congestions = [self._get_congestion(n, hour) for n in route_nodes]
+        avg_congestion = sum(congestions) / max(len(congestions), 1)
+
+        critical = sum(1 for c in congestions if c > 0.75)
+        high = sum(1 for c in congestions if 0.5 < c <= 0.75)
+
+        safety_base = max(0, 100 - int(avg_congestion * 60) - critical * 10 - high * 5)
+        safety_score = max(10, min(100, safety_base))
+
+        if safety_score >= 70:
+            nivel = "segura"
+        elif safety_score >= 40:
+            nivel = "precaución"
+        else:
+            nivel = "peligrosa"
+
+        return {
+            "ruta": ruta,
+            "hour": hour,
+            "safety_score": safety_score,
+            "nivel": nivel,
+            "avg_congestion": round(avg_congestion, 3),
+            "paraderos_analizados": len(route_nodes),
+            "tramos_criticos": critical,
+            "tramos_lentos": high,
+        }

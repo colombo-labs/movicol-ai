@@ -34,6 +34,18 @@ class RiskSegment(BaseModel):
     coordinates: list[list[float]] = Field(..., description="[[lat, lng], ...]")
 
 
+class NavigationStep(BaseModel):
+    """A turn-by-turn navigation instruction."""
+
+    instruction: str = Field(..., description="Human-readable instruction")
+    street: str = Field(default="", description="Street name")
+    distance_m: int = Field(default=0, description="Distance in meters")
+    duration_s: int = Field(default=0, description="Duration in seconds")
+    maneuver: str = Field(
+        default="straight", description="turn type: left, right, straight, depart, arrive"
+    )
+
+
 class RoutePredictionResponse(BaseModel):
     """Response: predicted route with risk segments and AI explanation."""
 
@@ -44,6 +56,15 @@ class RoutePredictionResponse(BaseModel):
     mode: str = Field(default="transmilenio", description="Transport mode used")
     risk_segments: list[RiskSegment]
     overall_risk: str = Field(..., description="low | medium | high | critical")
+    safety_score: int = Field(
+        default=75, ge=0, le=100, description="Road safety score 0-100 (100=safest)"
+    )
     explanation: str = Field(..., description="LLM-generated route explanation")
     stations: list[str] = Field(..., description="Ordered station names in route")
     departure_time: str
+    route_code: str = Field(
+        default="", description="Short route identifier (e.g. '1', 'J74', '18-3')"
+    )
+    navigation_steps: list[NavigationStep] = Field(
+        default=[], description="Turn-by-turn navigation"
+    )

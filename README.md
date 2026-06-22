@@ -1,78 +1,66 @@
-![CI](https://github.com/colombo-labs/movicol-ai/actions/workflows/ci.yml/badge.svg)
-[![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=colombo-labs_movicol-ai&metric=alert_status)](https://sonarcloud.io/dashboard?id=colombo-labs_movicol-ai)
+# MoviCol AI Service
 
-# 🧠 MoviCol AI
-
-Microservicio de IA para predicción de congestión y agente conversacional.
+Servicio de inteligencia artificial para predicción de rutas y congestión — FastAPI + NetworkX + PyTorch.
 
 ## Stack
 
-- **Python** 3.11+
-- **FastAPI** 0.111 + **Uvicorn** 0.29
-- **PyTorch Geometric** 2.5 (GNN)
-- **NetworkX** 3.2 (grafos)
-- **LangChain** 0.2 + **OpenAI** (agente conversacional)
-- **SQLAlchemy** 2.0 + **GeoAlchemy2** 0.14 (PostGIS)
-- **Pydantic** 2.7 (validación)
-- **Ruff** 0.4 (linter)
-- **Pytest** 8 (testing)
+- FastAPI + Python 3.9+
+- NetworkX (grafos de movilidad)
+- PyTorch (GNN + ST-GAT)
+- OSRM (routing vehicular externo)
+- httpx (HTTP async)
 
-## Arquitectura
-
-Modular SOLID — cada módulo con router, service y schemas (patrón NestJS en Python).
-
-```
-app/
-├── main.py                      # App factory + routers
-├── config/settings.py           # Pydantic settings (env vars)
-├── common/
-│   ├── exceptions.py            # Custom HTTP exceptions
-│   └── middleware/
-└── modules/
-    ├── health/                  # GET /health
-    ├── predictions/             # POST /predictions
-    │   ├── router.py / service.py / schemas.py
-    ├── graph/                   # GET /graph/*
-    │   ├── router.py / service.py / schemas.py
-    └── agent/                   # POST /agent/chat
-        ├── router.py / service.py / schemas.py
-```
-
-## Quick Start
+## Setup
 
 ```bash
-make install    # pip install -e ".[dev]"
-make dev        # uvicorn en http://localhost:8000
+pip install -e .      # o pip install -r requirements.txt
+uvicorn app.main:app --port 8000 --reload
+pytest tests/ -v      # 17 tests
 ```
 
-## Scripts
+## Endpoints
 
-| Comando | Descripción |
-|---------|-------------|
-| `make dev` | Dev server (hot reload) |
-| `make train` | Entrenar modelo GNN |
-| `make test` | Pytest |
-| `make lint` | Ruff check + format |
+| Método | Endpoint | Descripción |
+|--------|----------|-------------|
+| POST | `/api/v1/predict-route` | Predicción de ruta (TM/SITP/Vehículo) |
+| POST | `/api/v1/predict-route/alternatives` | Alternativas vehiculares (OSRM) |
+| GET | `/api/v1/predict-route/alerts` | Alertas scrapeadas de TransMilenio |
+| GET | `/api/v1/predict-route/safety` | Safety score por ruta SITP |
+| GET | `/graph/stations` | Estaciones del grafo |
+| GET | `/graph/stats` | Nodos y edges |
+| GET | `/graph/heatmap` | Congestión por estación |
+| POST | `/predictions` | Predicción GNN individual |
+| POST | `/predictions/batch` | Predicciones batch |
+| GET | `/demand/predict` | Predicción demanda ST-GAT |
+| POST | `/agent/chat` | Agente conversacional |
+| GET | `/health` | Health check |
 
-## API Docs
+## Modelos
 
-Swagger UI: `http://localhost:8000/docs`
+| Modelo | Archivo | Descripción |
+|--------|---------|-------------|
+| GNN (GAT) | `gat_best.pt` | Predicción de congestión por nodo |
+| ST-GAT | `st_gat_model.pt` | Predicción de demanda espacio-temporal |
+| Grafo | `grafo_movilidad_bogota_enriched.graphml` | Grafo SITP (7290 nodos) |
+| TM Graph | `tm_stations_all.json` + `tm_rutas_all.json` | 153 estaciones, 125 rutas TM |
 
-## Modelo
+## Congestión
 
-- **Tipo:** GAT (Graph Attention Network)
-- **Framework:** PyTorch Geometric
-- **Métricas:** MSE 0.18 | RMSE 0.42
-- **Archivos:** `models/gat_best.pt` + `models/graph.graphml`
+Fórmula: `congestion = (GNN_base * 0.6 + ST_GAT_demand * 0.4) * hour_factor * day_factor`
 
-## Docker
+- `hour_factor`: 0.2 (madrugada) → 1.0 (hora pico)
+- `day_factor`: L-J=1.0, Vie=1.05, Sáb=0.6, Dom=0.4
 
-```bash
-docker compose -f docker-compose.dev.yml up -d
+## Routing Vehicular
+
+- Usa OSRM público (`router.project-osrm.org`) via HTTP
+- Retorna geometría real, pasos de navegación, calles con nombres
+- `alternatives=true` para rutas alternativas
+- Fallback euclidiano si OSRM no disponible
+
+## Env
+
+```env
+GRAPH_PATH=data/grafo_movilidad_bogota_enriched.graphml
+MODEL_PATH=models/gat_best.pt
 ```
-
-## Requisitos
-
-- Python 3.11+
-- PostGIS (para datos del grafo)
-- OpenAI API key (para agente)
