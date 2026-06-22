@@ -5,20 +5,28 @@ from __future__ import annotations
 from app.config.settings import get_settings
 from app.modules.agent.schemas import ChatResponse
 from app.modules.route_prediction.graph_data import (
+    TM_STATIONS,
+    TM_RUTAS,
     CARACAS_STATIONS,
+    TRONCALES,
     CONGESTION_BY_HOUR,
-    build_caracas_graph,
+    build_tm_graph,
 )
 from app.modules.route_prediction.service import RoutePredictionService
 
 SYSTEM_PROMPT = """Eres MoviBot, un asistente experto en movilidad urbana de Bogotá, Colombia.
-Tienes acceso a datos del sistema TransMilenio (Troncal Caracas: 28 estaciones).
+Tienes acceso a datos del sistema TransMilenio (13 troncales, 153 estaciones).
+
+Troncales: Caracas, Autopista Norte, Suba, Calle 80, NQS Central, NQS Sur, Américas, Calle 26, Carrera 10, Caracas Sur, Eje Ambiental, Soacha, Tunal, Carrera 7.
 
 Capacidades:
-- Información de estaciones (nombre, ubicación, conexiones)
+- Información de estaciones (nombre, ubicación, conexiones, troncal)
 - Predicción de congestión por hora del día
 - Recomendaciones de rutas y horarios
 - Estadísticas del sistema de transporte
+
+IMPORTANTE: TransMilenio (TM) es el sistema troncal de buses articulados con estaciones cerradas.
+NO confundir con SITP (buses zonales que circulan por vías normales con paraderos abiertos).
 
 Responde en español, de forma concisa y útil. Si no tienes datos para responder, dilo honestamente.
 Cuando menciones congestión, usa porcentajes y etiquetas (baja/media/alta/crítica)."""
@@ -29,31 +37,33 @@ class AgentService:
 
     def __init__(self) -> None:
         self._settings = get_settings()
-        self._graph = build_caracas_graph()
+        self._graph = build_tm_graph()
         self._route_service = RoutePredictionService()
         self._sessions: dict[str, list[dict]] = {}
 
     def _get_context(self) -> str:
         """Build context string from graph data."""
+        troncal_info = ", ".join(f"{t} ({d['stations']})" for t, d in TRONCALES.items())
         return (
-            f"Sistema: Troncal Caracas, {self._graph.number_of_nodes()} estaciones, "
-            f"{self._graph.number_of_edges() // 2} conexiones.\n"
-            f"Estaciones: {', '.join(s['name'] for s in CARACAS_STATIONS)}\n"
-            f"Horas pico: 7-9am (congestión ~55%), 5-7pm (congestión ~60%)\n"
+            f"Sistema TransMilenio: {self._graph.number_of_nodes()} estaciones, "
+            f"{self._graph.number_of_edges()} conexiones, 13 troncales.\n"
+            f"Troncales: {troncal_info}\n"
+            f"Horas pico: 7-9am (congestión ~55-60%), 5-7pm (congestión ~60-65%)\n"
             f"Horas valle: 10pm-5am (congestión <10%)"
         )
 
     def _find_station_info(self, query: str) -> str | None:
         """Find station info matching a query."""
         query_lower = query.lower()
-        for station in CARACAS_STATIONS:
+        for station in TM_STATIONS:
             if station["name"].lower() in query_lower or query_lower in station["name"].lower():
                 neighbors = list(self._graph.neighbors(station["id"]))
-                neighbor_names = [self._graph.nodes[n]["name"] for n in neighbors]
+                neighbor_names = [self._graph.nodes[n]["name"] for n in neighbors if n in self._graph.nodes]
                 return (
                     f"Estación: {station['name']}\n"
+                    f"Troncal: {station['troncal']}\n"
                     f"Coordenadas: {station['lat']}, {station['lon']}\n"
-                    f"Conecta con: {', '.join(neighbor_names)}"
+                    f"Conecta con: {', '.join(neighbor_names) if neighbor_names else 'N/A'}"
                 )
         return None
 
@@ -209,20 +219,47 @@ class AgentService:
 
         # Station list
         if any(w in msg_lower for w in ["estaciones", "paradas", "cuántas", "cuantas", "lista"]):
-            names = [s["name"] for s in CARACAS_STATIONS]
+            troncal_match = None
+            for t in TRONCALES:
+                if t.lower() in msg_lower:
+                    troncal_match = t
+                    break
+            if troncal_match:
+                names = [s["name"] for s in TM_STATIONS if s["troncal"] == troncal_match]
+                return ChatResponse(
+                    response=f"Troncal {troncal_match} tiene {len(names)} estaciones:\n{', '.join(names)}",
+                    sources=sources,
+                    session_id=session_id,
+                )
             return ChatResponse(
-                response=f"La Troncal Caracas tiene {len(names)} estaciones:\n{', '.join(names)}",
+                response=f"TransMilenio tiene {len(TM_STATIONS)} estaciones en 13 troncales.\nPregúntame por una troncal específica (Caracas, Suba, Calle 80, NQS, Américas, Calle 26, etc.)",
                 sources=sources,
                 session_id=session_id,
             )
 
-        # Route query
-        if any(w in msg_lower for w in ["ruta", "cómo llego", "como llego", "ir de", "ir a"]):
+        # Route query — search in TM_RUTAS
+        if any(w in msg_lower for w in ["ruta", "cómo llego", "como llego", "ir de", "ir a", "j74", "f51", "g4", "l4", "m5"]):
+            # Try to find specific route code
+            found_rutas = [r for r in TM_RUTAS if r["codigo"].lower() in msg_lower]
+            if found_rutas:
+                r = found_rutas[0]
+                return ChatResponse(
+                    response=(
+                        f"Ruta: {r['codigo']}\n"
+                        f"Recorrido: {r['origen']} → {r['destino']}\n"
+                        f"Bus: {r['tipo_bus']}\n"
+                        f"Horario L-V: {r['horario_lv']}\n"
+                        f"Horario Sáb: {r['horario_sab']}\n"
+                        f"Estado: {r['estado']}"
+                    ),
+                    sources=["tm_rutas_troncales"],
+                    session_id=session_id,
+                )
             return ChatResponse(
                 response=(
-                    "Para predecir una ruta, usa el módulo de Predicción de Rutas en el mapa. "
-                    "Haz clic en origen y destino, y te mostraré la congestión por tramo. "
-                    "¿Necesitas info de alguna estación específica?"
+                    f"TransMilenio tiene {len(TM_RUTAS)} rutas troncales. "
+                    "Para planificar tu viaje, usa el módulo Planificar en el mapa. "
+                    "¿Quieres info de alguna ruta específica? (ej: J74, F51, G43)"
                 ),
                 sources=sources,
                 session_id=session_id,
@@ -232,7 +269,7 @@ class AgentService:
         return ChatResponse(
             response=(
                 "Soy MoviBot 🚌 — tu asistente de movilidad para Bogotá. Puedo ayudarte con:\n"
-                "• Info de estaciones de TransMilenio (Troncal Caracas)\n"
+                "• Info de 153 estaciones de TransMilenio (13 troncales)\n"
                 "• Niveles de congestión por hora\n"
                 "• Recomendaciones de horarios\n\n"
                 "¿Qué necesitas saber?"

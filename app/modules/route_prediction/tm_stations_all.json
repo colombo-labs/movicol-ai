@@ -1,0 +1,1226 @@
+[
+  {
+    "id": "av_américas___av_boyacá",
+    "name": "AV. Américas - AV. Boyacá",
+    "lat": 4.630118,
+    "lon": -74.134225,
+    "troncal": "Américas",
+    "trazado": "TZ009"
+  },
+  {
+    "id": "banderas",
+    "name": "Banderas",
+    "lat": 4.631295,
+    "lon": -74.14577,
+    "troncal": "Américas",
+    "trazado": "TZ009"
+  },
+  {
+    "id": "biblioteca_tintal",
+    "name": "Biblioteca Tintal",
+    "lat": 4.637908,
+    "lon": -74.159352,
+    "troncal": "Américas",
+    "trazado": "TZ009"
+  },
+  {
+    "id": "cds___carrera_32",
+    "name": "CDS - Carrera 32",
+    "lat": 4.616119,
+    "lon": -74.093965,
+    "troncal": "Américas",
+    "trazado": "TZ009"
+  },
+  {
+    "id": "carrera_43___comapan",
+    "name": "Carrera 43 - Comapan",
+    "lat": 4.622782,
+    "lon": -74.101438,
+    "troncal": "Américas",
+    "trazado": "TZ009"
+  },
+  {
+    "id": "de_la_sabana",
+    "name": "De La Sabana",
+    "lat": 4.605421,
+    "lon": -74.081894,
+    "troncal": "Américas",
+    "trazado": "TZ009"
+  },
+  {
+    "id": "distrito_grafiti",
+    "name": "Distrito Grafiti",
+    "lat": 4.62785,
+    "lon": -74.111584,
+    "troncal": "Américas",
+    "trazado": "TZ009"
+  },
+  {
+    "id": "mandalay",
+    "name": "Mandalay",
+    "lat": 4.630864,
+    "lon": -74.141298,
+    "troncal": "Américas",
+    "trazado": "TZ009"
+  },
+  {
+    "id": "marsella",
+    "name": "Marsella",
+    "lat": 4.629677,
+    "lon": -74.130164,
+    "troncal": "Américas",
+    "trazado": "TZ009"
+  },
+  {
+    "id": "patio_bonito",
+    "name": "Patio Bonito",
+    "lat": 4.63318,
+    "lon": -74.164614,
+    "troncal": "Américas",
+    "trazado": "TZ009"
+  },
+  {
+    "id": "portal_américas",
+    "name": "Portal Américas",
+    "lat": 4.629381,
+    "lon": -74.173058,
+    "troncal": "Américas",
+    "trazado": "TZ009"
+  },
+  {
+    "id": "pradera___plaza_central",
+    "name": "Pradera - Plaza Central",
+    "lat": 4.628506,
+    "lon": -74.118677,
+    "troncal": "Américas",
+    "trazado": "TZ009"
+  },
+  {
+    "id": "puente_aranda",
+    "name": "Puente Aranda",
+    "lat": 4.62567,
+    "lon": -74.104639,
+    "troncal": "Américas",
+    "trazado": "TZ009"
+  },
+  {
+    "id": "ricaurte___cl_13",
+    "name": "Ricaurte - CL 13",
+    "lat": 4.613018,
+    "lon": -74.090476,
+    "troncal": "Américas",
+    "trazado": "TZ009"
+  },
+  {
+    "id": "san_facon_carrera_22",
+    "name": "San Facon Carrera 22",
+    "lat": 4.609735,
+    "lon": -74.086795,
+    "troncal": "Américas",
+    "trazado": "TZ009"
+  },
+  {
+    "id": "transversal_86",
+    "name": "Transversal 86",
+    "lat": 4.634195,
+    "lon": -74.152068,
+    "troncal": "Américas",
+    "trazado": "TZ009"
+  },
+  {
+    "id": "zona_industrial",
+    "name": "Zona Industrial",
+    "lat": 4.620325,
+    "lon": -74.098686,
+    "troncal": "Américas",
+    "trazado": "TZ009"
+  },
+  {
+    "id": "alcalá_–_colegio_s_tomás_dominicos",
+    "name": "Alcalá – Colegio S. Tomás Dominicos",
+    "lat": 4.721158,
+    "lon": -74.051459,
+    "troncal": "Autopista Norte",
+    "trazado": "TZ002"
+  },
+  {
+    "id": "calle_100___marketmedios",
+    "name": "Calle 100 - Marketmedios",
+    "lat": 4.683949,
+    "lon": -74.057712,
+    "troncal": "Autopista Norte",
+    "trazado": "TZ002"
+  },
+  {
+    "id": "calle_106___maletas_explora",
+    "name": "Calle 106 - Maletas Explora",
+    "lat": 4.692983,
+    "lon": -74.056182,
+    "troncal": "Autopista Norte",
+    "trazado": "TZ002"
+  },
+  {
+    "id": "calle_127",
+    "name": "Calle 127",
+    "lat": 4.70464,
+    "lon": -74.054225,
+    "troncal": "Autopista Norte",
+    "trazado": "TZ002"
+  },
+  {
+    "id": "calle_142",
+    "name": "Calle 142",
+    "lat": 4.72685,
+    "lon": -74.050503,
+    "troncal": "Autopista Norte",
+    "trazado": "TZ002"
+  },
+  {
+    "id": "calle_146",
+    "name": "Calle 146",
+    "lat": 4.730891,
+    "lon": -74.049811,
+    "troncal": "Autopista Norte",
+    "trazado": "TZ002"
+  },
+  {
+    "id": "calle_161",
+    "name": "Calle 161",
+    "lat": 4.741915,
+    "lon": -74.048,
+    "troncal": "Autopista Norte",
+    "trazado": "TZ002"
+  },
+  {
+    "id": "calle_187",
+    "name": "Calle 187",
+    "lat": 4.763337,
+    "lon": -74.044444,
+    "troncal": "Autopista Norte",
+    "trazado": "TZ002"
+  },
+  {
+    "id": "calle_85",
+    "name": "Calle 85",
+    "lat": 4.672313,
+    "lon": -74.059644,
+    "troncal": "Autopista Norte",
+    "trazado": "TZ002"
+  },
+  {
+    "id": "héroes___colmena_seguros",
+    "name": "Héroes - Colmena Seguros",
+    "lat": 4.668136,
+    "lon": -74.06031,
+    "troncal": "Autopista Norte",
+    "trazado": "TZ002"
+  },
+  {
+    "id": "mazurén",
+    "name": "Mazurén",
+    "lat": 4.734589,
+    "lon": -74.049226,
+    "troncal": "Autopista Norte",
+    "trazado": "TZ002"
+  },
+  {
+    "id": "pepe_sierra_utel_universidad",
+    "name": "Pepe Sierra UTEL Universidad",
+    "lat": 4.698127,
+    "lon": -74.055309,
+    "troncal": "Autopista Norte",
+    "trazado": "TZ002"
+  },
+  {
+    "id": "portal_norte_–_unicervantes",
+    "name": "Portal Norte – Unicervantes",
+    "lat": 4.754623,
+    "lon": -74.046045,
+    "troncal": "Autopista Norte",
+    "trazado": "TZ002"
+  },
+  {
+    "id": "prado",
+    "name": "Prado",
+    "lat": 4.714558,
+    "lon": -74.052558,
+    "troncal": "Autopista Norte",
+    "trazado": "TZ002"
+  },
+  {
+    "id": "terminal",
+    "name": "Terminal",
+    "lat": 4.768819,
+    "lon": -74.043573,
+    "troncal": "Autopista Norte",
+    "trazado": "TZ002"
+  },
+  {
+    "id": "toberin___foundever",
+    "name": "Toberin - Foundever",
+    "lat": 4.746185,
+    "lon": -74.047255,
+    "troncal": "Autopista Norte",
+    "trazado": "TZ002"
+  },
+  {
+    "id": "virrey",
+    "name": "Virrey",
+    "lat": 4.675997,
+    "lon": -74.05902,
+    "troncal": "Autopista Norte",
+    "trazado": "TZ002"
+  },
+  {
+    "id": "avenida_rojas___unisalesiana",
+    "name": "Avenida Rojas - UNISALESIANA",
+    "lat": 4.661944,
+    "lon": -74.108772,
+    "troncal": "Calle 26",
+    "trazado": "TZ016"
+  },
+  {
+    "id": "can",
+    "name": "CAN",
+    "lat": 4.646876,
+    "lon": -74.099046,
+    "troncal": "Calle 26",
+    "trazado": "TZ016"
+  },
+  {
+    "id": "centro_memoria",
+    "name": "Centro Memoria",
+    "lat": 4.620465,
+    "lon": -74.076321,
+    "troncal": "Calle 26",
+    "trazado": "TZ016"
+  },
+  {
+    "id": "ciudad_universitaria___lotería_de_bogotá",
+    "name": "Ciudad Universitaria - Lotería de Bogotá",
+    "lat": 4.630875,
+    "lon": -74.083527,
+    "troncal": "Calle 26",
+    "trazado": "TZ016"
+  },
+  {
+    "id": "concejo_de_bogotá",
+    "name": "Concejo de Bogotá",
+    "lat": 4.625987,
+    "lon": -74.08029,
+    "troncal": "Calle 26",
+    "trazado": "TZ016"
+  },
+  {
+    "id": "corferias",
+    "name": "Corferias",
+    "lat": 4.634306,
+    "lon": -74.089701,
+    "troncal": "Calle 26",
+    "trazado": "TZ016"
+  },
+  {
+    "id": "el_tiempo_–_cámara_de_comercio_de_bogotá",
+    "name": "El Tiempo – Cámara de Comercio de Bogotá",
+    "lat": 4.657067,
+    "lon": -74.105647,
+    "troncal": "Calle 26",
+    "trazado": "TZ016"
+  },
+  {
+    "id": "gobernación",
+    "name": "Gobernación",
+    "lat": 4.64283,
+    "lon": -74.096538,
+    "troncal": "Calle 26",
+    "trazado": "TZ016"
+  },
+  {
+    "id": "modelia",
+    "name": "Modelia",
+    "lat": 4.675025,
+    "lon": -74.117147,
+    "troncal": "Calle 26",
+    "trazado": "TZ016"
+  },
+  {
+    "id": "normandía",
+    "name": "Normandía",
+    "lat": 4.669009,
+    "lon": -74.11328,
+    "troncal": "Calle 26",
+    "trazado": "TZ016"
+  },
+  {
+    "id": "portal_el_dorado_–_cc_nuestro_bogotá",
+    "name": "Portal El Dorado – C.C. Nuestro Bogotá",
+    "lat": 4.681622,
+    "lon": -74.121398,
+    "troncal": "Calle 26",
+    "trazado": "TZ016"
+  },
+  {
+    "id": "quinta_paredes",
+    "name": "Quinta Paredes",
+    "lat": 4.637504,
+    "lon": -74.093132,
+    "troncal": "Calle 26",
+    "trazado": "TZ016"
+  },
+  {
+    "id": "salitre___el_greco",
+    "name": "Salitre - El Greco",
+    "lat": 4.650865,
+    "lon": -74.101649,
+    "troncal": "Calle 26",
+    "trazado": "TZ016"
+  },
+  {
+    "id": "universidades_–_cityu",
+    "name": "Universidades – CityU",
+    "lat": 4.604646,
+    "lon": -74.067316,
+    "troncal": "Calle 26",
+    "trazado": "TZ016"
+  },
+  {
+    "id": "av_68",
+    "name": "AV. 68",
+    "lat": 4.686103,
+    "lon": -74.080766,
+    "troncal": "Calle 80",
+    "trazado": "TZ005"
+  },
+  {
+    "id": "av_boyacá",
+    "name": "AV. Boyacá",
+    "lat": 4.693933,
+    "lon": -74.087132,
+    "troncal": "Calle 80",
+    "trazado": "TZ005"
+  },
+  {
+    "id": "av_cali",
+    "name": "AV. Cali",
+    "lat": 4.702483,
+    "lon": -74.10029,
+    "troncal": "Calle 80",
+    "trazado": "TZ005"
+  },
+  {
+    "id": "carrera_47",
+    "name": "Carrera 47",
+    "lat": 4.677756,
+    "lon": -74.073255,
+    "troncal": "Calle 80",
+    "trazado": "TZ005"
+  },
+  {
+    "id": "carrera_53",
+    "name": "Carrera 53",
+    "lat": 4.681805,
+    "lon": -74.077421,
+    "troncal": "Calle 80",
+    "trazado": "TZ005"
+  },
+  {
+    "id": "carrera_90",
+    "name": "Carrera 90",
+    "lat": 4.704666,
+    "lon": -74.10457,
+    "troncal": "Calle 80",
+    "trazado": "TZ005"
+  },
+  {
+    "id": "escuela_militar",
+    "name": "Escuela Militar",
+    "lat": 4.675535,
+    "lon": -74.069802,
+    "troncal": "Calle 80",
+    "trazado": "TZ005"
+  },
+  {
+    "id": "ferias",
+    "name": "Ferias",
+    "lat": 4.690886,
+    "lon": -74.084601,
+    "troncal": "Calle 80",
+    "trazado": "TZ005"
+  },
+  {
+    "id": "granja___kr_77",
+    "name": "Granja - Kr 77",
+    "lat": 4.69915,
+    "lon": -74.096018,
+    "troncal": "Calle 80",
+    "trazado": "TZ005"
+  },
+  {
+    "id": "minuto_de_dios",
+    "name": "Minuto de Dios",
+    "lat": 4.696882,
+    "lon": -74.091933,
+    "troncal": "Calle 80",
+    "trazado": "TZ005"
+  },
+  {
+    "id": "polo___fincomercio",
+    "name": "Polo - FINCOMERCIO",
+    "lat": 4.670163,
+    "lon": -74.064339,
+    "troncal": "Calle 80",
+    "trazado": "TZ005"
+  },
+  {
+    "id": "portal_80",
+    "name": "Portal 80",
+    "lat": 4.709829,
+    "lon": -74.110506,
+    "troncal": "Calle 80",
+    "trazado": "TZ005"
+  },
+  {
+    "id": "quirigua",
+    "name": "Quirigua",
+    "lat": 4.706725,
+    "lon": -74.108739,
+    "troncal": "Calle 80",
+    "trazado": "TZ005"
+  },
+  {
+    "id": "av_39",
+    "name": "AV. 39",
+    "lat": 4.626897,
+    "lon": -74.068697,
+    "troncal": "Caracas",
+    "trazado": "TZ001"
+  },
+  {
+    "id": "av_jiménez___caracas",
+    "name": "AV. Jiménez - Caracas",
+    "lat": 4.602867,
+    "lon": -74.08041,
+    "troncal": "Caracas",
+    "trazado": "TZ001"
+  },
+  {
+    "id": "calle_19",
+    "name": "Calle 19",
+    "lat": 4.607865,
+    "lon": -74.07687,
+    "troncal": "Caracas",
+    "trazado": "TZ001"
+  },
+  {
+    "id": "calle_26_atrio",
+    "name": "Calle 26-Atrio",
+    "lat": 4.616652,
+    "lon": -74.072158,
+    "troncal": "Caracas",
+    "trazado": "TZ001"
+  },
+  {
+    "id": "calle_45___american_school_way",
+    "name": "Calle 45 - American School Way",
+    "lat": 4.631452,
+    "lon": -74.067879,
+    "troncal": "Caracas",
+    "trazado": "TZ001"
+  },
+  {
+    "id": "calle_63",
+    "name": "Calle 63",
+    "lat": 4.648404,
+    "lon": -74.064871,
+    "troncal": "Caracas",
+    "trazado": "TZ001"
+  },
+  {
+    "id": "calle_72",
+    "name": "Calle 72",
+    "lat": 4.658238,
+    "lon": -74.062068,
+    "troncal": "Caracas",
+    "trazado": "TZ001"
+  },
+  {
+    "id": "calle_76___san_felipe",
+    "name": "Calle 76 - San Felipe",
+    "lat": 4.663029,
+    "lon": -74.061261,
+    "troncal": "Caracas",
+    "trazado": "TZ001"
+  },
+  {
+    "id": "flores_–_areandina",
+    "name": "Flores – Areandina",
+    "lat": 4.654903,
+    "lon": -74.063009,
+    "troncal": "Caracas",
+    "trazado": "TZ001"
+  },
+  {
+    "id": "marly",
+    "name": "Marly",
+    "lat": 4.637559,
+    "lon": -74.066788,
+    "troncal": "Caracas",
+    "trazado": "TZ001"
+  },
+  {
+    "id": "temporal_av_39",
+    "name": "Temporal AV. 39",
+    "lat": 4.625383,
+    "lon": -74.068952,
+    "troncal": "Caracas",
+    "trazado": "TZ001"
+  },
+  {
+    "id": "temporal_av_jiménez___caracas",
+    "name": "Temporal AV. Jiménez - Caracas",
+    "lat": 4.601988,
+    "lon": -74.081045,
+    "troncal": "Caracas",
+    "trazado": "TZ001"
+  },
+  {
+    "id": "temporal_calle_22",
+    "name": "Temporal Calle 22",
+    "lat": 4.610029,
+    "lon": -74.075559,
+    "troncal": "Caracas",
+    "trazado": "TZ001"
+  },
+  {
+    "id": "temporal_calle_34",
+    "name": "Temporal Calle 34",
+    "lat": 4.621576,
+    "lon": -74.069719,
+    "troncal": "Caracas",
+    "trazado": "TZ001"
+  },
+  {
+    "id": "temporal_calle_57",
+    "name": "Temporal Calle 57",
+    "lat": 4.642982,
+    "lon": -74.065828,
+    "troncal": "Caracas",
+    "trazado": "TZ001"
+  },
+  {
+    "id": "temporal_marly",
+    "name": "Temporal Marly",
+    "lat": 4.637559,
+    "lon": -74.066788,
+    "troncal": "Caracas",
+    "trazado": "TZ001"
+  },
+  {
+    "id": "tercer_milenio",
+    "name": "Tercer Milenio",
+    "lat": 4.598135,
+    "lon": -74.083836,
+    "troncal": "Caracas",
+    "trazado": "TZ001"
+  },
+  {
+    "id": "calle_40_sur",
+    "name": "Calle 40 Sur",
+    "lat": 4.575794,
+    "lon": -74.120079,
+    "troncal": "Caracas Sur",
+    "trazado": "TZ012"
+  },
+  {
+    "id": "consuelo",
+    "name": "Consuelo",
+    "lat": 4.560228,
+    "lon": -74.123874,
+    "troncal": "Caracas Sur",
+    "trazado": "TZ012"
+  },
+  {
+    "id": "danubio",
+    "name": "Danubio",
+    "lat": 4.543654,
+    "lon": -74.120852,
+    "troncal": "Caracas Sur",
+    "trazado": "TZ013"
+  },
+  {
+    "id": "fucha",
+    "name": "Fucha",
+    "lat": 4.582973,
+    "lon": -74.099402,
+    "troncal": "Caracas Sur",
+    "trazado": "TZ012"
+  },
+  {
+    "id": "hortúa",
+    "name": "Hortúa",
+    "lat": 4.590847,
+    "lon": -74.090246,
+    "troncal": "Caracas Sur",
+    "trazado": "TZ012"
+  },
+  {
+    "id": "hospital",
+    "name": "Hospital",
+    "lat": 4.595051,
+    "lon": -74.086226,
+    "troncal": "Caracas Sur",
+    "trazado": "TZ012"
+  },
+  {
+    "id": "molinos",
+    "name": "Molinos",
+    "lat": 4.557065,
+    "lon": -74.121828,
+    "troncal": "Caracas Sur",
+    "trazado": "TZ012"
+  },
+  {
+    "id": "nariño",
+    "name": "Nariño",
+    "lat": 4.586285,
+    "lon": -74.093925,
+    "troncal": "Caracas Sur",
+    "trazado": "TZ012"
+  },
+  {
+    "id": "olaya",
+    "name": "Olaya",
+    "lat": 4.578915,
+    "lon": -74.107364,
+    "troncal": "Caracas Sur",
+    "trazado": "TZ012"
+  },
+  {
+    "id": "portal_usme",
+    "name": "Portal Usme",
+    "lat": 4.531715,
+    "lon": -74.119391,
+    "troncal": "Caracas Sur",
+    "trazado": "TZ013"
+  },
+  {
+    "id": "quiroga",
+    "name": "Quiroga",
+    "lat": 4.57681,
+    "lon": -74.114381,
+    "troncal": "Caracas Sur",
+    "trazado": "TZ012"
+  },
+  {
+    "id": "restrepo",
+    "name": "Restrepo",
+    "lat": 4.581849,
+    "lon": -74.101429,
+    "troncal": "Caracas Sur",
+    "trazado": "TZ012"
+  },
+  {
+    "id": "santa_lucía",
+    "name": "Santa Lucía",
+    "lat": 4.570968,
+    "lon": -74.124709,
+    "troncal": "Caracas Sur",
+    "trazado": "TZ012"
+  },
+  {
+    "id": "socorro",
+    "name": "Socorro",
+    "lat": 4.564653,
+    "lon": -74.125584,
+    "troncal": "Caracas Sur",
+    "trazado": "TZ012"
+  },
+  {
+    "id": "av_1_mayo",
+    "name": "AV. 1 Mayo",
+    "lat": 4.576939,
+    "lon": -74.093709,
+    "troncal": "Carrera 10",
+    "trazado": "TZ018"
+  },
+  {
+    "id": "bicentenario",
+    "name": "Bicentenario",
+    "lat": 4.594021,
+    "lon": -74.081835,
+    "troncal": "Carrera 10",
+    "trazado": "TZ018"
+  },
+  {
+    "id": "ciudad_jardín___uan",
+    "name": "Ciudad Jardín - UAN",
+    "lat": 4.581543,
+    "lon": -74.090352,
+    "troncal": "Carrera 10",
+    "trazado": "TZ018"
+  },
+  {
+    "id": "country_sur",
+    "name": "Country Sur",
+    "lat": 4.571417,
+    "lon": -74.098634,
+    "troncal": "Carrera 10",
+    "trazado": "TZ018"
+  },
+  {
+    "id": "las_nieves",
+    "name": "Las Nieves",
+    "lat": 4.606065,
+    "lon": -74.074327,
+    "troncal": "Carrera 10",
+    "trazado": "TZ018"
+  },
+  {
+    "id": "policarpa",
+    "name": "Policarpa",
+    "lat": 4.586149,
+    "lon": -74.087066,
+    "troncal": "Carrera 10",
+    "trazado": "TZ018"
+  },
+  {
+    "id": "portal_20_de_julio",
+    "name": "Portal 20 de Julio",
+    "lat": 4.565718,
+    "lon": -74.097008,
+    "troncal": "Carrera 10",
+    "trazado": "TZ018"
+  },
+  {
+    "id": "san_bernardo",
+    "name": "San Bernardo",
+    "lat": 4.590196,
+    "lon": -74.084327,
+    "troncal": "Carrera 10",
+    "trazado": "TZ018"
+  },
+  {
+    "id": "san_diego",
+    "name": "San Diego",
+    "lat": 4.610899,
+    "lon": -74.0715,
+    "troncal": "Carrera 10",
+    "trazado": "TZ018"
+  },
+  {
+    "id": "san_victorino",
+    "name": "San Victorino",
+    "lat": 4.601029,
+    "lon": -74.077422,
+    "troncal": "Carrera 10",
+    "trazado": "TZ018"
+  },
+  {
+    "id": "museo_nacional",
+    "name": "Museo Nacional",
+    "lat": 4.615247,
+    "lon": -74.069226,
+    "troncal": "Carrera 7",
+    "trazado": "TZ019"
+  },
+  {
+    "id": "av_jiménez___cl_13",
+    "name": "AV. Jiménez - CL 13",
+    "lat": 4.603053,
+    "lon": -74.079093,
+    "troncal": "Eje Ambiental",
+    "trazado": "TZ015"
+  },
+  {
+    "id": "las_aguas___centro_colombo_americano",
+    "name": "Las Aguas - Centro Colombo Americano",
+    "lat": 4.60258,
+    "lon": -74.068401,
+    "troncal": "Eje Ambiental",
+    "trazado": "TZ015"
+  },
+  {
+    "id": "museo_del_oro",
+    "name": "Museo del Oro",
+    "lat": 4.601153,
+    "lon": -74.072908,
+    "troncal": "Eje Ambiental",
+    "trazado": "TZ015"
+  },
+  {
+    "id": "7_de_agosto",
+    "name": "7 de Agosto",
+    "lat": 4.657295,
+    "lon": -74.077686,
+    "troncal": "NQS Central",
+    "trazado": "TZ008"
+  },
+  {
+    "id": "av_chile",
+    "name": "AV. Chile",
+    "lat": 4.666353,
+    "lon": -74.074575,
+    "troncal": "NQS Central",
+    "trazado": "TZ008"
+  },
+  {
+    "id": "av_eldorado",
+    "name": "AV. ElDorado",
+    "lat": 4.630668,
+    "lon": -74.079879,
+    "troncal": "NQS Central",
+    "trazado": "TZ008"
+  },
+  {
+    "id": "cad",
+    "name": "CAD",
+    "lat": 4.623416,
+    "lon": -74.084181,
+    "troncal": "NQS Central",
+    "trazado": "TZ008"
+  },
+  {
+    "id": "calle_75___zona_m",
+    "name": "Calle 75 - Zona M",
+    "lat": 4.670151,
+    "lon": -74.071305,
+    "troncal": "NQS Central",
+    "trazado": "TZ008"
+  },
+  {
+    "id": "campín___uan",
+    "name": "Campín - UAN",
+    "lat": 4.645398,
+    "lon": -74.07871,
+    "troncal": "NQS Central",
+    "trazado": "TZ008"
+  },
+  {
+    "id": "guatoque___veraguas",
+    "name": "Guatoque - Veraguas",
+    "lat": 4.604171,
+    "lon": -74.094933,
+    "troncal": "NQS Central",
+    "trazado": "TZ007"
+  },
+  {
+    "id": "la_castellana",
+    "name": "La Castellana",
+    "lat": 4.675611,
+    "lon": -74.064443,
+    "troncal": "NQS Central",
+    "trazado": "TZ008"
+  },
+  {
+    "id": "movistar_arena",
+    "name": "Movistar Arena",
+    "lat": 4.65004,
+    "lon": -74.078362,
+    "troncal": "NQS Central",
+    "trazado": "TZ008"
+  },
+  {
+    "id": "paloquemao",
+    "name": "Paloquemao",
+    "lat": 4.616922,
+    "lon": -74.089553,
+    "troncal": "NQS Central",
+    "trazado": "TZ008"
+  },
+  {
+    "id": "ricaurte___nqs",
+    "name": "Ricaurte - NQS",
+    "lat": 4.611684,
+    "lon": -74.093866,
+    "troncal": "NQS Central",
+    "trazado": "TZ008"
+  },
+  {
+    "id": "tygua___san_josé",
+    "name": "Tygua - San José",
+    "lat": 4.599787,
+    "lon": -74.088761,
+    "troncal": "NQS Central",
+    "trazado": "TZ007"
+  },
+  {
+    "id": "universidad_nacional",
+    "name": "Universidad Nacional",
+    "lat": 4.637121,
+    "lon": -74.079326,
+    "troncal": "NQS Central",
+    "trazado": "TZ008"
+  },
+  {
+    "id": "alquería",
+    "name": "Alquería",
+    "lat": 4.59427,
+    "lon": -74.13427,
+    "troncal": "NQS Sur",
+    "trazado": "TZ010"
+  },
+  {
+    "id": "bosa",
+    "name": "Bosa",
+    "lat": 4.596888,
+    "lon": -74.181225,
+    "troncal": "NQS Sur",
+    "trazado": "TZ010"
+  },
+  {
+    "id": "cc_paseo_villa_del_río___madelena",
+    "name": "CC Paseo Villa del Río - Madelena",
+    "lat": 4.596281,
+    "lon": -74.156881,
+    "troncal": "NQS Sur",
+    "trazado": "TZ010"
+  },
+  {
+    "id": "comuneros",
+    "name": "Comuneros",
+    "lat": 4.60425,
+    "lon": -74.099861,
+    "troncal": "NQS Sur",
+    "trazado": "TZ010"
+  },
+  {
+    "id": "general_santander",
+    "name": "General Santander",
+    "lat": 4.593551,
+    "lon": -74.129545,
+    "troncal": "NQS Sur",
+    "trazado": "TZ010"
+  },
+  {
+    "id": "nqs___calle_30_s",
+    "name": "NQS - Calle 30 S",
+    "lat": 4.594798,
+    "lon": -74.117881,
+    "troncal": "NQS Sur",
+    "trazado": "TZ010"
+  },
+  {
+    "id": "nqs___calle_38a_s",
+    "name": "NQS - Calle 38A S",
+    "lat": 4.593809,
+    "lon": -74.123755,
+    "troncal": "NQS Sur",
+    "trazado": "TZ010"
+  },
+  {
+    "id": "perdomo",
+    "name": "Perdomo",
+    "lat": 4.595788,
+    "lon": -74.16497,
+    "troncal": "NQS Sur",
+    "trazado": "TZ010"
+  },
+  {
+    "id": "portal_sur___jfk_coop_financiera",
+    "name": "Portal Sur - JFK Coop. Financiera",
+    "lat": 4.59694,
+    "lon": -74.169298,
+    "troncal": "NQS Sur",
+    "trazado": "TZ010"
+  },
+  {
+    "id": "sena",
+    "name": "SENA",
+    "lat": 4.597371,
+    "lon": -74.110643,
+    "troncal": "NQS Sur",
+    "trazado": "TZ010"
+  },
+  {
+    "id": "santa_isabel",
+    "name": "Santa Isabel",
+    "lat": 4.601675,
+    "lon": -74.102618,
+    "troncal": "NQS Sur",
+    "trazado": "TZ010"
+  },
+  {
+    "id": "sevillana",
+    "name": "Sevillana",
+    "lat": 4.595107,
+    "lon": -74.14741,
+    "troncal": "NQS Sur",
+    "trazado": "TZ010"
+  },
+  {
+    "id": "venecia",
+    "name": "Venecia",
+    "lat": 4.595563,
+    "lon": -74.142649,
+    "troncal": "NQS Sur",
+    "trazado": "TZ010"
+  },
+  {
+    "id": "la_despensa",
+    "name": "La Despensa",
+    "lat": 4.594594,
+    "lon": -74.188112,
+    "troncal": "Soacha",
+    "trazado": "TZ011"
+  },
+  {
+    "id": "león_xiii",
+    "name": "León XIII",
+    "lat": 4.592173,
+    "lon": -74.193135,
+    "troncal": "Soacha",
+    "trazado": "TZ011"
+  },
+  {
+    "id": "san_mateo___cc_unisur",
+    "name": "San Mateo - CC Unisur",
+    "lat": 4.585961,
+    "lon": -74.20545,
+    "troncal": "Soacha",
+    "trazado": "TZ011"
+  },
+  {
+    "id": "terreros___hospital_cardio_vascular",
+    "name": "Terreros - Hospital Cardio Vascular",
+    "lat": 4.588963,
+    "lon": -74.199523,
+    "troncal": "Soacha",
+    "trazado": "TZ011"
+  },
+  {
+    "id": "21_ángeles",
+    "name": "21 Ángeles",
+    "lat": 4.735508,
+    "lon": -74.080987,
+    "troncal": "Suba",
+    "trazado": "TZ003"
+  },
+  {
+    "id": "gratamira",
+    "name": "Gratamira",
+    "lat": 4.727456,
+    "lon": -74.074723,
+    "troncal": "Suba",
+    "trazado": "TZ003"
+  },
+  {
+    "id": "humedal_córdoba",
+    "name": "Humedal Córdoba",
+    "lat": 4.70669,
+    "lon": -74.071174,
+    "troncal": "Suba",
+    "trazado": "TZ003"
+  },
+  {
+    "id": "la_campiña",
+    "name": "La Campiña",
+    "lat": 4.742654,
+    "lon": -74.091201,
+    "troncal": "Suba",
+    "trazado": "TZ003"
+  },
+  {
+    "id": "niza___calle_127",
+    "name": "Niza - Calle 127",
+    "lat": 4.712001,
+    "lon": -74.072307,
+    "troncal": "Suba",
+    "trazado": "TZ003"
+  },
+  {
+    "id": "portal_suba",
+    "name": "Portal Suba",
+    "lat": 4.746815,
+    "lon": -74.094279,
+    "troncal": "Suba",
+    "trazado": "TZ003"
+  },
+  {
+    "id": "puentelargo",
+    "name": "Puentelargo",
+    "lat": 4.693401,
+    "lon": -74.067209,
+    "troncal": "Suba",
+    "trazado": "TZ003"
+  },
+  {
+    "id": "rionegro",
+    "name": "Rionegro",
+    "lat": 4.680351,
+    "lon": -74.064817,
+    "troncal": "Suba",
+    "trazado": "TZ003"
+  },
+  {
+    "id": "san_martín",
+    "name": "San Martín",
+    "lat": 4.67639,
+    "lon": -74.067177,
+    "troncal": "Suba",
+    "trazado": "TZ003"
+  },
+  {
+    "id": "suba___av_boyacá",
+    "name": "Suba - AV. Boyacá",
+    "lat": 4.721267,
+    "lon": -74.074712,
+    "troncal": "Suba",
+    "trazado": "TZ003"
+  },
+  {
+    "id": "suba___calle_100",
+    "name": "Suba - Calle 100",
+    "lat": 4.686968,
+    "lon": -74.064443,
+    "troncal": "Suba",
+    "trazado": "TZ003"
+  },
+  {
+    "id": "suba___calle_116",
+    "name": "Suba - Calle 116",
+    "lat": 4.699241,
+    "lon": -74.069844,
+    "troncal": "Suba",
+    "trazado": "TZ003"
+  },
+  {
+    "id": "suba___calle_95",
+    "name": "Suba - Calle 95",
+    "lat": 4.684695,
+    "lon": -74.063218,
+    "troncal": "Suba",
+    "trazado": "TZ003"
+  },
+  {
+    "id": "suba___tv_91",
+    "name": "Suba - TV. 91",
+    "lat": 4.738937,
+    "lon": -74.086992,
+    "troncal": "Suba",
+    "trazado": "TZ003"
+  },
+  {
+    "id": "biblioteca",
+    "name": "Biblioteca",
+    "lat": 4.570304,
+    "lon": -74.130389,
+    "troncal": "Tunal",
+    "trazado": "TZ014"
+  },
+  {
+    "id": "parque",
+    "name": "Parque",
+    "lat": 4.568327,
+    "lon": -74.135415,
+    "troncal": "Tunal",
+    "trazado": "TZ014"
+  },
+  {
+    "id": "portal_tunal",
+    "name": "Portal Tunal",
+    "lat": 4.569571,
+    "lon": -74.13924,
+    "troncal": "Tunal",
+    "trazado": "TZ014"
+  }
+]
