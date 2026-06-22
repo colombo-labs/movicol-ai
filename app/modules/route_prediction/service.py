@@ -22,8 +22,6 @@ from app.modules.route_prediction.schemas import (
     RoutePredictionResponse,
 )
 
-OSRM_BASE = "http://router.project-osrm.org"
-
 
 def _parse_hour(departure_time: str) -> int:
     """Extract hour from ISO departure time string."""
@@ -174,13 +172,13 @@ class RoutePredictionService:
         hour = _parse_hour(departure_time)
 
         url = (
-            f"{OSRM_BASE}/route/v1/driving/"
+            f"{get_settings().osrm_base_url}/route/v1/driving/"
             f"{origin.lng},{origin.lat};{destination.lng},{destination.lat}"
             f"?overview=full&geometries=geojson&steps=true"
         )
 
         try:
-            async with httpx.AsyncClient(timeout=15, follow_redirects=True) as client:
+            async with httpx.AsyncClient(timeout=15, follow_redirects=True, max_redirects=3) as client:
                 resp = await client.get(url)
                 data = resp.json()
 
@@ -270,12 +268,12 @@ class RoutePredictionService:
         """Vehicle routing with multiple alternatives via OSRM."""
         hour = _parse_hour(departure_time)
         url = (
-            f"{OSRM_BASE}/route/v1/driving/"
+            f"{get_settings().osrm_base_url}/route/v1/driving/"
             f"{origin.lng},{origin.lat};{destination.lng},{destination.lat}"
             f"?overview=full&geometries=geojson&steps=true&alternatives=3"
         )
         try:
-            async with httpx.AsyncClient(timeout=15, follow_redirects=True) as client:
+            async with httpx.AsyncClient(timeout=15, follow_redirects=True, max_redirects=3) as client:
                 resp = await client.get(url)
                 data = resp.json()
 

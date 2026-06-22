@@ -59,7 +59,7 @@ async def get_system_alerts() -> dict:
     """Scrape operational alerts from TransMilenio official site."""
     import re
     try:
-        async with httpx.AsyncClient(timeout=10, follow_redirects=True) as client:
+        async with httpx.AsyncClient(timeout=10, follow_redirects=True, max_redirects=3) as client:
             resp = await client.get("https://www.transmilenio.gov.co")
             html = resp.text
 
@@ -70,7 +70,7 @@ async def get_system_alerts() -> dict:
         for u, content in matches:
             title = re.sub(r'<[^>]+>', '', content).strip()
             if title and len(title) > 10 and "Concesionario" not in title:
-                codes = re.findall(r'\b([A-Z]?\d+[-]?\d*)\b', title)
+                codes = re.findall(r'\b([A-Z]?\d+-?\d*)\b', title)
                 alerts.append({"title": title[:100], "url": u, "route_codes": codes})
         alerts = alerts[:5]
 
