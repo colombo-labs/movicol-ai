@@ -92,16 +92,21 @@ def build_tm_graph() -> nx.Graph:
                 G.add_edge(prev["id"], s["id"], troncal=troncal, distance_km=round(dist, 3))
 
     # Add transfer edges between troncales (stations < 800m apart)
-    nodes = list(G.nodes(data=True))
-    for i, (n1, d1) in enumerate(nodes):
-        for j, (n2, d2) in enumerate(nodes):
-            if i >= j or d1.get("troncal") == d2.get("troncal"):
-                continue
-            dist = _hav(float(d1["lat"]), float(d1["lon"]), float(d2["lat"]), float(d2["lon"]))
-            if dist < 0.8:  # < 800m
-                G.add_edge(n1, n2, troncal="transbordo", distance_km=round(dist, 3))
+    _add_transfer_edges(G, _hav)
 
     return G
+
+
+def _add_transfer_edges(G: nx.Graph, hav_fn) -> None:
+    """Add transfer edges between stations of different troncales within 800m."""
+    nodes = list(G.nodes(data=True))
+    for i, (n1, d1) in enumerate(nodes):
+        for n2, d2 in nodes[i + 1:]:
+            if d1.get("troncal") == d2.get("troncal"):
+                continue
+            dist = hav_fn(float(d1["lat"]), float(d1["lon"]), float(d2["lat"]), float(d2["lon"]))
+            if dist < 0.8:
+                G.add_edge(n1, n2, troncal="transbordo", distance_km=round(dist, 3))
 
 
 def build_caracas_graph() -> nx.Graph:

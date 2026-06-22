@@ -1,5 +1,7 @@
 """Route prediction router — POST /api/v1/predict-route."""
 
+from typing import Annotated
+
 from fastapi import APIRouter, Query
 import httpx
 
@@ -14,7 +16,7 @@ router = APIRouter()
 service = RoutePredictionService()
 
 
-@router.post("", response_model=RoutePredictionResponse)
+@router.post("")
 async def predict_route(request: RoutePredictionRequest) -> RoutePredictionResponse:
     """Predict optimal route with congestion risk segments."""
     prediction = await service.predict_route(
@@ -30,7 +32,7 @@ async def predict_route(request: RoutePredictionRequest) -> RoutePredictionRespo
     return prediction
 
 
-@router.post("/alternatives", response_model=list[RoutePredictionResponse])
+@router.post("/alternatives")
 async def predict_route_alternatives(request: RoutePredictionRequest) -> list[RoutePredictionResponse]:
     """Predict multiple route alternatives (vehicle mode)."""
     results = await service.predict_vehicle_alternatives(
@@ -45,8 +47,8 @@ async def predict_route_alternatives(request: RoutePredictionRequest) -> list[Ro
 
 @router.get("/safety")
 async def get_route_safety(
-    ruta: str = Query(..., description="SITP route number"),
-    hour: int = Query(default=12, ge=0, le=23, description="Hour of day"),
+    ruta: Annotated[str, Query(description="SITP route number")],
+    hour: Annotated[int, Query(ge=0, le=23, description="Hour of day")] = 12,
 ) -> dict:
     """Get safety score for a specific SITP route based on congestion at its stops."""
     return service.get_route_safety(ruta, hour)

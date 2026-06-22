@@ -188,62 +188,15 @@ class RoutePredictionService:
                 return self._fallback_vehicle(origin, destination, departure_time, hour)
 
             route = data["routes"][0]
-            duration_min = route["duration"] / 60
-            distance_km = route["distance"] / 1000
-            coords = route["geometry"]["coordinates"]  # [lng, lat] pairs
-
-            # Congestion adjustment by hour
             congestion = _time_factor(hour) * 0.7
-            adjusted_time = duration_min * (1 + congestion * 0.5)
 
-            # Build segments from OSRM steps (with street names)
-            steps = route["legs"][0]["steps"]
-            segments = []
-            for i, step in enumerate(steps[:-1]):
-                next_step = steps[i + 1]
-                from_name = step.get("name") or f"Punto {i + 1}"
-                to_name = next_step.get("name") or f"Punto {i + 2}"
-                seg_coords = [[c[1], c[0]] for c in step["geometry"]["coordinates"]]
-                step_congestion = congestion * (1 + (i % 3) * 0.1)  # Vary slightly
-                segments.append(
-                    self._make_segment(from_name, to_name, min(1.0, step_congestion), seg_coords)
-                )
-
-            # Station names = main streets traversed
-            street_names = list(dict.fromkeys(
-                s.get("name", "") for s in steps if s.get("name")
-            ))[:15]
-
-            # Cost estimate: ~$2,000/km in Bogotá (gasolina + desgaste + parqueadero)
-            cost_pesos = round(distance_km * 2000, -2)  # Redondear a centenas
-            cost = f"${cost_pesos:,.0f}".replace(",", ".")
+            segments, street_names, cost, adjusted_time, distance_km = self._parse_osrm_route(
+                route, congestion
+            )
 
             # Build navigation steps from OSRM
-            maneuver_labels = {
-                "turn": {"left": "Gira a la izquierda", "right": "Gira a la derecha", "slight left": "Gira levemente a la izquierda", "slight right": "Gira levemente a la derecha", "sharp left": "Gira fuerte a la izquierda", "sharp right": "Gira fuerte a la derecha", "straight": "Continúa recto"},
-                "depart": {"": "Inicia el recorrido"},
-                "arrive": {"": "Has llegado a tu destino"},
-                "new name": {"straight": "Continúa por"},
-                "merge": {"": "Incorpórate"},
-                "roundabout": {"": "Toma la rotonda"},
-                "fork": {"left": "Toma el desvío izquierdo", "right": "Toma el desvío derecho"},
-            }
-            nav_steps = []
-            for step in steps:
-                m = step.get("maneuver", {})
-                mtype = m.get("type", "")
-                modifier = m.get("modifier", "")
-                street = step.get("name", "")
-                labels = maneuver_labels.get(mtype, {})
-                label = labels.get(modifier, labels.get("", f"{mtype} {modifier}".strip()))
-                instruction = f"{label} en {street}" if street else label
-                nav_steps.append(NavigationStep(
-                    instruction=instruction,
-                    street=street,
-                    distance_m=round(step.get("distance", 0)),
-                    duration_s=round(step.get("duration", 0)),
-                    maneuver=modifier or mtype,
-                ))
+            steps = route["legs"][0]["steps"]
+            nav_steps = self._build_nav_steps(steps)
 
             return self._build_response(
                 adjusted_time, distance_km, cost, "vehiculo", segments, street_names, departure_time,
@@ -251,6 +204,65 @@ class RoutePredictionService:
             )
         except Exception:
             return self._fallback_vehicle(origin, destination, departure_time, hour)
+
+    def _parse_osrm_route(
+        self, route: dict, congestion: float
+    ) -> tuple[list, list[str], str, float, float]:
+        """Parse an OSRM route into segments, street names, cost, time, distance."""
+        duration_min = route["duration"] / 60
+        distance_km = route["distance"] / 1000
+        adjusted_time = duration_min * (1 + congestion * 0.5)
+
+        steps = route["legs"][0]["steps"]
+        segments = []
+        for i, step in enumerate(steps[:-1]):
+            next_step = steps[i + 1]
+            from_name = step.get("name") or f"Punto {i + 1}"
+            to_name = next_step.get("name") or f"Punto {i + 2}"
+            seg_coords = [[c[1], c[0]] for c in step["geometry"]["coordinates"]]
+            step_congestion = congestion * (1 + (i % 3) * 0.1)
+            segments.append(
+                self._make_segment(from_name, to_name, min(1.0, step_congestion), seg_coords)
+            )
+
+        street_names = list(dict.fromkeys(
+            s.get("name", "") for s in steps if s.get("name")
+        ))[:15]
+
+        cost_pesos = round(distance_km * 2000, -2)
+        cost = f"${cost_pesos:,.0f}".replace(",", ".")
+
+        return segments, street_names, cost, adjusted_time, distance_km
+
+    @staticmethod
+    def _build_nav_steps(steps: list) -> list[NavigationStep]:
+        """Build navigation steps from OSRM steps data."""
+        maneuver_labels = {
+            "turn": {"left": "Gira a la izquierda", "right": "Gira a la derecha", "slight left": "Gira levemente a la izquierda", "slight right": "Gira levemente a la derecha", "sharp left": "Gira fuerte a la izquierda", "sharp right": "Gira fuerte a la derecha", "straight": "Continúa recto"},
+            "depart": {"": "Inicia el recorrido"},
+            "arrive": {"": "Has llegado a tu destino"},
+            "new name": {"straight": "Continúa por"},
+            "merge": {"": "Incorpórate"},
+            "roundabout": {"": "Toma la rotonda"},
+            "fork": {"left": "Toma el desvío izquierdo", "right": "Toma el desvío derecho"},
+        }
+        nav_steps = []
+        for step in steps:
+            m = step.get("maneuver", {})
+            mtype = m.get("type", "")
+            modifier = m.get("modifier", "")
+            street = step.get("name", "")
+            labels = maneuver_labels.get(mtype, {})
+            label = labels.get(modifier, labels.get("", f"{mtype} {modifier}".strip()))
+            instruction = f"{label} en {street}" if street else label
+            nav_steps.append(NavigationStep(
+                instruction=instruction,
+                street=street,
+                distance_m=round(step.get("distance", 0)),
+                duration_s=round(step.get("duration", 0)),
+                maneuver=modifier or mtype,
+            ))
+        return nav_steps
 
     async def predict_vehicle_alternatives(
         self, origin: Coordinates, destination: Coordinates, departure_time: str
@@ -274,29 +286,9 @@ class RoutePredictionService:
             congestion = _time_factor(hour) * 0.7
 
             for route in data["routes"][:3]:
-                duration_min = route["duration"] / 60
-                distance_km = route["distance"] / 1000
-                adjusted_time = duration_min * (1 + congestion * 0.5)
-
-                steps = route["legs"][0]["steps"]
-                segments = []
-                for i, step in enumerate(steps[:-1]):
-                    next_step = steps[i + 1]
-                    from_name = step.get("name") or f"Punto {i + 1}"
-                    to_name = next_step.get("name") or f"Punto {i + 2}"
-                    seg_coords = [[c[1], c[0]] for c in step["geometry"]["coordinates"]]
-                    step_congestion = congestion * (1 + (i % 3) * 0.1)
-                    segments.append(
-                        self._make_segment(from_name, to_name, min(1.0, step_congestion), seg_coords)
-                    )
-
-                street_names = list(dict.fromkeys(
-                    s.get("name", "") for s in steps if s.get("name")
-                ))[:15]
-
-                cost_pesos = round(distance_km * 2000, -2)
-                cost = f"${cost_pesos:,.0f}".replace(",", ".")
-
+                segments, street_names, cost, adjusted_time, distance_km = self._parse_osrm_route(
+                    route, congestion
+                )
                 results.append(self._build_response(
                     adjusted_time, distance_km, cost, "vehiculo", segments, street_names, departure_time
                 ))
@@ -381,14 +373,35 @@ class RoutePredictionService:
             path = [origin_id, dest_id]
 
         # TM: express (fewer stops shown), SITP: all stops
-        if mode == "transmilenio":
-            display_path = self._limit_path(path, 25)
-            speed_factor = 1.5
-        else:
-            display_path = self._limit_path(path, 40)
-            speed_factor = 2.5
+        max_display = 25 if mode == "transmilenio" else 40
+        speed_factor = 1.5 if mode == "transmilenio" else 2.5
+        display_path = self._limit_path(path, max_display)
 
         # Build segments with congestion
+        risk_segments, total_distance, total_time = self._build_transit_segments(
+            graph, display_path, speed_factor, hour
+        )
+
+        station_names = [
+            graph.nodes.get(n, {}).get("nombre", "")
+            or graph.nodes.get(n, {}).get("name", "")
+            or n
+            for n in display_path
+        ]
+
+        route_code = ""
+        if mode == "transmilenio":
+            route_code = self._derive_route_code(graph, display_path)
+
+        return self._build_response(
+            total_time, total_distance, "$3,550", mode, risk_segments, station_names, departure_time,
+            route_code=route_code,
+        )
+
+    def _build_transit_segments(
+        self, graph: nx.Graph, display_path: list, speed_factor: float, hour: int
+    ) -> tuple[list[RiskSegment], float, float]:
+        """Build risk segments for a transit path."""
         risk_segments: list[RiskSegment] = []
         total_distance, total_time = 0.0, 0.0
 
@@ -416,64 +429,52 @@ class RoutePredictionService:
             to_name = to_data.get("nombre", "") or to_data.get("name", "") or to_id
 
             risk_segments.append(
-                self._make_segment(
-                    from_name,
-                    to_name,
-                    congestion,
-                    [[lat1, lon1], [lat2, lon2]],
-                )
+                self._make_segment(from_name, to_name, congestion, [[lat1, lon1], [lat2, lon2]])
             )
 
-        station_names = [
-            graph.nodes.get(n, {}).get("nombre", "")
-            or graph.nodes.get(n, {}).get("name", "")
-            or n
-            for n in display_path
+        return risk_segments, total_distance, total_time
+
+    def _derive_route_code(self, graph: nx.Graph, display_path: list) -> str:
+        """Derive TM route code from path troncal data and route matching."""
+        from collections import Counter
+        from app.modules.route_prediction.graph_data import TM_RUTAS
+
+        troncales_in_path = [
+            graph.nodes.get(n, {}).get("troncal", "") for n in display_path
         ]
+        troncales_in_path = [t for t in troncales_in_path if t]
+        route_code = Counter(troncales_in_path).most_common(1)[0][0] if troncales_in_path else ""
 
-        cost = "$3,550"
+        if not TM_RUTAS or len(display_path) < 2:
+            return route_code
 
-        # Derive route_code from predominant troncal in path
-        route_code = ""
-        if mode == "transmilenio":
-            troncales_in_path = [
-                graph.nodes.get(n, {}).get("troncal", "") for n in display_path
-            ]
-            troncales_in_path = [t for t in troncales_in_path if t]
-            if troncales_in_path:
-                from collections import Counter
-                route_code = Counter(troncales_in_path).most_common(1)[0][0]
-            # Try to match a specific TM route by coords proximity
-            from app.modules.route_prediction.graph_data import TM_RUTAS
-            if TM_RUTAS and len(display_path) >= 2:
-                path_coords = [
-                    (float(graph.nodes.get(n, {}).get("lat", 0)),
-                     float(graph.nodes.get(n, {}).get("lon", 0)))
-                    for n in display_path[:5]  # sample first 5 stations
-                ]
-                best_ruta, best_score = "", 0
-                for ruta in TM_RUTAS:
-                    coords = ruta.get("coords", [])
-                    if not coords:
-                        continue
-                    score = 0
-                    for plat, plon in path_coords:
-                        for clat, clon in coords[::20]:  # sample every 20th coord
-                            if abs(plat - clat) < 0.003 and abs(plon - clon) < 0.003:
-                                score += 1
-                                break
-                    if score > best_score:
-                        best_score = score
-                        nombre = ruta.get("nombre", "")
-                        # Extract short code: "1 U" -> "1", "J74 P" -> "J74"
-                        best_ruta = nombre.split()[0] if nombre else ruta.get("codigo", "").split("-")[0]
-                if best_score >= 2:
-                    route_code = best_ruta
+        path_coords = [
+            (float(graph.nodes.get(n, {}).get("lat", 0)),
+             float(graph.nodes.get(n, {}).get("lon", 0)))
+            for n in display_path[:5]
+        ]
+        matched = self._match_tm_ruta(path_coords)
+        return matched or route_code
 
-        return self._build_response(
-            total_time, total_distance, cost, mode, risk_segments, station_names, departure_time,
-            route_code=route_code,
-        )
+    @staticmethod
+    def _match_tm_ruta(path_coords: list[tuple[float, float]]) -> str:
+        """Match path coordinates to a specific TM route."""
+        from app.modules.route_prediction.graph_data import TM_RUTAS
+
+        best_ruta, best_score = "", 0
+        for ruta in TM_RUTAS:
+            coords = ruta.get("coords", [])
+            if not coords:
+                continue
+            score = sum(
+                1 for plat, plon in path_coords
+                if any(abs(plat - clat) < 0.003 and abs(plon - clon) < 0.003 for clat, clon in coords[::20])
+            )
+            if score > best_score:
+                best_score = score
+                nombre = ruta.get("nombre", "")
+                best_ruta = nombre.split()[0] if nombre else ruta.get("codigo", "").split("-")[0]
+        return best_ruta if best_score >= 2 else ""
 
     def get_route_safety(self, ruta: str, hour: int) -> dict:
         """Calculate safety score for a SITP route based on avg congestion of its stops."""
@@ -496,7 +497,12 @@ class RoutePredictionService:
         safety_base = max(0, 100 - int(avg_congestion * 60) - critical * 10 - high * 5)
         safety_score = max(10, min(100, safety_base))
 
-        nivel = "segura" if safety_score >= 70 else "precaución" if safety_score >= 40 else "peligrosa"
+        if safety_score >= 70:
+            nivel = "segura"
+        elif safety_score >= 40:
+            nivel = "precaución"
+        else:
+            nivel = "peligrosa"
 
         return {
             "ruta": ruta,

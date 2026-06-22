@@ -32,7 +32,7 @@ class TestGraphData:
         g = build_caracas_graph()
         for _, _, data in g.edges(data=True):
             # Edges should have at least some attribute
-            assert len(data) >= 0  # May or may not have distance pre-calculated
+            assert isinstance(data, dict)  # Edges have dict attributes
 
 
 class TestRoutePredictionService:
@@ -188,13 +188,13 @@ class TestCongestionFactors:
 
     def test_time_factor_peak_hour(self):
         from app.common.congestion import HOUR_FACTORS
-        assert HOUR_FACTORS[8] == 1.0  # Peak morning
-        assert HOUR_FACTORS[18] == 1.0  # Peak evening
+        assert HOUR_FACTORS[8] == pytest.approx(1.0)  # Peak morning
+        assert HOUR_FACTORS[18] == pytest.approx(1.0)  # Peak evening
 
     def test_time_factor_off_peak(self):
         from app.common.congestion import HOUR_FACTORS
-        assert HOUR_FACTORS[3] == 0.2  # Early morning
-        assert HOUR_FACTORS[14] == 0.65  # Afternoon
+        assert HOUR_FACTORS[3] == pytest.approx(0.2)  # Early morning
+        assert HOUR_FACTORS[14] == pytest.approx(0.65)  # Afternoon
 
     def test_day_factors_exist(self):
         from app.common.congestion import DAY_FACTORS
