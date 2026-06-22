@@ -95,7 +95,7 @@ class TestRoutePredictionAPI:
 
     async def test_predict_route_endpoint(self):
         transport = ASGITransport(app=app)
-        async with AsyncClient(transport=transport, base_url="http://test") as client:
+        async with AsyncClient(transport=transport, base_url="https://test") as client:
             response = await client.post(
                 "/api/v1/predict-route",
                 json={
@@ -113,7 +113,7 @@ class TestRoutePredictionAPI:
 
     async def test_predict_route_validation_error(self):
         transport = ASGITransport(app=app)
-        async with AsyncClient(transport=transport, base_url="http://test") as client:
+        async with AsyncClient(transport=transport, base_url="https://test") as client:
             response = await client.post(
                 "/api/v1/predict-route",
                 json={"origin": {"lat": 4.7}, "departure_time": "2026-05-20T08:00:00Z"},
@@ -123,7 +123,7 @@ class TestRoutePredictionAPI:
 
     async def test_predict_route_vehicle_has_navigation_steps(self):
         transport = ASGITransport(app=app)
-        async with AsyncClient(transport=transport, base_url="http://test") as client:
+        async with AsyncClient(transport=transport, base_url="https://test") as client:
             response = await client.post(
                 "/api/v1/predict-route",
                 json={
@@ -145,7 +145,7 @@ class TestRoutePredictionAPI:
 
     async def test_predict_alternatives_returns_list(self):
         transport = ASGITransport(app=app)
-        async with AsyncClient(transport=transport, base_url="http://test") as client:
+        async with AsyncClient(transport=transport, base_url="https://test") as client:
             response = await client.post(
                 "/api/v1/predict-route/alternatives",
                 json={
@@ -163,7 +163,7 @@ class TestRoutePredictionAPI:
 
     async def test_alerts_endpoint(self):
         transport = ASGITransport(app=app)
-        async with AsyncClient(transport=transport, base_url="http://test") as client:
+        async with AsyncClient(transport=transport, base_url="https://test") as client:
             response = await client.get("/api/v1/predict-route/alerts")
         assert response.status_code == 200
         data = response.json()
@@ -175,7 +175,7 @@ class TestRoutePredictionAPI:
 
     async def test_safety_endpoint(self):
         transport = ASGITransport(app=app)
-        async with AsyncClient(transport=transport, base_url="http://test") as client:
+        async with AsyncClient(transport=transport, base_url="https://test") as client:
             response = await client.get("/api/v1/predict-route/safety?ruta=7&hour=8")
         assert response.status_code == 200
         data = response.json()

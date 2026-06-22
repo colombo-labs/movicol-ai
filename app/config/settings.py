@@ -25,7 +25,7 @@ class Settings(BaseSettings):
     graph_path: str = "models/graph_clean.graphml"
 
     # External services
-    osrm_base_url: str = "http://router.project-osrm.org"  # noqa: S105
+    osrm_base_url: str = "https://router.project-osrm.org"
 
     class Config:
         env_file = ".env"
