@@ -2,8 +2,8 @@
 
 from typing import Annotated
 
-from fastapi import APIRouter, Query
 import httpx
+from fastapi import APIRouter, Query
 
 from app.modules.route_prediction.explainer import generate_explanation
 from app.modules.route_prediction.schemas import (
@@ -33,7 +33,9 @@ async def predict_route(request: RoutePredictionRequest) -> RoutePredictionRespo
 
 
 @router.post("/alternatives")
-async def predict_route_alternatives(request: RoutePredictionRequest) -> list[RoutePredictionResponse]:
+async def predict_route_alternatives(
+    request: RoutePredictionRequest,
+) -> list[RoutePredictionResponse]:
     """Predict multiple route alternatives (vehicle mode)."""
     results = await service.predict_vehicle_alternatives(
         origin=request.origin,
@@ -87,8 +89,11 @@ async def get_system_alerts() -> dict:
                 title = self._text.strip()
                 if title and len(title) > 10 and "Concesionario" not in title:
                     import re
-                    codes = re.findall(r'\b([A-Z]?\d+-?\d*)\b', title)
-                    self.alerts.append({"title": title[:100], "url": self._current_href, "route_codes": codes})
+
+                    codes = re.findall(r"\b([A-Z]?\d+-?\d*)\b", title)
+                    self.alerts.append(
+                        {"title": title[:100], "url": self._current_href, "route_codes": codes}
+                    )
                 self._in_link = False
 
     try:
@@ -102,7 +107,9 @@ async def get_system_alerts() -> dict:
 
         # Count by type
         suspended = sum(1 for a in alerts if "suspende" in a["title"].lower())
-        delayed = sum(1 for a in alerts if "demora" in a["title"].lower() or "modifica" in a["title"].lower())
+        delayed = sum(
+            1 for a in alerts if "demora" in a["title"].lower() or "modifica" in a["title"].lower()
+        )
         operating = max(0, 125 - suspended - delayed)  # 125 rutas TM total
 
         return {

@@ -5,11 +5,10 @@ from __future__ import annotations
 from app.config.settings import get_settings
 from app.modules.agent.schemas import ChatResponse
 from app.modules.route_prediction.graph_data import (
-    TM_STATIONS,
-    TM_RUTAS,
-    CARACAS_STATIONS,
-    TRONCALES,
     CONGESTION_BY_HOUR,
+    TM_RUTAS,
+    TM_STATIONS,
+    TRONCALES,
     build_tm_graph,
 )
 from app.modules.route_prediction.service import RoutePredictionService
@@ -17,7 +16,9 @@ from app.modules.route_prediction.service import RoutePredictionService
 SYSTEM_PROMPT = """Eres MoviBot, un asistente experto en movilidad urbana de Bogotá, Colombia.
 Tienes acceso a datos del sistema TransMilenio (13 troncales, 153 estaciones).
 
-Troncales: Caracas, Autopista Norte, Suba, Calle 80, NQS Central, NQS Sur, Américas, Calle 26, Carrera 10, Caracas Sur, Eje Ambiental, Soacha, Tunal, Carrera 7.
+Troncales: Caracas, Autopista Norte, Suba, Calle 80, NQS Central,
+NQS Sur, Américas, Calle 26, Carrera 10, Caracas Sur,
+Eje Ambiental, Soacha, Tunal, Carrera 7.
 
 Capacidades:
 - Información de estaciones (nombre, ubicación, conexiones, troncal)
@@ -58,7 +59,9 @@ class AgentService:
         for station in TM_STATIONS:
             if station["name"].lower() in query_lower or query_lower in station["name"].lower():
                 neighbors = list(self._graph.neighbors(station["id"]))
-                neighbor_names = [self._graph.nodes[n]["name"] for n in neighbors if n in self._graph.nodes]
+                neighbor_names = [
+                    self._graph.nodes[n]["name"] for n in neighbors if n in self._graph.nodes
+                ]
                 return (
                     f"Estación: {station['name']}\n"
                     f"Troncal: {station['troncal']}\n"
@@ -227,18 +230,39 @@ class AgentService:
             if troncal_match:
                 names = [s["name"] for s in TM_STATIONS if s["troncal"] == troncal_match]
                 return ChatResponse(
-                    response=f"Troncal {troncal_match} tiene {len(names)} estaciones:\n{', '.join(names)}",
+                    response=(
+                        f"Troncal {troncal_match} tiene {len(names)} estaciones:\n"
+                        f"{', '.join(names)}"
+                    ),
                     sources=sources,
                     session_id=session_id,
                 )
             return ChatResponse(
-                response=f"TransMilenio tiene {len(TM_STATIONS)} estaciones en 13 troncales.\nPregúntame por una troncal específica (Caracas, Suba, Calle 80, NQS, Américas, Calle 26, etc.)",
+                response=(
+                    f"TransMilenio tiene {len(TM_STATIONS)} estaciones en 13 troncales.\n"
+                    "Pregúntame por una troncal específica "
+                    "(Caracas, Suba, Calle 80, NQS, Américas, Calle 26, etc.)"
+                ),
                 sources=sources,
                 session_id=session_id,
             )
 
         # Route query — search in TM_RUTAS
-        if any(w in msg_lower for w in ["ruta", "cómo llego", "como llego", "ir de", "ir a", "j74", "f51", "g4", "l4", "m5"]):
+        if any(
+            w in msg_lower
+            for w in [
+                "ruta",
+                "cómo llego",
+                "como llego",
+                "ir de",
+                "ir a",
+                "j74",
+                "f51",
+                "g4",
+                "l4",
+                "m5",
+            ]
+        ):
             # Try to find specific route code
             found_rutas = [r for r in TM_RUTAS if r["codigo"].lower() in msg_lower]
             if found_rutas:

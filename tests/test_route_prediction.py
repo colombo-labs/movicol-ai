@@ -68,8 +68,12 @@ class TestRoutePredictionService:
             departure_time="2026-05-20T03:00:00Z",
             mode="transmilenio",
         )
-        avg_peak = sum(s.congestion_level for s in peak.risk_segments) / max(len(peak.risk_segments), 1)
-        avg_offpeak = sum(s.congestion_level for s in offpeak.risk_segments) / max(len(offpeak.risk_segments), 1)
+        avg_peak = sum(s.congestion_level for s in peak.risk_segments) / max(
+            len(peak.risk_segments), 1
+        )
+        avg_offpeak = sum(s.congestion_level for s in offpeak.risk_segments) / max(
+            len(offpeak.risk_segments), 1
+        )
         assert avg_peak > avg_offpeak
 
     def test_nearest_station_finds_correct_station(self):
@@ -119,7 +123,6 @@ class TestRoutePredictionAPI:
                 json={"origin": {"lat": 4.7}, "departure_time": "2026-05-20T08:00:00Z"},
             )
         assert response.status_code == 422
-
 
     async def test_predict_route_vehicle_has_navigation_steps(self):
         transport = ASGITransport(app=app)
@@ -188,16 +191,19 @@ class TestCongestionFactors:
 
     def test_time_factor_peak_hour(self):
         from app.common.congestion import HOUR_FACTORS
+
         assert HOUR_FACTORS[8] == pytest.approx(1.0)  # Peak morning
         assert HOUR_FACTORS[18] == pytest.approx(1.0)  # Peak evening
 
     def test_time_factor_off_peak(self):
         from app.common.congestion import HOUR_FACTORS
+
         assert HOUR_FACTORS[3] == pytest.approx(0.2)  # Early morning
         assert HOUR_FACTORS[14] == pytest.approx(0.65)  # Afternoon
 
     def test_day_factors_exist(self):
         from app.common.congestion import DAY_FACTORS
+
         assert len(DAY_FACTORS) == 7
         assert DAY_FACTORS[6] < DAY_FACTORS[0]  # Sunday < Monday
         assert DAY_FACTORS[5] < DAY_FACTORS[4]  # Saturday < Friday

@@ -178,7 +178,9 @@ class RoutePredictionService:
         )
 
         try:
-            async with httpx.AsyncClient(timeout=15, follow_redirects=True, max_redirects=3) as client:
+            async with httpx.AsyncClient(
+                timeout=15, follow_redirects=True, max_redirects=3
+            ) as client:
                 resp = await client.get(url)
                 data = resp.json()
 
@@ -197,7 +199,13 @@ class RoutePredictionService:
             nav_steps = self._build_nav_steps(steps)
 
             return self._build_response(
-                adjusted_time, distance_km, cost, "vehiculo", segments, street_names, departure_time,
+                adjusted_time,
+                distance_km,
+                cost,
+                "vehiculo",
+                segments,
+                street_names,
+                departure_time,
                 navigation_steps=nav_steps,
             )
         except Exception:
@@ -223,9 +231,7 @@ class RoutePredictionService:
                 self._make_segment(from_name, to_name, min(1.0, step_congestion), seg_coords)
             )
 
-        street_names = list(dict.fromkeys(
-            s.get("name", "") for s in steps if s.get("name")
-        ))[:15]
+        street_names = list(dict.fromkeys(s.get("name", "") for s in steps if s.get("name")))[:15]
 
         cost_pesos = round(distance_km * 2000, -2)
         cost = f"${cost_pesos:,.0f}".replace(",", ".")
@@ -236,7 +242,15 @@ class RoutePredictionService:
     def _build_nav_steps(steps: list) -> list[NavigationStep]:
         """Build navigation steps from OSRM steps data."""
         maneuver_labels = {
-            "turn": {"left": "Gira a la izquierda", "right": "Gira a la derecha", "slight left": "Gira levemente a la izquierda", "slight right": "Gira levemente a la derecha", "sharp left": "Gira fuerte a la izquierda", "sharp right": "Gira fuerte a la derecha", "straight": "Continúa recto"},
+            "turn": {
+                "left": "Gira a la izquierda",
+                "right": "Gira a la derecha",
+                "slight left": "Gira levemente a la izquierda",
+                "slight right": "Gira levemente a la derecha",
+                "sharp left": "Gira fuerte a la izquierda",
+                "sharp right": "Gira fuerte a la derecha",
+                "straight": "Continúa recto",
+            },
             "depart": {"": "Inicia el recorrido"},
             "arrive": {"": "Has llegado a tu destino"},
             "new name": {"straight": "Continúa por"},
@@ -253,13 +267,15 @@ class RoutePredictionService:
             labels = maneuver_labels.get(mtype, {})
             label = labels.get(modifier, labels.get("", f"{mtype} {modifier}".strip()))
             instruction = f"{label} en {street}" if street else label
-            nav_steps.append(NavigationStep(
-                instruction=instruction,
-                street=street,
-                distance_m=round(step.get("distance", 0)),
-                duration_s=round(step.get("duration", 0)),
-                maneuver=modifier or mtype,
-            ))
+            nav_steps.append(
+                NavigationStep(
+                    instruction=instruction,
+                    street=street,
+                    distance_m=round(step.get("distance", 0)),
+                    duration_s=round(step.get("duration", 0)),
+                    maneuver=modifier or mtype,
+                )
+            )
         return nav_steps
 
     async def predict_vehicle_alternatives(
@@ -273,7 +289,9 @@ class RoutePredictionService:
             f"?overview=full&geometries=geojson&steps=true&alternatives=3"
         )
         try:
-            async with httpx.AsyncClient(timeout=15, follow_redirects=True, max_redirects=3) as client:
+            async with httpx.AsyncClient(
+                timeout=15, follow_redirects=True, max_redirects=3
+            ) as client:
                 resp = await client.get(url)
                 data = resp.json()
 
@@ -287,11 +305,23 @@ class RoutePredictionService:
                 segments, street_names, cost, adjusted_time, distance_km = self._parse_osrm_route(
                     route, congestion
                 )
-                results.append(self._build_response(
-                    adjusted_time, distance_km, cost, "vehiculo", segments, street_names, departure_time
-                ))
+                results.append(
+                    self._build_response(
+                        adjusted_time,
+                        distance_km,
+                        cost,
+                        "vehiculo",
+                        segments,
+                        street_names,
+                        departure_time,
+                    )
+                )
 
-            return results if results else [self._fallback_vehicle(origin, destination, departure_time, hour)]
+            return (
+                results
+                if results
+                else [self._fallback_vehicle(origin, destination, departure_time, hour)]
+            )
         except Exception:
             return [self._fallback_vehicle(origin, destination, departure_time, hour)]
 
@@ -381,9 +411,7 @@ class RoutePredictionService:
         )
 
         station_names = [
-            graph.nodes.get(n, {}).get("nombre", "")
-            or graph.nodes.get(n, {}).get("name", "")
-            or n
+            graph.nodes.get(n, {}).get("nombre", "") or graph.nodes.get(n, {}).get("name", "") or n
             for n in display_path
         ]
 
@@ -392,7 +420,13 @@ class RoutePredictionService:
             route_code = self._derive_route_code(graph, display_path)
 
         return self._build_response(
-            total_time, total_distance, "$3,550", mode, risk_segments, station_names, departure_time,
+            total_time,
+            total_distance,
+            "$3,550",
+            mode,
+            risk_segments,
+            station_names,
+            departure_time,
             route_code=route_code,
         )
 
@@ -435,11 +469,10 @@ class RoutePredictionService:
     def _derive_route_code(self, graph: nx.Graph, display_path: list) -> str:
         """Derive TM route code from path troncal data and route matching."""
         from collections import Counter
+
         from app.modules.route_prediction.graph_data import TM_RUTAS
 
-        troncales_in_path = [
-            graph.nodes.get(n, {}).get("troncal", "") for n in display_path
-        ]
+        troncales_in_path = [graph.nodes.get(n, {}).get("troncal", "") for n in display_path]
         troncales_in_path = [t for t in troncales_in_path if t]
         route_code = Counter(troncales_in_path).most_common(1)[0][0] if troncales_in_path else ""
 
@@ -447,8 +480,10 @@ class RoutePredictionService:
             return route_code
 
         path_coords = [
-            (float(graph.nodes.get(n, {}).get("lat", 0)),
-             float(graph.nodes.get(n, {}).get("lon", 0)))
+            (
+                float(graph.nodes.get(n, {}).get("lat", 0)),
+                float(graph.nodes.get(n, {}).get("lon", 0)),
+            )
             for n in display_path[:5]
         ]
         matched = self._match_tm_ruta(path_coords)
@@ -465,8 +500,12 @@ class RoutePredictionService:
             if not coords:
                 continue
             score = sum(
-                1 for plat, plon in path_coords
-                if any(abs(plat - clat) < 0.003 and abs(plon - clon) < 0.003 for clat, clon in coords[::20])
+                1
+                for plat, plon in path_coords
+                if any(
+                    abs(plat - clat) < 0.003 and abs(plon - clon) < 0.003
+                    for clat, clon in coords[::20]
+                )
             )
             if score > best_score:
                 best_score = score
@@ -478,7 +517,8 @@ class RoutePredictionService:
         """Calculate safety score for a SITP route based on avg congestion of its stops."""
         # Find nodes that belong to this route (by name or route attribute)
         route_nodes = [
-            n for n, d in self._graph.nodes(data=True)
+            n
+            for n, d in self._graph.nodes(data=True)
             if str(d.get("route", "")) == ruta or ruta in str(d.get("name", ""))
         ]
 

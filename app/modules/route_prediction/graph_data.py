@@ -16,10 +16,30 @@ _RUTAS_FILE = Path(__file__).parent / "tm_rutas_all.json"
 
 # Congestion by hour (system-wide average)
 CONGESTION_BY_HOUR: dict[int, float] = {
-    0: 0.05, 1: 0.03, 2: 0.02, 3: 0.02, 4: 0.05, 5: 0.15,
-    6: 0.35, 7: 0.55, 8: 0.60, 9: 0.45, 10: 0.30, 11: 0.28,
-    12: 0.35, 13: 0.32, 14: 0.30, 15: 0.35, 16: 0.45, 17: 0.60,
-    18: 0.65, 19: 0.50, 20: 0.30, 21: 0.20, 22: 0.10, 23: 0.07,
+    0: 0.05,
+    1: 0.03,
+    2: 0.02,
+    3: 0.02,
+    4: 0.05,
+    5: 0.15,
+    6: 0.35,
+    7: 0.55,
+    8: 0.60,
+    9: 0.45,
+    10: 0.30,
+    11: 0.28,
+    12: 0.35,
+    13: 0.32,
+    14: 0.30,
+    15: 0.35,
+    16: 0.45,
+    17: 0.60,
+    18: 0.65,
+    19: 0.50,
+    20: 0.30,
+    21: 0.20,
+    22: 0.10,
+    23: 0.07,
 }
 
 # Troncal metadata
@@ -74,7 +94,10 @@ def build_tm_graph() -> nx.Graph:
     def _hav(lat1, lon1, lat2, lon2):
         R = 6371
         dlat, dlon = math.radians(lat2 - lat1), math.radians(lon2 - lon1)
-        a = math.sin(dlat / 2) ** 2 + math.cos(math.radians(lat1)) * math.cos(math.radians(lat2)) * math.sin(dlon / 2) ** 2
+        a = (
+            math.sin(dlat / 2) ** 2
+            + math.cos(math.radians(lat1)) * math.cos(math.radians(lat2)) * math.sin(dlon / 2) ** 2
+        )
         return R * 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
 
     G = nx.Graph()
@@ -101,7 +124,7 @@ def _add_transfer_edges(graph: nx.Graph, hav_fn) -> None:
     """Add transfer edges between stations of different troncales within 800m."""
     nodes = list(graph.nodes(data=True))
     for i, (n1, d1) in enumerate(nodes):
-        for n2, d2 in nodes[i + 1:]:
+        for n2, d2 in nodes[i + 1 :]:
             if d1.get("troncal") == d2.get("troncal"):
                 continue
             dist = hav_fn(float(d1["lat"]), float(d1["lon"]), float(d2["lat"]), float(d2["lon"]))

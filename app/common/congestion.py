@@ -31,13 +31,13 @@ HOUR_FACTORS: dict[int, float] = {
 
 # Day of week multiplier (0=Monday, 6=Sunday)
 DAY_FACTORS: dict[int, float] = {
-    0: 1.0,   # Lunes — alta congestión
-    1: 1.0,   # Martes
-    2: 1.0,   # Miércoles
-    3: 1.0,   # Jueves
+    0: 1.0,  # Lunes — alta congestión
+    1: 1.0,  # Martes
+    2: 1.0,  # Miércoles
+    3: 1.0,  # Jueves
     4: 1.05,  # Viernes — pico por salida de oficinas
-    5: 0.6,   # Sábado — menos tráfico
-    6: 0.4,   # Domingo — mínimo
+    5: 0.6,  # Sábado — menos tráfico
+    6: 0.4,  # Domingo — mínimo
 }
 
 
