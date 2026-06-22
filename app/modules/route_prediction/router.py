@@ -57,22 +57,48 @@ async def get_route_safety(
 @router.get("/alerts")
 async def get_system_alerts() -> dict:
     """Scrape operational alerts from TransMilenio official site."""
-    import re
+    from html.parser import HTMLParser
+
+    class AlertParser(HTMLParser):
+        """Extract alert links from TransMilenio HTML."""
+
+        def __init__(self):
+            super().__init__()
+            self.alerts: list[dict] = []
+            self._current_href = ""
+            self._in_link = False
+            self._text = ""
+            self._keywords = ("modifica", "suspende", "demora", "cambio", "cierre")
+
+        def handle_starttag(self, tag, attrs):
+            if tag == "a":
+                href = dict(attrs).get("href", "")
+                if any(k in href.lower() for k in self._keywords):
+                    self._current_href = href
+                    self._in_link = True
+                    self._text = ""
+
+        def handle_data(self, data):
+            if self._in_link:
+                self._text += data
+
+        def handle_endtag(self, tag):
+            if tag == "a" and self._in_link:
+                title = self._text.strip()
+                if title and len(title) > 10 and "Concesionario" not in title:
+                    import re
+                    codes = re.findall(r'\b([A-Z]?\d+-?\d*)\b', title)
+                    self.alerts.append({"title": title[:100], "url": self._current_href, "route_codes": codes})
+                self._in_link = False
+
     try:
         async with httpx.AsyncClient(timeout=10, follow_redirects=True, max_redirects=3) as client:
             resp = await client.get("https://www.transmilenio.gov.co")
             html = resp.text
 
-        # Extract operational alert links
-        pattern = r'<a[^>]*href="([^"]*(?:modifica|suspende|demora|cambio|cierre)[^"]*)"[^>]*>(.*?)</a>'
-        matches = re.findall(pattern, html, re.I | re.DOTALL)
-        alerts = []
-        for u, content in matches:
-            title = re.sub(r'<[^>]+>', '', content).strip()
-            if title and len(title) > 10 and "Concesionario" not in title:
-                codes = re.findall(r'\b([A-Z]?\d+-?\d*)\b', title)
-                alerts.append({"title": title[:100], "url": u, "route_codes": codes})
-        alerts = alerts[:5]
+        parser = AlertParser()
+        parser.feed(html)
+        alerts = parser.alerts[:5]
 
         # Count by type
         suspended = sum(1 for a in alerts if "suspende" in a["title"].lower())
