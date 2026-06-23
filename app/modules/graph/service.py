@@ -8,7 +8,7 @@ import networkx as nx
 
 from app.config.settings import get_settings
 from app.modules.graph.schemas import NeighborsResponse, RouteResponse, StationResponse
-from app.modules.route_prediction.graph_data import build_caracas_graph
+from app.modules.route_prediction.graph_data import build_sitp_graph
 
 
 class GraphService:
@@ -28,8 +28,8 @@ class GraphService:
             if isinstance(raw, (nx.MultiGraph, nx.MultiDiGraph)):
                 return nx.Graph(raw)
             return raw
-        # Fallback: use static Caracas graph (always available)
-        return build_caracas_graph().to_undirected()
+        # Fallback: use static SITP graph (always available)
+        return build_sitp_graph().to_undirected()
 
     @property
     def is_loaded(self) -> bool:
@@ -195,12 +195,22 @@ class GraphService:
         for node_id, base_congestion in preds.items():
             if node_id not in self._graph:
                 continue
+            # Solo estaciones/paraderos con demanda relevante
+            if base_congestion <= 0.01:
+                continue
+            
             data = self._graph.nodes[node_id]
+            name = data.get("nombre", "") or data.get("name", "")
+            
+            # Filtramos nodos que son simples cruces de calle (sin nombre)
+            if not name:
+                continue
+
             congestion = min(1.0, base_congestion * tf)
             results.append(
                 {
                     "id": node_id,
-                    "name": data.get("nombre", "") or node_id,
+                    "name": name or node_id,
                     "lat": float(data.get("lat", 0)),
                     "lon": float(data.get("lon", 0)),
                     "congestion": round(congestion, 3),

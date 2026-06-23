@@ -17,7 +17,13 @@ class PredictionService:
         return self._gnn.is_loaded
 
     def predict(
-        self, station_id: str, day_of_week: int, hour: int, horizon_minutes: int
+        self,
+        station_id: str,
+        day_of_week: int,
+        hour: int,
+        horizon_minutes: int,
+        frecuencia_ruta: int | None = None,
+        demanda_actual: int | None = None,
     ) -> PredictionResponse:
         """Predict congestion for a single station."""
         base_congestion = self._gnn.get_congestion(station_id)
@@ -26,6 +32,20 @@ class PredictionService:
         time_factor = _time_factor(hour)
         congestion = min(1.0, base_congestion * time_factor)
 
+        # Calcular tiempo de espera si hay datos
+        tiempo_espera = None
+        if frecuencia_ruta is not None:
+            demanda = (demanda_actual or 0) / 100.0
+            # Combina demanda y congestión predicha
+            factor_retraso = max(demanda, congestion)
+            base_min = max(2, int(frecuencia_ruta * 0.5))
+            base_max = max(5, int(frecuencia_ruta))
+            extra_wait = int(factor_retraso * frecuencia_ruta)
+            
+            min_wait = base_min + extra_wait
+            max_wait = base_max + extra_wait
+            tiempo_espera = f"{min_wait} - {max_wait} min"
+
         return PredictionResponse(
             station_id=station_id,
             station_name=station_id,
@@ -33,6 +53,7 @@ class PredictionService:
             risk_label=_risk_label(congestion),
             horizon_minutes=horizon_minutes,
             confidence=0.82 if self._gnn.is_loaded else 0.0,
+            tiempo_espera_estimado=tiempo_espera,
         )
 
     def predict_all(

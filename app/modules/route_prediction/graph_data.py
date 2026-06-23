@@ -107,10 +107,25 @@ def build_tm_graph() -> nx.Graph:
 
     # Add nodes and sequential edges within troncal
     for troncal, stations in by_troncal.items():
-        for i, s in enumerate(stations):
+        if not stations:
+            continue
+        # Order stations geographically (nearest neighbor from an extreme point)
+        clat = sum(s["lat"] for s in stations) / len(stations)
+        clon = sum(s["lon"] for s in stations) / len(stations)
+        start = max(stations, key=lambda s: _hav(clat, clon, s["lat"], s["lon"]))
+        
+        ordered = [start]
+        unvisited = [s for s in stations if s["id"] != start["id"]]
+        while unvisited:
+            last = ordered[-1]
+            closest = min(unvisited, key=lambda s: _hav(last["lat"], last["lon"], s["lat"], s["lon"]))
+            ordered.append(closest)
+            unvisited.remove(closest)
+            
+        for i, s in enumerate(ordered):
             G.add_node(s["id"], name=s["name"], lat=s["lat"], lon=s["lon"], troncal=troncal)
             if i > 0:
-                prev = stations[i - 1]
+                prev = ordered[i - 1]
                 dist = _hav(prev["lat"], prev["lon"], s["lat"], s["lon"])
                 G.add_edge(prev["id"], s["id"], troncal=troncal, distance_km=round(dist, 3))
 
@@ -140,4 +155,71 @@ def build_caracas_graph() -> nx.Graph:
         if i > 0:
             prev = CARACAS_STATIONS[i - 1]
             G.add_edge(prev["id"], s["id"], troncal="Caracas")
+    return G
+
+
+def build_sitp_graph() -> nx.Graph:
+    """Build SITP graph from exported geojson."""
+    import json
+    import math
+
+    def _hav(lat1, lon1, lat2, lon2):
+        R = 6371
+        dlat, dlon = math.radians(lat2 - lat1), math.radians(lon2 - lon1)
+        a = (
+            math.sin(dlat / 2) ** 2
+            + math.cos(math.radians(lat1)) * math.cos(math.radians(lat2)) * math.sin(dlon / 2) ** 2
+        )
+        return R * 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+
+    p = Path(__file__).parent.parent.parent.parent / "movicol-data" / "exports" / "backend" / "sitp_rutas_paraderos.geojson"
+    G = nx.Graph()
+    if not p.exists():
+        print(f"Warning: SITP file not found at {p}")
+        return build_caracas_graph()
+
+    with open(p, encoding="utf-8") as f:
+        data = json.load(f)
+
+    # Group by route
+    by_route = {}
+    for feat in data.get("features", []):
+        props = feat.get("properties", {})
+        ruta = props.get("ruta")
+        if ruta:
+            by_route.setdefault(ruta, []).append(props)
+
+    for ruta, stations in by_route.items():
+        # Sort by orden string (e.g., ALI001, ALI002)
+        stations.sort(key=lambda s: s.get("orden", ""))
+        for i, s in enumerate(stations):
+            lat_s = s.get("latitud")
+            lon_s = s.get("longitud")
+            if lat_s is None or lon_s is None:
+                continue
+            sid = s.get("consola", "") or s.get("nombre", "") or f"{ruta}_{i}"
+            G.add_node(sid, name=s.get("nombre", ""), lat=float(lat_s), lon=float(lon_s), troncal="SITP", route=ruta)
+            if i > 0:
+                prev = stations[i - 1]
+                prev_lat = prev.get("latitud")
+                prev_lon = prev.get("longitud")
+                if prev_lat is None or prev_lon is None:
+                    continue
+                pid = prev.get("consola", "") or prev.get("nombre", "") or f"{ruta}_{i-1}"
+                dist = _hav(float(prev_lat), float(prev_lon), float(lat_s), float(lon_s))
+                G.add_edge(pid, sid, troncal="SITP", distance_km=round(dist, 3))
+
+    # Add very basic transfer edges for nearby stations across different routes
+    by_name = {}
+    for node, d in G.nodes(data=True):
+        by_name.setdefault(d["name"], []).append(node)
+        
+    for name, nodes in by_name.items():
+        if len(nodes) > 1 and name:
+            for i in range(len(nodes) - 1):
+                d1 = G.nodes[nodes[i]]
+                d2 = G.nodes[nodes[i+1]]
+                dist = _hav(d1["lat"], d1["lon"], d2["lat"], d2["lon"])
+                G.add_edge(nodes[i], nodes[i+1], troncal="transbordo", distance_km=round(dist, 3))
+                
     return G
