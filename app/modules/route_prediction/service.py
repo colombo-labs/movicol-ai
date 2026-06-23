@@ -570,8 +570,7 @@ class RoutePredictionService:
             coord_str = ";".join([f"{s['lon']},{s['lat']}" for s in stops])
             base_url = get_settings().osrm_base_url
             url = (
-                f"{base_url}/route/v1/foot/{coord_str}"
-                "?geometries=geojson&overview=false&steps=true"
+                f"{base_url}/route/v1/foot/{coord_str}?geometries=geojson&overview=false&steps=true"
             )
             leg_geometries: list = []
             try:
@@ -631,10 +630,7 @@ class RoutePredictionService:
 
         coord_str = ";".join(coords)
         base_url = get_settings().osrm_base_url
-        url = (
-            f"{base_url}/route/v1/foot/{coord_str}"
-            "?geometries=geojson&overview=false&steps=true"
-        )
+        url = f"{base_url}/route/v1/foot/{coord_str}?geometries=geojson&overview=false&steps=true"
 
         try:
             async with httpx.AsyncClient(
