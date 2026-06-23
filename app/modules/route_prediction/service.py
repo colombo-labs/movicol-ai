@@ -45,7 +45,14 @@ class RoutePredictionService:
     def _load_sitp_route_data(self) -> dict:
         """Load SITP route data grouped by route, sorted by orden."""
         import json
-        p = Path(__file__).parent.parent.parent.parent / "movicol-data" / "exports" / "backend" / "sitp_rutas_paraderos.geojson"
+
+        p = (
+            Path(__file__).parent.parent.parent.parent
+            / "movicol-data"
+            / "exports"
+            / "backend"
+            / "sitp_rutas_paraderos.geojson"
+        )
         if not p.exists():
             print(f"Warning: SITP paraderos file not found at {p}")
             return {}
@@ -59,12 +66,14 @@ class RoutePredictionService:
             lon_val = props.get("longitud")
             if not ruta or lat_val is None or lon_val is None:
                 continue
-            by_route.setdefault(ruta, []).append({
-                "lat": float(lat_val),
-                "lon": float(lon_val),
-                "nombre": props.get("nombre", ""),
-                "orden": props.get("orden", ""),
-            })
+            by_route.setdefault(ruta, []).append(
+                {
+                    "lat": float(lat_val),
+                    "lon": float(lon_val),
+                    "nombre": props.get("nombre", ""),
+                    "orden": props.get("orden", ""),
+                }
+            )
         # Sort each route by its orden field
         for ruta in by_route:
             by_route[ruta].sort(key=lambda s: s["orden"])
@@ -418,11 +427,15 @@ class RoutePredictionService:
     @staticmethod
     def _haversine_km(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
         import math
+
         R = 6371.0
         dlat = math.radians(lat2 - lat1)
         dlon = math.radians(lon2 - lon1)
-        a = math.sin(dlat/2)**2 + math.cos(math.radians(lat1)) * math.cos(math.radians(lat2)) * math.sin(dlon/2)**2
-        return R * 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
+        a = (
+            math.sin(dlat / 2) ** 2
+            + math.cos(math.radians(lat1)) * math.cos(math.radians(lat2)) * math.sin(dlon / 2) ** 2
+        )
+        return R * 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
 
     def _find_best_sitp_route(
         self, origin: Coordinates, destination: Coordinates, max_walk_km: float = 0.8
@@ -438,17 +451,24 @@ class RoutePredictionService:
             # Find stop closest to origin
             o_idx, o_dist = min(
                 enumerate(stops),
-                key=lambda x: self._haversine_km(x[1]["lat"], x[1]["lon"], origin.lat, origin.lng)
+                key=lambda x: self._haversine_km(x[1]["lat"], x[1]["lon"], origin.lat, origin.lng),
             )
-            if self._haversine_km(stops[o_idx]["lat"], stops[o_idx]["lon"], origin.lat, origin.lng) > max_walk_km:
+            if (
+                self._haversine_km(stops[o_idx]["lat"], stops[o_idx]["lon"], origin.lat, origin.lng)
+                > max_walk_km
+            ):
                 continue
 
             # Find stop closest to destination
             d_idx, d_dist_stop = min(
                 enumerate(stops),
-                key=lambda x: self._haversine_km(x[1]["lat"], x[1]["lon"], destination.lat, destination.lng)
+                key=lambda x: self._haversine_km(
+                    x[1]["lat"], x[1]["lon"], destination.lat, destination.lng
+                ),
             )
-            d_km = self._haversine_km(stops[d_idx]["lat"], stops[d_idx]["lon"], destination.lat, destination.lng)
+            d_km = self._haversine_km(
+                stops[d_idx]["lat"], stops[d_idx]["lon"], destination.lat, destination.lng
+            )
             if d_km > max_walk_km:
                 continue
 
@@ -464,7 +484,9 @@ class RoutePredictionService:
             if n_stops_between < 1:
                 continue
 
-            o_km = self._haversine_km(stops[o_idx]["lat"], stops[o_idx]["lon"], origin.lat, origin.lng)
+            o_km = self._haversine_km(
+                stops[o_idx]["lat"], stops[o_idx]["lon"], origin.lat, origin.lng
+            )
             score = o_km + d_km  # minimize total walking
             if score < best_score:
                 best_score = score
@@ -484,7 +506,7 @@ class RoutePredictionService:
             if result:
                 ruta_code, stops, o_idx, d_idx = result
                 # Take the sub-path between origin stop and destination stop
-                sub_stops = stops[o_idx:d_idx + 1]
+                sub_stops = stops[o_idx : d_idx + 1]
                 # Thin out if too many stops (keep every Nth)
                 max_display = 40
                 if len(sub_stops) > max_display:
@@ -498,8 +520,14 @@ class RoutePredictionService:
                     sub_stops, speed_factor, hour
                 )
                 return self._build_response(
-                    total_time, total_distance, "$3,550", mode,
-                    risk_segments, station_names, departure_time, route_code=ruta_code
+                    total_time,
+                    total_distance,
+                    "$3,550",
+                    mode,
+                    risk_segments,
+                    station_names,
+                    departure_time,
+                    route_code=ruta_code,
                 )
 
         # --- TransMilenio: use existing TM graph (troncal-based, already sorted) ---
@@ -516,14 +544,17 @@ class RoutePredictionService:
         risk_segments, total_distance, total_time = await self._build_transit_segments_async(
             graph, display_path, speed_factor, hour
         )
-        station_names = [
-            graph.nodes.get(n, {}).get("name", "") or str(n)
-            for n in display_path
-        ]
+        station_names = [graph.nodes.get(n, {}).get("name", "") or str(n) for n in display_path]
         route_code = self._derive_route_code(graph, display_path)
         return self._build_response(
-            total_time, total_distance, "$3,550", mode,
-            risk_segments, station_names, departure_time, route_code=route_code
+            total_time,
+            total_distance,
+            "$3,550",
+            mode,
+            risk_segments,
+            station_names,
+            departure_time,
+            route_code=route_code,
         )
 
     async def _build_sitp_segments(
@@ -537,10 +568,16 @@ class RoutePredictionService:
         # Fetch OSRM geometry for all stops at once
         if len(stops) >= 2:
             coord_str = ";".join([f"{s['lon']},{s['lat']}" for s in stops])
-            url = f"{get_settings().osrm_base_url}/route/v1/foot/{coord_str}?geometries=geojson&overview=false&steps=true"
+            base_url = get_settings().osrm_base_url
+            url = (
+                f"{base_url}/route/v1/foot/{coord_str}"
+                "?geometries=geojson&overview=false&steps=true"
+            )
             leg_geometries: list = []
             try:
-                async with httpx.AsyncClient(timeout=20, follow_redirects=True, max_redirects=3) as client:
+                async with httpx.AsyncClient(
+                    timeout=20, follow_redirects=True, max_redirects=3
+                ) as client:
                     resp = await client.get(url)
                     data = resp.json()
                 if data.get("code") == "Ok" and data.get("routes"):
@@ -548,7 +585,10 @@ class RoutePredictionService:
                         leg_coords: list = []
                         for step in leg.get("steps", []):
                             leg_coords.extend(
-                                [[c[1], c[0]] for c in step.get("geometry", {}).get("coordinates", [])]
+                                [
+                                    [c[1], c[0]]
+                                    for c in step.get("geometry", {}).get("coordinates", [])
+                                ]
                             )
                         leg_geometries.append(leg_coords)
             except Exception as e:
@@ -568,10 +608,13 @@ class RoutePredictionService:
             total_time += adj_time
 
             seg_coords = (
-                leg_geometries[i] if use_osrm and i < len(leg_geometries) and leg_geometries[i]
+                leg_geometries[i]
+                if use_osrm and i < len(leg_geometries) and leg_geometries[i]
                 else [[s1["lat"], s1["lon"]], [s2["lat"], s2["lon"]]]
             )
-            risk_segments.append(self._make_segment(s1["nombre"], s2["nombre"], congestion, seg_coords))
+            risk_segments.append(
+                self._make_segment(s1["nombre"], s2["nombre"], congestion, seg_coords)
+            )
 
         return risk_segments, total_distance, total_time
 
@@ -579,21 +622,27 @@ class RoutePredictionService:
         """Fetch exact street geometries passing through path nodes from OSRM."""
         if len(path) < 2:
             return []
-            
+
         coords = []
         for n in path:
             d = graph.nodes.get(n, {})
             # geojson coordinates are lon, lat
             coords.append(f"{float(d.get('lon', 0))},{float(d.get('lat', 0))}")
-            
+
         coord_str = ";".join(coords)
-        url = f"{get_settings().osrm_base_url}/route/v1/foot/{coord_str}?geometries=geojson&overview=false&steps=true"
-        
+        base_url = get_settings().osrm_base_url
+        url = (
+            f"{base_url}/route/v1/foot/{coord_str}"
+            "?geometries=geojson&overview=false&steps=true"
+        )
+
         try:
-            async with httpx.AsyncClient(timeout=15, follow_redirects=True, max_redirects=3) as client:
+            async with httpx.AsyncClient(
+                timeout=15, follow_redirects=True, max_redirects=3
+            ) as client:
                 resp = await client.get(url)
                 data = resp.json()
-            
+
             if data.get("code") == "Ok" and data.get("routes"):
                 legs = data["routes"][0].get("legs", [])
                 leg_geometries = []
@@ -601,7 +650,9 @@ class RoutePredictionService:
                     leg_coords = []
                     for step in leg.get("steps", []):
                         # Convert from [lon, lat] (GeoJSON) to [lat, lon] for Leaflet
-                        step_coords = [[c[1], c[0]] for c in step.get("geometry", {}).get("coordinates", [])]
+                        step_coords = [
+                            [c[1], c[0]] for c in step.get("geometry", {}).get("coordinates", [])
+                        ]
                         if step_coords:
                             leg_coords.extend(step_coords)
                     leg_geometries.append(leg_coords)
@@ -644,15 +695,15 @@ class RoutePredictionService:
             from_name = from_data.get("nombre", "") or from_data.get("name", "") or str(from_id)
             to_name = to_data.get("nombre", "") or to_data.get("name", "") or str(to_id)
 
-            segment_coords = leg_geometries[i] if (use_osrm and leg_geometries[i]) else [[lat1, lon1], [lat2, lon2]]
-
-            risk_segments.append(
-                self._make_segment(from_name, to_name, congestion, segment_coords)
+            segment_coords = (
+                leg_geometries[i]
+                if (use_osrm and leg_geometries[i])
+                else [[lat1, lon1], [lat2, lon2]]
             )
 
+            risk_segments.append(self._make_segment(from_name, to_name, congestion, segment_coords))
+
         return risk_segments, total_distance, total_time
-
-
 
     def _derive_route_code(self, graph: nx.Graph, display_path: list) -> str:
         """Derive TM route code from path troncal data and route matching."""

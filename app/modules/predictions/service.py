@@ -41,7 +41,7 @@ class PredictionService:
             base_min = max(2, int(frecuencia_ruta * 0.5))
             base_max = max(5, int(frecuencia_ruta))
             extra_wait = int(factor_retraso * frecuencia_ruta)
-            
+
             min_wait = base_min + extra_wait
             max_wait = base_max + extra_wait
             tiempo_espera = f"{min_wait} - {max_wait} min"

@@ -198,10 +198,10 @@ class GraphService:
             # Solo estaciones/paraderos con demanda relevante
             if base_congestion <= 0.01:
                 continue
-            
+
             data = self._graph.nodes[node_id]
             name = data.get("nombre", "") or data.get("name", "")
-            
+
             # Filtramos nodos que son simples cruces de calle (sin nombre)
             if not name:
                 continue

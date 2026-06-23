@@ -1,10 +1,10 @@
 """Predictions router - congestion forecasting endpoints."""
 
-from fastapi import APIRouter, HTTPException
-
 import json
-from pathlib import Path
 from datetime import datetime
+from pathlib import Path
+
+from fastapi import APIRouter, HTTPException
 
 from app.modules.predictions.schemas import (
     BatchPredictionRequest,
@@ -58,20 +58,24 @@ async def get_paradero_info(id: str):
     # 1. Buscar paradero
     with open(paraderos_file, "r", encoding="utf-8") as f:
         paraderos_data = json.load(f)
-    
+
     paradero = None
     for feat in paraderos_data.get("features", []):
-        if str(feat.get("id")) == id or str(feat.get("properties", {}).get("objectid")) == id or str(feat.get("properties", {}).get("cenefa")) == id:
+        if (
+            str(feat.get("id")) == id
+            or str(feat.get("properties", {}).get("objectid")) == id
+            or str(feat.get("properties", {}).get("cenefa")) == id
+        ):
             paradero = feat
             break
-    
+
     if not paradero:
         raise HTTPException(404, "Paradero no encontrado")
 
     # 2. Rutas que pasan por este paradero
     with open(rutas_file, "r", encoding="utf-8") as f:
         rutas_data = json.load(f)
-    
+
     # 3. Frecuencias
     frecuencias = {}
     if frecuencias_file.exists():
@@ -94,19 +98,21 @@ async def get_paradero_info(id: str):
         frecuencia_base = frecuencias.get(r, {}).get("frecuencia_base_min", 15)
         # Predecimos el tiempo de espera por ruta llamando al servicio GNN
         pred = service.predict(
-            station_id=f"SITP_{id}", # Mock ID for SITP since GNN mostly has TM nodes, or we just rely on heuristic
+            station_id=f"SITP_{id}",  # Mock ID for SITP since GNN has TM nodes
             day_of_week=datetime.now().weekday(),
             hour=hora_actual,
             horizon_minutes=30,
             frecuencia_ruta=frecuencia_base,
-            demanda_actual=demanda_actual
+            demanda_actual=demanda_actual,
         )
-        rutas_info.append({
-            "ruta": r,
-            "frecuencia_estimada_min": frecuencia_base,
-            "tiempo_espera_predicho": pred.tiempo_espera_estimado or f"{frecuencia_base} min",
-            "congestion_esperada": pred.risk_label
-        })
+        rutas_info.append(
+            {
+                "ruta": r,
+                "frecuencia_estimada_min": frecuencia_base,
+                "tiempo_espera_predicho": pred.tiempo_espera_estimado or f"{frecuencia_base} min",
+                "congestion_esperada": pred.risk_label,
+            }
+        )
 
     nivel_demanda = "Baja"
     if demanda_actual > 70:
@@ -119,5 +125,5 @@ async def get_paradero_info(id: str):
         "nombre": paradero.get("properties", {}).get("nombre", ""),
         "demanda_actual_score": demanda_actual,
         "nivel_demanda": nivel_demanda,
-        "rutas": rutas_info
+        "rutas": rutas_info,
     }

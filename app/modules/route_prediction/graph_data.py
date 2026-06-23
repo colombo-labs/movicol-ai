@@ -113,15 +113,17 @@ def build_tm_graph() -> nx.Graph:
         clat = sum(s["lat"] for s in stations) / len(stations)
         clon = sum(s["lon"] for s in stations) / len(stations)
         start = max(stations, key=lambda s: _hav(clat, clon, s["lat"], s["lon"]))
-        
+
         ordered = [start]
         unvisited = [s for s in stations if s["id"] != start["id"]]
         while unvisited:
             last = ordered[-1]
-            closest = min(unvisited, key=lambda s: _hav(last["lat"], last["lon"], s["lat"], s["lon"]))
+            closest = min(
+                unvisited, key=lambda s: _hav(last["lat"], last["lon"], s["lat"], s["lon"])
+            )
             ordered.append(closest)
             unvisited.remove(closest)
-            
+
         for i, s in enumerate(ordered):
             G.add_node(s["id"], name=s["name"], lat=s["lat"], lon=s["lon"], troncal=troncal)
             if i > 0:
@@ -172,7 +174,13 @@ def build_sitp_graph() -> nx.Graph:
         )
         return R * 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
 
-    p = Path(__file__).parent.parent.parent.parent / "movicol-data" / "exports" / "backend" / "sitp_rutas_paraderos.geojson"
+    p = (
+        Path(__file__).parent.parent.parent.parent
+        / "movicol-data"
+        / "exports"
+        / "backend"
+        / "sitp_rutas_paraderos.geojson"
+    )
     G = nx.Graph()
     if not p.exists():
         print(f"Warning: SITP file not found at {p}")
@@ -198,14 +206,21 @@ def build_sitp_graph() -> nx.Graph:
             if lat_s is None or lon_s is None:
                 continue
             sid = s.get("consola", "") or s.get("nombre", "") or f"{ruta}_{i}"
-            G.add_node(sid, name=s.get("nombre", ""), lat=float(lat_s), lon=float(lon_s), troncal="SITP", route=ruta)
+            G.add_node(
+                sid,
+                name=s.get("nombre", ""),
+                lat=float(lat_s),
+                lon=float(lon_s),
+                troncal="SITP",
+                route=ruta,
+            )
             if i > 0:
                 prev = stations[i - 1]
                 prev_lat = prev.get("latitud")
                 prev_lon = prev.get("longitud")
                 if prev_lat is None or prev_lon is None:
                     continue
-                pid = prev.get("consola", "") or prev.get("nombre", "") or f"{ruta}_{i-1}"
+                pid = prev.get("consola", "") or prev.get("nombre", "") or f"{ruta}_{i - 1}"
                 dist = _hav(float(prev_lat), float(prev_lon), float(lat_s), float(lon_s))
                 G.add_edge(pid, sid, troncal="SITP", distance_km=round(dist, 3))
 
@@ -213,13 +228,13 @@ def build_sitp_graph() -> nx.Graph:
     by_name = {}
     for node, d in G.nodes(data=True):
         by_name.setdefault(d["name"], []).append(node)
-        
+
     for name, nodes in by_name.items():
         if len(nodes) > 1 and name:
             for i in range(len(nodes) - 1):
                 d1 = G.nodes[nodes[i]]
-                d2 = G.nodes[nodes[i+1]]
+                d2 = G.nodes[nodes[i + 1]]
                 dist = _hav(d1["lat"], d1["lon"], d2["lat"], d2["lon"])
-                G.add_edge(nodes[i], nodes[i+1], troncal="transbordo", distance_km=round(dist, 3))
-                
+                G.add_edge(nodes[i], nodes[i + 1], troncal="transbordo", distance_km=round(dist, 3))
+
     return G
