@@ -26,6 +26,8 @@ class Settings(BaseSettings):
 
     # External services
     osrm_base_url: str = "http://router.project-osrm.org"
+    ors_api_key: str = "eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6IjhlM2U1YWQ0NTRlYTRlZmE5ZDhmODQ4MDE4MDFjNTI4IiwiaCI6Im11cm11cjY0In0="
+    ors_base_url: str = "https://api.openrouteservice.org/v2/directions"
 
     class Config:
         env_file = ".env"

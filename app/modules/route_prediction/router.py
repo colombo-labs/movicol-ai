@@ -38,18 +38,43 @@ async def predict_route_alternatives(
 ) -> list[RoutePredictionResponse]:
     """Predict multiple route alternatives (vehicle mode)."""
     mode = request.mode or "vehiculo"
-    profile_map = {"vehiculo": "driving", "moto": "driving", "bicicleta": "cycling", "caminando": "foot"}
-    cost_map = {"vehiculo": 2000, "moto": 1200, "bicicleta": 0, "caminando": 0}
-    profile = profile_map.get(mode, "driving")
-    cost_per_km = cost_map.get(mode, 2000)
+    # Bici/caminando use ORS (single route, no alternatives)
+    if mode in ("bicicleta", "caminando"):
+        result = await service.predict_route(
+            origin=request.origin,
+            destination=request.destination,
+            departure_time=request.departure_time,
+            mode=mode,
+        )
+        result.explanation = generate_explanation(result)
+        return [result]
+    # Carro/moto use OSRM with alternatives
+    profile_map = {"vehiculo": "driving", "moto": "driving"}
+    cost_map = {"vehiculo": 2000, "moto": 1200}
     results = await service.predict_vehicle_alternatives(
         origin=request.origin,
         destination=request.destination,
         departure_time=request.departure_time,
-        profile=profile,
+        profile=profile_map.get(mode, "driving"),
         mode_name=mode,
-        cost_per_km=cost_per_km,
+        cost_per_km=cost_map.get(mode, 2000),
     )
+    for r in results:
+        r.explanation = generate_explanation(r)
+    return results
+
+
+
+
+
+
+
+
+
+
+
+
+
     for r in results:
         r.explanation = generate_explanation(r)
     return results

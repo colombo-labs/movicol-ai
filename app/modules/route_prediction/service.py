@@ -110,7 +110,9 @@ class RoutePredictionService:
         if mode == "moto":
             return await self._predict_osrm(origin, destination, departure_time, "driving", "moto", 1200)
         if mode == "bicicleta":
-            return await self._predict_osrm(origin, destination, departure_time, "cycling", "bicicleta", 0)
+            return await self._predict_ors(origin, destination, departure_time, "cycling-regular", "bicicleta")
+        if mode == "caminando":
+            return await self._predict_ors(origin, destination, departure_time, "foot-walking", "caminando")
         if mode == "caminando":
             return await self._predict_osrm(origin, destination, departure_time, "foot", "caminando", 0)
         return self._predict_transit(origin, destination, departure_time, mode)
@@ -351,6 +353,47 @@ class RoutePredictionService:
             )
         except Exception:
             return [self._fallback_vehicle(origin, destination, departure_time, hour, mode_name, cost_per_km)]
+
+
+    async def _predict_ors(
+        self, origin: Coordinates, destination: Coordinates, departure_time: str,
+        profile: str, mode_name: str,
+    ) -> RoutePredictionResponse:
+        """Route via OpenRouteService (cycling/walking with real paths)."""
+        settings = get_settings()
+        url = f"{settings.ors_base_url}/{profile}?api_key={settings.ors_api_key}&start={origin.lng},{origin.lat}&end={destination.lng},{destination.lat}"
+        hour = _parse_hour(departure_time)
+        try:
+            async with httpx.AsyncClient(timeout=15) as client:
+                resp = await client.get(url)
+                data = resp.json()
+
+            feat = data["features"][0]
+            summary = feat["properties"]["summary"]
+            coords_raw = feat["geometry"]["coordinates"]  # [lng, lat]
+
+            distance_km = summary["distance"] / 1000
+            duration_min = summary["duration"] / 60
+            congestion = _time_factor(hour) * 0.3
+
+            # Build segments from coord chunks
+            chunk_size = max(1, len(coords_raw) // 5)
+            segments = []
+            for i in range(0, len(coords_raw), chunk_size):
+                chunk = coords_raw[i:i + chunk_size + 1]
+                seg_coords = [[c[1], c[0]] for c in chunk]  # flip to [lat, lng]
+                seg_congestion = min(1.0, congestion * (1 + (i // chunk_size) * 0.05))
+                segments.append(self._make_segment(
+                    f"Tramo {i // chunk_size + 1}", f"Tramo {i // chunk_size + 2}",
+                    seg_congestion, seg_coords
+                ))
+
+            return self._build_response(
+                duration_min, distance_km, "$0", mode_name,
+                segments, [], departure_time,
+            )
+        except Exception:
+            return self._fallback_vehicle(origin, destination, departure_time, hour, mode_name, 0)
 
     def _fallback_vehicle(
         self, origin: Coordinates, destination: Coordinates, departure_time: str, hour: int, mode_name: str = "vehiculo", cost_per_km: int = 2000
