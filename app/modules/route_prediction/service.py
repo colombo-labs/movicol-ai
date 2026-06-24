@@ -203,6 +203,10 @@ class RoutePredictionService:
                 route, congestion
             )
 
+            # Adjust time based on mode average speed (OSRM public only has driving)
+            speed_kmh = {"driving": 25, "cycling": 15, "foot": 5}.get(profile, 25)
+            adjusted_time = (distance_km / speed_kmh) * 60 * (1 + congestion * 0.3)
+
             # Override cost with mode-specific rate
             if cost_per_km == 0:
                 cost = "$0"
@@ -295,7 +299,7 @@ class RoutePredictionService:
         return nav_steps
 
     async def predict_vehicle_alternatives(
-        self, origin: Coordinates, destination: Coordinates, departure_time: str
+        self, origin: Coordinates, destination: Coordinates, departure_time: str, profile: str = "driving", mode_name: str = "vehiculo", cost_per_km: int = 2000
     ) -> list[RoutePredictionResponse]:
         """Vehicle routing with multiple alternatives via OSRM."""
         hour = _parse_hour(departure_time)
@@ -312,7 +316,7 @@ class RoutePredictionService:
                 data = resp.json()
 
             if data.get("code") != "Ok" or not data.get("routes"):
-                return [self._fallback_vehicle(origin, destination, departure_time, hour)]
+                return [self._fallback_vehicle(origin, destination, departure_time, hour, mode_name, cost_per_km)]
 
             results = []
             congestion = _time_factor(hour) * 0.7
@@ -321,12 +325,19 @@ class RoutePredictionService:
                 segments, street_names, cost, adjusted_time, distance_km = self._parse_osrm_route(
                     route, congestion
                 )
+                speed_kmh = {"driving": 25, "cycling": 15, "foot": 5}.get(profile, 25)
+                adjusted_time = (distance_km / speed_kmh) * 60 * (1 + congestion * 0.3)
+                if cost_per_km == 0:
+                    cost = "$0"
+                else:
+                    cost_pesos = round(distance_km * cost_per_km, -2)
+                    cost = f"${cost_pesos:,.0f}".replace(",", ".")
                 results.append(
                     self._build_response(
                         adjusted_time,
                         distance_km,
                         cost,
-                        "vehiculo",
+                        mode_name,
                         segments,
                         street_names,
                         departure_time,
@@ -336,10 +347,10 @@ class RoutePredictionService:
             return (
                 results
                 if results
-                else [self._fallback_vehicle(origin, destination, departure_time, hour)]
+                else [self._fallback_vehicle(origin, destination, departure_time, hour, mode_name, cost_per_km)]
             )
         except Exception:
-            return [self._fallback_vehicle(origin, destination, departure_time, hour)]
+            return [self._fallback_vehicle(origin, destination, departure_time, hour, mode_name, cost_per_km)]
 
     def _fallback_vehicle(
         self, origin: Coordinates, destination: Coordinates, departure_time: str, hour: int, mode_name: str = "vehiculo", cost_per_km: int = 2000

@@ -37,10 +37,18 @@ async def predict_route_alternatives(
     request: RoutePredictionRequest,
 ) -> list[RoutePredictionResponse]:
     """Predict multiple route alternatives (vehicle mode)."""
+    mode = request.mode or "vehiculo"
+    profile_map = {"vehiculo": "driving", "moto": "driving", "bicicleta": "cycling", "caminando": "foot"}
+    cost_map = {"vehiculo": 2000, "moto": 1200, "bicicleta": 0, "caminando": 0}
+    profile = profile_map.get(mode, "driving")
+    cost_per_km = cost_map.get(mode, 2000)
     results = await service.predict_vehicle_alternatives(
         origin=request.origin,
         destination=request.destination,
         departure_time=request.departure_time,
+        profile=profile,
+        mode_name=mode,
+        cost_per_km=cost_per_km,
     )
     for r in results:
         r.explanation = generate_explanation(r)
