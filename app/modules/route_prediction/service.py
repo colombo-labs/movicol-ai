@@ -106,7 +106,16 @@ class RoutePredictionService:
     ) -> RoutePredictionResponse:
         """Predict route for given mode."""
         if mode == "vehiculo":
-            return await self._predict_vehicle(origin, destination, departure_time)
+            return await self._predict_osrm(origin, destination, departure_time, "driving", "vehiculo", 2000)
+        if mode == "moto":
+            return await self._predict_osrm(origin, destination, departure_time, "driving", "moto", 1200)
+        if mode == "bicicleta":
+            return await self._predict_osrm(origin, destination, departure_time, "cycling", "bicicleta", 0)
+        if mode == "caminando":
+            return await self._predict_osrm(origin, destination, departure_time, "foot", "caminando", 0)
+        return self._predict_transit(origin, destination, departure_time, mode)
+
+
         return self._predict_transit(origin, destination, departure_time, mode)
 
     @staticmethod
@@ -165,14 +174,14 @@ class RoutePredictionService:
             navigation_steps=navigation_steps or [],
         )
 
-    async def _predict_vehicle(
-        self, origin: Coordinates, destination: Coordinates, departure_time: str
+    async def _predict_osrm(
+        self, origin: Coordinates, destination: Coordinates, departure_time: str, profile: str = "driving", mode_name: str = "vehiculo", cost_per_km: int = 2000
     ) -> RoutePredictionResponse:
         """Vehicle routing via OSRM with street names."""
         hour = _parse_hour(departure_time)
 
         url = (
-            f"{get_settings().osrm_base_url}/route/v1/driving/"
+            f"{get_settings().osrm_base_url}/route/v1/{profile}/"
             f"{origin.lng},{origin.lat};{destination.lng},{destination.lat}"
             f"?overview=full&geometries=geojson&steps=true"
         )
@@ -185,7 +194,7 @@ class RoutePredictionService:
                 data = resp.json()
 
             if data.get("code") != "Ok" or not data.get("routes"):
-                return self._fallback_vehicle(origin, destination, departure_time, hour)
+                return self._fallback_vehicle(origin, destination, departure_time, hour, mode_name, cost_per_km)
 
             route = data["routes"][0]
             congestion = _time_factor(hour) * 0.7
@@ -193,6 +202,13 @@ class RoutePredictionService:
             segments, street_names, cost, adjusted_time, distance_km = self._parse_osrm_route(
                 route, congestion
             )
+
+            # Override cost with mode-specific rate
+            if cost_per_km == 0:
+                cost = "$0"
+            else:
+                cost_pesos = round(distance_km * cost_per_km, -2)
+                cost = f"${cost_pesos:,.0f}".replace(",", ".")
 
             # Build navigation steps from OSRM
             steps = route["legs"][0]["steps"]
@@ -202,14 +218,14 @@ class RoutePredictionService:
                 adjusted_time,
                 distance_km,
                 cost,
-                "vehiculo",
+                mode_name,
                 segments,
                 street_names,
                 departure_time,
                 navigation_steps=nav_steps,
             )
         except Exception as e:
-            return self._fallback_vehicle(origin, destination, departure_time, hour)
+            return self._fallback_vehicle(origin, destination, departure_time, hour, mode_name, cost_per_km)
 
     def _parse_osrm_route(
         self, route: dict, congestion: float
@@ -326,7 +342,7 @@ class RoutePredictionService:
             return [self._fallback_vehicle(origin, destination, departure_time, hour)]
 
     def _fallback_vehicle(
-        self, origin: Coordinates, destination: Coordinates, departure_time: str, hour: int
+        self, origin: Coordinates, destination: Coordinates, departure_time: str, hour: int, mode_name: str = "vehiculo", cost_per_km: int = 2000
     ) -> RoutePredictionResponse:
         """Fallback when OSRM is unavailable."""
         dist = (
@@ -346,8 +362,8 @@ class RoutePredictionService:
         return self._build_response(
             time_min,
             dist,
-            f"${round(dist * 2000, -2):,.0f}".replace(",", "."),
-            "vehiculo",
+            "$0" if cost_per_km == 0 else f"${round(dist * cost_per_km, -2):,.0f}".replace(",", "."),
+            mode_name,
             segments,
             [],
             departure_time,
