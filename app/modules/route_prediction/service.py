@@ -11,6 +11,16 @@ import networkx as nx
 
 from app.common.congestion import risk_label as _risk_label
 from app.common.congestion import time_factor as _time_factor
+
+
+def _cost_factor(hour: int) -> float:
+    """Cost multiplier based on time of day (traffic = more fuel)."""
+    if 6 <= hour <= 9 or 17 <= hour <= 20:
+        return 1.3  # hora pico
+    if 22 <= hour or hour <= 5:
+        return 1.15  # nocturno
+    return 1.0  # valle
+
 from app.config.settings import get_settings
 from app.modules.demand_prediction.st_gat_inference import DemandInference
 from app.modules.predictions.gnn_inference import GNNInference
@@ -213,7 +223,7 @@ class RoutePredictionService:
             if cost_per_km == 0:
                 cost = "$0"
             else:
-                cost_pesos = round(distance_km * cost_per_km, -2)
+                cost_pesos = round(distance_km * cost_per_km * _cost_factor(hour), -2)
                 cost = f"${cost_pesos:,.0f}".replace(",", ".")
 
             # Build navigation steps from OSRM
@@ -332,7 +342,7 @@ class RoutePredictionService:
                 if cost_per_km == 0:
                     cost = "$0"
                 else:
-                    cost_pesos = round(distance_km * cost_per_km, -2)
+                    cost_pesos = round(distance_km * cost_per_km * _cost_factor(hour), -2)
                     cost = f"${cost_pesos:,.0f}".replace(",", ".")
                 results.append(
                     self._build_response(
@@ -416,7 +426,7 @@ class RoutePredictionService:
         return self._build_response(
             time_min,
             dist,
-            "$0" if cost_per_km == 0 else f"${round(dist * cost_per_km, -2):,.0f}".replace(",", "."),
+            "$0" if cost_per_km == 0 else f"${round(dist * cost_per_km * _cost_factor(hour), -2):,.0f}".replace(",", "."),
             mode_name,
             segments,
             [],
