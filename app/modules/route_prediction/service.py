@@ -178,7 +178,7 @@ class RoutePredictionService:
         )
 
         try:
-            async with httpx.AsyncClient(
+            async with httpx.AsyncClient(verify=False,
                 timeout=15, follow_redirects=True, max_redirects=3
             ) as client:
                 resp = await client.get(url)
@@ -208,7 +208,7 @@ class RoutePredictionService:
                 departure_time,
                 navigation_steps=nav_steps,
             )
-        except Exception:
+        except Exception as e:
             return self._fallback_vehicle(origin, destination, departure_time, hour)
 
     def _parse_osrm_route(
@@ -289,7 +289,7 @@ class RoutePredictionService:
             f"?overview=full&geometries=geojson&steps=true&alternatives=3"
         )
         try:
-            async with httpx.AsyncClient(
+            async with httpx.AsyncClient(verify=False,
                 timeout=15, follow_redirects=True, max_redirects=3
             ) as client:
                 resp = await client.get(url)
@@ -346,7 +346,7 @@ class RoutePredictionService:
         return self._build_response(
             time_min,
             dist,
-            "$0",
+            f"${round(dist * 2000, -2):,.0f}".replace(",", "."),
             "vehiculo",
             segments,
             [],
