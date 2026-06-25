@@ -14,7 +14,7 @@ services:
       - ./models:/app/models
 
   db:
-    image: postgis/postgis:16-3.4
+    image: postgis/postgis:17-3.5
     container_name: movicol-ai-db
     environment:
       POSTGRES_USER: movicol
