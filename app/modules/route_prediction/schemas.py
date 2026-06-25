@@ -21,7 +21,10 @@ class RoutePredictionRequest(BaseModel):
     origin: Coordinates
     destination: Coordinates
     departure_time: str = Field(..., description="ISO 8601 datetime")
-    mode: str = Field(default="transmilenio", description="transmilenio | sitp | vehiculo | moto | bicicleta | caminando")
+    mode: str = Field(
+        default="transmilenio",
+        description="transmilenio, sitp, vehiculo, moto, bicicleta, caminando",
+    )
 
 
 class RiskSegment(BaseModel):
@@ -32,6 +35,9 @@ class RiskSegment(BaseModel):
     congestion_level: float = Field(..., ge=0, le=1, description="0=free, 1=jammed")
     risk_label: str = Field(..., description="low | medium | high | critical")
     coordinates: list[list[float]] = Field(..., description="[[lat, lng], ...]")
+    mode: str = Field(
+        default="transmilenio", description="Transport mode: walk, sitp, transmilenio"
+    )
 
 
 class NavigationStep(BaseModel):
@@ -67,4 +73,11 @@ class RoutePredictionResponse(BaseModel):
     )
     navigation_steps: list[NavigationStep] = Field(
         default=[], description="Turn-by-turn navigation"
+    )
+    transfers: int = Field(default=0, description="Number of transfers between routes")
+    estimated_wait_minutes: float = Field(
+        default=0.0, description="Estimated wait time at origin stop (minutes)"
+    )
+    alternatives: list["RoutePredictionResponse"] = Field(
+        default=[], description="2-3 alternative routes"
     )

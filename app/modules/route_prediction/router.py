@@ -63,18 +63,6 @@ async def predict_route_alternatives(
         r.explanation = generate_explanation(r)
     return results
 
-
-
-
-
-
-
-
-
-
-
-
-
     for r in results:
         r.explanation = generate_explanation(r)
     return results

@@ -7,12 +7,24 @@ Falls back to hardcoded Caracas if file not found.
 from __future__ import annotations
 
 import json
+import math
 from pathlib import Path
 
 import networkx as nx
 
 _DATA_FILE = Path(__file__).parent / "tm_stations_all.json"
 _RUTAS_FILE = Path(__file__).parent / "tm_rutas_all.json"
+
+
+def haversine_km(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
+    R = 6371
+    dlat, dlon = math.radians(lat2 - lat1), math.radians(lon2 - lon1)
+    a = (
+        math.sin(dlat / 2) ** 2
+        + math.cos(math.radians(lat1)) * math.cos(math.radians(lat2)) * math.sin(dlon / 2) ** 2
+    )
+    return R * 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+
 
 # Congestion by hour (system-wide average)
 CONGESTION_BY_HOUR: dict[int, float] = {
@@ -89,17 +101,6 @@ CARACAS_STATIONS: list[dict] = [s for s in TM_STATIONS if s["troncal"] == "Carac
 
 def build_tm_graph() -> nx.Graph:
     """Build full TransMilenio graph with all troncales + transfer connections."""
-    import math
-
-    def _hav(lat1, lon1, lat2, lon2):
-        R = 6371
-        dlat, dlon = math.radians(lat2 - lat1), math.radians(lon2 - lon1)
-        a = (
-            math.sin(dlat / 2) ** 2
-            + math.cos(math.radians(lat1)) * math.cos(math.radians(lat2)) * math.sin(dlon / 2) ** 2
-        )
-        return R * 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
-
     G = nx.Graph()
     by_troncal: dict[str, list[dict]] = {}
     for s in TM_STATIONS:
@@ -107,15 +108,38 @@ def build_tm_graph() -> nx.Graph:
 
     # Add nodes and sequential edges within troncal
     for troncal, stations in by_troncal.items():
-        for i, s in enumerate(stations):
+        if not stations:
+            continue
+        # Order stations geographically (nearest neighbor from an extreme point)
+        clat = sum(s["lat"] for s in stations) / len(stations)
+        clon = sum(s["lon"] for s in stations) / len(stations)
+        start = max(
+            stations,
+            key=lambda s, c_lat=clat, c_lon=clon: haversine_km(c_lat, c_lon, s["lat"], s["lon"]),
+        )
+
+        ordered = [start]
+        unvisited = [s for s in stations if s["id"] != start["id"]]
+        while unvisited:
+            last = ordered[-1]
+            closest = min(
+                unvisited,
+                key=lambda s, c_last=last: haversine_km(
+                    c_last["lat"], c_last["lon"], s["lat"], s["lon"]
+                ),
+            )
+            ordered.append(closest)
+            unvisited.remove(closest)
+
+        for i, s in enumerate(ordered):
             G.add_node(s["id"], name=s["name"], lat=s["lat"], lon=s["lon"], troncal=troncal)
             if i > 0:
-                prev = stations[i - 1]
-                dist = _hav(prev["lat"], prev["lon"], s["lat"], s["lon"])
+                prev = ordered[i - 1]
+                dist = haversine_km(prev["lat"], prev["lon"], s["lat"], s["lon"])
                 G.add_edge(prev["id"], s["id"], troncal=troncal, distance_km=round(dist, 3))
 
     # Add transfer edges between troncales (stations < 800m apart)
-    _add_transfer_edges(G, _hav)
+    _add_transfer_edges(G, haversine_km)
 
     return G
 
@@ -140,4 +164,82 @@ def build_caracas_graph() -> nx.Graph:
         if i > 0:
             prev = CARACAS_STATIONS[i - 1]
             G.add_edge(prev["id"], s["id"], troncal="Caracas")
+    return G
+
+
+def _group_by_route(features: list) -> dict:
+    by_route = {}
+    for feat in features:
+        props = feat.get("properties", {})
+        ruta = props.get("ruta")
+        if ruta:
+            by_route.setdefault(ruta, []).append(props)
+    return by_route
+
+
+def _add_sitp_nodes_edges(G: nx.Graph, by_route: dict) -> None:
+    for ruta, stations in by_route.items():
+        stations.sort(key=lambda s: s.get("orden", ""))
+        for i, s in enumerate(stations):
+            lat_s, lon_s = s.get("latitud"), s.get("longitud")
+            if lat_s is None or lon_s is None:
+                continue
+            sid = s.get("consola", "") or s.get("nombre", "") or f"{ruta}_{i}"
+            G.add_node(
+                sid,
+                name=s.get("nombre", ""),
+                lat=float(lat_s),
+                lon=float(lon_s),
+                troncal="SITP",
+                route=ruta,
+            )
+            if i > 0:
+                prev = stations[i - 1]
+                prev_lat, prev_lon = prev.get("latitud"), prev.get("longitud")
+                if prev_lat is None or prev_lon is None:
+                    continue
+                pid = prev.get("consola", "") or prev.get("nombre", "") or f"{ruta}_{i - 1}"
+                dist = haversine_km(float(prev_lat), float(prev_lon), float(lat_s), float(lon_s))
+                G.add_edge(pid, sid, troncal="SITP", distance_km=round(dist, 3))
+
+
+def _add_sitp_transfer_edges(G: nx.Graph) -> None:
+    by_name = {}
+    for node, d in G.nodes(data=True):
+        by_name.setdefault(d["name"], []).append(node)
+
+    for name, nodes in by_name.items():
+        if len(nodes) > 1 and name:
+            for i in range(len(nodes) - 1):
+                d1, d2 = G.nodes[nodes[i]], G.nodes[nodes[i + 1]]
+                dist = haversine_km(d1["lat"], d1["lon"], d2["lat"], d2["lon"])
+                G.add_edge(
+                    nodes[i],
+                    nodes[i + 1],
+                    troncal="transbordo",
+                    distance_km=round(dist, 3),
+                )
+
+
+def build_sitp_graph() -> nx.Graph:
+    """Build SITP graph from exported geojson."""
+    p = (
+        Path(__file__).parent.parent.parent.parent
+        / "movicol-data"
+        / "exports"
+        / "backend"
+        / "sitp_rutas_paraderos.geojson"
+    )
+    G = nx.Graph()
+    if not p.exists():
+        print(f"Warning: SITP file not found at {p}")
+        return build_caracas_graph()
+
+    with open(p, encoding="utf-8") as f:
+        data = json.load(f)
+
+    by_route = _group_by_route(data.get("features", []))
+    _add_sitp_nodes_edges(G, by_route)
+    _add_sitp_transfer_edges(G)
+
     return G
