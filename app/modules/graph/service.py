@@ -156,8 +156,8 @@ class GraphService:
 
     def get_heatmap(self, hour: int) -> list[dict]:
         """Get congestion predictions for all stations at a given hour."""
+        from app.common.congestion import risk_label, time_factor
         from app.modules.predictions.gnn_inference import GNNInference
-        from app.common.congestion import time_factor, risk_label
 
         gnn = GNNInference()
         if not gnn.is_loaded:
@@ -219,8 +219,8 @@ class GraphService:
 
     def compare_hours(self, station_id: str) -> dict:
         """Compare congestion across all hours for a station."""
+        from app.common.congestion import risk_label, time_factor
         from app.modules.predictions.gnn_inference import GNNInference
-        from app.common.congestion import time_factor, risk_label
 
         gnn = GNNInference()
         base = gnn.get_congestion(station_id) if gnn.is_loaded else 0.5

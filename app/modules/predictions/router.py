@@ -45,9 +45,14 @@ async def predict_all_stations(request: BatchPredictionRequest):
 def _find_paradero(features: list, id_str: str) -> dict | None:
     for feat in features:
         props = feat.get("properties", {})
-        if str(feat.get("id")) == id_str or str(props.get("objectid")) == id_str or str(props.get("cenefa")) == id_str:
+        if (
+            str(feat.get("id")) == id_str
+            or str(props.get("objectid")) == id_str
+            or str(props.get("cenefa")) == id_str
+        ):
             return feat
     return None
+
 
 def _get_rutas_que_pasan(features: list, id_str: str) -> list[str]:
     rutas_que_pasan = []
@@ -59,7 +64,10 @@ def _get_rutas_que_pasan(features: list, id_str: str) -> list[str]:
                 rutas_que_pasan.append(ruta)
     return rutas_que_pasan
 
-def _build_paradero_response(paradero_id: str, paradero: dict, rutas_que_pasan: list, frecuencias: dict) -> dict:
+
+def _build_paradero_response(
+    paradero_id: str, paradero: dict, rutas_que_pasan: list, frecuencias: dict
+) -> dict:
     demanda_actual = paradero.get("properties", {}).get("demanda_score", 0)
     hora_actual = datetime.now().hour
 
@@ -100,7 +108,9 @@ def _build_paradero_response(paradero_id: str, paradero: dict, rutas_que_pasan: 
 @router.get("/sitp/paradero/{id}/info", responses={404: {"description": "Not found"}})
 def get_paradero_info(id: str):
     """Get consolidated paradero info including predicted wait time."""
-    data_dir = Path(__file__).parent.parent.parent.parent.parent / "movicol-data" / "exports"
+    data_dir = (
+        Path(__file__).parent.parent.parent.parent.parent / "movicol-data" / "exports"
+    )
     paraderos_file = data_dir / "sitp_paraderos.geojson"
     rutas_file = data_dir / "sitp_rutas_paraderos.geojson"
     frecuencias_file = data_dir / "sitp_rutas_frecuencias.json"

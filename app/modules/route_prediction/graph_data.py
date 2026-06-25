@@ -7,6 +7,7 @@ Falls back to hardcoded Caracas if file not found.
 from __future__ import annotations
 
 import json
+import math
 from pathlib import Path
 
 import networkx as nx
@@ -15,7 +16,6 @@ _DATA_FILE = Path(__file__).parent / "tm_stations_all.json"
 _RUTAS_FILE = Path(__file__).parent / "tm_rutas_all.json"
 
 def haversine_km(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
-    import math
     R = 6371
     dlat, dlon = math.radians(lat2 - lat1), math.radians(lon2 - lon1)
     a = (
@@ -111,14 +111,20 @@ def build_tm_graph() -> nx.Graph:
         # Order stations geographically (nearest neighbor from an extreme point)
         clat = sum(s["lat"] for s in stations) / len(stations)
         clon = sum(s["lon"] for s in stations) / len(stations)
-        start = max(stations, key=lambda s, c_lat=clat, c_lon=clon: haversine_km(c_lat, c_lon, s["lat"], s["lon"]))
+        start = max(
+            stations,
+            key=lambda s, c_lat=clat, c_lon=clon: haversine_km(c_lat, c_lon, s["lat"], s["lon"]),
+        )
 
         ordered = [start]
         unvisited = [s for s in stations if s["id"] != start["id"]]
         while unvisited:
             last = ordered[-1]
             closest = min(
-                unvisited, key=lambda s, c_last=last: haversine_km(c_last["lat"], c_last["lon"], s["lat"], s["lon"])
+                unvisited,
+                key=lambda s, c_last=last: haversine_km(
+                    c_last["lat"], c_last["lon"], s["lat"], s["lon"]
+                ),
             )
             ordered.append(closest)
             unvisited.remove(closest)
@@ -168,6 +174,7 @@ def _group_by_route(features: list) -> dict:
             by_route.setdefault(ruta, []).append(props)
     return by_route
 
+
 def _add_sitp_nodes_edges(G: nx.Graph, by_route: dict) -> None:
     for ruta, stations in by_route.items():
         stations.sort(key=lambda s: s.get("orden", ""))
@@ -186,6 +193,7 @@ def _add_sitp_nodes_edges(G: nx.Graph, by_route: dict) -> None:
                 dist = haversine_km(float(prev_lat), float(prev_lon), float(lat_s), float(lon_s))
                 G.add_edge(pid, sid, troncal="SITP", distance_km=round(dist, 3))
 
+
 def _add_sitp_transfer_edges(G: nx.Graph) -> None:
     by_name = {}
     for node, d in G.nodes(data=True):
@@ -198,10 +206,9 @@ def _add_sitp_transfer_edges(G: nx.Graph) -> None:
                 dist = haversine_km(d1["lat"], d1["lon"], d2["lat"], d2["lon"])
                 G.add_edge(nodes[i], nodes[i + 1], troncal="transbordo", distance_km=round(dist, 3))
 
+
 def build_sitp_graph() -> nx.Graph:
     """Build SITP graph from exported geojson."""
-    import json
-
     p = (
         Path(__file__).parent.parent.parent.parent
         / "movicol-data"

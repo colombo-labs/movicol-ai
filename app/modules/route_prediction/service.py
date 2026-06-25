@@ -529,7 +529,13 @@ class RoutePredictionService:
 
         return best
 
-    async def _handle_sitp_mode(self, origin: Coordinates, destination: Coordinates, departure_time: str, speed_factor: float) -> RoutePredictionResponse | None:
+    async def _handle_sitp_mode(
+        self,
+        origin: Coordinates,
+        destination: Coordinates,
+        departure_time: str,
+        speed_factor: float,
+    ) -> RoutePredictionResponse | None:
         result = self._find_best_sitp_route(origin, destination)
         if not result:
             return None
