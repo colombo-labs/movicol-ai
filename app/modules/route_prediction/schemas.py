@@ -71,3 +71,10 @@ class RoutePredictionResponse(BaseModel):
     navigation_steps: list[NavigationStep] = Field(
         default=[], description="Turn-by-turn navigation"
     )
+    transfers: int = Field(default=0, description="Number of transfers between routes")
+    estimated_wait_minutes: float = Field(
+        default=0.0, description="Estimated wait time at origin stop (minutes)"
+    )
+    alternatives: list["RoutePredictionResponse"] = Field(
+        default=[], description="2-3 alternative routes"
+    )

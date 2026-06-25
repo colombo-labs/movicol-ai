@@ -32,6 +32,15 @@ def _parse_hour(departure_time: str) -> int:
         return 8
 
 
+def _parse_day(departure_time: str) -> int:
+    """Extract day-of-week (0=Mon, 6=Sun) from ISO departure time string."""
+    try:
+        dt = datetime.fromisoformat(departure_time.replace("Z", "+00:00"))
+        return dt.weekday()
+    except (ValueError, AttributeError):
+        return datetime.now().weekday()
+
+
 class RoutePredictionService:
     """Route prediction: TM/SITP via graph Dijkstra + GNN, vehiculo via OSRM."""
 
@@ -152,7 +161,7 @@ class RoutePredictionService:
                 best_id = node_id
         return best_id
 
-    def _get_congestion(self, node_id: str, hour: int) -> float:
+    def _get_congestion(self, node_id: str, hour: int, day: int | None = None) -> float:
         """Combined congestion: GNN base + demand from ST-GAT."""
         base = 0.5
         if self._gnn.is_loaded:
@@ -160,18 +169,17 @@ class RoutePredictionService:
             if abs(gnn_val - 0.5) > 1e-9:
                 base = gnn_val
 
-        # Boost congestion with demand prediction if available
         if self._demand.is_loaded:
             try:
                 idx = list(self._graph.nodes()).index(node_id)
                 demand_score = self._demand.get_station_demand_score(
                     idx % self._demand.station_count
                 )
-                base = base * 0.6 + demand_score * 0.4  # Blend both models
+                base = base * 0.6 + demand_score * 0.4
             except (ValueError, IndexError):
                 pass
 
-        return min(1.0, base * _time_factor(hour))
+        return min(1.0, base * _time_factor(hour, day))
 
     async def predict_route(
         self,
@@ -180,10 +188,104 @@ class RoutePredictionService:
         departure_time: str,
         mode: str = "transmilenio",
     ) -> RoutePredictionResponse:
-        """Predict route for given mode."""
+        """Predict route for given mode, including 2-3 alternatives."""
         if mode == "vehiculo":
-            return await self._predict_vehicle(origin, destination, departure_time)
-        return await self._predict_transit(origin, destination, departure_time, mode)
+            primary = await self._predict_vehicle(origin, destination, departure_time)
+            primary.alternatives = await self._get_vehicle_alternatives(
+                origin, destination, departure_time
+            )
+            return primary
+
+        primary = await self._predict_transit(origin, destination, departure_time, mode)
+        primary.alternatives = await self._get_transit_alternatives(
+            origin, destination, departure_time, mode, primary.route_code
+        )
+        return primary
+
+    async def _get_vehicle_alternatives(
+        self,
+        origin: Coordinates,
+        destination: Coordinates,
+        departure_time: str,
+    ) -> list[RoutePredictionResponse]:
+        """Get alternative vehicle routes from OSRM."""
+        hour = _parse_hour(departure_time)
+        url = (
+            f"{get_settings().osrm_base_url}/route/v1/driving/"
+            f"{origin.lng},{origin.lat};{destination.lng},{destination.lat}"
+            f"?overview=full&geometries=geojson&steps=true&alternatives=3"
+        )
+        try:
+            async with httpx.AsyncClient(
+                timeout=15, follow_redirects=True, max_redirects=3
+            ) as client:
+                resp = await client.get(url)
+                data = resp.json()
+            if data.get("code") != "Ok" or not data.get("routes"):
+                return []
+            congestion = _time_factor(hour) * 0.7
+            alts = []
+            for route in data["routes"][1:3]:
+                segs, names, cost, adj_t, dist = self._parse_osrm_route(route, congestion)
+                alts.append(
+                    self._build_response(adj_t, dist, cost, "vehiculo", segs, names, departure_time)
+                )
+            return alts
+        except Exception:
+            return []
+
+    async def _get_transit_alternatives(
+        self,
+        origin: Coordinates,
+        destination: Coordinates,
+        departure_time: str,
+        mode: str,
+        primary_route_code: str,
+    ) -> list[RoutePredictionResponse]:
+        """Generate transit alternatives: try SITP direct routes + multimodal."""
+        alts: list[RoutePredictionResponse] = []
+        speed_factor = 2.5 if mode == "sitp" else 1.5
+
+        if self._sitp_routes:
+            sitp_alts = self._find_sitp_alternatives(origin, destination, max_results=4)
+            for ruta_code, stops, o_idx, d_idx in sitp_alts:
+                if ruta_code == primary_route_code:
+                    continue
+                sub_stops = stops[o_idx : d_idx + 1]
+                if len(sub_stops) > 40:
+                    step = len(sub_stops) // 40
+                    sub_stops = [sub_stops[i] for i in range(0, len(sub_stops), step)]
+                    if stops[d_idx] not in sub_stops:
+                        sub_stops.append(stops[d_idx])
+                station_names = [s["nombre"] for s in sub_stops]
+                risk_segs, total_dist, total_time = await self._build_sitp_segments(
+                    sub_stops, speed_factor
+                )
+                alt = self._build_response(
+                    total_time,
+                    total_dist,
+                    "$2.650",
+                    "sitp",
+                    risk_segs,
+                    station_names,
+                    departure_time,
+                    route_code=ruta_code,
+                )
+                alts.append(alt)
+                if len(alts) >= 3:
+                    break
+
+        if len(alts) < 2 and mode != "multimodal":
+            try:
+                mm_resp = await self._predict_transit(
+                    origin, destination, departure_time, "multimodal"
+                )
+                mm_resp.route_id = str(uuid.uuid4())
+                alts.append(mm_resp)
+            except Exception:
+                pass
+
+        return alts[:3]
 
     @staticmethod
     def _make_segment(
@@ -203,6 +305,31 @@ class RoutePredictionService:
             mode=mode,
         )
 
+    @staticmethod
+    def _estimate_wait_minutes(mode: str) -> float:
+        """Estimate wait time at origin based on transport mode frequency."""
+        if mode == "transmilenio":
+            return 4.0  # TM: 3-5 min frequency
+        if mode == "sitp":
+            return 10.0  # SITP: 8-12 min frequency
+        if mode == "multimodal":
+            return 7.0  # Average of TM + SITP
+        return 0.0  # vehiculo: no wait
+
+    @staticmethod
+    def _count_transfers(risk_segments: list) -> int:
+        """Count mode changes in risk segments (excluding walk connections)."""
+        transfers = 0
+        prev_mode = ""
+        for seg in risk_segments:
+            cur_mode = seg.mode
+            if cur_mode == "walk":
+                continue
+            if prev_mode and cur_mode != prev_mode:
+                transfers += 1
+            prev_mode = cur_mode
+        return transfers
+
     def _build_response(
         self,
         time_min: float,
@@ -221,11 +348,13 @@ class RoutePredictionService:
             if risk_segments
             else 0.0
         )
-        # Safety score: inversely proportional to congestion + critical segments penalty
         critical_count = sum(1 for s in risk_segments if s.risk_label == "critical")
         high_count = sum(1 for s in risk_segments if s.risk_label == "high")
         safety_base = max(0, 100 - int(avg_c * 60) - critical_count * 10 - high_count * 5)
         safety_score = max(10, min(100, safety_base))
+
+        transfers = self._count_transfers(risk_segments)
+        wait_min = self._estimate_wait_minutes(mode)
 
         return RoutePredictionResponse(
             route_id=str(uuid.uuid4()),
@@ -241,6 +370,8 @@ class RoutePredictionService:
             departure_time=departure_time,
             route_code=route_code,
             navigation_steps=navigation_steps or [],
+            transfers=transfers,
+            estimated_wait_minutes=wait_min,
         )
 
     async def _predict_vehicle(
@@ -547,6 +678,52 @@ class RoutePredictionService:
                 best = (ruta, stops, o_idx, d_idx)
 
         return best
+
+    def _find_sitp_alternatives(
+        self,
+        origin: Coordinates,
+        destination: Coordinates,
+        max_walk_km: float = 0.8,
+        max_results: int = 3,
+    ) -> list[tuple[str, list, int, int]]:
+        """Find multiple SITP routes ranked by total walk distance."""
+        candidates: list[tuple[float, str, list, int, int]] = []
+
+        for ruta, stops in self._sitp_routes.items():
+            o_idx, _ = min(
+                enumerate(stops),
+                key=lambda x: self._haversine_km(x[1]["lat"], x[1]["lon"], origin.lat, origin.lng),
+            )
+            if (
+                self._haversine_km(stops[o_idx]["lat"], stops[o_idx]["lon"], origin.lat, origin.lng)
+                > max_walk_km
+            ):
+                continue
+
+            d_idx, _ = min(
+                enumerate(stops),
+                key=lambda x: self._haversine_km(
+                    x[1]["lat"], x[1]["lon"], destination.lat, destination.lng
+                ),
+            )
+            d_km = self._haversine_km(
+                stops[d_idx]["lat"], stops[d_idx]["lon"], destination.lat, destination.lng
+            )
+            if d_km > max_walk_km or o_idx == d_idx:
+                continue
+            if o_idx > d_idx:
+                o_idx, d_idx = d_idx, o_idx
+            if d_idx - o_idx < 1:
+                continue
+
+            o_km = self._haversine_km(
+                stops[o_idx]["lat"], stops[o_idx]["lon"], origin.lat, origin.lng
+            )
+            score = o_km + d_km
+            candidates.append((score, ruta, stops, o_idx, d_idx))
+
+        candidates.sort(key=lambda c: c[0])
+        return [(c[1], c[2], c[3], c[4]) for c in candidates[:max_results]]
 
     async def _handle_sitp_mode(
         self,
