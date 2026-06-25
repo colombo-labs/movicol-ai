@@ -85,7 +85,8 @@ def _build_paradero_response(
             {
                 "ruta": r,
                 "frecuencia_estimada_min": frecuencia_base,
-                "tiempo_espera_predicho": pred.tiempo_espera_estimado or f"{frecuencia_base} min",
+                "tiempo_espera_predicho": pred.tiempo_espera_estimado
+                or f"{frecuencia_base} min",
                 "congestion_esperada": pred.risk_label,
             }
         )

@@ -15,14 +15,18 @@ import networkx as nx
 _DATA_FILE = Path(__file__).parent / "tm_stations_all.json"
 _RUTAS_FILE = Path(__file__).parent / "tm_rutas_all.json"
 
+
 def haversine_km(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
     R = 6371
     dlat, dlon = math.radians(lat2 - lat1), math.radians(lon2 - lon1)
     a = (
         math.sin(dlat / 2) ** 2
-        + math.cos(math.radians(lat1)) * math.cos(math.radians(lat2)) * math.sin(dlon / 2) ** 2
+        + math.cos(math.radians(lat1))
+        * math.cos(math.radians(lat2))
+        * math.sin(dlon / 2) ** 2
     )
     return R * 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+
 
 # Congestion by hour (system-wide average)
 CONGESTION_BY_HOUR: dict[int, float] = {
@@ -113,7 +117,9 @@ def build_tm_graph() -> nx.Graph:
         clon = sum(s["lon"] for s in stations) / len(stations)
         start = max(
             stations,
-            key=lambda s, c_lat=clat, c_lon=clon: haversine_km(c_lat, c_lon, s["lat"], s["lon"]),
+            key=lambda s, c_lat=clat, c_lon=clon: haversine_km(
+                c_lat, c_lon, s["lat"], s["lon"]
+            ),
         )
 
         ordered = [start]
@@ -130,11 +136,15 @@ def build_tm_graph() -> nx.Graph:
             unvisited.remove(closest)
 
         for i, s in enumerate(ordered):
-            G.add_node(s["id"], name=s["name"], lat=s["lat"], lon=s["lon"], troncal=troncal)
+            G.add_node(
+                s["id"], name=s["name"], lat=s["lat"], lon=s["lon"], troncal=troncal
+            )
             if i > 0:
                 prev = ordered[i - 1]
                 dist = haversine_km(prev["lat"], prev["lon"], s["lat"], s["lon"])
-                G.add_edge(prev["id"], s["id"], troncal=troncal, distance_km=round(dist, 3))
+                G.add_edge(
+                    prev["id"], s["id"], troncal=troncal, distance_km=round(dist, 3)
+                )
 
     # Add transfer edges between troncales (stations < 800m apart)
     _add_transfer_edges(G, haversine_km)
@@ -149,7 +159,9 @@ def _add_transfer_edges(graph: nx.Graph, hav_fn) -> None:
         for n2, d2 in nodes[i + 1 :]:
             if d1.get("troncal") == d2.get("troncal"):
                 continue
-            dist = hav_fn(float(d1["lat"]), float(d1["lon"]), float(d2["lat"]), float(d2["lon"]))
+            dist = hav_fn(
+                float(d1["lat"]), float(d1["lon"]), float(d2["lat"]), float(d2["lon"])
+            )
             if dist < 0.8:
                 graph.add_edge(n1, n2, troncal="transbordo", distance_km=round(dist, 3))
 
@@ -158,7 +170,9 @@ def build_caracas_graph() -> nx.Graph:
     """Build Caracas-only graph (backward compat)."""
     G = nx.Graph()
     for i, s in enumerate(CARACAS_STATIONS):
-        G.add_node(s["id"], name=s["name"], lat=s["lat"], lon=s["lon"], troncal="Caracas")
+        G.add_node(
+            s["id"], name=s["name"], lat=s["lat"], lon=s["lon"], troncal="Caracas"
+        )
         if i > 0:
             prev = CARACAS_STATIONS[i - 1]
             G.add_edge(prev["id"], s["id"], troncal="Caracas")
@@ -196,8 +210,14 @@ def _add_sitp_nodes_edges(G: nx.Graph, by_route: dict) -> None:
                 prev_lat, prev_lon = prev.get("latitud"), prev.get("longitud")
                 if prev_lat is None or prev_lon is None:
                     continue
-                pid = prev.get("consola", "") or prev.get("nombre", "") or f"{ruta}_{i - 1}"
-                dist = haversine_km(float(prev_lat), float(prev_lon), float(lat_s), float(lon_s))
+                pid = (
+                    prev.get("consola", "")
+                    or prev.get("nombre", "")
+                    or f"{ruta}_{i - 1}"
+                )
+                dist = haversine_km(
+                    float(prev_lat), float(prev_lon), float(lat_s), float(lon_s)
+                )
                 G.add_edge(pid, sid, troncal="SITP", distance_km=round(dist, 3))
 
 
@@ -211,7 +231,12 @@ def _add_sitp_transfer_edges(G: nx.Graph) -> None:
             for i in range(len(nodes) - 1):
                 d1, d2 = G.nodes[nodes[i]], G.nodes[nodes[i + 1]]
                 dist = haversine_km(d1["lat"], d1["lon"], d2["lat"], d2["lon"])
-                G.add_edge(nodes[i], nodes[i + 1], troncal="transbordo", distance_km=round(dist, 3))
+                G.add_edge(
+                    nodes[i],
+                    nodes[i + 1],
+                    troncal="transbordo",
+                    distance_km=round(dist, 3),
+                )
 
 
 def build_sitp_graph() -> nx.Graph:

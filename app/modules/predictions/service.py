@@ -55,9 +55,7 @@ class PredictionService:
             tiempo_espera_estimado=tiempo_espera,
         )
 
-    def predict_all(
-        self, hour: int, horizon_minutes: int
-    ) -> list[PredictionResponse]:
+    def predict_all(self, hour: int, horizon_minutes: int) -> list[PredictionResponse]:
         """Predict congestion for all stations."""
         all_preds = self._gnn.get_all_predictions()
         time_factor = _time_factor(hour)
