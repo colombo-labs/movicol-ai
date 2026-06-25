@@ -32,6 +32,9 @@ class RiskSegment(BaseModel):
     congestion_level: float = Field(..., ge=0, le=1, description="0=free, 1=jammed")
     risk_label: str = Field(..., description="low | medium | high | critical")
     coordinates: list[list[float]] = Field(..., description="[[lat, lng], ...]")
+    mode: str = Field(
+        default="transmilenio", description="Transport mode: walk, sitp, transmilenio"
+    )
 
 
 class NavigationStep(BaseModel):
