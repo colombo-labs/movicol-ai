@@ -41,6 +41,38 @@ class RoutePredictionService:
         self._graph = self._load_graph()  # fallback graph
         self._tm_graph = build_tm_graph()  # TM-only graph (153 stations, 13 troncales)
         self._sitp_routes = self._load_sitp_route_data()  # {ruta: [{lat,lon,nombre,orden}, ...]}
+        self._multimodal_graph = self._build_multimodal_graph()
+
+    def _build_multimodal_graph(self) -> nx.Graph:
+        """Combine SITP and TM graphs and add walk edges between nearby stations."""
+        g = nx.Graph()
+        g.add_nodes_from(self._tm_graph.nodes(data=True))
+        g.add_edges_from(self._tm_graph.edges(data=True))
+        
+        tm_nodes = list(self._tm_graph.nodes(data=True))
+        sitp_nodes_data = []
+        
+        for ruta, stops in self._sitp_routes.items():
+            for i in range(len(stops)):
+                s = stops[i]
+                node_id = f"sitp_{s['lat']}_{s['lon']}"
+                g.add_node(node_id, lat=s['lat'], lon=s['lon'], name=s['nombre'], type="sitp")
+                sitp_nodes_data.append((node_id, s))
+                if i > 0:
+                    prev = stops[i-1]
+                    prev_id = f"sitp_{prev['lat']}_{prev['lon']}"
+                    dist = self._haversine_km(s['lat'], s['lon'], prev['lat'], prev['lon'])
+                    g.add_edge(prev_id, node_id, troncal="SITP", distance_km=dist)
+        
+        # Walk edges TM <-> SITP
+        for tm_id, tm_d in tm_nodes:
+            lat1, lon1 = float(tm_d.get("lat", 0)), float(tm_d.get("lon", 0))
+            for sitp_id, sitp_d in sitp_nodes_data:
+                lat2, lon2 = sitp_d['lat'], sitp_d['lon']
+                dist = self._haversine_km(lat1, lon1, lat2, lon2)
+                if dist <= 0.3:
+                    g.add_edge(tm_id, sitp_id, troncal="transbordo", distance_km=dist)
+        return g
 
     def _load_sitp_route_data(self) -> dict:
         """Load SITP route data grouped by route, sorted by orden."""
@@ -156,6 +188,7 @@ class RoutePredictionService:
         to_name: str,
         congestion: float,
         coordinates: list,
+        mode: str = "transmilenio",
     ) -> RiskSegment:
         """Create a standardized risk segment."""
         return RiskSegment(
@@ -164,6 +197,7 @@ class RoutePredictionService:
             congestion_level=round(congestion, 2),
             risk_label=_risk_label(congestion),
             coordinates=coordinates,
+            mode=mode,
         )
 
     def _build_response(
@@ -269,7 +303,7 @@ class RoutePredictionService:
             seg_coords = [[c[1], c[0]] for c in step["geometry"]["coordinates"]]
             step_congestion = congestion * (1 + (i % 3) * 0.1)
             segments.append(
-                self._make_segment(from_name, to_name, min(1.0, step_congestion), seg_coords)
+                self._make_segment(from_name, to_name, min(1.0, step_congestion), seg_coords, mode="vehiculo")
             )
 
         street_names = list(dict.fromkeys(s.get("name", "") for s in steps if s.get("name")))[:15]
@@ -382,6 +416,7 @@ class RoutePredictionService:
                 "Destino",
                 congestion,
                 [[origin.lat, origin.lng], [destination.lat, destination.lng]],
+                mode="vehiculo"
             )
         ]
         return self._build_response(
@@ -449,7 +484,7 @@ class RoutePredictionService:
 
         for ruta, stops in self._sitp_routes.items():
             # Find stop closest to origin
-            o_idx, o_dist = min(
+            o_idx, _ = min(
                 enumerate(stops),
                 key=lambda x: self._haversine_km(x[1]["lat"], x[1]["lon"], origin.lat, origin.lng),
             )
@@ -460,7 +495,7 @@ class RoutePredictionService:
                 continue
 
             # Find stop closest to destination
-            d_idx, d_dist_stop = min(
+            d_idx, _ = min(
                 enumerate(stops),
                 key=lambda x: self._haversine_km(
                     x[1]["lat"], x[1]["lon"], destination.lat, destination.lng
@@ -494,109 +529,85 @@ class RoutePredictionService:
 
         return best
 
+    async def _handle_sitp_mode(self, origin: Coordinates, destination: Coordinates, departure_time: str, speed_factor: float) -> RoutePredictionResponse | None:
+        result = self._find_best_sitp_route(origin, destination)
+        if not result:
+            return None
+            
+        ruta_code, stops, o_idx, d_idx = result
+        sub_stops = stops[o_idx : d_idx + 1]
+        max_display = 40
+        if len(sub_stops) > max_display:
+            step = len(sub_stops) // max_display
+            sub_stops = [sub_stops[i] for i in range(0, len(sub_stops), step)]
+            if stops[d_idx] not in sub_stops:
+                sub_stops.append(stops[d_idx])
+
+        station_names = [s["nombre"] for s in sub_stops]
+        risk_segments, total_distance, total_time = await self._build_sitp_segments(
+            sub_stops, speed_factor
+        )
+        return self._build_response(
+            total_time, total_distance, "$3,550", "sitp",
+            risk_segments, station_names, departure_time, route_code=ruta_code,
+        )
+
     async def _predict_transit(
         self, origin: Coordinates, destination: Coordinates, departure_time: str, mode: str
     ) -> RoutePredictionResponse:
-        """Transit routing: find real route covering origin+destination, trace with OSRM."""
+        """Transit routing: TransMilenio, SITP, or Multimodal."""
         hour = _parse_hour(departure_time)
-        speed_factor = 1.5 if mode == "transmilenio" else 2.5
+        speed_factor = 1.5 if mode != "sitp" else 2.5
 
         if mode == "sitp" and self._sitp_routes:
-            result = self._find_best_sitp_route(origin, destination)
-            if result:
-                ruta_code, stops, o_idx, d_idx = result
-                # Take the sub-path between origin stop and destination stop
-                sub_stops = stops[o_idx : d_idx + 1]
-                # Thin out if too many stops (keep every Nth)
-                max_display = 40
-                if len(sub_stops) > max_display:
-                    step = len(sub_stops) // max_display
-                    sub_stops = [sub_stops[i] for i in range(0, len(sub_stops), step)]
-                    if stops[d_idx] not in sub_stops:
-                        sub_stops.append(stops[d_idx])
+            sitp_resp = await self._handle_sitp_mode(origin, destination, departure_time, speed_factor)
+            if sitp_resp:
+                return sitp_resp
 
-                station_names = [s["nombre"] for s in sub_stops]
-                risk_segments, total_distance, total_time = await self._build_sitp_segments(
-                    sub_stops, speed_factor, hour
-                )
-                return self._build_response(
-                    total_time,
-                    total_distance,
-                    "$3,550",
-                    mode,
-                    risk_segments,
-                    station_names,
-                    departure_time,
-                    route_code=ruta_code,
-                )
+        if mode == "multimodal":
+            graph = self._multimodal_graph
+        else:
+            graph = self._tm_graph
 
-        # --- TransMilenio: use existing TM graph (troncal-based, already sorted) ---
-        graph = self._tm_graph
         origin_id = self._find_nearest_in(origin, graph)
         dest_id = self._find_nearest_in(destination, graph)
+        
         try:
             path = nx.shortest_path(graph, origin_id, dest_id, weight="distance_km")
         except (nx.NetworkXNoPath, nx.NodeNotFound):
             path = [origin_id, dest_id]
 
-        max_display = 25
+        max_display = 40 if mode == "multimodal" else 25
         display_path = self._limit_path(path, max_display)
         risk_segments, total_distance, total_time = await self._build_transit_segments_async(
             graph, display_path, speed_factor, hour
         )
-        station_names = [graph.nodes.get(n, {}).get("name", "") or str(n) for n in display_path]
+        station_names = [graph.nodes.get(n, {}).get("name", "") or graph.nodes.get(n, {}).get("nombre", "") or str(n) for n in display_path]
         route_code = self._derive_route_code(graph, display_path)
+
+        has_tm = any(s.mode == "transmilenio" for s in risk_segments)
+        has_sitp = any(s.mode == "sitp" for s in risk_segments)
+        if has_tm and has_sitp:
+            main_mode = "multimodal"
+        elif has_sitp:
+            main_mode = "sitp"
+        else:
+            main_mode = "transmilenio"
+
         return self._build_response(
-            total_time,
-            total_distance,
-            "$3,550",
-            mode,
-            risk_segments,
-            station_names,
-            departure_time,
-            route_code=route_code,
+            total_time, total_distance, "$3,550" if main_mode != "transmilenio" else "$2,950",
+            main_mode, risk_segments, station_names, departure_time, route_code=route_code,
         )
 
     async def _build_sitp_segments(
-        self, stops: list, speed_factor: float, hour: int
+        self, stops: list, speed_factor: float
     ) -> tuple[list[RiskSegment], float, float]:
-        """Build risk segments for SITP from ordered stop list, using OSRM for shapes."""
+        """Build risk segments for SITP from ordered stop list.
+        Connects stops with direct lines (not OSRM pedestrian routing).
+        """
         risk_segments: list[RiskSegment] = []
         total_distance = 0.0
         total_time = 0.0
-
-        # Fetch OSRM geometry for all stops at once
-        if len(stops) >= 2:
-            coord_str = ";".join([f"{s['lon']},{s['lat']}" for s in stops])
-            base_url = get_settings().osrm_base_url
-            url = (
-                f"{base_url}/route/v1/foot/{coord_str}?geometries=geojson&overview=false&steps=true"
-            )
-            leg_geometries: list = []
-            try:
-                async with httpx.AsyncClient(
-                    timeout=20, follow_redirects=True, max_redirects=3
-                ) as client:
-                    resp = await client.get(url)
-                    data = resp.json()
-                if data.get("code") == "Ok" and data.get("routes"):
-                    for leg in data["routes"][0].get("legs", []):
-                        leg_coords: list = []
-                        for step in leg.get("steps", []):
-                            leg_coords.extend(
-                                [
-                                    [c[1], c[0]]
-                                    for c in step.get("geometry", {}).get("coordinates", [])
-                                ]
-                            )
-                        leg_geometries.append(leg_coords)
-            except Exception as e:
-                print(f"OSRM SITP fetch failed: {e}")
-
-            use_osrm = len(leg_geometries) == len(stops) - 1
-        else:
-            leg_geometries = []
-            use_osrm = False
 
         for i in range(len(stops) - 1):
             s1, s2 = stops[i], stops[i + 1]
@@ -606,16 +617,13 @@ class RoutePredictionService:
             total_distance += dist_km
             total_time += adj_time
 
-            seg_coords = (
-                leg_geometries[i]
-                if use_osrm and i < len(leg_geometries) and leg_geometries[i]
-                else [[s1["lat"], s1["lon"]], [s2["lat"], s2["lon"]]]
-            )
+            seg_coords = [[s1["lat"], s1["lon"]], [s2["lat"], s2["lon"]]]
             risk_segments.append(
-                self._make_segment(s1["nombre"], s2["nombre"], congestion, seg_coords)
+                self._make_segment(s1["nombre"], s2["nombre"], congestion, seg_coords, mode="sitp")
             )
 
         return risk_segments, total_distance, total_time
+
 
     async def _fetch_osrm_transit_geometry(self, graph: nx.Graph, path: list) -> list[list]:
         """Fetch exact street geometries passing through path nodes from OSRM."""
@@ -697,7 +705,15 @@ class RoutePredictionService:
                 else [[lat1, lon1], [lat2, lon2]]
             )
 
-            risk_segments.append(self._make_segment(from_name, to_name, congestion, segment_coords))
+            troncal = edge.get("troncal", "")
+            if troncal == "walk" or troncal == "transbordo":
+                seg_mode = "walk"
+            elif troncal == "SITP":
+                seg_mode = "sitp"
+            else:
+                seg_mode = "transmilenio"
+
+            risk_segments.append(self._make_segment(from_name, to_name, congestion, segment_coords, mode=seg_mode))
 
         return risk_segments, total_distance, total_time
 

@@ -19,7 +19,6 @@ class PredictionService:
     def predict(
         self,
         station_id: str,
-        day_of_week: int,
         hour: int,
         horizon_minutes: int,
         frecuencia_ruta: int | None = None,
@@ -57,7 +56,7 @@ class PredictionService:
         )
 
     def predict_all(
-        self, day_of_week: int, hour: int, horizon_minutes: int
+        self, hour: int, horizon_minutes: int
     ) -> list[PredictionResponse]:
         """Predict congestion for all stations."""
         all_preds = self._gnn.get_all_predictions()

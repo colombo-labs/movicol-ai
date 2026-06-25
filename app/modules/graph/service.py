@@ -157,38 +157,13 @@ class GraphService:
     def get_heatmap(self, hour: int) -> list[dict]:
         """Get congestion predictions for all stations at a given hour."""
         from app.modules.predictions.gnn_inference import GNNInference
+        from app.common.congestion import time_factor, risk_label
 
         gnn = GNNInference()
         if not gnn.is_loaded:
             return []
 
-        time_factors = {
-            0: 0.3,
-            1: 0.2,
-            2: 0.2,
-            3: 0.2,
-            4: 0.3,
-            5: 0.5,
-            6: 0.7,
-            7: 0.9,
-            8: 1.0,
-            9: 0.9,
-            10: 0.7,
-            11: 0.65,
-            12: 0.75,
-            13: 0.7,
-            14: 0.65,
-            15: 0.7,
-            16: 0.8,
-            17: 0.95,
-            18: 1.0,
-            19: 0.9,
-            20: 0.7,
-            21: 0.5,
-            22: 0.4,
-            23: 0.3,
-        }
-        tf = time_factors.get(hour, 0.7)
+        tf = time_factor(hour)
 
         results = []
         preds = gnn.get_all_predictions()
@@ -214,13 +189,7 @@ class GraphService:
                     "lat": float(data.get("lat", 0)),
                     "lon": float(data.get("lon", 0)),
                     "congestion": round(congestion, 3),
-                    "risk": "low"
-                    if congestion < 0.3
-                    else "medium"
-                    if congestion < 0.6
-                    else "high"
-                    if congestion < 0.85
-                    else "critical",
+                    "risk": risk_label(congestion),
                 }
             )
 
@@ -251,52 +220,17 @@ class GraphService:
     def compare_hours(self, station_id: str) -> dict:
         """Compare congestion across all hours for a station."""
         from app.modules.predictions.gnn_inference import GNNInference
+        from app.common.congestion import time_factor, risk_label
 
         gnn = GNNInference()
         base = gnn.get_congestion(station_id) if gnn.is_loaded else 0.5
-
-        time_factors = {
-            0: 0.3,
-            1: 0.2,
-            2: 0.2,
-            3: 0.2,
-            4: 0.3,
-            5: 0.5,
-            6: 0.7,
-            7: 0.9,
-            8: 1.0,
-            9: 0.9,
-            10: 0.7,
-            11: 0.65,
-            12: 0.75,
-            13: 0.7,
-            14: 0.65,
-            15: 0.7,
-            16: 0.8,
-            17: 0.95,
-            18: 1.0,
-            19: 0.9,
-            20: 0.7,
-            21: 0.5,
-            22: 0.4,
-            23: 0.3,
-        }
 
         hours = []
         best_hour = 0
         best_val = 1.0
         for h in range(24):
-            val = min(1.0, base * time_factors[h])
-            label = (
-                "low"
-                if val < 0.3
-                else "medium"
-                if val < 0.6
-                else "high"
-                if val < 0.85
-                else "critical"
-            )
-            hours.append({"hour": h, "congestion": round(val, 3), "risk": label})
+            val = min(1.0, base * time_factor(h))
+            hours.append({"hour": h, "congestion": round(val, 3), "risk": risk_label(val)})
             if val < best_val:
                 best_val = val
                 best_hour = h
@@ -313,7 +247,7 @@ class GraphService:
             "best_hour": best_hour,
             "best_congestion": round(best_val, 3),
             "worst_hour": 8,
-            "worst_congestion": round(min(1.0, base * 1.0), 3),
+            "worst_congestion": round(min(1.0, base * time_factor(8)), 3),
         }
 
     def get_edges(self, edge_type: str, limit: int) -> list[dict]:
