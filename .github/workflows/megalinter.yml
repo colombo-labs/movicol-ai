@@ -30,7 +30,7 @@ jobs:
           APPLY_FIXES: none
           DISABLE_LINTERS: SPELL_SPELL,COPYPASTE_JSCPD
           FILTER_REGEX_EXCLUDE: '(node_modules|dist|coverage|data|\.github)/'
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: MegaLinter-reports
