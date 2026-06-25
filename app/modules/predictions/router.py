@@ -85,8 +85,7 @@ def _build_paradero_response(
             {
                 "ruta": r,
                 "frecuencia_estimada_min": frecuencia_base,
-                "tiempo_espera_predicho": pred.tiempo_espera_estimado
-                or f"{frecuencia_base} min",
+                "tiempo_espera_predicho": pred.tiempo_espera_estimado or f"{frecuencia_base} min",
                 "congestion_esperada": pred.risk_label,
             }
         )
@@ -109,9 +108,7 @@ def _build_paradero_response(
 @router.get("/sitp/paradero/{id}/info", responses={404: {"description": "Not found"}})
 def get_paradero_info(id: str):
     """Get consolidated paradero info including predicted wait time."""
-    data_dir = (
-        Path(__file__).parent.parent.parent.parent.parent / "movicol-data" / "exports"
-    )
+    data_dir = Path(__file__).parent.parent.parent.parent.parent / "movicol-data" / "exports"
     paraderos_file = data_dir / "sitp_paraderos.geojson"
     rutas_file = data_dir / "sitp_rutas_paraderos.geojson"
     frecuencias_file = data_dir / "sitp_rutas_frecuencias.json"

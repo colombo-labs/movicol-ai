@@ -40,9 +40,7 @@ class RoutePredictionService:
         self._demand = DemandInference()
         self._graph = self._load_graph()  # fallback graph
         self._tm_graph = build_tm_graph()  # TM-only graph (153 stations, 13 troncales)
-        self._sitp_routes = (
-            self._load_sitp_route_data()
-        )  # {ruta: [{lat,lon,nombre,orden}, ...]}
+        self._sitp_routes = self._load_sitp_route_data()  # {ruta: [{lat,lon,nombre,orden}, ...]}
         self._multimodal_graph = self._build_multimodal_graph()
 
     def _build_multimodal_graph(self) -> nx.Graph:
@@ -58,16 +56,12 @@ class RoutePredictionService:
             for i in range(len(stops)):
                 s = stops[i]
                 node_id = f"sitp_{s['lat']}_{s['lon']}"
-                g.add_node(
-                    node_id, lat=s["lat"], lon=s["lon"], name=s["nombre"], type="sitp"
-                )
+                g.add_node(node_id, lat=s["lat"], lon=s["lon"], name=s["nombre"], type="sitp")
                 sitp_nodes_data.append((node_id, s))
                 if i > 0:
                     prev = stops[i - 1]
                     prev_id = f"sitp_{prev['lat']}_{prev['lon']}"
-                    dist = self._haversine_km(
-                        s["lat"], s["lon"], prev["lat"], prev["lon"]
-                    )
+                    dist = self._haversine_km(s["lat"], s["lon"], prev["lat"], prev["lon"])
                     g.add_edge(prev_id, node_id, troncal="SITP", distance_km=dist)
 
         # Walk edges TM <-> SITP
@@ -123,11 +117,7 @@ class RoutePredictionService:
         graph_path = Path(settings.graph_path)
         if graph_path.exists():
             raw = nx.read_graphml(graph_path)
-            g = (
-                nx.Graph(raw)
-                if isinstance(raw, (nx.MultiGraph, nx.MultiDiGraph))
-                else raw
-            )
+            g = nx.Graph(raw) if isinstance(raw, (nx.MultiGraph, nx.MultiDiGraph)) else raw
             for u, v in g.edges():
                 u_data, v_data = g.nodes[u], g.nodes[v]
                 lat1, lon1 = float(u_data.get("lat", 0)), float(u_data.get("lon", 0))
@@ -147,9 +137,7 @@ class RoutePredictionService:
             "edges": self._graph.number_of_edges(),
         }
 
-    def _find_nearest_station(
-        self, coords: Coordinates, tipo_filter: str | None = None
-    ) -> str:
+    def _find_nearest_station(self, coords: Coordinates, tipo_filter: str | None = None) -> str:
         return self._find_nearest_in(coords, self._graph)
 
     @staticmethod
@@ -236,9 +224,7 @@ class RoutePredictionService:
         # Safety score: inversely proportional to congestion + critical segments penalty
         critical_count = sum(1 for s in risk_segments if s.risk_label == "critical")
         high_count = sum(1 for s in risk_segments if s.risk_label == "high")
-        safety_base = max(
-            0, 100 - int(avg_c * 60) - critical_count * 10 - high_count * 5
-        )
+        safety_base = max(0, 100 - int(avg_c * 60) - critical_count * 10 - high_count * 5)
         safety_score = max(10, min(100, safety_base))
 
         return RoutePredictionResponse(
@@ -282,8 +268,8 @@ class RoutePredictionService:
             route = data["routes"][0]
             congestion = _time_factor(hour) * 0.7
 
-            segments, street_names, cost, adjusted_time, distance_km = (
-                self._parse_osrm_route(route, congestion)
+            segments, street_names, cost, adjusted_time, distance_km = self._parse_osrm_route(
+                route, congestion
             )
 
             # Build navigation steps from OSRM
@@ -329,9 +315,7 @@ class RoutePredictionService:
                 )
             )
 
-        street_names = list(
-            dict.fromkeys(s.get("name", "") for s in steps if s.get("name"))
-        )[:15]
+        street_names = list(dict.fromkeys(s.get("name", "") for s in steps if s.get("name")))[:15]
 
         cost_pesos = round(distance_km * 2000, -2)
         cost = f"${cost_pesos:,.0f}".replace(",", ".")
@@ -399,16 +383,14 @@ class RoutePredictionService:
                 data = resp.json()
 
             if data.get("code") != "Ok" or not data.get("routes"):
-                return [
-                    self._fallback_vehicle(origin, destination, departure_time, hour)
-                ]
+                return [self._fallback_vehicle(origin, destination, departure_time, hour)]
 
             results = []
             congestion = _time_factor(hour) * 0.7
 
             for route in data["routes"][:3]:
-                segments, street_names, cost, adjusted_time, distance_km = (
-                    self._parse_osrm_route(route, congestion)
+                segments, street_names, cost, adjusted_time, distance_km = self._parse_osrm_route(
+                    route, congestion
                 )
                 results.append(
                     self._build_response(
@@ -463,14 +445,10 @@ class RoutePredictionService:
             departure_time,
         )
 
-    def _find_path(
-        self, origin_id: str, dest_id: str, destination: "Coordinates"
-    ) -> list:
+    def _find_path(self, origin_id: str, dest_id: str, destination: "Coordinates") -> list:
         """Find shortest path with fallback for disconnected components."""
         try:
-            return nx.shortest_path(
-                self._graph, origin_id, dest_id, weight="distance_km"
-            )
+            return nx.shortest_path(self._graph, origin_id, dest_id, weight="distance_km")
         except (nx.NetworkXNoPath, nx.NodeNotFound):
             pass
         try:
@@ -483,9 +461,7 @@ class RoutePredictionService:
                 ) ** 2
                 if dist < best_d:
                     best_d, best_dest = dist, n
-            return nx.shortest_path(
-                self._graph, origin_id, best_dest, weight="distance_km"
-            )
+            return nx.shortest_path(self._graph, origin_id, best_dest, weight="distance_km")
         except Exception:
             return [origin_id, dest_id]
 
@@ -508,9 +484,7 @@ class RoutePredictionService:
         dlon = math.radians(lon2 - lon1)
         a = (
             math.sin(dlat / 2) ** 2
-            + math.cos(math.radians(lat1))
-            * math.cos(math.radians(lat2))
-            * math.sin(dlon / 2) ** 2
+            + math.cos(math.radians(lat1)) * math.cos(math.radians(lat2)) * math.sin(dlon / 2) ** 2
         )
         return R * 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
 
@@ -528,14 +502,10 @@ class RoutePredictionService:
             # Find stop closest to origin
             o_idx, _ = min(
                 enumerate(stops),
-                key=lambda x: self._haversine_km(
-                    x[1]["lat"], x[1]["lon"], origin.lat, origin.lng
-                ),
+                key=lambda x: self._haversine_km(x[1]["lat"], x[1]["lon"], origin.lat, origin.lng),
             )
             if (
-                self._haversine_km(
-                    stops[o_idx]["lat"], stops[o_idx]["lon"], origin.lat, origin.lng
-                )
+                self._haversine_km(stops[o_idx]["lat"], stops[o_idx]["lon"], origin.lat, origin.lng)
                 > max_walk_km
             ):
                 continue
@@ -646,10 +616,8 @@ class RoutePredictionService:
 
         max_display = 40 if mode == "multimodal" else 25
         display_path = self._limit_path(path, max_display)
-        risk_segments, total_distance, total_time = (
-            await self._build_transit_segments_async(
-                graph, display_path, speed_factor, hour
-            )
+        risk_segments, total_distance, total_time = await self._build_transit_segments_async(
+            graph, display_path, speed_factor, hour
         )
         station_names = [
             graph.nodes.get(n, {}).get("name", "")
@@ -699,16 +667,12 @@ class RoutePredictionService:
 
             seg_coords = [[s1["lat"], s1["lon"]], [s2["lat"], s2["lon"]]]
             risk_segments.append(
-                self._make_segment(
-                    s1["nombre"], s2["nombre"], congestion, seg_coords, mode="sitp"
-                )
+                self._make_segment(s1["nombre"], s2["nombre"], congestion, seg_coords, mode="sitp")
             )
 
         return risk_segments, total_distance, total_time
 
-    async def _fetch_osrm_transit_geometry(
-        self, graph: nx.Graph, path: list
-    ) -> list[list]:
+    async def _fetch_osrm_transit_geometry(self, graph: nx.Graph, path: list) -> list[list]:
         """Fetch exact street geometries passing through path nodes from OSRM."""
         if len(path) < 2:
             return []
@@ -738,8 +702,7 @@ class RoutePredictionService:
                     for step in leg.get("steps", []):
                         # Convert from [lon, lat] (GeoJSON) to [lat, lon] for Leaflet
                         step_coords = [
-                            [c[1], c[0]]
-                            for c in step.get("geometry", {}).get("coordinates", [])
+                            [c[1], c[0]] for c in step.get("geometry", {}).get("coordinates", [])
                         ]
                         if step_coords:
                             leg_coords.extend(step_coords)
@@ -769,9 +732,7 @@ class RoutePredictionService:
             lat2, lon2 = float(to_data.get("lat", 0)), float(to_data.get("lon", 0))
 
             edge = graph.edges.get((from_id, to_id), {})
-            dist = edge.get(
-                "distance_km", ((lat1 - lat2) ** 2 + (lon1 - lon2) ** 2) ** 0.5 * 111
-            )
+            dist = edge.get("distance_km", ((lat1 - lat2) ** 2 + (lon1 - lon2) ** 2) ** 0.5 * 111)
             base_time = dist * speed_factor
 
             congestion = (
@@ -782,9 +743,7 @@ class RoutePredictionService:
             total_distance += dist
             total_time += adjusted_time
 
-            from_name = (
-                from_data.get("nombre", "") or from_data.get("name", "") or str(from_id)
-            )
+            from_name = from_data.get("nombre", "") or from_data.get("name", "") or str(from_id)
             to_name = to_data.get("nombre", "") or to_data.get("name", "") or str(to_id)
 
             segment_coords = (
@@ -819,13 +778,9 @@ class RoutePredictionService:
 
         from app.modules.route_prediction.graph_data import TM_RUTAS
 
-        troncales_in_path = [
-            graph.nodes.get(n, {}).get("troncal", "") for n in display_path
-        ]
+        troncales_in_path = [graph.nodes.get(n, {}).get("troncal", "") for n in display_path]
         troncales_in_path = [t for t in troncales_in_path if t]
-        route_code = (
-            Counter(troncales_in_path).most_common(1)[0][0] if troncales_in_path else ""
-        )
+        route_code = Counter(troncales_in_path).most_common(1)[0][0] if troncales_in_path else ""
 
         if not TM_RUTAS or len(display_path) < 2:
             return route_code
@@ -861,11 +816,7 @@ class RoutePredictionService:
             if score > best_score:
                 best_score = score
                 nombre = ruta.get("nombre", "")
-                best_ruta = (
-                    nombre.split()[0]
-                    if nombre
-                    else ruta.get("codigo", "").split("-")[0]
-                )
+                best_ruta = nombre.split()[0] if nombre else ruta.get("codigo", "").split("-")[0]
         return best_ruta if best_score >= 2 else ""
 
     def get_route_safety(self, ruta: str, hour: int) -> dict:
@@ -879,9 +830,7 @@ class RoutePredictionService:
 
         if not route_nodes:
             # Fallback: use a sample of SITP nodes
-            route_nodes = [
-                n for n, d in self._graph.nodes(data=True) if "P_" in str(n)
-            ][:20]
+            route_nodes = [n for n, d in self._graph.nodes(data=True) if "P_" in str(n)][:20]
 
         congestions = [self._get_congestion(n, hour) for n in route_nodes]
         avg_congestion = sum(congestions) / max(len(congestions), 1)
