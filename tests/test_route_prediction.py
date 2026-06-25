@@ -198,8 +198,8 @@ class TestCongestionFactors:
     def test_time_factor_off_peak(self):
         from app.common.congestion import HOUR_FACTORS
 
-        assert HOUR_FACTORS[3] == pytest.approx(0.2)  # Early morning
-        assert HOUR_FACTORS[14] == pytest.approx(0.65)  # Afternoon
+        assert HOUR_FACTORS[3] == pytest.approx(0.08)  # Early morning
+        assert HOUR_FACTORS[14] == pytest.approx(0.55)  # Afternoon
 
     def test_day_factors_exist(self):
         from app.common.congestion import DAY_FACTORS
