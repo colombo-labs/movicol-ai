@@ -183,7 +183,14 @@ def _add_sitp_nodes_edges(G: nx.Graph, by_route: dict) -> None:
             if lat_s is None or lon_s is None:
                 continue
             sid = s.get("consola", "") or s.get("nombre", "") or f"{ruta}_{i}"
-            G.add_node(sid, name=s.get("nombre", ""), lat=float(lat_s), lon=float(lon_s), troncal="SITP", route=ruta)
+            G.add_node(
+                sid,
+                name=s.get("nombre", ""),
+                lat=float(lat_s),
+                lon=float(lon_s),
+                troncal="SITP",
+                route=ruta,
+            )
             if i > 0:
                 prev = stations[i - 1]
                 prev_lat, prev_lon = prev.get("latitud"), prev.get("longitud")

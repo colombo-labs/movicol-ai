@@ -48,10 +48,10 @@ class RoutePredictionService:
         g = nx.Graph()
         g.add_nodes_from(self._tm_graph.nodes(data=True))
         g.add_edges_from(self._tm_graph.edges(data=True))
-        
+
         tm_nodes = list(self._tm_graph.nodes(data=True))
         sitp_nodes_data = []
-        
+
         for ruta, stops in self._sitp_routes.items():
             for i in range(len(stops)):
                 s = stops[i]
@@ -63,7 +63,7 @@ class RoutePredictionService:
                     prev_id = f"sitp_{prev['lat']}_{prev['lon']}"
                     dist = self._haversine_km(s['lat'], s['lon'], prev['lat'], prev['lon'])
                     g.add_edge(prev_id, node_id, troncal="SITP", distance_km=dist)
-        
+
         # Walk edges TM <-> SITP
         for tm_id, tm_d in tm_nodes:
             lat1, lon1 = float(tm_d.get("lat", 0)), float(tm_d.get("lon", 0))
@@ -303,7 +303,13 @@ class RoutePredictionService:
             seg_coords = [[c[1], c[0]] for c in step["geometry"]["coordinates"]]
             step_congestion = congestion * (1 + (i % 3) * 0.1)
             segments.append(
-                self._make_segment(from_name, to_name, min(1.0, step_congestion), seg_coords, mode="vehiculo")
+                self._make_segment(
+                    from_name,
+                    to_name,
+                    min(1.0, step_congestion),
+                    seg_coords,
+                    mode="vehiculo",
+                )
             )
 
         street_names = list(dict.fromkeys(s.get("name", "") for s in steps if s.get("name")))[:15]
@@ -539,7 +545,7 @@ class RoutePredictionService:
         result = self._find_best_sitp_route(origin, destination)
         if not result:
             return None
-            
+
         ruta_code, stops, o_idx, d_idx = result
         sub_stops = stops[o_idx : d_idx + 1]
         max_display = 40
@@ -566,7 +572,9 @@ class RoutePredictionService:
         speed_factor = 1.5 if mode != "sitp" else 2.5
 
         if mode == "sitp" and self._sitp_routes:
-            sitp_resp = await self._handle_sitp_mode(origin, destination, departure_time, speed_factor)
+            sitp_resp = await self._handle_sitp_mode(
+                origin, destination, departure_time, speed_factor
+            )
             if sitp_resp:
                 return sitp_resp
 
@@ -577,7 +585,7 @@ class RoutePredictionService:
 
         origin_id = self._find_nearest_in(origin, graph)
         dest_id = self._find_nearest_in(destination, graph)
-        
+
         try:
             path = nx.shortest_path(graph, origin_id, dest_id, weight="distance_km")
         except (nx.NetworkXNoPath, nx.NodeNotFound):
@@ -588,7 +596,12 @@ class RoutePredictionService:
         risk_segments, total_distance, total_time = await self._build_transit_segments_async(
             graph, display_path, speed_factor, hour
         )
-        station_names = [graph.nodes.get(n, {}).get("name", "") or graph.nodes.get(n, {}).get("nombre", "") or str(n) for n in display_path]
+        station_names = [
+            graph.nodes.get(n, {}).get("name", "")
+            or graph.nodes.get(n, {}).get("nombre", "")
+            or str(n)
+            for n in display_path
+        ]
         route_code = self._derive_route_code(graph, display_path)
 
         has_tm = any(s.mode == "transmilenio" for s in risk_segments)
@@ -719,7 +732,15 @@ class RoutePredictionService:
             else:
                 seg_mode = "transmilenio"
 
-            risk_segments.append(self._make_segment(from_name, to_name, congestion, segment_coords, mode=seg_mode))
+            risk_segments.append(
+                self._make_segment(
+                    from_name,
+                    to_name,
+                    congestion,
+                    segment_coords,
+                    mode=seg_mode,
+                )
+            )
 
         return risk_segments, total_distance, total_time
 
