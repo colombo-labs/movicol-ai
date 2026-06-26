@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Optional
 
 import networkx as nx
 
@@ -22,7 +23,7 @@ _DEFAULT_GRAPH_CANDIDATES = [
 ]
 
 
-def resolve_graph_path(config_graph_path: str | None = None) -> Path | None:
+def resolve_graph_path(config_graph_path: Optional[str] = None) -> Optional[Path]:
     """Resolve the best available graph path, prioritizing movicol-data outputs."""
     candidates: list[Path] = []
 

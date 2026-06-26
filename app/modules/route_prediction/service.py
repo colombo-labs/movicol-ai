@@ -23,6 +23,15 @@ from app.modules.route_prediction.schemas import (
 )
 
 
+def _cost_factor(hour: int) -> float:
+    """Cost multiplier based on time of day (traffic = more fuel)."""
+    if 6 <= hour <= 9 or 17 <= hour <= 20:
+        return 1.3  # hora pico
+    if 22 <= hour or hour <= 5:
+        return 1.15  # nocturno
+    return 1.0  # valle
+
+
 def _parse_hour(departure_time: str) -> int:
     """Extract hour from ISO departure time string."""
     try:
@@ -190,102 +199,22 @@ class RoutePredictionService:
     ) -> RoutePredictionResponse:
         """Predict route for given mode, including 2-3 alternatives."""
         if mode == "vehiculo":
-            primary = await self._predict_vehicle(origin, destination, departure_time)
-            primary.alternatives = await self._get_vehicle_alternatives(
-                origin, destination, departure_time
+            return await self._predict_osrm(
+                origin, destination, departure_time, "driving", "vehiculo", 2000
             )
-            return primary
-
-        primary = await self._predict_transit(origin, destination, departure_time, mode)
-        primary.alternatives = await self._get_transit_alternatives(
-            origin, destination, departure_time, mode, primary.route_code
-        )
-        return primary
-
-    async def _get_vehicle_alternatives(
-        self,
-        origin: Coordinates,
-        destination: Coordinates,
-        departure_time: str,
-    ) -> list[RoutePredictionResponse]:
-        """Get alternative vehicle routes from OSRM."""
-        hour = _parse_hour(departure_time)
-        url = (
-            f"{get_settings().osrm_base_url}/route/v1/driving/"
-            f"{origin.lng},{origin.lat};{destination.lng},{destination.lat}"
-            f"?overview=full&geometries=geojson&steps=true&alternatives=3"
-        )
-        try:
-            async with httpx.AsyncClient(
-                timeout=15, follow_redirects=True, max_redirects=3
-            ) as client:
-                resp = await client.get(url)
-                data = resp.json()
-            if data.get("code") != "Ok" or not data.get("routes"):
-                return []
-            congestion = _time_factor(hour) * 0.7
-            alts = []
-            for route in data["routes"][1:3]:
-                segs, names, cost, adj_t, dist = self._parse_osrm_route(route, congestion)
-                alts.append(
-                    self._build_response(adj_t, dist, cost, "vehiculo", segs, names, departure_time)
-                )
-            return alts
-        except Exception:
-            return []
-
-    async def _get_transit_alternatives(
-        self,
-        origin: Coordinates,
-        destination: Coordinates,
-        departure_time: str,
-        mode: str,
-        primary_route_code: str,
-    ) -> list[RoutePredictionResponse]:
-        """Generate transit alternatives: try SITP direct routes + multimodal."""
-        alts: list[RoutePredictionResponse] = []
-        speed_factor = 2.5 if mode == "sitp" else 1.5
-
-        if self._sitp_routes:
-            sitp_alts = self._find_sitp_alternatives(origin, destination, max_results=4)
-            for ruta_code, stops, o_idx, d_idx in sitp_alts:
-                if ruta_code == primary_route_code:
-                    continue
-                sub_stops = stops[o_idx : d_idx + 1]
-                if len(sub_stops) > 40:
-                    step = len(sub_stops) // 40
-                    sub_stops = [sub_stops[i] for i in range(0, len(sub_stops), step)]
-                    if stops[d_idx] not in sub_stops:
-                        sub_stops.append(stops[d_idx])
-                station_names = [s["nombre"] for s in sub_stops]
-                risk_segs, total_dist, total_time = await self._build_sitp_segments(
-                    sub_stops, speed_factor
-                )
-                alt = self._build_response(
-                    total_time,
-                    total_dist,
-                    "$2.650",
-                    "sitp",
-                    risk_segs,
-                    station_names,
-                    departure_time,
-                    route_code=ruta_code,
-                )
-                alts.append(alt)
-                if len(alts) >= 3:
-                    break
-
-        if len(alts) < 2 and mode != "multimodal":
-            try:
-                mm_resp = await self._predict_transit(
-                    origin, destination, departure_time, "multimodal"
-                )
-                mm_resp.route_id = str(uuid.uuid4())
-                alts.append(mm_resp)
-            except Exception:
-                pass
-
-        return alts[:3]
+        if mode == "moto":
+            return await self._predict_osrm(
+                origin, destination, departure_time, "driving", "moto", 1200
+            )
+        if mode == "bicicleta":
+            return await self._predict_ors(
+                origin, destination, departure_time, "cycling-regular", "bicicleta"
+            )
+        if mode == "caminando":
+            return await self._predict_ors(
+                origin, destination, departure_time, "foot-walking", "caminando"
+            )
+        return await self._predict_transit(origin, destination, departure_time, mode)
 
     @staticmethod
     def _make_segment(
@@ -374,14 +303,20 @@ class RoutePredictionService:
             estimated_wait_minutes=wait_min,
         )
 
-    async def _predict_vehicle(
-        self, origin: Coordinates, destination: Coordinates, departure_time: str
+    async def _predict_osrm(
+        self,
+        origin: Coordinates,
+        destination: Coordinates,
+        departure_time: str,
+        profile: str = "driving",
+        mode_name: str = "vehiculo",
+        cost_per_km: int = 2000,
     ) -> RoutePredictionResponse:
         """Vehicle routing via OSRM with street names."""
         hour = _parse_hour(departure_time)
 
         url = (
-            f"{get_settings().osrm_base_url}/route/v1/driving/"
+            f"{get_settings().osrm_base_url}/route/v1/{profile}/"
             f"{origin.lng},{origin.lat};{destination.lng},{destination.lat}"
             f"?overview=full&geometries=geojson&steps=true"
         )
@@ -394,31 +329,17 @@ class RoutePredictionService:
                 data = resp.json()
 
             if data.get("code") != "Ok" or not data.get("routes"):
-                return self._fallback_vehicle(origin, destination, departure_time, hour)
+                return self._fallback_vehicle(
+                    origin, destination, departure_time, hour, mode_name, cost_per_km
+                )
 
-            route = data["routes"][0]
-            congestion = _time_factor(hour) * 0.7
-
-            segments, street_names, cost, adjusted_time, distance_km = self._parse_osrm_route(
-                route, congestion
-            )
-
-            # Build navigation steps from OSRM
-            steps = route["legs"][0]["steps"]
-            nav_steps = self._build_nav_steps(steps)
-
-            return self._build_response(
-                adjusted_time,
-                distance_km,
-                cost,
-                "vehiculo",
-                segments,
-                street_names,
-                departure_time,
-                navigation_steps=nav_steps,
+            return self._route_to_response(
+                data["routes"][0], hour, profile, mode_name, cost_per_km, departure_time
             )
         except Exception:
-            return self._fallback_vehicle(origin, destination, departure_time, hour)
+            return self._fallback_vehicle(
+                origin, destination, departure_time, hour, mode_name, cost_per_km
+            )
 
     def _parse_osrm_route(
         self, route: dict, congestion: float
@@ -497,7 +418,13 @@ class RoutePredictionService:
         return nav_steps
 
     async def predict_vehicle_alternatives(
-        self, origin: Coordinates, destination: Coordinates, departure_time: str
+        self,
+        origin: Coordinates,
+        destination: Coordinates,
+        departure_time: str,
+        profile: str = "driving",
+        mode_name: str = "vehiculo",
+        cost_per_km: int = 2000,
     ) -> list[RoutePredictionResponse]:
         """Vehicle routing with multiple alternatives via OSRM."""
         hour = _parse_hour(departure_time)
@@ -514,7 +441,11 @@ class RoutePredictionService:
                 data = resp.json()
 
             if data.get("code") != "Ok" or not data.get("routes"):
-                return [self._fallback_vehicle(origin, destination, departure_time, hour)]
+                return [
+                    self._fallback_vehicle(
+                        origin, destination, departure_time, hour, mode_name, cost_per_km
+                    )
+                ]
 
             results = []
             congestion = _time_factor(hour) * 0.7
@@ -523,12 +454,19 @@ class RoutePredictionService:
                 segments, street_names, cost, adjusted_time, distance_km = self._parse_osrm_route(
                     route, congestion
                 )
+                speed_kmh = {"driving": 25, "cycling": 15, "foot": 5}.get(profile, 25)
+                adjusted_time = (distance_km / speed_kmh) * 60 * (1 + congestion * 0.3)
+                if cost_per_km == 0:
+                    cost = "$0"
+                else:
+                    cost_pesos = round(distance_km * cost_per_km * _cost_factor(hour), -2)
+                    cost = f"${cost_pesos:,.0f}".replace(",", ".")
                 results.append(
                     self._build_response(
                         adjusted_time,
                         distance_km,
                         cost,
-                        "vehiculo",
+                        mode_name,
                         segments,
                         street_names,
                         departure_time,
@@ -538,10 +476,106 @@ class RoutePredictionService:
             return (
                 results
                 if results
-                else [self._fallback_vehicle(origin, destination, departure_time, hour)]
+                else [
+                    self._fallback_vehicle(
+                        origin, destination, departure_time, hour, mode_name, cost_per_km
+                    )
+                ]
             )
         except Exception:
-            return [self._fallback_vehicle(origin, destination, departure_time, hour)]
+            return [
+                self._fallback_vehicle(
+                    origin, destination, departure_time, hour, mode_name, cost_per_km
+                )
+            ]
+
+    async def _predict_ors(
+        self,
+        origin: Coordinates,
+        destination: Coordinates,
+        departure_time: str,
+        profile: str,
+        mode_name: str,
+    ) -> RoutePredictionResponse:
+        """Route via OpenRouteService (cycling/walking with real paths)."""
+        settings = get_settings()
+        url = (
+            f"{settings.ors_base_url}/{profile}"
+            f"?api_key={settings.ors_api_key}"
+            f"&start={origin.lng},{origin.lat}&end={destination.lng},{destination.lat}"
+        )
+        hour = _parse_hour(departure_time)
+        try:
+            async with httpx.AsyncClient(timeout=15) as client:
+                resp = await client.get(url)
+                data = resp.json()
+
+            feat = data["features"][0]
+            summary = feat["properties"]["summary"]
+            coords_raw = feat["geometry"]["coordinates"]  # [lng, lat]
+
+            distance_km = summary["distance"] / 1000
+            duration_min = summary["duration"] / 60
+            congestion = _time_factor(hour) * 0.3
+
+            # Build segments from coord chunks
+            chunk_size = max(1, len(coords_raw) // 5)
+            segments = []
+            for i in range(0, len(coords_raw), chunk_size):
+                chunk = coords_raw[i : i + chunk_size + 1]
+                seg_coords = [[c[1], c[0]] for c in chunk]  # flip to [lat, lng]
+                seg_congestion = min(1.0, congestion * (1 + (i // chunk_size) * 0.05))
+                segments.append(
+                    self._make_segment(
+                        f"Tramo {i // chunk_size + 1}",
+                        f"Tramo {i // chunk_size + 2}",
+                        seg_congestion,
+                        seg_coords,
+                    )
+                )
+
+            return self._build_response(
+                duration_min,
+                distance_km,
+                "$0",
+                mode_name,
+                segments,
+                [],
+                departure_time,
+            )
+        except Exception:
+            return self._fallback_vehicle(origin, destination, departure_time, hour, mode_name, 0)
+
+    def _route_to_response(
+        self,
+        route: dict,
+        hour: int,
+        profile: str,
+        mode_name: str,
+        cost_per_km: int,
+        departure_time: str,
+    ) -> RoutePredictionResponse:
+        """Convert a single OSRM route dict into a RoutePredictionResponse."""
+        congestion = _time_factor(hour) * 0.7
+        segments, street_names, cost, _, distance_km = self._parse_osrm_route(route, congestion)
+        speed_kmh = {"driving": 25, "cycling": 15, "foot": 5}.get(profile, 25)
+        adjusted_time = (distance_km / speed_kmh) * 60 * (1 + congestion * 0.3)
+        if cost_per_km == 0:
+            cost = "$0"
+        else:
+            cost_pesos = round(distance_km * cost_per_km * _cost_factor(hour), -2)
+            cost = f"${cost_pesos:,.0f}".replace(",", ".")
+        nav_steps = self._build_nav_steps(route["legs"][0]["steps"]) if route.get("legs") else []
+        return self._build_response(
+            adjusted_time,
+            distance_km,
+            cost,
+            mode_name,
+            segments,
+            street_names,
+            departure_time,
+            navigation_steps=nav_steps,
+        )
 
     def _fallback_vehicle(
         self,
@@ -549,6 +583,8 @@ class RoutePredictionService:
         destination: Coordinates,
         departure_time: str,
         hour: int,
+        mode_name: str = "vehiculo",
+        cost_per_km: int = 2000,
     ) -> RoutePredictionResponse:
         """Fallback when OSRM is unavailable."""
         dist = (
@@ -569,8 +605,10 @@ class RoutePredictionService:
         return self._build_response(
             time_min,
             dist,
-            "$0",
-            "vehiculo",
+            "$0"
+            if cost_per_km == 0
+            else f"${round(dist * cost_per_km * _cost_factor(hour), -2):,.0f}".replace(",", "."),
+            mode_name,
             segments,
             [],
             departure_time,

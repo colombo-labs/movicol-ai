@@ -1,5 +1,9 @@
 """Prediction request/response schemas."""
 
+from __future__ import annotations
+
+from typing import Optional
+
 from pydantic import BaseModel, Field
 
 
@@ -10,8 +14,8 @@ class PredictionRequest(BaseModel):
     day_of_week: int = Field(..., ge=0, le=6, description="Day of week (0=Monday)")
     hour: int = Field(..., ge=0, le=23, description="Hour of day (0-23)")
     horizon_minutes: int = Field(default=30, description="Prediction horizon: 15, 30, or 60 min")
-    frecuencia_ruta: int | None = Field(default=None, description="Frecuencia base en minutos")
-    demanda_actual: int | None = Field(default=None, description="Demanda actual (score 0-100)")
+    frecuencia_ruta: Optional[int] = Field(default=None, description="Frecuencia base en minutos")
+    demanda_actual: Optional[int] = Field(default=None, description="Demanda actual (score 0-100)")
 
 
 class PredictionResponse(BaseModel):
@@ -23,7 +27,7 @@ class PredictionResponse(BaseModel):
     risk_label: str = Field(..., description="low | medium | high | critical")
     horizon_minutes: int
     confidence: float = Field(..., ge=0, le=1)
-    tiempo_espera_estimado: str | None = Field(default=None, description="Ej. 5 - 8 minutos")
+    tiempo_espera_estimado: Optional[str] = Field(default=None, description="Ej. 5 - 8 minutos")
 
 
 class BatchPredictionRequest(BaseModel):

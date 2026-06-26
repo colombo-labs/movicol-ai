@@ -1,5 +1,7 @@
 """Shared congestion utilities used across prediction modules."""
 
+from __future__ import annotations
+
 from datetime import datetime
 
 HOUR_FACTORS: dict[int, float] = {
