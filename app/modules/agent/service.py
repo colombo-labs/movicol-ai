@@ -14,10 +14,6 @@ from app.modules.route_prediction.graph_data import (
 from app.modules.route_prediction.service import RoutePredictionService
 from app.modules.siniestralidad.service import SiniestrosService
 
-
-
-
-
 SYSTEM_PROMPT = """Eres MoviBot, un asistente experto en movilidad urbana de Bogotá, Colombia.
 Tienes acceso a datos de TransMilenio (13 troncales, 153 estaciones) y SITP (689 rutas zonales).
 

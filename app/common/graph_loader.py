@@ -3,9 +3,9 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Optional
 
 import networkx as nx
-from typing import Optional
 
 _APP_DIR = Path(__file__).resolve().parent.parent
 _AI_ROOT = _APP_DIR.parent

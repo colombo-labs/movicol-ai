@@ -323,7 +323,7 @@ class RoutePredictionService:
 
         try:
             async with httpx.AsyncClient(
-                verify=False, timeout=15, follow_redirects=True, max_redirects=3
+                timeout=15, follow_redirects=True, max_redirects=3
             ) as client:
                 resp = await client.get(url)
                 data = resp.json()
@@ -464,7 +464,7 @@ class RoutePredictionService:
         )
         try:
             async with httpx.AsyncClient(
-                verify=False, timeout=15, follow_redirects=True, max_redirects=3
+                timeout=15, follow_redirects=True, max_redirects=3
             ) as client:
                 resp = await client.get(url)
                 data = resp.json()
