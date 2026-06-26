@@ -31,6 +31,7 @@ def _cost_factor(hour: int) -> float:
         return 1.15  # nocturno
     return 1.0  # valle
 
+
 def _parse_hour(departure_time: str) -> int:
     """Extract hour from ISO departure time string."""
     try:
@@ -215,7 +216,6 @@ class RoutePredictionService:
             )
         return await self._predict_transit(origin, destination, departure_time, mode)
 
-
     @staticmethod
     def _make_segment(
         from_name: str,
@@ -333,37 +333,8 @@ class RoutePredictionService:
                     origin, destination, departure_time, hour, mode_name, cost_per_km
                 )
 
-            route = data["routes"][0]
-            congestion = _time_factor(hour) * 0.7
-
-            segments, street_names, cost, adjusted_time, distance_km = self._parse_osrm_route(
-                route, congestion
-            )
-
-            # Adjust time based on mode average speed (OSRM public only has driving)
-            speed_kmh = {"driving": 25, "cycling": 15, "foot": 5}.get(profile, 25)
-            adjusted_time = (distance_km / speed_kmh) * 60 * (1 + congestion * 0.3)
-
-            # Override cost with mode-specific rate
-            if cost_per_km == 0:
-                cost = "$0"
-            else:
-                cost_pesos = round(distance_km * cost_per_km * _cost_factor(hour), -2)
-                cost = f"${cost_pesos:,.0f}".replace(",", ".")
-
-            # Build navigation steps from OSRM
-            steps = route["legs"][0]["steps"]
-            nav_steps = self._build_nav_steps(steps)
-
-            return self._build_response(
-                adjusted_time,
-                distance_km,
-                cost,
-                mode_name,
-                segments,
-                street_names,
-                departure_time,
-                navigation_steps=nav_steps,
+            return self._route_to_response(
+                data["routes"][0], hour, profile, mode_name, cost_per_km, departure_time
             )
         except Exception:
             return self._fallback_vehicle(
@@ -574,6 +545,37 @@ class RoutePredictionService:
             )
         except Exception:
             return self._fallback_vehicle(origin, destination, departure_time, hour, mode_name, 0)
+
+    def _route_to_response(
+        self,
+        route: dict,
+        hour: int,
+        profile: str,
+        mode_name: str,
+        cost_per_km: int,
+        departure_time: str,
+    ) -> RoutePredictionResponse:
+        """Convert a single OSRM route dict into a RoutePredictionResponse."""
+        congestion = _time_factor(hour) * 0.7
+        segments, street_names, cost, _, distance_km = self._parse_osrm_route(route, congestion)
+        speed_kmh = {"driving": 25, "cycling": 15, "foot": 5}.get(profile, 25)
+        adjusted_time = (distance_km / speed_kmh) * 60 * (1 + congestion * 0.3)
+        if cost_per_km == 0:
+            cost = "$0"
+        else:
+            cost_pesos = round(distance_km * cost_per_km * _cost_factor(hour), -2)
+            cost = f"${cost_pesos:,.0f}".replace(",", ".")
+        nav_steps = self._build_nav_steps(route["legs"][0]["steps"]) if route.get("legs") else []
+        return self._build_response(
+            adjusted_time,
+            distance_km,
+            cost,
+            mode_name,
+            segments,
+            street_names,
+            departure_time,
+            navigation_steps=nav_steps,
+        )
 
     def _fallback_vehicle(
         self,

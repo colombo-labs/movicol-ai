@@ -64,7 +64,6 @@ async def predict_route_alternatives(
     return results
 
 
-
 @router.get("/safety")
 async def get_route_safety(
     ruta: Annotated[str, Query(description="SITP route number")],
