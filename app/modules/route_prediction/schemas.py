@@ -20,7 +20,7 @@ class RoutePredictionRequest(BaseModel):
 
     origin: Coordinates
     destination: Coordinates
-    departure_time: str = Field(..., description="ISO 8601 datetime")
+    departure_time: str = Field(default="", description="ISO 8601 datetime (defaults to now)")
     mode: str = Field(
         default="transmilenio",
         description="transmilenio, sitp, vehiculo, moto, bicicleta, caminando",
