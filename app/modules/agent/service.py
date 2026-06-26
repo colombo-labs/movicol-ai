@@ -12,7 +12,6 @@ from app.modules.route_prediction.graph_data import (
     build_tm_graph,
 )
 from app.modules.route_prediction.service import RoutePredictionService
-
 SYSTEM_PROMPT = """Eres MoviBot, un asistente experto en movilidad urbana de Bogotá, Colombia.
 Tienes acceso a datos del sistema TransMilenio (13 troncales, 153 estaciones).
 

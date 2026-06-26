@@ -1,4 +1,5 @@
 """Prediction service - GNN inference for station congestion."""
+from __future__ import annotations
 
 from app.common.congestion import risk_label as _risk_label
 from app.common.congestion import time_factor as _time_factor
