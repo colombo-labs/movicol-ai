@@ -213,9 +213,8 @@ class RoutePredictionService:
             return await self._predict_ors(
                 origin, destination, departure_time, "foot-walking", "caminando"
             )
-        return self._predict_transit(origin, destination, departure_time, mode)
+        return await self._predict_transit(origin, destination, departure_time, mode)
 
-        return self._predict_transit(origin, destination, departure_time, mode)
 
     @staticmethod
     def _make_segment(
