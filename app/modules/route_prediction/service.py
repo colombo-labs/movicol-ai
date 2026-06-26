@@ -454,7 +454,7 @@ class RoutePredictionService:
                 segments, street_names, cost, adjusted_time, distance_km = self._parse_osrm_route(
                     route, congestion
                 )
-                speed_kmh = {"driving": 25, "cycling": 15, "foot": 5}.get(profile, 25)
+                speed_kmh = {"vehiculo": 25, "moto": 35, "bicicleta": 15, "caminando": 5}.get(mode_name, 25)
                 adjusted_time = (distance_km / speed_kmh) * 60 * (1 + congestion * 0.3)
                 if cost_per_km == 0:
                     cost = "$0"
