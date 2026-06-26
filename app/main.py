@@ -10,6 +10,7 @@ from app.modules.graph.router import router as graph_router
 from app.modules.health.router import router as health_router
 from app.modules.predictions.router import router as predictions_router
 from app.modules.route_prediction.router import router as route_prediction_router
+from app.modules.siniestralidad.router import router as siniestralidad_router
 
 settings = get_settings()
 
@@ -39,6 +40,9 @@ def create_app() -> FastAPI:
         route_prediction_router, prefix="/api/v1/predict-route", tags=["Route Prediction"]
     )
     application.include_router(demand_router, prefix="/demand", tags=["Demand Prediction"])
+    application.include_router(
+        siniestralidad_router, prefix="/siniestralidad", tags=["Siniestralidad"]
+    )
 
     return application
 

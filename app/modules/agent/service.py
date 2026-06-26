@@ -12,24 +12,35 @@ from app.modules.route_prediction.graph_data import (
     build_tm_graph,
 )
 from app.modules.route_prediction.service import RoutePredictionService
-SYSTEM_PROMPT = """Eres MoviBot, un asistente experto en movilidad urbana de Bogotá, Colombia.
-Tienes acceso a datos del sistema TransMilenio (13 troncales, 153 estaciones).
+from app.modules.siniestralidad.service import SiniestrosService
 
-Troncales: Caracas, Autopista Norte, Suba, Calle 80, NQS Central,
+
+
+
+
+SYSTEM_PROMPT = """Eres MoviBot, un asistente experto en movilidad urbana de Bogotá, Colombia.
+Tienes acceso a datos de TransMilenio (13 troncales, 153 estaciones) y SITP (689 rutas zonales).
+
+Troncales TM: Caracas, Autopista Norte, Suba, Calle 80, NQS Central,
 NQS Sur, Américas, Calle 26, Carrera 10, Caracas Sur,
 Eje Ambiental, Soacha, Tunal, Carrera 7.
 
 Capacidades:
-- Información de estaciones (nombre, ubicación, conexiones, troncal)
-- Predicción de congestión por hora del día
-- Recomendaciones de rutas y horarios
-- Estadísticas del sistema de transporte
+- Información de estaciones TM y paraderos SITP
+- Predicción de congestión por hora (modelo GNN)
+- Predicción de riesgo vial por zona y hora (siniestralidad con IA)
+- Planificación de rutas A→B con alternativas y trasbordos
+- Estadísticas de accidentes por localidad (datos.gov.co)
+- Recomendaciones de horarios seguros
 
-IMPORTANTE: TransMilenio (TM) es el sistema troncal de buses articulados con estaciones cerradas.
-NO confundir con SITP (buses zonales que circulan por vías normales con paraderos abiertos).
+IMPORTANTE:
+- TransMilenio (TM): buses articulados, estaciones cerradas
+- SITP: buses zonales, paraderos abiertos, ~689 rutas
+- Siniestralidad: datos reales de 196K+ accidentes en Bogotá
 
-Responde en español, de forma concisa y útil. Si no tienes datos para responder, dilo honestamente.
-Cuando menciones congestión, usa porcentajes y etiquetas (baja/media/alta/crítica)."""
+Responde en español, de forma concisa y útil. Si no tienes datos, dilo honestamente.
+Usa porcentajes y etiquetas para congestión (baja/media/alta/crítica)
+y niveles de riesgo (bajo/moderado/alto/crítico)."""
 
 
 class AgentService:
@@ -39,18 +50,38 @@ class AgentService:
         self._settings = get_settings()
         self._graph = build_tm_graph()
         self._route_service = RoutePredictionService()
+        self._siniestros_service: SiniestrosService | None = None
         self._sessions: dict[str, list[dict]] = {}
+        self._init_siniestros()
+
+    def _init_siniestros(self) -> None:
+        try:
+            svc = SiniestrosService()
+            if svc.is_loaded:
+                self._siniestros_service = svc
+        except Exception:
+            pass
 
     def _get_context(self) -> str:
         """Build context string from graph data."""
         troncal_info = ", ".join(f"{t} ({d['stations']})" for t, d in TRONCALES.items())
-        return (
+        ctx = (
             f"Sistema TransMilenio: {self._graph.number_of_nodes()} estaciones, "
             f"{self._graph.number_of_edges()} conexiones, 13 troncales.\n"
             f"Troncales: {troncal_info}\n"
+            f"SITP: 689 rutas zonales con ~7,290 paraderos.\n"
             f"Horas pico: 7-9am (congestión ~55-60%), 5-7pm (congestión ~60-65%)\n"
             f"Horas valle: 10pm-5am (congestión <10%)"
         )
+        if self._siniestros_service:
+            stats = self._siniestros_service.get_stats()
+            ctx += (
+                f"\nSiniestralidad: {stats.total_siniestros:,} accidentes registrados, "
+                f"{stats.total_fallecidos:,} fatales, "
+                f"{stats.sectores_criticos} sectores críticos, "
+                f"{stats.semaforos:,} semáforos."
+            )
+        return ctx
 
     def _find_station_info(self, query: str) -> str | None:
         """Find station info matching a query."""
@@ -219,6 +250,23 @@ class AgentService:
                 session_id=session_id,
             )
 
+        # Siniestralidad / safety queries
+        if any(
+            w in msg_lower
+            for w in [
+                "siniestro",
+                "accidente",
+                "peligro",
+                "riesgo",
+                "seguridad",
+                "zona peligrosa",
+                "mortalidad",
+                "insegura",
+                "inseguro",
+            ]
+        ):
+            return self._handle_siniestralidad_query(msg_lower, session_id)
+
         # Station list
         if any(w in msg_lower for w in ["estaciones", "paradas", "cuántas", "cuantas", "lista"]):
             troncal_match = None
@@ -292,10 +340,66 @@ class AgentService:
         return ChatResponse(
             response=(
                 "Soy MoviBot 🚌 — tu asistente de movilidad para Bogotá. Puedo ayudarte con:\n"
-                "• Info de 153 estaciones de TransMilenio (13 troncales)\n"
-                "• Niveles de congestión por hora\n"
-                "• Recomendaciones de horarios\n\n"
+                "• Info de 153 estaciones TM y 689 rutas SITP\n"
+                "• Niveles de congestión por hora (modelo GNN)\n"
+                "• Riesgo vial por zona y hora (siniestralidad con IA)\n"
+                "• Planificación de rutas con alternativas\n"
+                "• Recomendaciones de horarios seguros\n\n"
                 "¿Qué necesitas saber?"
+            ),
+            sources=sources,
+            session_id=session_id,
+        )
+
+    def _handle_siniestralidad_query(self, msg_lower: str, session_id: str) -> ChatResponse:
+        """Handle siniestralidad / safety queries."""
+        import re
+
+        sources = ["siniestralidad_datos_gov_co"]
+
+        if not self._siniestros_service:
+            return ChatResponse(
+                response="No tengo datos de siniestralidad cargados en este momento.",
+                sources=sources,
+                session_id=session_id,
+            )
+
+        stats = self._siniestros_service.get_stats()
+
+        # Check for hour query
+        hour_match = re.search(r"(\d{1,2})", msg_lower)
+        hour = int(hour_match.group(1)) if hour_match else None
+
+        if hour is not None and 0 <= hour <= 23:
+            risk = self._siniestros_service.predict_risk_by_hour(hour)
+            top3 = risk.zones[:3]
+            zones_text = "\n".join(
+                f"  • {z.localidad}: riesgo {z.nivel} ({int(z.risk * 100)}%)" for z in top3
+            )
+            return ChatResponse(
+                response=(
+                    f"Riesgo vial a las {hour}:00 — nivel general: "
+                    f"{risk.nivel_general} ({int(risk.promedio_riesgo * 100)}%)\n"
+                    f"Zonas más riesgosas:\n{zones_text}\n\n"
+                    f"Total accidentes registrados: {stats.total_siniestros:,}"
+                ),
+                sources=sources,
+                session_id=session_id,
+            )
+
+        # General siniestralidad info
+        top_vehiculos = ", ".join(f"{v['tipo']} ({v['total']:,})" for v in stats.vehiculos_top[:3])
+        return ChatResponse(
+            response=(
+                f"Siniestralidad vial en Bogotá:\n"
+                f"• Total accidentes: {stats.total_siniestros:,}\n"
+                f"• Fatales: {stats.total_fallecidos:,}\n"
+                f"• Sectores críticos (ANSV): {stats.sectores_criticos}\n"
+                f"• Semáforos: {stats.semaforos:,}\n"
+                f"• Localidades peligrosas: {stats.localidades_peligrosas}\n"
+                f"• Vehículos más involucrados: {top_vehiculos}\n\n"
+                "Pregúntame por una hora específica para ver el riesgo "
+                'por zona (ej: "riesgo a las 18").'
             ),
             sources=sources,
             session_id=session_id,
