@@ -24,12 +24,9 @@ class Settings(BaseSettings):
     model_path: str = "models/gat_best.pt"
     graph_path: str = "models/graph_clean.graphml"
 
-    # External services
-    osrm_base_url: str = "https://router.project-osrm.org"
-    ors_api_key: str = (
-        "eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6IjhlM2U"
-        "1YWQ0NTRlYTRlZmE5ZDhmODQ4MDE4MDFjNTI4IiwiaCI6Im11cm11cjY0In0="
-    )
+    # External services (configured via env vars / .env file)
+    osrm_base_url: str = ""
+    ors_api_key: str = ""
     ors_base_url: str = "https://api.openrouteservice.org/v2/directions"
 
     class Config:
