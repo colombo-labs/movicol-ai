@@ -100,9 +100,7 @@ class AgentService:
                 "vehicle": "Vehiculo",
                 "moto": "Moto",
             }
-            parts.append(
-                f"Modo: {modes.get(context.transport_mode, context.transport_mode)}"
-            )
+            parts.append(f"Modo: {modes.get(context.transport_mode, context.transport_mode)}")
         if not parts:
             return ""
         return "\n\nCONTEXTO ACTUAL:\n" + "\n".join(f"- {p}" for p in parts)
@@ -160,16 +158,16 @@ class AgentService:
 
             system_context = self._get_system_context()
             app_context = self._build_context_prompt(context)
-            full_system = (
-                f"{SYSTEM_PROMPT}\n\nDATOS:\n{system_context}{app_context}"
-            )
+            full_system = f"{SYSTEM_PROMPT}\n\nDATOS:\n{system_context}{app_context}"
 
-            prompt = ChatPromptTemplate.from_messages([
-                ("system", full_system),
-                MessagesPlaceholder(variable_name="chat_history"),
-                ("human", "{input}"),
-                MessagesPlaceholder(variable_name="agent_scratchpad"),
-            ])
+            prompt = ChatPromptTemplate.from_messages(
+                [
+                    ("system", full_system),
+                    MessagesPlaceholder(variable_name="chat_history"),
+                    ("human", "{input}"),
+                    MessagesPlaceholder(variable_name="agent_scratchpad"),
+                ]
+            )
 
             agent = create_tool_calling_agent(llm, AGENT_TOOLS, prompt)
             executor = AgentExecutor(
@@ -188,17 +186,18 @@ class AgentService:
                 else:
                     chat_history.append(AIMessage(content=msg["content"]))
 
-            result = await executor.ainvoke({
-                "input": message,
-                "chat_history": chat_history,
-            })
+            result = await executor.ainvoke(
+                {
+                    "input": message,
+                    "chat_history": chat_history,
+                }
+            )
 
             response_text = result["output"]
             actions: list[ActionPayload] = []
             actions.extend(parse_actions(response_text))
             clean_response = "\n".join(
-                line for line in response_text.split("\n")
-                if not line.startswith("ACTION:")
+                line for line in response_text.split("\n") if not line.startswith("ACTION:")
             ).strip()
 
             history.append({"role": "user", "content": message})
@@ -245,8 +244,15 @@ class AgentService:
         handler = getattr(self, f"_intent_{intent}", None)
         if handler:
             return handler(
-                message, session_id, context, slots, hour,
-                msg_lower, sources, actions, reply,
+                message,
+                session_id,
+                context,
+                slots,
+                hour,
+                msg_lower,
+                sources,
+                actions,
+                reply,
             )
 
         # Unknown — try station search as last resort
@@ -263,12 +269,17 @@ class AgentService:
     def _resolve_followup(intent, msg_lower, history):
         """Detect follow-up intent from conversation context."""
         followup_words = [
-            "esa", "ese", "ahi", "mas info",
-            "cuentame mas", "y esa", "que mas", "dime mas", "otra",
+            "esa",
+            "ese",
+            "ahi",
+            "mas info",
+            "cuentame mas",
+            "y esa",
+            "que mas",
+            "dime mas",
+            "otra",
         ]
-        is_followup = (
-            any(w in msg_lower for w in followup_words) and len(history) >= 2
-        )
+        is_followup = any(w in msg_lower for w in followup_words) and len(history) >= 2
         if not is_followup or intent != "unknown":
             return intent
         prev = [m for m in history if m["role"] == "assistant"]
@@ -283,12 +294,12 @@ class AgentService:
             return "route_code"
         return intent
 
-    def _intent_greeting(self, message, sid, ctx, slots, hour,
-                         msg_lower, sources, actions, reply):
+    def _intent_greeting(self, **kw):
+        reply = kw["reply"]
         return reply(get_greeting_response())
 
-    def _intent_confirm(self, message, sid, ctx, slots, hour,
-                        msg_lower, sources, actions, reply):
+    def _intent_confirm(self, **kw):
+        reply, actions, sid = kw["reply"], kw["actions"], kw["session_id"]
         if hasattr(self, "_pending_actions") and sid in self._pending_actions:
             pending = self._pending_actions.pop(sid)
             for a in pending:
@@ -297,22 +308,25 @@ class AgentService:
             return reply("Listo, ya lo hice. Mira el mapa.")
         return reply("No tengo nada pendiente. En que te ayudo?")
 
-    def _intent_deny(self, message, sid, ctx, slots, hour,
-                     msg_lower, sources, actions, reply):
+    def _intent_deny(self, **kw):
+        reply, sid = kw["reply"], kw["session_id"]
         if hasattr(self, "_pending_actions") and sid in self._pending_actions:
             self._pending_actions.pop(sid)
         return reply("Entendido, no hay problema. Que mas necesitas?")
 
-    def _intent_plan_route(self, message, sid, ctx, slots, hour,
-                           msg_lower, sources, actions, reply):
+    def _intent_plan_route(
+        self, message, sid, ctx, slots, hour, msg_lower, sources, actions, reply
+    ):
         groups = slots.get("groups", ())
         origin, dest = self._extract_route_points(groups, ctx)
         if not dest:
             return reply(self._default_response(ctx))
-        actions.append(ActionPayload(
-            type="pending_plan_route",
-            data={"origin": origin, "destination": dest, "mode": "tm"},
-        ))
+        actions.append(
+            ActionPayload(
+                type="pending_plan_route",
+                data={"origin": origin, "destination": dest, "mode": "tm"},
+            )
+        )
         congestion = get_current_congestion_summary()
         tip = self._get_travel_tip()
         return reply(
@@ -329,9 +343,7 @@ class AgentService:
         if len(groups) >= 2:
             return groups[0].strip(), groups[1].strip()
         if len(groups) == 1:
-            origin = (
-                context.origin if context and context.origin else "tu ubicacion"
-            )
+            origin = context.origin if context and context.origin else "tu ubicacion"
             return origin, groups[0].strip()
         return None, None
 
@@ -357,18 +369,14 @@ class AgentService:
                 "Si tu viaje es largo, puede que no alcances. "
                 "Considera alternativas."
             )
-        return (
-            "El trafico esta moderado, "
-            "TransMilenio o SITP son buenas opciones."
-        )
+        return "El trafico esta moderado, TransMilenio o SITP son buenas opciones."
 
-    def _intent_congestion(self, message, sid, ctx, slots, hour,
-                           msg_lower, sources, actions, reply):
+    def _intent_congestion(
+        self, message, sid, ctx, slots, hour, msg_lower, sources, actions, reply
+    ):
         if hour is not None:
             response = self._get_congestion_info(hour)
-            actions.append(
-                ActionPayload(type="show_congestion", data={"hour": hour})
-            )
+            actions.append(ActionPayload(type="show_congestion", data={"hour": hour}))
         else:
             current_hour = datetime.now().hour
             response = (
@@ -382,72 +390,59 @@ class AgentService:
                 "Si quieres evitar congestion, viaja antes de las 6am "
                 "o despues de las 9pm."
             )
-            actions.append(
-                ActionPayload(
-                    type="show_congestion", data={"hour": current_hour}
-                )
-            )
+            actions.append(ActionPayload(type="show_congestion", data={"hour": current_hour}))
         return reply(response)
 
-    def _intent_safety(self, message, sid, ctx, slots, hour,
-                       msg_lower, sources, actions, reply):
-        response = self._handle_siniestralidad(msg_lower)
+    def _intent_safety(self, **kw):
+        reply, actions, hour = kw["reply"], kw["actions"], kw["hour"]
+        response = self._handle_siniestralidad(kw["msg_lower"])
         if hour is not None:
-            actions.append(
-                ActionPayload(type="show_risk", data={"hour": hour})
-            )
+            actions.append(ActionPayload(type="show_risk", data={"hour": hour}))
         return reply(response)
 
-    def _intent_station(self, message, sid, ctx, slots, hour,
-                        msg_lower, sources, actions, reply):
-        station_info = self._find_station_info(message)
+    def _intent_station(self, **kw):
+        reply, actions, sources = kw["reply"], kw["actions"], kw["sources"]
+        station_info = self._find_station_info(kw["message"])
         if station_info:
             sources.append("station_data")
             if station_info.get("action"):
                 station_info["action"].type = "pending_show_station"
                 actions.append(station_info["action"])
-            return reply(
-                station_info["text"] + "\n\n"
-                "Quieres que te la muestre en el mapa?"
-            )
+            return reply(station_info["text"] + "\n\nQuieres que te la muestre en el mapa?")
         return reply(
             "No encontre esa estacion. Hay 153 estaciones TM. "
             "Prueba con: Heroes, Portal Norte, Calle 72, Suba, Americas..."
         )
 
-    def _intent_route_code(self, message, sid, ctx, slots, hour,
-                           msg_lower, sources, actions, reply):
+    def _intent_route_code(
+        self, message, sid, ctx, slots, hour, msg_lower, sources, actions, reply
+    ):
         return reply(self._handle_route_query(msg_lower))
 
-    def _intent_station_list(self, message, sid, ctx, slots, hour,
-                             msg_lower, sources, actions, reply):
+    def _intent_station_list(
+        self, message, sid, ctx, slots, hour, msg_lower, sources, actions, reply
+    ):
         return reply(self._handle_stations_query(msg_lower))
 
-    def _intent_troncal(self, message, sid, ctx, slots, hour,
-                        msg_lower, sources, actions, reply):
-        lines = [
-            f"- {n}: {d['stations']} estaciones"
-            for n, d in TRONCALES.items()
-        ]
-        return reply(
-            f"TransMilenio tiene {len(TRONCALES)} troncales:\n"
-            + "\n".join(lines)
-        )
+    def _intent_troncal(self, **kw):
+        reply = kw["reply"]
+        lines = [f"- {n}: {d['stations']} estaciones" for n, d in TRONCALES.items()]
+        return reply(f"TransMilenio tiene {len(TRONCALES)} troncales:\n" + "\n".join(lines))
 
-    def _intent_cost(self, message, sid, ctx, slots, hour,
-                     msg_lower, sources, actions, reply):
+    def _intent_cost(self, **kw):
+        reply = kw["reply"]
         return reply(get_cost_info())
 
-    def _intent_schedule(self, message, sid, ctx, slots, hour,
-                         msg_lower, sources, actions, reply):
+    def _intent_schedule(self, **kw):
+        reply = kw["reply"]
         return reply(get_schedule_info())
 
-    def _intent_compare(self, message, sid, ctx, slots, hour,
-                        msg_lower, sources, actions, reply):
+    def _intent_compare(self, **kw):
+        reply = kw["reply"]
         return reply(get_comparison_info())
 
-    def _intent_best_time(self, message, sid, ctx, slots, hour,
-                          msg_lower, sources, actions, reply):
+    def _intent_best_time(self, **kw):
+        reply = kw["reply"]
         h = datetime.now().hour
         if 6 <= h <= 9 or 16 <= h <= 19:
             return reply(
@@ -461,8 +456,8 @@ class AgentService:
             "congestiona."
         )
 
-    def _intent_nearby(self, message, sid, ctx, slots, hour,
-                       msg_lower, sources, actions, reply):
+    def _intent_nearby(self, **kw):
+        reply, actions, ctx = kw["reply"], kw["actions"], kw["context"]
         if ctx and ctx.origin_coords:
             lat, lon = ctx.origin_coords
             nearby = find_nearby_stations(lat, lon, 3)
@@ -470,18 +465,17 @@ class AgentService:
             response = f"Las estaciones mas cercanas son: {names}."
             if nearby:
                 s = nearby[0]
-                actions.append(ActionPayload(
-                    type="show_station",
-                    data={"name": s["name"], "lat": s["lat"], "lon": s["lon"]},
-                ))
+                actions.append(
+                    ActionPayload(
+                        type="show_station",
+                        data={"name": s["name"], "lat": s["lat"], "lon": s["lon"]},
+                    )
+                )
             return reply(response)
-        return reply(
-            "No tengo tu ubicacion. "
-            "Coloca un punto en el mapa y preguntame de nuevo."
-        )
+        return reply("No tengo tu ubicacion. Coloca un punto en el mapa y preguntame de nuevo.")
 
-    def _intent_thanks(self, message, sid, ctx, slots, hour,
-                       msg_lower, sources, actions, reply):
+    def _intent_thanks(self, **kw):
+        reply = kw["reply"]
         responses = [
             "De nada, estoy aqui para lo que necesites.",
             "Con gusto. Algo mas en lo que te pueda ayudar?",
@@ -490,18 +484,18 @@ class AgentService:
         idx = datetime.now().second % len(responses)
         return reply(responses[idx])
 
-    def _intent_help(self, message, sid, ctx, slots, hour,
-                     msg_lower, sources, actions, reply):
+    def _intent_help(self, **kw):
+        reply = kw["reply"]
         return reply(
             "Soy MoviBot y puedo ayudarte con lo siguiente:\n\n"
-            "Planificar rutas: dime \"ir de X a Y\"\n"
-            "Informacion de estaciones: \"estacion Heroes\"\n"
-            "Congestion: \"como esta el trafico\" o \"trafico a las 7\"\n"
-            "Seguridad vial: \"riesgo a las 18\"\n"
-            "Rutas TransMilenio: \"ruta J74\"\n"
-            "Costos: \"cuanto cuesta el pasaje\"\n"
-            "Horarios: \"a que hora abre TM\"\n"
-            "Comparar: \"que es mejor TM o SITP\"\n\n"
+            'Planificar rutas: dime "ir de X a Y"\n'
+            'Informacion de estaciones: "estacion Heroes"\n'
+            'Congestion: "como esta el trafico" o "trafico a las 7"\n'
+            'Seguridad vial: "riesgo a las 18"\n'
+            'Rutas TransMilenio: "ruta J74"\n'
+            'Costos: "cuanto cuesta el pasaje"\n'
+            'Horarios: "a que hora abre TM"\n'
+            'Comparar: "que es mejor TM o SITP"\n\n'
             "Tambien puedes hablarme por voz con el boton del microfono."
         )
 
@@ -516,27 +510,36 @@ class AgentService:
 
         query_norm = normalize(query)
         fillers = {
-            "info", "estacion", "parada", "sobre", "la", "el",
-            "de", "del", "las", "los", "una", "un", "por", "para", "con",
-            "como", "que", "esta", "hay", "tiene",
+            "info",
+            "estacion",
+            "parada",
+            "sobre",
+            "la",
+            "el",
+            "de",
+            "del",
+            "las",
+            "los",
+            "una",
+            "un",
+            "por",
+            "para",
+            "con",
+            "como",
+            "que",
+            "esta",
+            "hay",
+            "tiene",
         }
-        words = [
-            w for w in query_norm.split() if w not in fillers and len(w) > 2
-        ]
+        words = [w for w in query_norm.split() if w not in fillers and len(w) > 2]
         for station in TM_STATIONS:
             name_norm = normalize(station["name"])
             if any(w in name_norm for w in words):
                 neighbors = list(self._graph.neighbors(station["id"]))
                 neighbor_names = [
-                    self._graph.nodes[n]["name"]
-                    for n in neighbors
-                    if n in self._graph.nodes
+                    self._graph.nodes[n]["name"] for n in neighbors if n in self._graph.nodes
                 ]
-                connects = (
-                    ", ".join(neighbor_names[:5])
-                    if neighbor_names
-                    else "ninguna registrada"
-                )
+                connects = ", ".join(neighbor_names[:5]) if neighbor_names else "ninguna registrada"
                 text = (
                     f"Estacion {station['name']}.\n\n"
                     f"Pertenece a la troncal {station['troncal']}.\n"
@@ -599,8 +602,7 @@ class AgentService:
                 risk = self._siniestros_service.predict_risk_by_hour(hour)
                 top3 = risk.zones[:3]
                 zones = "\n".join(
-                    f"  - {z.localidad}: {z.nivel} ({int(z.risk * 100)}%)"
-                    for z in top3
+                    f"  - {z.localidad}: {z.nivel} ({int(z.risk * 100)}%)" for z in top3
                 )
                 return (
                     f"Riesgo vial a las {hour}:00: "
@@ -620,10 +622,7 @@ class AgentService:
         for t in TRONCALES:
             if t.lower() in msg_lower:
                 names = [s["name"] for s in TM_STATIONS if s["troncal"] == t]
-                return (
-                    f"Troncal {t} tiene {len(names)} estaciones:\n"
-                    + ", ".join(names)
-                )
+                return f"Troncal {t} tiene {len(names)} estaciones:\n" + ", ".join(names)
         return (
             f"TransMilenio tiene {len(TM_STATIONS)} estaciones "
             f"en {len(TRONCALES)} troncales. "
@@ -652,15 +651,9 @@ class AgentService:
         """Context-aware default response."""
         if context and context.module == "planificar":
             if context.origin and not context.destination:
-                return (
-                    "Ya tienes un origen. A donde quieres ir? "
-                    "Dime el destino o toca en el mapa."
-                )
+                return "Ya tienes un origen. A donde quieres ir? Dime el destino o toca en el mapa."
             if context.origin and context.destination:
-                return (
-                    "Tienes origen y destino listos. "
-                    "Quieres que busque la mejor ruta?"
-                )
+                return "Tienes origen y destino listos. Quieres que busque la mejor ruta?"
             return (
                 "Estas en el planificador de viajes. "
                 "Dime de donde sales y a donde vas, "
@@ -672,17 +665,14 @@ class AgentService:
                 "Preguntame por un codigo como J74 o F51, o por una troncal."
             )
         if context and context.module == "metricas":
-            return (
-                "Estas en las metricas. "
-                "Preguntame por la congestion a una hora especifica."
-            )
+            return "Estas en las metricas. Preguntame por la congestion a una hora especifica."
         return (
             "Soy MoviBot, tu asistente de movilidad en Bogota. Puedo:\n\n"
-            "Planificar rutas: \"ir de Usaquen a Centro\"\n"
-            "Info de estaciones: \"estacion Heroes\"\n"
-            "Congestion por hora: \"trafico a las 7\"\n"
-            "Riesgo vial: \"riesgo a las 18\"\n"
-            "Info de rutas TM: \"ruta J74\"\n\n"
+            'Planificar rutas: "ir de Usaquen a Centro"\n'
+            'Info de estaciones: "estacion Heroes"\n'
+            'Congestion por hora: "trafico a las 7"\n'
+            'Riesgo vial: "riesgo a las 18"\n'
+            'Info de rutas TM: "ruta J74"\n\n'
             "En que te ayudo?"
         )
 

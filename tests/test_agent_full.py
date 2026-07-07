@@ -1,6 +1,5 @@
 """Tests for the agent module — intents, tools, and service."""
 
-
 from app.modules.agent.intents import (
     detect_intent,
     find_nearby_stations,

@@ -237,10 +237,13 @@ class TestRouterEndpoints:
         app.include_router(router, prefix="/agent")
         client = TestClient(app)
 
-        response = client.post("/agent/chat", json={
-            "message": "hola",
-            "session_id": "router-test",
-        })
+        response = client.post(
+            "/agent/chat",
+            json={
+                "message": "hola",
+                "session_id": "router-test",
+            },
+        )
         assert response.status_code == 200
         data = response.json()
         assert "response" in data
