@@ -12,6 +12,7 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 RESULTS_DIR="$SCRIPT_DIR/results"
 HOST="${HOST:-http://localhost:8000}"
 LOCUSTFILE="$SCRIPT_DIR/locustfile.py"
+SEP="═══════════════════════════════════════"
 
 mkdir -p "$RESULTS_DIR"
 
@@ -30,9 +31,9 @@ echo "✅ AI service is up"
 echo ""
 
 run_load() {
-    echo "═══════════════════════════════════════"
+    echo "$SEP"
     echo "📊 LOAD TEST — 50 users, spawn 5/s, 60s"
-    echo "═══════════════════════════════════════"
+    echo "$SEP"
     locust -f "$LOCUSTFILE" \
         --host "$HOST" \
         --users 50 \
@@ -49,9 +50,9 @@ run_load() {
 }
 
 run_stress() {
-    echo "═══════════════════════════════════════"
+    echo "$SEP"
     echo "🔥 STRESS TEST — 200 users, spawn 20/s, 120s"
-    echo "═══════════════════════════════════════"
+    echo "$SEP"
     locust -f "$LOCUSTFILE" \
         --host "$HOST" \
         --users 200 \
@@ -86,7 +87,7 @@ case "${1:-both}" in
         ;;
 esac
 
-echo "═══════════════════════════════════════"
+echo "$SEP"
 echo "✅ Performance tests complete!"
 echo ""
 echo "View results:"
