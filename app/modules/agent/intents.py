@@ -145,6 +145,17 @@ INTENTS = [
 ]
 
 
+def _extract_hour(msg_lower: str) -> int | None:
+    """Extract hour from message text."""
+    hour_match = re.search(r"(\d{1,2})\s*(?:am|pm|:00|hrs?|horas?)?", msg_lower)
+    if not hour_match:
+        return None
+    h = int(hour_match.group(1))
+    if "pm" in msg_lower and h < 12:
+        h += 12
+    return h if 0 <= h <= 23 else None
+
+
 def detect_intent(message: str) -> tuple[str, dict]:
     """Detect user intent and extract slots from message."""
     msg_lower = message.lower().strip()
@@ -155,17 +166,23 @@ def detect_intent(message: str) -> tuple[str, dict]:
             match = re.search(pattern, msg_lower)
             if match:
                 slots["groups"] = match.groups()
-                # Extract hour if present
-                hour_match = re.search(r"(\d{1,2})\s*(?:am|pm|:00|hrs?|horas?)?", msg_lower)
-                if hour_match:
-                    h = int(hour_match.group(1))
-                    if "pm" in msg_lower and h < 12:
-                        h += 12
-                    if 0 <= h <= 23:
-                        slots["hour"] = h
+                hour = _extract_hour(msg_lower)
+                if hour is not None:
+                    slots["hour"] = hour
                 return intent_name, slots
 
     return "unknown", slots
+
+
+def _congestion_label(level: float) -> str:
+    """Map congestion level to human label."""
+    if level < 0.3:
+        return "baja"
+    if level < 0.6:
+        return "media"
+    if level < 0.85:
+        return "alta"
+    return "crítica"
 
 
 def get_current_congestion_summary() -> str:
@@ -173,15 +190,7 @@ def get_current_congestion_summary() -> str:
     now = datetime.now()
     hour = now.hour
     level = CONGESTION_BY_HOUR.get(hour, 0.3)
-    label = (
-        "baja"
-        if level < 0.3
-        else "media"
-        if level < 0.6
-        else "alta"
-        if level < 0.85
-        else "crítica"
-    )
+    label = _congestion_label(level)
 
     # Find next good window
     good_hours = [h for h, v in CONGESTION_BY_HOUR.items() if v < 0.3 and h > hour]

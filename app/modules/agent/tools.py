@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from langchain_core.tools import tool
 
+from app.modules.agent.intents import _congestion_label
 from app.modules.agent.schemas import ActionPayload
 from app.modules.route_prediction.graph_data import (
     CONGESTION_BY_HOUR,
@@ -80,15 +81,7 @@ def get_congestion(hour: int | None = None) -> str:
     """
     if hour is not None and 0 <= hour <= 23:
         level = CONGESTION_BY_HOUR.get(hour, 0.3)
-        label = (
-            "baja"
-            if level < 0.3
-            else "media"
-            if level < 0.6
-            else "alta"
-            if level < 0.85
-            else "crítica"
-        )
+        label = _congestion_label(level)
         return (
             f"A las {hour}:00, congestión promedio: {int(level * 100)}% ({label}).\n"
             f"ACTION:show_congestion|hour={hour}|level={level}"
@@ -131,21 +124,26 @@ AGENT_TOOLS = [
 ]
 
 
+def _parse_value(v: str):
+    """Parse a string value into int, float, or keep as string."""
+    try:
+        return float(v) if "." in v else int(v)
+    except ValueError:
+        return v
+
+
 def parse_actions(tool_output: str) -> list[ActionPayload]:
     """Extract ACTION: directives from tool output."""
     actions = []
     for line in tool_output.split("\n"):
-        if line.startswith("ACTION:"):
-            parts = line[7:].split("|")
-            action_type = parts[0]
-            data = {}
-            for part in parts[1:]:
-                if "=" in part:
-                    k, v = part.split("=", 1)
-                    # Try to parse numbers
-                    try:
-                        data[k] = float(v) if "." in v else int(v)
-                    except ValueError:
-                        data[k] = v
-            actions.append(ActionPayload(type=action_type, data=data))
+        if not line.startswith("ACTION:"):
+            continue
+        parts = line[7:].split("|")
+        action_type = parts[0]
+        data = {}
+        for part in parts[1:]:
+            if "=" in part:
+                k, v = part.split("=", 1)
+                data[k] = _parse_value(v)
+        actions.append(ActionPayload(type=action_type, data=data))
     return actions
