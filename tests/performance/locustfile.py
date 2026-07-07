@@ -10,10 +10,11 @@ CLI (headless):
     --users 50 --spawn-rate 5 --run-time 60s --headless --csv results/load
 """
 
-import random
+import secrets
 
 from locust import HttpUser, between, task
 
+CHAT_ENDPOINT = "/agent/chat"
 
 CHAT_MESSAGES = [
     "hola",
@@ -58,23 +59,23 @@ class ChatUser(HttpUser):
     @task(5)
     def chat_message(self):
         """Send a random chat message."""
-        msg = random.choice(CHAT_MESSAGES)
+        msg = secrets.choice(CHAT_MESSAGES)
         self.client.post(
-            "/agent/chat",
+            CHAT_ENDPOINT,
             json={"message": msg, "session_id": f"load-{self.environment.runner.user_count}"},
         )
 
     @task(2)
     def chat_with_context(self):
         """Send chat with app context."""
-        msg = random.choice(CHAT_MESSAGES)
+        msg = secrets.choice(CHAT_MESSAGES)
         self.client.post(
-            "/agent/chat",
+            CHAT_ENDPOINT,
             json={
                 "message": msg,
-                "session_id": f"ctx-{random.randint(1, 100)}",
+                "session_id": f"ctx-{secrets.randbelow(100) + 1}",
                 "context": {
-                    "module": random.choice(["planificar", "rutas", "metricas"]),
+                    "module": secrets.choice(["planificar", "rutas", "metricas"]),
                     "origin": "Usaquén",
                 },
             },
@@ -83,15 +84,15 @@ class ChatUser(HttpUser):
     @task(3)
     def predict_route(self):
         """Request a route prediction."""
-        origin = random.choice(ROUTE_ORIGINS)
-        dest = random.choice(ROUTE_DESTINATIONS)
+        origin = secrets.choice(ROUTE_ORIGINS)
+        dest = secrets.choice(ROUTE_DESTINATIONS)
         self.client.post(
             "/predictions/route",
             json={
                 "origin": origin,
                 "destination": dest,
                 "departure_time": "2026-07-06T08:00:00",
-                "mode": random.choice(["transmilenio", "sitp"]),
+                "mode": secrets.choice(["transmilenio", "sitp"]),
             },
         )
 
@@ -103,7 +104,7 @@ class ChatUser(HttpUser):
     @task(1)
     def get_congestion(self):
         """Get congestion heatmap."""
-        hour = random.randint(0, 23)
+        hour = secrets.randbelow(24)
         self.client.get(f"/predictions/congestion?hour={hour}")
 
 
@@ -116,18 +117,18 @@ class StressUser(HttpUser):
     def rapid_chat(self):
         """Rapid-fire chat messages."""
         self.client.post(
-            "/agent/chat",
+            CHAT_ENDPOINT,
             json={
-                "message": random.choice(CHAT_MESSAGES),
-                "session_id": f"stress-{random.randint(1, 1000)}",
+                "message": secrets.choice(CHAT_MESSAGES),
+                "session_id": f"stress-{secrets.randbelow(1000) + 1}",
             },
         )
 
     @task
     def rapid_route(self):
         """Rapid-fire route predictions."""
-        origin = random.choice(ROUTE_ORIGINS)
-        dest = random.choice(ROUTE_DESTINATIONS)
+        origin = secrets.choice(ROUTE_ORIGINS)
+        dest = secrets.choice(ROUTE_DESTINATIONS)
         self.client.post(
             "/predictions/route",
             json={

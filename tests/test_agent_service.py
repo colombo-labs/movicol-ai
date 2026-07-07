@@ -2,8 +2,8 @@
 
 import pytest
 
-from app.modules.agent.service import AgentService
 from app.modules.agent.schemas import AppContext
+from app.modules.agent.service import AgentService
 
 
 @pytest.fixture
@@ -97,7 +97,8 @@ class TestAgentServiceChat:
     async def test_context_aware_planificar(self, service):
         ctx = AppContext(module="planificar", origin="Portal Norte")
         resp = await service.chat("que hago", "s14", ctx)
-        assert "destino" in resp.response.lower() or "origen" in resp.response.lower() or "planificador" in resp.response.lower()
+        r = resp.response.lower()
+        assert "destino" in r or "origen" in r or "planificador" in r
 
     @pytest.mark.asyncio
     async def test_context_aware_rutas(self, service):

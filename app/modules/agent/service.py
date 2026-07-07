@@ -264,7 +264,6 @@ class AgentService:
 
         if intent == "confirm":
             # Look for pending actions in previous bot response
-            prev_actions = []
             # Check last ChatResponse actions via history metadata
             if hasattr(self, "_pending_actions") and session_id in self._pending_actions:
                 pending = self._pending_actions.pop(session_id)

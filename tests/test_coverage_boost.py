@@ -5,23 +5,18 @@ import pytest
 from app.modules.agent.intents import (
     detect_intent,
     find_nearby_stations,
-    get_comparison_info,
-    get_cost_info,
-    get_current_congestion_summary,
     get_greeting_response,
-    get_schedule_info,
 )
+from app.modules.agent.schemas import AppContext
+from app.modules.agent.service import AgentService
 from app.modules.agent.tools import (
     find_route_info,
     find_station,
     get_congestion,
     get_risk_by_zone,
     list_troncales,
-    parse_actions,
     plan_route,
 )
-from app.modules.agent.service import AgentService
-from app.modules.agent.schemas import AppContext
 
 
 class TestToolsFunctions:
@@ -173,7 +168,8 @@ class TestServiceEdgeCases:
     async def test_best_time_peak(self, service):
         # This depends on current hour, just verify it responds
         resp = await service.chat("mejor hora para viajar", "edge8")
-        assert "hora" in resp.response.lower() or "viajar" in resp.response.lower() or "congestion" in resp.response.lower()
+        r = resp.response.lower()
+        assert "hora" in r or "viajar" in r or "congestion" in r
 
     @pytest.mark.asyncio
     async def test_default_with_rutas_context(self, service):
@@ -185,19 +181,22 @@ class TestServiceEdgeCases:
     async def test_default_with_metricas_context(self, service):
         ctx = AppContext(module="metricas")
         resp = await service.chat("xyz", "edge10", ctx)
-        assert "métrica" in resp.response.lower() or "congestion" in resp.response.lower() or "metricas" in resp.response.lower()
+        r = resp.response.lower()
+        assert "métrica" in r or "congestion" in r or "metricas" in r
 
     @pytest.mark.asyncio
     async def test_congestion_specific_hour_low(self, service):
         resp = await service.chat("trafico a las 3", "edge11")
         assert "3" in resp.response
-        assert "tranquilo" in resp.response.lower() or "baja" in resp.response.lower() or "%" in resp.response
+        r = resp.response.lower()
+        assert "tranquilo" in r or "baja" in r or "%" in resp.response
 
     @pytest.mark.asyncio
     async def test_congestion_specific_hour_high(self, service):
         resp = await service.chat("trafico a las 8", "edge12")
         assert "8" in resp.response
-        assert "pesado" in resp.response.lower() or "moderada" in resp.response.lower() or "%" in resp.response
+        r = resp.response.lower()
+        assert "pesado" in r or "moderada" in r or "%" in resp.response
 
 
 class TestIntentsEdgeCases:
@@ -217,7 +216,7 @@ class TestIntentsEdgeCases:
         assert "MoviBot" in response
 
     def test_detect_intent_with_hour_pm(self):
-        intent, slots = detect_intent("trafico a las 5pm")
+        _, slots = detect_intent("trafico a las 5pm")
         assert slots.get("hour") == 17
 
     def test_detect_intent_nearby(self):
@@ -229,9 +228,10 @@ class TestRouterEndpoints:
     """Test router endpoints via TestClient."""
 
     def test_chat_endpoint(self):
-        from fastapi.testclient import TestClient
-        from app.modules.agent.router import router
         from fastapi import FastAPI
+        from fastapi.testclient import TestClient
+
+        from app.modules.agent.router import router
 
         app = FastAPI()
         app.include_router(router, prefix="/agent")
@@ -247,9 +247,10 @@ class TestRouterEndpoints:
         assert "MoviBot" in data["response"]
 
     def test_clear_endpoint(self):
-        from fastapi.testclient import TestClient
-        from app.modules.agent.router import router
         from fastapi import FastAPI
+        from fastapi.testclient import TestClient
+
+        from app.modules.agent.router import router
 
         app = FastAPI()
         app.include_router(router, prefix="/agent")

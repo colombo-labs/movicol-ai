@@ -2,8 +2,8 @@
 
 import pytest
 
-from app.modules.route_prediction.service import RoutePredictionService
 from app.modules.route_prediction.schemas import Coordinates
+from app.modules.route_prediction.service import RoutePredictionService
 
 
 @pytest.fixture

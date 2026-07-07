@@ -1,18 +1,17 @@
 """Tests for the agent module — intents, tools, and service."""
 
-import pytest
 
 from app.modules.agent.intents import (
     detect_intent,
+    find_nearby_stations,
+    get_comparison_info,
     get_cost_info,
     get_current_congestion_summary,
     get_greeting_response,
     get_schedule_info,
-    get_comparison_info,
-    find_nearby_stations,
 )
+from app.modules.agent.schemas import ActionPayload, AppContext, ChatRequest
 from app.modules.agent.tools import parse_actions
-from app.modules.agent.schemas import AppContext, ChatRequest, ActionPayload
 
 
 class TestIntentDetection:
@@ -49,7 +48,7 @@ class TestIntentDetection:
         assert "soacha" in slots["groups"][1]
 
     def test_plan_route_dame_ruta(self):
-        intent, slots = detect_intent("dame ruta a chapinero")
+        intent, _ = detect_intent("dame ruta a chapinero")
         assert intent == "plan_route"
 
     def test_congestion(self):
@@ -167,7 +166,7 @@ class TestParseActions:
         actions = parse_actions(output)
         assert len(actions) == 1
         assert actions[0].type == "show_station"
-        assert actions[0].data["lat"] == 4.668
+        assert abs(actions[0].data["lat"] - 4.668) < 0.001
 
     def test_no_actions(self):
         output = "Respuesta normal sin acciones"

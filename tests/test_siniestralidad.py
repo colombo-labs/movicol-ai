@@ -11,7 +11,7 @@ class TestSiniestrosService:
     def test_service_initializes(self):
         service = SiniestrosService()
         # May or may not be loaded depending on data files
-        assert service is not None
+        assert isinstance(service, SiniestrosService)
 
     def test_is_loaded_attribute(self):
         service = SiniestrosService()
