@@ -225,30 +225,12 @@ class AgentService:
 
         intent, slots = detect_intent(message)
         hour = slots.get("hour")
-
-        # Follow-up detection
         msg_lower = message.lower().strip()
-        followup_words = [
-            "esa", "ese", "ahi", "mas info",
-            "cuentame mas", "y esa", "que mas", "dime mas", "otra",
-        ]
-        is_followup = (
-            any(w in msg_lower for w in followup_words) and len(history) >= 2
-        )
-        if is_followup and intent == "unknown":
-            prev = [m for m in history if m["role"] == "assistant"]
-            if prev:
-                last = prev[-1]["content"].lower()
-                if "estacion" in last or "troncal" in last:
-                    intent = "station_list"
-                elif "congestion" in last or "trafico" in last:
-                    intent = "congestion"
-                elif "ruta" in last:
-                    intent = "route_code"
+
+        intent = self._resolve_followup(intent, msg_lower, history)
 
         def reply(response: str) -> ChatResponse:
             history.append({"role": "assistant", "content": response})
-            # Save pending actions for confirm/deny flow
             pending = [a for a in actions if a.type.startswith("pending_")]
             if pending:
                 self._pending_actions[session_id] = pending
@@ -259,204 +241,12 @@ class AgentService:
                 actions=[a for a in actions if not a.type.startswith("pending_")],
             )
 
-        if intent == "greeting":
-            return reply(get_greeting_response())
-
-        if intent == "confirm":
-            # Look for pending actions in previous bot response
-            # Check last ChatResponse actions via history metadata
-            if hasattr(self, "_pending_actions") and session_id in self._pending_actions:
-                pending = self._pending_actions.pop(session_id)
-                for a in pending:
-                    # Convert pending to real action
-                    real_type = a.type.replace("pending_", "")
-                    actions.append(ActionPayload(type=real_type, data=a.data))
-                return reply("Listo, ya lo hice. Mira el mapa.")
-            return reply("No tengo nada pendiente. En que te ayudo?")
-
-        if intent == "deny":
-            if hasattr(self, "_pending_actions") and session_id in self._pending_actions:
-                self._pending_actions.pop(session_id)
-            return reply("Entendido, no hay problema. Que mas necesitas?")
-
-        if intent == "plan_route":
-            groups = slots.get("groups", ())
-            if len(groups) >= 2:
-                origin, dest = groups[0].strip(), groups[1].strip()
-            elif len(groups) == 1:
-                origin = (
-                    context.origin if context and context.origin else "tu ubicacion"
-                )
-                dest = groups[0].strip()
-            else:
-                return reply(self._default_response(context))
-            # Store pending action — give info first, then ask
-            actions.append(ActionPayload(
-                type="pending_plan_route",
-                data={"origin": origin, "destination": dest, "mode": "tm"},
-            ))
-            # Build informative response
-            congestion = get_current_congestion_summary()
-            h = datetime.now().hour
-            if 6 <= h <= 9 or 16 <= h <= 19:
-                tip = (
-                    "Estas en hora pico, te recomiendo TransMilenio "
-                    "que tiene carril exclusivo y es mas rapido."
-                )
-            elif h >= 23 or h < 4:
-                tip = (
-                    "OJO: TransMilenio NO opera a esta hora "
-                    "(horario: 4am a 11pm entre semana, 5am a 10pm domingos). "
-                    "Tendrias que usar vehiculo particular o esperar al inicio del servicio."
-                )
-            elif h >= 22:
-                tip = (
-                    "TransMilenio esta por cerrar (cierra a las 11pm). "
-                    "Si tu viaje es largo, puede que no alcances. "
-                    "Considera alternativas."
-                )
-            else:
-                tip = (
-                    "El trafico esta moderado, "
-                    "TransMilenio o SITP son buenas opciones."
-                )
-            return reply(
-                f"Para ir de {origin.title()} a {dest.title()}:\n\n"
-                f"{congestion}\n"
-                f"{tip}\n"
-                f"El pasaje en TransMilenio o SITP cuesta 3.550 pesos.\n\n"
-                f"Quieres que te muestre la ruta en el mapa?\n"
-                "(Tip: entre mas especifica la direccion, mejor ubico los puntos)"
-            )
-
-        if intent == "congestion":
-            response = self._get_congestion_info(hour)
-            if hour is not None:
-                actions.append(
-                    ActionPayload(type="show_congestion", data={"hour": hour})
-                )
-            else:
-                current_hour = datetime.now().hour
-                response = (
-                    f"{get_current_congestion_summary()}\n\n"
-                    "Durante el dia, el trafico se comporta asi:\n"
-                    "En la manana de 7 a 9 es cuando peor se pone, "
-                    "llega al 55 o 60 por ciento.\n"
-                    "Al mediodia baja un poco, alrededor del 40%.\n"
-                    "En la tarde de 5 a 7 vuelve a subir fuerte.\n"
-                    "Despues de las 10 de la noche ya esta tranquilo.\n\n"
-                    "Si quieres evitar congestion, viaja antes de las 6am "
-                    "o despues de las 9pm."
-                )
-                actions.append(
-                    ActionPayload(
-                        type="show_congestion", data={"hour": current_hour}
-                    )
-                )
-            return reply(response)
-
-        if intent == "safety":
-            response = self._handle_siniestralidad(msg_lower)
-            if hour is not None:
-                actions.append(
-                    ActionPayload(type="show_risk", data={"hour": hour})
-                )
-            return reply(response)
-
-        if intent == "station":
-            station_info = self._find_station_info(message)
-            if station_info:
-                sources.append("station_data")
-                if station_info.get("action"):
-                    # Ask before showing on map
-                    station_info["action"].type = "pending_show_station"
-                    actions.append(station_info["action"])
-                return reply(
-                    station_info["text"] + "\n\n"
-                    "Quieres que te la muestre en el mapa?"
-                )
-            return reply(
-                "No encontre esa estacion. Hay 153 estaciones TM. "
-                "Prueba con: Heroes, Portal Norte, Calle 72, Suba, Americas..."
-            )
-
-        if intent == "route_code":
-            return reply(self._handle_route_query(msg_lower))
-
-        if intent == "station_list":
-            return reply(self._handle_stations_query(msg_lower))
-
-        if intent == "troncal":
-            lines = [f"- {n}: {d['stations']} estaciones" for n, d in TRONCALES.items()]
-            return reply(
-                f"TransMilenio tiene {len(TRONCALES)} troncales:\n"
-                + "\n".join(lines)
-            )
-
-        if intent == "cost":
-            return reply(get_cost_info())
-
-        if intent == "schedule":
-            return reply(get_schedule_info())
-
-        if intent == "compare":
-            return reply(get_comparison_info())
-
-        if intent == "best_time":
-            h = datetime.now().hour
-            if 6 <= h <= 9 or 16 <= h <= 19:
-                return reply(
-                    "Ahora mismo estas en hora pico. "
-                    "Te recomiendo esperar hasta despues de las 9pm "
-                    "o madrugar antes de las 6am para viajar mas tranquilo."
-                )
-            return reply(
-                "Ahora es buen momento para viajar, la congestion esta baja. "
-                "Evita salir entre 7-9am y 5-7pm que es cuando mas se congestiona."
-            )
-
-        if intent == "nearby":
-            if context and context.origin_coords:
-                lat, lon = context.origin_coords
-                nearby = find_nearby_stations(lat, lon, 3)
-                names = ", ".join(s["name"] for s in nearby)
-                response = f"Las estaciones mas cercanas son: {names}."
-                if nearby:
-                    actions.append(ActionPayload(
-                        type="show_station",
-                        data={
-                            "name": nearby[0]["name"],
-                            "lat": nearby[0]["lat"],
-                            "lon": nearby[0]["lon"],
-                        },
-                    ))
-                return reply(response)
-            return reply(
-                "No tengo tu ubicacion. "
-                "Coloca un punto en el mapa y preguntame de nuevo."
-            )
-
-        if intent == "thanks":
-            responses = [
-                "De nada, estoy aqui para lo que necesites.",
-                "Con gusto. Algo mas en lo que te pueda ayudar?",
-                "Para eso estoy. Preguntame lo que quieras.",
-            ]
-            idx = datetime.now().second % len(responses)
-            return reply(responses[idx])
-
-        if intent == "help":
-            return reply(
-                "Soy MoviBot y puedo ayudarte con lo siguiente:\n\n"
-                'Planificar rutas: dime "ir de X a Y"\n'
-                'Informacion de estaciones: "estacion Heroes"\n'
-                'Congestion: "como esta el trafico" o "trafico a las 7"\n'
-                'Seguridad vial: "riesgo a las 18"\n'
-                'Rutas TransMilenio: "ruta J74"\n'
-                'Costos: "cuanto cuesta el pasaje"\n'
-                'Horarios: "a que hora abre TM"\n'
-                'Comparar: "que es mejor TM o SITP"\n\n'
-                "Tambien puedes hablarme por voz con el boton del microfono."
+        # Dispatch to handler
+        handler = getattr(self, f"_intent_{intent}", None)
+        if handler:
+            return handler(
+                message, session_id, context, slots, hour,
+                msg_lower, sources, actions, reply,
             )
 
         # Unknown — try station search as last resort
@@ -468,6 +258,252 @@ class AgentService:
             return reply(station_info["text"])
 
         return reply(self._default_response(context))
+
+    @staticmethod
+    def _resolve_followup(intent, msg_lower, history):
+        """Detect follow-up intent from conversation context."""
+        followup_words = [
+            "esa", "ese", "ahi", "mas info",
+            "cuentame mas", "y esa", "que mas", "dime mas", "otra",
+        ]
+        is_followup = (
+            any(w in msg_lower for w in followup_words) and len(history) >= 2
+        )
+        if not is_followup or intent != "unknown":
+            return intent
+        prev = [m for m in history if m["role"] == "assistant"]
+        if not prev:
+            return intent
+        last = prev[-1]["content"].lower()
+        if "estacion" in last or "troncal" in last:
+            return "station_list"
+        if "congestion" in last or "trafico" in last:
+            return "congestion"
+        if "ruta" in last:
+            return "route_code"
+        return intent
+
+    def _intent_greeting(self, message, sid, ctx, slots, hour,
+                         msg_lower, sources, actions, reply):
+        return reply(get_greeting_response())
+
+    def _intent_confirm(self, message, sid, ctx, slots, hour,
+                        msg_lower, sources, actions, reply):
+        if hasattr(self, "_pending_actions") and sid in self._pending_actions:
+            pending = self._pending_actions.pop(sid)
+            for a in pending:
+                real_type = a.type.replace("pending_", "")
+                actions.append(ActionPayload(type=real_type, data=a.data))
+            return reply("Listo, ya lo hice. Mira el mapa.")
+        return reply("No tengo nada pendiente. En que te ayudo?")
+
+    def _intent_deny(self, message, sid, ctx, slots, hour,
+                     msg_lower, sources, actions, reply):
+        if hasattr(self, "_pending_actions") and sid in self._pending_actions:
+            self._pending_actions.pop(sid)
+        return reply("Entendido, no hay problema. Que mas necesitas?")
+
+    def _intent_plan_route(self, message, sid, ctx, slots, hour,
+                           msg_lower, sources, actions, reply):
+        groups = slots.get("groups", ())
+        origin, dest = self._extract_route_points(groups, ctx)
+        if not dest:
+            return reply(self._default_response(ctx))
+        actions.append(ActionPayload(
+            type="pending_plan_route",
+            data={"origin": origin, "destination": dest, "mode": "tm"},
+        ))
+        congestion = get_current_congestion_summary()
+        tip = self._get_travel_tip()
+        return reply(
+            f"Para ir de {origin.title()} a {dest.title()}:\n\n"
+            f"{congestion}\n{tip}\n"
+            f"El pasaje en TransMilenio o SITP cuesta 3.550 pesos.\n\n"
+            f"Quieres que te muestre la ruta en el mapa?\n"
+            "(Tip: entre mas especifica la direccion, mejor ubico los puntos)"
+        )
+
+    @staticmethod
+    def _extract_route_points(groups, context):
+        """Extract origin and destination from intent groups."""
+        if len(groups) >= 2:
+            return groups[0].strip(), groups[1].strip()
+        if len(groups) == 1:
+            origin = (
+                context.origin if context and context.origin else "tu ubicacion"
+            )
+            return origin, groups[0].strip()
+        return None, None
+
+    @staticmethod
+    def _get_travel_tip() -> str:
+        """Get contextual travel tip based on current hour."""
+        h = datetime.now().hour
+        if 6 <= h <= 9 or 16 <= h <= 19:
+            return (
+                "Estas en hora pico, te recomiendo TransMilenio "
+                "que tiene carril exclusivo y es mas rapido."
+            )
+        if h >= 23 or h < 4:
+            return (
+                "OJO: TransMilenio NO opera a esta hora "
+                "(horario: 4am a 11pm entre semana, 5am a 10pm domingos). "
+                "Tendrias que usar vehiculo particular o esperar al inicio "
+                "del servicio."
+            )
+        if h >= 22:
+            return (
+                "TransMilenio esta por cerrar (cierra a las 11pm). "
+                "Si tu viaje es largo, puede que no alcances. "
+                "Considera alternativas."
+            )
+        return (
+            "El trafico esta moderado, "
+            "TransMilenio o SITP son buenas opciones."
+        )
+
+    def _intent_congestion(self, message, sid, ctx, slots, hour,
+                           msg_lower, sources, actions, reply):
+        if hour is not None:
+            response = self._get_congestion_info(hour)
+            actions.append(
+                ActionPayload(type="show_congestion", data={"hour": hour})
+            )
+        else:
+            current_hour = datetime.now().hour
+            response = (
+                f"{get_current_congestion_summary()}\n\n"
+                "Durante el dia, el trafico se comporta asi:\n"
+                "En la manana de 7 a 9 es cuando peor se pone, "
+                "llega al 55 o 60 por ciento.\n"
+                "Al mediodia baja un poco, alrededor del 40%.\n"
+                "En la tarde de 5 a 7 vuelve a subir fuerte.\n"
+                "Despues de las 10 de la noche ya esta tranquilo.\n\n"
+                "Si quieres evitar congestion, viaja antes de las 6am "
+                "o despues de las 9pm."
+            )
+            actions.append(
+                ActionPayload(
+                    type="show_congestion", data={"hour": current_hour}
+                )
+            )
+        return reply(response)
+
+    def _intent_safety(self, message, sid, ctx, slots, hour,
+                       msg_lower, sources, actions, reply):
+        response = self._handle_siniestralidad(msg_lower)
+        if hour is not None:
+            actions.append(
+                ActionPayload(type="show_risk", data={"hour": hour})
+            )
+        return reply(response)
+
+    def _intent_station(self, message, sid, ctx, slots, hour,
+                        msg_lower, sources, actions, reply):
+        station_info = self._find_station_info(message)
+        if station_info:
+            sources.append("station_data")
+            if station_info.get("action"):
+                station_info["action"].type = "pending_show_station"
+                actions.append(station_info["action"])
+            return reply(
+                station_info["text"] + "\n\n"
+                "Quieres que te la muestre en el mapa?"
+            )
+        return reply(
+            "No encontre esa estacion. Hay 153 estaciones TM. "
+            "Prueba con: Heroes, Portal Norte, Calle 72, Suba, Americas..."
+        )
+
+    def _intent_route_code(self, message, sid, ctx, slots, hour,
+                           msg_lower, sources, actions, reply):
+        return reply(self._handle_route_query(msg_lower))
+
+    def _intent_station_list(self, message, sid, ctx, slots, hour,
+                             msg_lower, sources, actions, reply):
+        return reply(self._handle_stations_query(msg_lower))
+
+    def _intent_troncal(self, message, sid, ctx, slots, hour,
+                        msg_lower, sources, actions, reply):
+        lines = [
+            f"- {n}: {d['stations']} estaciones"
+            for n, d in TRONCALES.items()
+        ]
+        return reply(
+            f"TransMilenio tiene {len(TRONCALES)} troncales:\n"
+            + "\n".join(lines)
+        )
+
+    def _intent_cost(self, message, sid, ctx, slots, hour,
+                     msg_lower, sources, actions, reply):
+        return reply(get_cost_info())
+
+    def _intent_schedule(self, message, sid, ctx, slots, hour,
+                         msg_lower, sources, actions, reply):
+        return reply(get_schedule_info())
+
+    def _intent_compare(self, message, sid, ctx, slots, hour,
+                        msg_lower, sources, actions, reply):
+        return reply(get_comparison_info())
+
+    def _intent_best_time(self, message, sid, ctx, slots, hour,
+                          msg_lower, sources, actions, reply):
+        h = datetime.now().hour
+        if 6 <= h <= 9 or 16 <= h <= 19:
+            return reply(
+                "Ahora mismo estas en hora pico. "
+                "Te recomiendo esperar hasta despues de las 9pm "
+                "o madrugar antes de las 6am para viajar mas tranquilo."
+            )
+        return reply(
+            "Ahora es buen momento para viajar, la congestion esta baja. "
+            "Evita salir entre 7-9am y 5-7pm que es cuando mas se "
+            "congestiona."
+        )
+
+    def _intent_nearby(self, message, sid, ctx, slots, hour,
+                       msg_lower, sources, actions, reply):
+        if ctx and ctx.origin_coords:
+            lat, lon = ctx.origin_coords
+            nearby = find_nearby_stations(lat, lon, 3)
+            names = ", ".join(s["name"] for s in nearby)
+            response = f"Las estaciones mas cercanas son: {names}."
+            if nearby:
+                s = nearby[0]
+                actions.append(ActionPayload(
+                    type="show_station",
+                    data={"name": s["name"], "lat": s["lat"], "lon": s["lon"]},
+                ))
+            return reply(response)
+        return reply(
+            "No tengo tu ubicacion. "
+            "Coloca un punto en el mapa y preguntame de nuevo."
+        )
+
+    def _intent_thanks(self, message, sid, ctx, slots, hour,
+                       msg_lower, sources, actions, reply):
+        responses = [
+            "De nada, estoy aqui para lo que necesites.",
+            "Con gusto. Algo mas en lo que te pueda ayudar?",
+            "Para eso estoy. Preguntame lo que quieras.",
+        ]
+        idx = datetime.now().second % len(responses)
+        return reply(responses[idx])
+
+    def _intent_help(self, message, sid, ctx, slots, hour,
+                     msg_lower, sources, actions, reply):
+        return reply(
+            "Soy MoviBot y puedo ayudarte con lo siguiente:\n\n"
+            "Planificar rutas: dime \"ir de X a Y\"\n"
+            "Informacion de estaciones: \"estacion Heroes\"\n"
+            "Congestion: \"como esta el trafico\" o \"trafico a las 7\"\n"
+            "Seguridad vial: \"riesgo a las 18\"\n"
+            "Rutas TransMilenio: \"ruta J74\"\n"
+            "Costos: \"cuanto cuesta el pasaje\"\n"
+            "Horarios: \"a que hora abre TM\"\n"
+            "Comparar: \"que es mejor TM o SITP\"\n\n"
+            "Tambien puedes hablarme por voz con el boton del microfono."
+        )
 
     def _find_station_info(self, query: str) -> dict | None:
         """Find station info matching a query (fuzzy word match, accent-insensitive)."""
