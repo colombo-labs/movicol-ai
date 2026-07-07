@@ -270,6 +270,7 @@ class RoutePredictionService:
         departure_time: str,
         route_code: str = "",
         navigation_steps: list | None = None,
+        explanation: str = "",
     ) -> RoutePredictionResponse:
         """Build standardized route prediction response."""
         avg_c = (
@@ -294,7 +295,7 @@ class RoutePredictionService:
             risk_segments=risk_segments,
             overall_risk=_risk_label(avg_c),
             safety_score=safety_score,
-            explanation="",
+            explanation=explanation,
             stations=stations,
             departure_time=departure_time,
             route_code=route_code,
@@ -791,7 +792,7 @@ class RoutePredictionService:
         return self._build_response(
             total_time,
             total_distance,
-            "$3,550",
+            "$3.550",
             "sitp",
             risk_segments,
             station_names,
@@ -808,6 +809,22 @@ class RoutePredictionService:
     ) -> RoutePredictionResponse:
         """Transit routing: TransMilenio, SITP, or Multimodal."""
         hour = _parse_hour(departure_time)
+
+        # Validate service hours: TM operates 4am-11pm (L-S), 5am-10pm (Dom)
+        day = _parse_day(departure_time)
+        is_weekend = day >= 5  # Saturday=5, Sunday=6
+        service_start = 5 if is_weekend else 4
+        service_end = 22 if is_weekend else 23
+
+        out_of_service = hour < service_start or hour >= service_end
+        schedule_warning = ""
+        if out_of_service:
+            schedule_warning = (
+                f"AVISO: TransMilenio no opera a esta hora. "
+                f"Horario: {'5am-10pm (dom/festivo)' if is_weekend else '4am-11pm (L-S)'}. "
+                f"Considera usar vehiculo o esperar al inicio del servicio."
+            )
+
         speed_factor = 1.5 if mode != "sitp" else 2.5
 
         if mode == "sitp" and self._sitp_routes:
@@ -855,12 +872,13 @@ class RoutePredictionService:
         return self._build_response(
             total_time,
             total_distance,
-            "$3,550" if main_mode != "transmilenio" else "$2,950",
+            "$3.550",
             main_mode,
             risk_segments,
             station_names,
             departure_time,
             route_code=route_code,
+            explanation=schedule_warning,
         )
 
     async def _build_sitp_segments(

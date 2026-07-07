@@ -1,0 +1,4 @@
+# Performance test results
+results/
+*.csv
+*.html

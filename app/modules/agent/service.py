@@ -1,9 +1,23 @@
-"""Agent service - LLM conversational agent with graph tools."""
+"""Agent service - LLM conversational agent with tools, context, and session history."""
 
 from __future__ import annotations
 
+import re
+from collections import deque
+from datetime import datetime
+
 from app.config.settings import get_settings
-from app.modules.agent.schemas import ChatResponse
+from app.modules.agent.intents import (
+    detect_intent,
+    find_nearby_stations,
+    get_comparison_info,
+    get_cost_info,
+    get_current_congestion_summary,
+    get_greeting_response,
+    get_schedule_info,
+)
+from app.modules.agent.schemas import ActionPayload, AppContext, ChatResponse
+from app.modules.agent.tools import AGENT_TOOLS, parse_actions
 from app.modules.route_prediction.graph_data import (
     CONGESTION_BY_HOUR,
     TM_RUTAS,
@@ -11,43 +25,43 @@ from app.modules.route_prediction.graph_data import (
     TRONCALES,
     build_tm_graph,
 )
-from app.modules.route_prediction.service import RoutePredictionService
 from app.modules.siniestralidad.service import SiniestrosService
 
-SYSTEM_PROMPT = """Eres MoviBot, un asistente experto en movilidad urbana de Bogotá, Colombia.
+MAX_HISTORY = 10
+
+SYSTEM_PROMPT = """Eres MoviBot, un asistente experto en movilidad urbana de Bogota, Colombia.
 Tienes acceso a datos de TransMilenio (13 troncales, 153 estaciones) y SITP (689 rutas zonales).
 
-Troncales TM: Caracas, Autopista Norte, Suba, Calle 80, NQS Central,
-NQS Sur, Américas, Calle 26, Carrera 10, Caracas Sur,
-Eje Ambiental, Soacha, Tunal, Carrera 7.
-
 Capacidades:
-- Información de estaciones TM y paraderos SITP
-- Predicción de congestión por hora (modelo GNN)
-- Predicción de riesgo vial por zona y hora (siniestralidad con IA)
-- Planificación de rutas A→B con alternativas y trasbordos
-- Estadísticas de accidentes por localidad (datos.gov.co)
+- Informacion de estaciones TM y paraderos SITP
+- Prediccion de congestion por hora (modelo GNN)
+- Prediccion de riesgo vial por zona y hora (siniestralidad con IA)
+- Planificacion de rutas A->B con alternativas y transbordos
+- Estadisticas de accidentes por localidad (datos.gov.co)
 - Recomendaciones de horarios seguros
 
-IMPORTANTE:
-- TransMilenio (TM): buses articulados, estaciones cerradas
-- SITP: buses zonales, paraderos abiertos, ~689 rutas
-- Siniestralidad: datos reales de 196K+ accidentes en Bogotá
-
-Responde en español, de forma concisa y útil. Si no tienes datos, dilo honestamente.
-Usa porcentajes y etiquetas para congestión (baja/media/alta/crítica)
-y niveles de riesgo (bajo/moderado/alto/crítico)."""
+REGLAS:
+- Responde SIEMPRE en espanol, conciso y util (max 150 palabras)
+- Si el usuario pide ir de A a B, USA la herramienta plan_route
+- Si pregunta por una estacion, USA find_station
+- Si pregunta por congestion/trafico, USA get_congestion
+- Si pregunta por seguridad/riesgo, USA get_risk_by_zone
+- Si pregunta por una ruta especifica (codigo), USA find_route_info
+- Usa datos reales, NO inventes. Si no sabes, dilo
+- TransMilenio (TM): 3.550 pesos, buses articulados, estaciones cerradas
+- SITP: 3.550 pesos, buses zonales, paraderos abiertos
+- No uses emojis en las respuestas"""
 
 
 class AgentService:
-    """Conversational agent with graph knowledge."""
+    """Conversational agent with tools, context awareness, and session memory."""
 
     def __init__(self) -> None:
         self._settings = get_settings()
         self._graph = build_tm_graph()
-        self._route_service = RoutePredictionService()
         self._siniestros_service: SiniestrosService | None = None
-        self._sessions: dict[str, list[dict]] = {}
+        self._sessions: dict[str, deque] = {}
+        self._pending_actions: dict[str, list[ActionPayload]] = {}
         self._init_siniestros()
 
     def _init_siniestros(self) -> None:
@@ -58,345 +72,585 @@ class AgentService:
         except Exception:
             pass
 
-    def _get_context(self) -> str:
-        """Build context string from graph data."""
-        troncal_info = ", ".join(f"{t} ({d['stations']})" for t, d in TRONCALES.items())
+    def _get_session_history(self, session_id: str) -> deque:
+        """Get or create session history."""
+        if session_id not in self._sessions:
+            self._sessions[session_id] = deque(maxlen=MAX_HISTORY * 2)
+        return self._sessions[session_id]
+
+    def _build_context_prompt(self, context: AppContext | None) -> str:
+        """Build context section from app state."""
+        if not context:
+            return ""
+        parts = []
+        if context.module:
+            parts.append(f"El usuario esta en el modulo: {context.module}")
+        if context.origin:
+            parts.append(f"Origen seleccionado: {context.origin}")
+        if context.destination:
+            parts.append(f"Destino seleccionado: {context.destination}")
+        if context.active_route:
+            parts.append(f"Ruta activa en mapa: {context.active_route}")
+        if context.selected_hour is not None:
+            parts.append(f"Hora seleccionada: {context.selected_hour}:00")
+        if context.transport_mode:
+            modes = {
+                "tm": "TransMilenio",
+                "sitp": "SITP",
+                "vehicle": "Vehiculo",
+                "moto": "Moto",
+            }
+            parts.append(
+                f"Modo: {modes.get(context.transport_mode, context.transport_mode)}"
+            )
+        if not parts:
+            return ""
+        return "\n\nCONTEXTO ACTUAL:\n" + "\n".join(f"- {p}" for p in parts)
+
+    def _get_system_context(self) -> str:
+        """Build static system context from graph data."""
         ctx = (
-            f"Sistema TransMilenio: {self._graph.number_of_nodes()} estaciones, "
-            f"{self._graph.number_of_edges()} conexiones, 13 troncales.\n"
-            f"Troncales: {troncal_info}\n"
-            f"SITP: 689 rutas zonales con ~7,290 paraderos.\n"
-            f"Horas pico: 7-9am (congestión ~55-60%), 5-7pm (congestión ~60-65%)\n"
-            f"Horas valle: 10pm-5am (congestión <10%)"
+            f"Sistema TM: {self._graph.number_of_nodes()} estaciones, "
+            f"{self._graph.number_of_edges()} conexiones, {len(TRONCALES)} troncales.\n"
+            f"SITP: 689 rutas zonales. Rutas TM: {len(TM_RUTAS)}"
         )
         if self._siniestros_service:
             stats = self._siniestros_service.get_stats()
-            ctx += (
-                f"\nSiniestralidad: {stats.total_siniestros:,} accidentes registrados, "
-                f"{stats.total_fallecidos:,} fatales, "
-                f"{stats.sectores_criticos} sectores críticos, "
-                f"{stats.semaforos:,} semáforos."
-            )
+            ctx += f"\nSiniestralidad: {stats.total_siniestros:,} accidentes registrados."
         return ctx
 
-    def _find_station_info(self, query: str) -> str | None:
-        """Find station info matching a query."""
-        query_lower = query.lower()
-        for station in TM_STATIONS:
-            if station["name"].lower() in query_lower or query_lower in station["name"].lower():
-                neighbors = list(self._graph.neighbors(station["id"]))
-                neighbor_names = [
-                    self._graph.nodes[n]["name"] for n in neighbors if n in self._graph.nodes
-                ]
-                return (
-                    f"Estación: {station['name']}\n"
-                    f"Troncal: {station['troncal']}\n"
-                    f"Coordenadas: {station['lat']}, {station['lon']}\n"
-                    f"Conecta con: {', '.join(neighbor_names) if neighbor_names else 'N/A'}"
-                )
-        return None
+    async def chat(
+        self, message: str, session_id: str, context: AppContext | None = None
+    ) -> ChatResponse:
+        """Process a chat message with history and context."""
+        if self._settings.openai_api_key or self._settings.groq_api_key:
+            return await self._llm_chat(message, session_id, context)
+        return self._rule_based_chat(message, session_id, context)
 
-    def _get_congestion_info(self, hour: int | None = None) -> str:
-        """Get congestion info using GNN predictions."""
-        from app.modules.predictions.gnn_inference import GNNInference
-
-        gnn = GNNInference()
-
-        if hour is not None and gnn.is_loaded:
-            # Use real GNN predictions
-            time_factors = {
-                0: 0.3,
-                1: 0.2,
-                2: 0.2,
-                3: 0.2,
-                4: 0.3,
-                5: 0.5,
-                6: 0.7,
-                7: 0.9,
-                8: 1.0,
-                9: 0.9,
-                10: 0.7,
-                11: 0.65,
-                12: 0.75,
-                13: 0.7,
-                14: 0.65,
-                15: 0.7,
-                16: 0.8,
-                17: 0.95,
-                18: 1.0,
-                19: 0.9,
-                20: 0.7,
-                21: 0.5,
-                22: 0.4,
-                23: 0.3,
-            }
-            tf = time_factors.get(hour, 0.7)
-            preds = gnn.get_all_predictions()
-            values = [min(1.0, v * tf) for v in preds.values()]
-            avg = sum(values) / len(values) if values else 0
-            critical = sum(1 for v in values if v >= 0.85)
-            label = (
-                "baja"
-                if avg < 0.3
-                else "media"
-                if avg < 0.6
-                else "alta"
-                if avg < 0.85
-                else "crítica"
-            )
-            return (
-                f"A las {hour}:00, la congestión promedio es {int(avg * 100)}% ({label}). "
-                f"{critical} estaciones en nivel crítico de {len(values)} totales."
-            )
-
-        if hour is not None:
-            level = CONGESTION_BY_HOUR.get(hour, 0.3)
-            label = (
-                "baja"
-                if level < 0.3
-                else "media"
-                if level < 0.6
-                else "alta"
-                if level < 0.85
-                else "crítica"
-            )
-            return f"A las {hour}:00, la congestión promedio es {int(level * 100)}% ({label})."
-
-        return (
-            "Pico AM (7-9h): congestión alta (~55-60%).\n"
-            "Pico PM (17-19h): congestión alta (~55-60%).\n"
-            "Mejor horario: antes de las 6am o después de las 9pm (< 15%)."
-        )
-
-    async def chat(self, message: str, session_id: str) -> ChatResponse:
-        """Process a chat message."""
-        # Try LLM first, fallback to rule-based
-        if self._settings.openai_api_key:
-            return await self._llm_chat(message, session_id)
-        return self._rule_based_chat(message, session_id)
-
-    async def _llm_chat(self, message: str, session_id: str) -> ChatResponse:
-        """Chat using LangChain + OpenAI."""
+    async def _llm_chat(
+        self, message: str, session_id: str, context: AppContext | None = None
+    ) -> ChatResponse:
+        """Chat using LangChain with tools and history."""
         try:
-            from langchain_core.messages import HumanMessage, SystemMessage
-            from langchain_openai import ChatOpenAI
-
-            llm = ChatOpenAI(
-                model=self._settings.llm_model,
-                api_key=self._settings.openai_api_key,
-                temperature=0.4,
-                max_tokens=300,
+            from langchain.agents import AgentExecutor, create_tool_calling_agent
+            from langchain_core.messages import AIMessage, HumanMessage
+            from langchain_core.prompts import (
+                ChatPromptTemplate,
+                MessagesPlaceholder,
             )
 
-            context = self._get_context()
-            station_info = self._find_station_info(message)
-            extra = f"\nInfo relevante: {station_info}" if station_info else ""
+            if self._settings.openai_api_key:
+                from langchain_openai import ChatOpenAI
 
-            # Check for hour-related queries
-            import re
+                llm = ChatOpenAI(
+                    model=self._settings.llm_model,
+                    api_key=self._settings.openai_api_key,
+                    temperature=0.4,
+                    max_tokens=400,
+                )
+            else:
+                from langchain_groq import ChatGroq
 
-            hour_match = re.search(r"(\d{1,2})\s*(am|pm|:00|hrs?)", message.lower())
-            if hour_match:
-                h = int(hour_match.group(1))
-                if "pm" in (hour_match.group(2) or "") and h < 12:
-                    h += 12
-                extra += f"\n{self._get_congestion_info(h)}"
+                llm = ChatGroq(
+                    model=self._settings.groq_model,
+                    api_key=self._settings.groq_api_key,
+                    temperature=0.4,
+                    max_tokens=400,
+                )
 
-            messages = [
-                SystemMessage(content=f"{SYSTEM_PROMPT}\n\nContexto:\n{context}{extra}"),
-                HumanMessage(content=message),
-            ]
+            system_context = self._get_system_context()
+            app_context = self._build_context_prompt(context)
+            full_system = (
+                f"{SYSTEM_PROMPT}\n\nDATOS:\n{system_context}{app_context}"
+            )
 
-            response = llm.invoke(messages)
-            sources = ["grafo_troncal_caracas"]
-            if station_info:
-                sources.append("station_data")
+            prompt = ChatPromptTemplate.from_messages([
+                ("system", full_system),
+                MessagesPlaceholder(variable_name="chat_history"),
+                ("human", "{input}"),
+                MessagesPlaceholder(variable_name="agent_scratchpad"),
+            ])
+
+            agent = create_tool_calling_agent(llm, AGENT_TOOLS, prompt)
+            executor = AgentExecutor(
+                agent=agent,
+                tools=AGENT_TOOLS,
+                verbose=False,
+                max_iterations=3,
+                handle_parsing_errors=True,
+            )
+
+            history = self._get_session_history(session_id)
+            chat_history = []
+            for msg in history:
+                if msg["role"] == "user":
+                    chat_history.append(HumanMessage(content=msg["content"]))
+                else:
+                    chat_history.append(AIMessage(content=msg["content"]))
+
+            result = await executor.ainvoke({
+                "input": message,
+                "chat_history": chat_history,
+            })
+
+            response_text = result["output"]
+            actions: list[ActionPayload] = []
+            actions.extend(parse_actions(response_text))
+            clean_response = "\n".join(
+                line for line in response_text.split("\n")
+                if not line.startswith("ACTION:")
+            ).strip()
+
+            history.append({"role": "user", "content": message})
+            history.append({"role": "assistant", "content": clean_response})
 
             return ChatResponse(
-                response=response.content.strip(),
-                sources=sources,
+                response=clean_response,
+                sources=["agent_tools"],
                 session_id=session_id,
+                actions=actions,
             )
         except Exception:
-            # Fallback to rule-based on any LLM error
-            return self._rule_based_chat(message, session_id)
+            return self._rule_based_chat(message, session_id, context)
 
-    def _rule_based_chat(self, message: str, session_id: str) -> ChatResponse:
-        """Fallback rule-based responses when LLM is unavailable."""
-        msg_lower = message.lower()
-        sources = ["grafo_troncal_caracas"]
+    def _rule_based_chat(
+        self, message: str, session_id: str, context: AppContext | None = None
+    ) -> ChatResponse:
+        """Smart rule-based responses using intent detection."""
+        sources = ["movicol_ai"]
+        actions: list[ActionPayload] = []
 
-        # Station query
+        history = self._get_session_history(session_id)
+        history.append({"role": "user", "content": message})
+
+        intent, slots = detect_intent(message)
+        hour = slots.get("hour")
+
+        # Follow-up detection
+        msg_lower = message.lower().strip()
+        followup_words = [
+            "esa", "ese", "ahi", "mas info",
+            "cuentame mas", "y esa", "que mas", "dime mas", "otra",
+        ]
+        is_followup = (
+            any(w in msg_lower for w in followup_words) and len(history) >= 2
+        )
+        if is_followup and intent == "unknown":
+            prev = [m for m in history if m["role"] == "assistant"]
+            if prev:
+                last = prev[-1]["content"].lower()
+                if "estacion" in last or "troncal" in last:
+                    intent = "station_list"
+                elif "congestion" in last or "trafico" in last:
+                    intent = "congestion"
+                elif "ruta" in last:
+                    intent = "route_code"
+
+        def reply(response: str) -> ChatResponse:
+            history.append({"role": "assistant", "content": response})
+            # Save pending actions for confirm/deny flow
+            pending = [a for a in actions if a.type.startswith("pending_")]
+            if pending:
+                self._pending_actions[session_id] = pending
+            return ChatResponse(
+                response=response,
+                sources=sources,
+                session_id=session_id,
+                actions=[a for a in actions if not a.type.startswith("pending_")],
+            )
+
+        if intent == "greeting":
+            return reply(get_greeting_response())
+
+        if intent == "confirm":
+            # Look for pending actions in previous bot response
+            prev_actions = []
+            # Check last ChatResponse actions via history metadata
+            if hasattr(self, "_pending_actions") and session_id in self._pending_actions:
+                pending = self._pending_actions.pop(session_id)
+                for a in pending:
+                    # Convert pending to real action
+                    real_type = a.type.replace("pending_", "")
+                    actions.append(ActionPayload(type=real_type, data=a.data))
+                return reply("Listo, ya lo hice. Mira el mapa.")
+            return reply("No tengo nada pendiente. En que te ayudo?")
+
+        if intent == "deny":
+            if hasattr(self, "_pending_actions") and session_id in self._pending_actions:
+                self._pending_actions.pop(session_id)
+            return reply("Entendido, no hay problema. Que mas necesitas?")
+
+        if intent == "plan_route":
+            groups = slots.get("groups", ())
+            if len(groups) >= 2:
+                origin, dest = groups[0].strip(), groups[1].strip()
+            elif len(groups) == 1:
+                origin = (
+                    context.origin if context and context.origin else "tu ubicacion"
+                )
+                dest = groups[0].strip()
+            else:
+                return reply(self._default_response(context))
+            # Store pending action — give info first, then ask
+            actions.append(ActionPayload(
+                type="pending_plan_route",
+                data={"origin": origin, "destination": dest, "mode": "tm"},
+            ))
+            # Build informative response
+            congestion = get_current_congestion_summary()
+            h = datetime.now().hour
+            if 6 <= h <= 9 or 16 <= h <= 19:
+                tip = (
+                    "Estas en hora pico, te recomiendo TransMilenio "
+                    "que tiene carril exclusivo y es mas rapido."
+                )
+            elif h >= 23 or h < 4:
+                tip = (
+                    "OJO: TransMilenio NO opera a esta hora "
+                    "(horario: 4am a 11pm entre semana, 5am a 10pm domingos). "
+                    "Tendrias que usar vehiculo particular o esperar al inicio del servicio."
+                )
+            elif h >= 22:
+                tip = (
+                    "TransMilenio esta por cerrar (cierra a las 11pm). "
+                    "Si tu viaje es largo, puede que no alcances. "
+                    "Considera alternativas."
+                )
+            else:
+                tip = (
+                    "El trafico esta moderado, "
+                    "TransMilenio o SITP son buenas opciones."
+                )
+            return reply(
+                f"Para ir de {origin.title()} a {dest.title()}:\n\n"
+                f"{congestion}\n"
+                f"{tip}\n"
+                f"El pasaje en TransMilenio o SITP cuesta 3.550 pesos.\n\n"
+                f"Quieres que te muestre la ruta en el mapa?\n"
+                "(Tip: entre mas especifica la direccion, mejor ubico los puntos)"
+            )
+
+        if intent == "congestion":
+            response = self._get_congestion_info(hour)
+            if hour is not None:
+                actions.append(
+                    ActionPayload(type="show_congestion", data={"hour": hour})
+                )
+            else:
+                current_hour = datetime.now().hour
+                response = (
+                    f"{get_current_congestion_summary()}\n\n"
+                    "Durante el dia, el trafico se comporta asi:\n"
+                    "En la manana de 7 a 9 es cuando peor se pone, "
+                    "llega al 55 o 60 por ciento.\n"
+                    "Al mediodia baja un poco, alrededor del 40%.\n"
+                    "En la tarde de 5 a 7 vuelve a subir fuerte.\n"
+                    "Despues de las 10 de la noche ya esta tranquilo.\n\n"
+                    "Si quieres evitar congestion, viaja antes de las 6am "
+                    "o despues de las 9pm."
+                )
+                actions.append(
+                    ActionPayload(
+                        type="show_congestion", data={"hour": current_hour}
+                    )
+                )
+            return reply(response)
+
+        if intent == "safety":
+            response = self._handle_siniestralidad(msg_lower)
+            if hour is not None:
+                actions.append(
+                    ActionPayload(type="show_risk", data={"hour": hour})
+                )
+            return reply(response)
+
+        if intent == "station":
+            station_info = self._find_station_info(message)
+            if station_info:
+                sources.append("station_data")
+                if station_info.get("action"):
+                    # Ask before showing on map
+                    station_info["action"].type = "pending_show_station"
+                    actions.append(station_info["action"])
+                return reply(
+                    station_info["text"] + "\n\n"
+                    "Quieres que te la muestre en el mapa?"
+                )
+            return reply(
+                "No encontre esa estacion. Hay 153 estaciones TM. "
+                "Prueba con: Heroes, Portal Norte, Calle 72, Suba, Americas..."
+            )
+
+        if intent == "route_code":
+            return reply(self._handle_route_query(msg_lower))
+
+        if intent == "station_list":
+            return reply(self._handle_stations_query(msg_lower))
+
+        if intent == "troncal":
+            lines = [f"- {n}: {d['stations']} estaciones" for n, d in TRONCALES.items()]
+            return reply(
+                f"TransMilenio tiene {len(TRONCALES)} troncales:\n"
+                + "\n".join(lines)
+            )
+
+        if intent == "cost":
+            return reply(get_cost_info())
+
+        if intent == "schedule":
+            return reply(get_schedule_info())
+
+        if intent == "compare":
+            return reply(get_comparison_info())
+
+        if intent == "best_time":
+            h = datetime.now().hour
+            if 6 <= h <= 9 or 16 <= h <= 19:
+                return reply(
+                    "Ahora mismo estas en hora pico. "
+                    "Te recomiendo esperar hasta despues de las 9pm "
+                    "o madrugar antes de las 6am para viajar mas tranquilo."
+                )
+            return reply(
+                "Ahora es buen momento para viajar, la congestion esta baja. "
+                "Evita salir entre 7-9am y 5-7pm que es cuando mas se congestiona."
+            )
+
+        if intent == "nearby":
+            if context and context.origin_coords:
+                lat, lon = context.origin_coords
+                nearby = find_nearby_stations(lat, lon, 3)
+                names = ", ".join(s["name"] for s in nearby)
+                response = f"Las estaciones mas cercanas son: {names}."
+                if nearby:
+                    actions.append(ActionPayload(
+                        type="show_station",
+                        data={
+                            "name": nearby[0]["name"],
+                            "lat": nearby[0]["lat"],
+                            "lon": nearby[0]["lon"],
+                        },
+                    ))
+                return reply(response)
+            return reply(
+                "No tengo tu ubicacion. "
+                "Coloca un punto en el mapa y preguntame de nuevo."
+            )
+
+        if intent == "thanks":
+            responses = [
+                "De nada, estoy aqui para lo que necesites.",
+                "Con gusto. Algo mas en lo que te pueda ayudar?",
+                "Para eso estoy. Preguntame lo que quieras.",
+            ]
+            idx = datetime.now().second % len(responses)
+            return reply(responses[idx])
+
+        if intent == "help":
+            return reply(
+                "Soy MoviBot y puedo ayudarte con lo siguiente:\n\n"
+                'Planificar rutas: dime "ir de X a Y"\n'
+                'Informacion de estaciones: "estacion Heroes"\n'
+                'Congestion: "como esta el trafico" o "trafico a las 7"\n'
+                'Seguridad vial: "riesgo a las 18"\n'
+                'Rutas TransMilenio: "ruta J74"\n'
+                'Costos: "cuanto cuesta el pasaje"\n'
+                'Horarios: "a que hora abre TM"\n'
+                'Comparar: "que es mejor TM o SITP"\n\n'
+                "Tambien puedes hablarme por voz con el boton del microfono."
+            )
+
+        # Unknown — try station search as last resort
         station_info = self._find_station_info(message)
         if station_info:
             sources.append("station_data")
-            return ChatResponse(response=station_info, sources=sources, session_id=session_id)
+            if station_info.get("action"):
+                actions.append(station_info["action"])
+            return reply(station_info["text"])
 
-        # Congestion query
-        if any(
-            w in msg_lower for w in ["congestión", "congestion", "tráfico", "trafico", "hora pico"]
-        ):
-            import re
+        return reply(self._default_response(context))
 
-            hour_match = re.search(r"(\d{1,2})", message)
-            hour = int(hour_match.group(1)) if hour_match else None
-            return ChatResponse(
-                response=self._get_congestion_info(hour),
-                sources=sources,
-                session_id=session_id,
-            )
+    def _find_station_info(self, query: str) -> dict | None:
+        """Find station info matching a query (fuzzy word match, accent-insensitive)."""
+        import unicodedata
 
-        # Siniestralidad / safety queries
-        if any(
-            w in msg_lower
-            for w in [
-                "siniestro",
-                "accidente",
-                "peligro",
-                "riesgo",
-                "seguridad",
-                "zona peligrosa",
-                "mortalidad",
-                "insegura",
-                "inseguro",
-            ]
-        ):
-            return self._handle_siniestralidad_query(msg_lower, session_id)
+        def normalize(text: str) -> str:
+            """Remove accents for comparison."""
+            nfkd = unicodedata.normalize("NFKD", text.lower())
+            return "".join(c for c in nfkd if not unicodedata.combining(c))
 
-        # Station list
-        if any(w in msg_lower for w in ["estaciones", "paradas", "cuántas", "cuantas", "lista"]):
-            troncal_match = None
-            for t in TRONCALES:
-                if t.lower() in msg_lower:
-                    troncal_match = t
-                    break
-            if troncal_match:
-                names = [s["name"] for s in TM_STATIONS if s["troncal"] == troncal_match]
-                return ChatResponse(
-                    response=(
-                        f"Troncal {troncal_match} tiene {len(names)} estaciones:\n"
-                        f"{', '.join(names)}"
-                    ),
-                    sources=sources,
-                    session_id=session_id,
+        query_norm = normalize(query)
+        fillers = {
+            "info", "estacion", "parada", "sobre", "la", "el",
+            "de", "del", "las", "los", "una", "un", "por", "para", "con",
+            "como", "que", "esta", "hay", "tiene",
+        }
+        words = [
+            w for w in query_norm.split() if w not in fillers and len(w) > 2
+        ]
+        for station in TM_STATIONS:
+            name_norm = normalize(station["name"])
+            if any(w in name_norm for w in words):
+                neighbors = list(self._graph.neighbors(station["id"]))
+                neighbor_names = [
+                    self._graph.nodes[n]["name"]
+                    for n in neighbors
+                    if n in self._graph.nodes
+                ]
+                connects = (
+                    ", ".join(neighbor_names[:5])
+                    if neighbor_names
+                    else "ninguna registrada"
                 )
-            return ChatResponse(
-                response=(
-                    f"TransMilenio tiene {len(TM_STATIONS)} estaciones en 13 troncales.\n"
-                    "Pregúntame por una troncal específica "
-                    "(Caracas, Suba, Calle 80, NQS, Américas, Calle 26, etc.)"
-                ),
-                sources=sources,
-                session_id=session_id,
-            )
-
-        # Route query — search in TM_RUTAS
-        if any(
-            w in msg_lower
-            for w in [
-                "ruta",
-                "cómo llego",
-                "como llego",
-                "ir de",
-                "ir a",
-                "j74",
-                "f51",
-                "g4",
-                "l4",
-                "m5",
-            ]
-        ):
-            # Try to find specific route code
-            found_rutas = [r for r in TM_RUTAS if r["codigo"].lower() in msg_lower]
-            if found_rutas:
-                r = found_rutas[0]
-                return ChatResponse(
-                    response=(
-                        f"Ruta: {r['codigo']}\n"
-                        f"Recorrido: {r['origen']} → {r['destino']}\n"
-                        f"Bus: {r['tipo_bus']}\n"
-                        f"Horario L-V: {r['horario_lv']}\n"
-                        f"Horario Sáb: {r['horario_sab']}\n"
-                        f"Estado: {r['estado']}"
-                    ),
-                    sources=["tm_rutas_troncales"],
-                    session_id=session_id,
+                text = (
+                    f"Estacion {station['name']}.\n\n"
+                    f"Pertenece a la troncal {station['troncal']}.\n"
+                    f"Se conecta con: {connects}."
                 )
-            return ChatResponse(
-                response=(
-                    f"TransMilenio tiene {len(TM_RUTAS)} rutas troncales. "
-                    "Para planificar tu viaje, usa el módulo Planificar en el mapa. "
-                    "¿Quieres info de alguna ruta específica? (ej: J74, F51, G43)"
-                ),
-                sources=sources,
-                session_id=session_id,
-            )
+                action = ActionPayload(
+                    type="show_station",
+                    data={
+                        "name": station["name"],
+                        "lat": station["lat"],
+                        "lon": station["lon"],
+                    },
+                )
+                return {"text": text, "action": action}
+        return None
 
-        # Default
-        return ChatResponse(
-            response=(
-                "Soy MoviBot 🚌 — tu asistente de movilidad para Bogotá. Puedo ayudarte con:\n"
-                "• Info de 153 estaciones TM y 689 rutas SITP\n"
-                "• Niveles de congestión por hora (modelo GNN)\n"
-                "• Riesgo vial por zona y hora (siniestralidad con IA)\n"
-                "• Planificación de rutas con alternativas\n"
-                "• Recomendaciones de horarios seguros\n\n"
-                "¿Qué necesitas saber?"
-            ),
-            sources=sources,
-            session_id=session_id,
-        )
-
-    def _handle_siniestralidad_query(self, msg_lower: str, session_id: str) -> ChatResponse:
-        """Handle siniestralidad / safety queries."""
-        import re
-
-        sources = ["siniestralidad_datos_gov_co"]
-
-        if not self._siniestros_service:
-            return ChatResponse(
-                response="No tengo datos de siniestralidad cargados en este momento.",
-                sources=sources,
-                session_id=session_id,
-            )
-
-        stats = self._siniestros_service.get_stats()
-
-        # Check for hour query
-        hour_match = re.search(r"(\d{1,2})", msg_lower)
-        hour = int(hour_match.group(1)) if hour_match else None
-
+    def _get_congestion_info(self, hour: int | None = None) -> str:
+        """Get congestion info in natural language."""
         if hour is not None and 0 <= hour <= 23:
-            risk = self._siniestros_service.predict_risk_by_hour(hour)
-            top3 = risk.zones[:3]
-            zones_text = "\n".join(
-                f"  • {z.localidad}: riesgo {z.nivel} ({int(z.risk * 100)}%)" for z in top3
-            )
-            return ChatResponse(
-                response=(
-                    f"Riesgo vial a las {hour}:00 — nivel general: "
-                    f"{risk.nivel_general} ({int(risk.promedio_riesgo * 100)}%)\n"
-                    f"Zonas más riesgosas:\n{zones_text}\n\n"
-                    f"Total accidentes registrados: {stats.total_siniestros:,}"
-                ),
-                sources=sources,
-                session_id=session_id,
-            )
-
-        # General siniestralidad info
-        top_vehiculos = ", ".join(f"{v['tipo']} ({v['total']:,})" for v in stats.vehiculos_top[:3])
-        return ChatResponse(
-            response=(
-                f"Siniestralidad vial en Bogotá:\n"
-                f"• Total accidentes: {stats.total_siniestros:,}\n"
-                f"• Fatales: {stats.total_fallecidos:,}\n"
-                f"• Sectores críticos (ANSV): {stats.sectores_criticos}\n"
-                f"• Semáforos: {stats.semaforos:,}\n"
-                f"• Localidades peligrosas: {stats.localidades_peligrosas}\n"
-                f"• Vehículos más involucrados: {top_vehiculos}\n\n"
-                "Pregúntame por una hora específica para ver el riesgo "
-                'por zona (ej: "riesgo a las 18").'
-            ),
-            sources=sources,
-            session_id=session_id,
+            level = CONGESTION_BY_HOUR.get(hour, 0.3)
+            pct = int(level * 100)
+            if level < 0.3:
+                return (
+                    f"A las {hour}:00 el trafico esta tranquilo, "
+                    f"solo al {pct}%. Buen momento para moverse."
+                )
+            elif level < 0.6:
+                return (
+                    f"A las {hour}:00 hay congestion moderada, "
+                    f"alrededor del {pct}%. Se puede viajar con algo de demora."
+                )
+            elif level < 0.85:
+                return (
+                    f"A las {hour}:00 el trafico esta pesado, "
+                    f"al {pct}%. Te recomiendo usar TransMilenio."
+                )
+            else:
+                return (
+                    f"A las {hour}:00 la congestion esta critica, "
+                    f"al {pct}%. Evita viajar en carro si puedes."
+                )
+        return (
+            "Ahora mismo el trafico en Bogota esta asi:\n\n"
+            "Las horas mas pesadas son de 7 a 9 de la manana "
+            "y de 5 a 7 de la tarde, donde llega al 55-60%.\n"
+            "Al mediodia baja un poco.\n"
+            "Despues de las 10 de la noche esta libre.\n\n"
+            "Si puedes, viaja temprano antes de las 6 o tarde despues de las 9."
         )
+
+    def _handle_siniestralidad(self, msg_lower: str) -> str:
+        """Handle safety/risk queries."""
+        if not self._siniestros_service:
+            return "No tengo datos de siniestralidad cargados en este momento."
+        stats = self._siniestros_service.get_stats()
+        hour_match = re.search(r"(\d{1,2})", msg_lower)
+        if hour_match:
+            hour = int(hour_match.group(1))
+            if 0 <= hour <= 23:
+                risk = self._siniestros_service.predict_risk_by_hour(hour)
+                top3 = risk.zones[:3]
+                zones = "\n".join(
+                    f"  - {z.localidad}: {z.nivel} ({int(z.risk * 100)}%)"
+                    for z in top3
+                )
+                return (
+                    f"Riesgo vial a las {hour}:00: "
+                    f"{risk.nivel_general} ({int(risk.promedio_riesgo * 100)}%)\n"
+                    f"Zonas mas riesgosas:\n{zones}"
+                )
+        return (
+            f"Siniestralidad vial en Bogota:\n"
+            f"Total accidentes: {stats.total_siniestros:,}\n"
+            f"Fatales: {stats.total_fallecidos:,}\n"
+            f"Sectores criticos: {stats.sectores_criticos}\n"
+            "Pregunta por una hora para ver el riesgo por zona."
+        )
+
+    def _handle_stations_query(self, msg_lower: str) -> str:
+        """Handle station listing queries."""
+        for t in TRONCALES:
+            if t.lower() in msg_lower:
+                names = [s["name"] for s in TM_STATIONS if s["troncal"] == t]
+                return (
+                    f"Troncal {t} tiene {len(names)} estaciones:\n"
+                    + ", ".join(names)
+                )
+        return (
+            f"TransMilenio tiene {len(TM_STATIONS)} estaciones "
+            f"en {len(TRONCALES)} troncales. "
+            "Preguntame por una troncal: Caracas, Suba, Calle 80, NQS, Americas..."
+        )
+
+    def _handle_route_query(self, msg_lower: str) -> str:
+        """Handle route queries."""
+        found = [r for r in TM_RUTAS if r["codigo"].lower() in msg_lower]
+        if found:
+            r = found[0]
+            return (
+                f"Ruta {r['codigo']}:\n"
+                f"Recorrido: {r['origen']} a {r['destino']}\n"
+                f"Bus: {r['tipo_bus']}\n"
+                f"Lunes a viernes: {r['horario_lv']}\n"
+                f"Sabados: {r['horario_sab']}\n"
+                f"Estado: {r['estado']}"
+            )
+        return (
+            f"Hay {len(TM_RUTAS)} rutas TM disponibles. "
+            "Dime un codigo como J74, F51 o G43 para darte la info."
+        )
+
+    def _default_response(self, context: AppContext | None = None) -> str:
+        """Context-aware default response."""
+        if context and context.module == "planificar":
+            if context.origin and not context.destination:
+                return (
+                    "Ya tienes un origen. A donde quieres ir? "
+                    "Dime el destino o toca en el mapa."
+                )
+            if context.origin and context.destination:
+                return (
+                    "Tienes origen y destino listos. "
+                    "Quieres que busque la mejor ruta?"
+                )
+            return (
+                "Estas en el planificador de viajes. "
+                "Dime de donde sales y a donde vas, "
+                "o preguntame cual es la mejor hora."
+            )
+        if context and context.module == "rutas":
+            return (
+                "Estas viendo las rutas. "
+                "Preguntame por un codigo como J74 o F51, o por una troncal."
+            )
+        if context and context.module == "metricas":
+            return (
+                "Estas en las metricas. "
+                "Preguntame por la congestion a una hora especifica."
+            )
+        return (
+            "Soy MoviBot, tu asistente de movilidad en Bogota. Puedo:\n\n"
+            "Planificar rutas: \"ir de Usaquen a Centro\"\n"
+            "Info de estaciones: \"estacion Heroes\"\n"
+            "Congestion por hora: \"trafico a las 7\"\n"
+            "Riesgo vial: \"riesgo a las 18\"\n"
+            "Info de rutas TM: \"ruta J74\"\n\n"
+            "En que te ayudo?"
+        )
+
+    def clear_session(self, session_id: str) -> None:
+        """Clear session history."""
+        self._sessions.pop(session_id, None)
