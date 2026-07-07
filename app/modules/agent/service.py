@@ -244,15 +244,15 @@ class AgentService:
         handler = getattr(self, f"_intent_{intent}", None)
         if handler:
             return handler(
-                message,
-                session_id,
-                context,
-                slots,
-                hour,
-                msg_lower,
-                sources,
-                actions,
-                reply,
+                reply=reply,
+                actions=actions,
+                sources=sources,
+                message=message,
+                session_id=session_id,
+                context=context,
+                slots=slots,
+                hour=hour,
+                msg_lower=msg_lower,
             )
 
         # Unknown — try station search as last resort
@@ -314,13 +314,13 @@ class AgentService:
             self._pending_actions.pop(sid)
         return reply("Entendido, no hay problema. Que mas necesitas?")
 
-    def _intent_plan_route(
-        self, message, sid, ctx, slots, hour, msg_lower, sources, actions, reply
-    ):
+    def _intent_plan_route(self, **kw):
+        reply, actions = kw["reply"], kw["actions"]
+        context, slots = kw["context"], kw["slots"]
         groups = slots.get("groups", ())
-        origin, dest = self._extract_route_points(groups, ctx)
+        origin, dest = self._extract_route_points(groups, context)
         if not dest:
-            return reply(self._default_response(ctx))
+            return reply(self._default_response(context))
         actions.append(
             ActionPayload(
                 type="pending_plan_route",
@@ -371,9 +371,8 @@ class AgentService:
             )
         return "El trafico esta moderado, TransMilenio o SITP son buenas opciones."
 
-    def _intent_congestion(
-        self, message, sid, ctx, slots, hour, msg_lower, sources, actions, reply
-    ):
+    def _intent_congestion(self, **kw):
+        reply, actions, hour = kw["reply"], kw["actions"], kw["hour"]
         if hour is not None:
             response = self._get_congestion_info(hour)
             actions.append(ActionPayload(type="show_congestion", data={"hour": hour}))
@@ -414,15 +413,11 @@ class AgentService:
             "Prueba con: Heroes, Portal Norte, Calle 72, Suba, Americas..."
         )
 
-    def _intent_route_code(
-        self, message, sid, ctx, slots, hour, msg_lower, sources, actions, reply
-    ):
-        return reply(self._handle_route_query(msg_lower))
+    def _intent_route_code(self, **kw):
+        return kw["reply"](self._handle_route_query(kw["msg_lower"]))
 
-    def _intent_station_list(
-        self, message, sid, ctx, slots, hour, msg_lower, sources, actions, reply
-    ):
-        return reply(self._handle_stations_query(msg_lower))
+    def _intent_station_list(self, **kw):
+        return kw["reply"](self._handle_stations_query(kw["msg_lower"]))
 
     def _intent_troncal(self, **kw):
         reply = kw["reply"]
