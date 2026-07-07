@@ -270,6 +270,7 @@ class RoutePredictionService:
         departure_time: str,
         route_code: str = "",
         navigation_steps: list | None = None,
+        explanation: str = "",
     ) -> RoutePredictionResponse:
         """Build standardized route prediction response."""
         avg_c = (
@@ -294,7 +295,7 @@ class RoutePredictionService:
             risk_segments=risk_segments,
             overall_risk=_risk_label(avg_c),
             safety_score=safety_score,
-            explanation="",
+            explanation=explanation,
             stations=stations,
             departure_time=departure_time,
             route_code=route_code,
@@ -791,13 +792,31 @@ class RoutePredictionService:
         return self._build_response(
             total_time,
             total_distance,
-            "$3,550",
+            "$3.550",
             "sitp",
             risk_segments,
             station_names,
             departure_time,
             route_code=ruta_code,
         )
+
+    @staticmethod
+    def _check_service_hours(departure_time: str) -> str:
+        """Check if transit service is available and return warning if not."""
+        hour = _parse_hour(departure_time)
+        day = _parse_day(departure_time)
+        is_weekend = day >= 5
+        service_start = 5 if is_weekend else 4
+        service_end = 22 if is_weekend else 23
+
+        if hour < service_start or hour >= service_end:
+            schedule = "5am-10pm (dom/festivo)" if is_weekend else "4am-11pm (L-S)"
+            return (
+                f"AVISO: TransMilenio no opera a esta hora. "
+                f"Horario: {schedule}. "
+                f"Considera usar vehiculo o esperar al inicio del servicio."
+            )
+        return ""
 
     async def _predict_transit(
         self,
@@ -808,6 +827,8 @@ class RoutePredictionService:
     ) -> RoutePredictionResponse:
         """Transit routing: TransMilenio, SITP, or Multimodal."""
         hour = _parse_hour(departure_time)
+        schedule_warning = self._check_service_hours(departure_time)
+
         speed_factor = 1.5 if mode != "sitp" else 2.5
 
         if mode == "sitp" and self._sitp_routes:
@@ -843,25 +864,30 @@ class RoutePredictionService:
         ]
         route_code = self._derive_route_code(graph, display_path)
 
-        has_tm = any(s.mode == "transmilenio" for s in risk_segments)
-        has_sitp = any(s.mode == "sitp" for s in risk_segments)
-        if has_tm and has_sitp:
-            main_mode = "multimodal"
-        elif has_sitp:
-            main_mode = "sitp"
-        else:
-            main_mode = "transmilenio"
+        main_mode = self._determine_mode(risk_segments)
 
         return self._build_response(
             total_time,
             total_distance,
-            "$3,550" if main_mode != "transmilenio" else "$2,950",
+            "$3.550",
             main_mode,
             risk_segments,
             station_names,
             departure_time,
             route_code=route_code,
+            explanation=schedule_warning,
         )
+
+    @staticmethod
+    def _determine_mode(segments) -> str:
+        """Determine main transport mode from segments."""
+        has_tm = any(s.mode == "transmilenio" for s in segments)
+        has_sitp = any(s.mode == "sitp" for s in segments)
+        if has_tm and has_sitp:
+            return "multimodal"
+        if has_sitp:
+            return "sitp"
+        return "transmilenio"
 
     async def _build_sitp_segments(
         self, stops: list, speed_factor: float
