@@ -121,3 +121,27 @@ async def get_tm_troncales():
 async def get_tm_estaciones():
     """Get TransMilenio stations GeoJSON for map rendering."""
     return service.get_tm_estaciones()
+
+
+@router.get("/tm/rutas")
+async def get_tm_rutas():
+    """Get TransMilenio routes derived from troncales."""
+    return service.get_tm_rutas()
+
+
+@router.get("/sitp/paraderos")
+async def get_sitp_paraderos():
+    """Get SITP bus stops GeoJSON for map rendering."""
+    return service.get_sitp_paraderos()
+
+
+@router.get("/sitp/rutas")
+async def get_sitp_rutas():
+    """Get SITP routes with frequency data."""
+    return service.get_sitp_rutas()
+
+
+@router.get("/sitp/rutas/shapes")
+async def get_sitp_rutas_shapes():
+    """Get SITP route shapes GeoJSON for map rendering."""
+    return service.get_sitp_rutas_shapes()

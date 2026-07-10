@@ -357,3 +357,139 @@ class GraphService:
             if path.exists():
                 return json.loads(path.read_text())
             return {"type": "FeatureCollection", "features": []}
+
+    def get_tm_rutas(self) -> dict:
+        """Derive TM routes from troncales + estaciones data."""
+        import json
+        from pathlib import Path
+
+        # Load troncales to build id_trazado -> troncal name mapping
+        troncales_data = self.get_tm_troncales()
+        id_to_troncal: dict[str, str] = {}
+        for f in troncales_data.get("features", []):
+            props = f.get("properties", {})
+            tz_id = props.get("id_trazado_troncal", "")
+            name = props.get("troncal", "") or props.get("nombre_trazado_troncal", "")
+            if tz_id and name:
+                id_to_troncal[tz_id] = name
+
+        # Load estaciones and group by troncal
+        estaciones = self.get_tm_estaciones()
+        rutas_map: dict[str, list[str]] = {}
+        for f in estaciones.get("features", []):
+            props = f.get("properties", {})
+            # Properties use long names from PostGIS export
+            est_name = props.get("transmisig2.tecnica.estacion_troncal.nom_est", "") or props.get("nombre_est", "")
+            tz_id = props.get("transmisig2.tecnica.estacion_troncal.id_trazado", "") or props.get("id_trazado", "")
+            troncal_name = id_to_troncal.get(tz_id, tz_id)
+            if troncal_name and est_name:
+                if troncal_name not in rutas_map:
+                    rutas_map[troncal_name] = []
+                rutas_map[troncal_name].append(est_name)
+
+        rutas = [
+            {"nombre": k, "estaciones": v, "tipo": "Troncal"}
+            for k, v in rutas_map.items()
+            if v
+        ]
+        return {"rutas": rutas}
+
+    def get_sitp_paraderos(self) -> dict:
+        """Load SITP bus stops as GeoJSON."""
+        import json
+        import os
+
+        import psycopg2
+
+        db_url = os.environ.get("DATABASE_URL", "")
+        try:
+            conn = psycopg2.connect(db_url)
+            cur = conn.cursor()
+            cur.execute("""
+                SELECT json_build_object(
+                    'type', 'FeatureCollection',
+                    'features', COALESCE(json_agg(
+                        json_build_object(
+                            'type', 'Feature',
+                            'geometry', ST_AsGeoJSON(geom)::json,
+                            'properties', propiedades
+                        )
+                    ), '[]'::json)
+                ) FROM sitp_paraderos;
+            """)
+            result = cur.fetchone()[0]
+            cur.close()
+            conn.close()
+            return result
+        except Exception:
+            from pathlib import Path
+
+            path = Path("models/sitp_paraderos.geojson")
+            if path.exists():
+                raw = json.loads(path.read_text())
+                # Normalize properties to match frontend expectations
+                features = []
+                for f in raw.get("features", []):
+                    props = f.get("properties", {})
+                    features.append({
+                        "type": "Feature",
+                        "geometry": f.get("geometry"),
+                        "id": props.get("OBJECTID", f.get("id")),
+                        "properties": {
+                            "cenefa": props.get("NTRCODIGO", ""),
+                            "nombre": props.get("NTRNOMBRE", ""),
+                            "direccion_bandera": props.get("NTRDIRECCION", ""),
+                            "objectid": props.get("OBJECTID", ""),
+                        },
+                    })
+                return {"type": "FeatureCollection", "features": features}
+            return {"type": "FeatureCollection", "features": []}
+
+    def get_sitp_rutas(self) -> dict:
+        """Load SITP routes with frequency data."""
+        import json
+        from pathlib import Path
+
+        # Load shapes to extract routes with paraderos
+        shapes_path = Path("models/sitp_rutas_shapes.geojson")
+        freq_path = Path("models/sitp_rutas_frecuencias.json")
+
+        frecuencias = {}
+        if freq_path.exists():
+            frecuencias = json.loads(freq_path.read_text())
+
+        rutas = []
+        if shapes_path.exists():
+            shapes = json.loads(shapes_path.read_text())
+            for f in shapes.get("features", []):
+                props = f.get("properties", {})
+                ruta_code = props.get("ruta", "")
+                coords = f.get("geometry", {}).get("coordinates", [])
+                # Build paraderos from coordinates
+                paraderos = []
+                for c in coords[:50]:  # Limit for performance
+                    paraderos.append({
+                        "lat": c[1] if len(c) > 1 else 0,
+                        "lon": c[0] if len(c) > 0 else 0,
+                        "nombre": "",
+                    })
+                freq_info = frecuencias.get(ruta_code, {})
+                rutas.append({
+                    "ruta": ruta_code,
+                    "nombre": props.get("nombre", ruta_code),
+                    "tipo": freq_info.get("tipo_servicio", "Urbano"),
+                    "frecuencia_min": freq_info.get("frecuencia_base_min", 15),
+                    "paraderos": paraderos,
+                })
+
+        return {"rutas": rutas}
+
+    def get_sitp_rutas_shapes(self) -> dict:
+        """Load SITP route shapes GeoJSON."""
+        import json
+        from pathlib import Path
+
+        path = Path("models/sitp_rutas_shapes.geojson")
+        if path.exists():
+            return json.loads(path.read_text())
+        return {"type": "FeatureCollection", "features": []}

@@ -1,0 +1,2758 @@
+{
+  "3-11": {
+    "frecuencia_base_min": 8,
+    "tipo_servicio": "Urbano"
+  },
+  "7-3": {
+    "frecuencia_base_min": 7,
+    "tipo_servicio": "Urbano"
+  },
+  "97": {
+    "frecuencia_base_min": 20,
+    "tipo_servicio": "Troncal"
+  },
+  "TC6": {
+    "frecuencia_base_min": 26,
+    "tipo_servicio": "Urbano"
+  },
+  "F417": {
+    "frecuencia_base_min": 9,
+    "tipo_servicio": "Urbano"
+  },
+  "B920": {
+    "frecuencia_base_min": 24,
+    "tipo_servicio": "Urbano"
+  },
+  "L803": {
+    "frecuencia_base_min": 22,
+    "tipo_servicio": "Urbano"
+  },
+  "H816": {
+    "frecuencia_base_min": 5,
+    "tipo_servicio": "Urbano"
+  },
+  "11-2": {
+    "frecuencia_base_min": 29,
+    "tipo_servicio": "Urbano"
+  },
+  "14-2": {
+    "frecuencia_base_min": 26,
+    "tipo_servicio": "Urbano"
+  },
+  "330": {
+    "frecuencia_base_min": 25,
+    "tipo_servicio": "Urbano"
+  },
+  "2-5": {
+    "frecuencia_base_min": 18,
+    "tipo_servicio": "Urbano"
+  },
+  "L804": {
+    "frecuencia_base_min": 21,
+    "tipo_servicio": "Urbano"
+  },
+  "C145": {
+    "frecuencia_base_min": 18,
+    "tipo_servicio": "Urbano"
+  },
+  "C146": {
+    "frecuencia_base_min": 16,
+    "tipo_servicio": "Urbano"
+  },
+  "19-10": {
+    "frecuencia_base_min": 6,
+    "tipo_servicio": "Urbano"
+  },
+  "H318": {
+    "frecuencia_base_min": 27,
+    "tipo_servicio": "Urbano"
+  },
+  "L616": {
+    "frecuencia_base_min": 21,
+    "tipo_servicio": "Urbano"
+  },
+  "6-8": {
+    "frecuencia_base_min": 18,
+    "tipo_servicio": "Urbano"
+  },
+  "G529": {
+    "frecuencia_base_min": 12,
+    "tipo_servicio": "Urbano"
+  },
+  "SE6": {
+    "frecuencia_base_min": 30,
+    "tipo_servicio": "Urbano"
+  },
+  "A305": {
+    "frecuencia_base_min": 20,
+    "tipo_servicio": "Urbano"
+  },
+  "K335": {
+    "frecuencia_base_min": 30,
+    "tipo_servicio": "Urbano"
+  },
+  "K721": {
+    "frecuencia_base_min": 29,
+    "tipo_servicio": "Urbano"
+  },
+  "A618": {
+    "frecuencia_base_min": 17,
+    "tipo_servicio": "Urbano"
+  },
+  "H602": {
+    "frecuencia_base_min": 16,
+    "tipo_servicio": "Urbano"
+  },
+  "L811": {
+    "frecuencia_base_min": 23,
+    "tipo_servicio": "Urbano"
+  },
+  "G507": {
+    "frecuencia_base_min": 30,
+    "tipo_servicio": "Urbano"
+  },
+  "P7": {
+    "frecuencia_base_min": 28,
+    "tipo_servicio": "Troncal"
+  },
+  "H601": {
+    "frecuencia_base_min": 29,
+    "tipo_servicio": "Urbano"
+  },
+  "A203": {
+    "frecuencia_base_min": 27,
+    "tipo_servicio": "Urbano"
+  },
+  "T53": {
+    "frecuencia_base_min": 23,
+    "tipo_servicio": "Urbano"
+  },
+  "G522": {
+    "frecuencia_base_min": 8,
+    "tipo_servicio": "Urbano"
+  },
+  "C509": {
+    "frecuencia_base_min": 18,
+    "tipo_servicio": "Urbano"
+  },
+  "135B": {
+    "frecuencia_base_min": 9,
+    "tipo_servicio": "Urbano"
+  },
+  "H408": {
+    "frecuencia_base_min": 13,
+    "tipo_servicio": "Urbano"
+  },
+  "9-1PICO": {
+    "frecuencia_base_min": 20,
+    "tipo_servicio": "Urbano"
+  },
+  "H622": {
+    "frecuencia_base_min": 29,
+    "tipo_servicio": "Urbano"
+  },
+  "A506": {
+    "frecuencia_base_min": 12,
+    "tipo_servicio": "Urbano"
+  },
+  "D909": {
+    "frecuencia_base_min": 7,
+    "tipo_servicio": "Urbano"
+  },
+  "421": {
+    "frecuencia_base_min": 14,
+    "tipo_servicio": "Urbano"
+  },
+  "2-3": {
+    "frecuencia_base_min": 24,
+    "tipo_servicio": "Urbano"
+  },
+  "A306": {
+    "frecuencia_base_min": 22,
+    "tipo_servicio": "Urbano"
+  },
+  "291": {
+    "frecuencia_base_min": 18,
+    "tipo_servicio": "Urbano"
+  },
+  "H716": {
+    "frecuencia_base_min": 13,
+    "tipo_servicio": "Urbano"
+  },
+  "T27": {
+    "frecuencia_base_min": 11,
+    "tipo_servicio": "Urbano"
+  },
+  "L919": {
+    "frecuencia_base_min": 5,
+    "tipo_servicio": "Urbano"
+  },
+  "H612": {
+    "frecuencia_base_min": 27,
+    "tipo_servicio": "Urbano"
+  },
+  "6-5": {
+    "frecuencia_base_min": 28,
+    "tipo_servicio": "Urbano"
+  },
+  "B144": {
+    "frecuencia_base_min": 30,
+    "tipo_servicio": "Urbano"
+  },
+  "A602": {
+    "frecuencia_base_min": 5,
+    "tipo_servicio": "Urbano"
+  },
+  "L331": {
+    "frecuencia_base_min": 23,
+    "tipo_servicio": "Urbano"
+  },
+  "A117": {
+    "frecuencia_base_min": 21,
+    "tipo_servicio": "Urbano"
+  },
+  "A900": {
+    "frecuencia_base_min": 8,
+    "tipo_servicio": "Urbano"
+  },
+  "B608": {
+    "frecuencia_base_min": 21,
+    "tipo_servicio": "Urbano"
+  },
+  "B138": {
+    "frecuencia_base_min": 5,
+    "tipo_servicio": "Urbano"
+  },
+  "H721": {
+    "frecuencia_base_min": 17,
+    "tipo_servicio": "Urbano"
+  },
+  "6-5C": {
+    "frecuencia_base_min": 25,
+    "tipo_servicio": "Urbano"
+  },
+  "C705": {
+    "frecuencia_base_min": 11,
+    "tipo_servicio": "Urbano"
+  },
+  "K724": {
+    "frecuencia_base_min": 27,
+    "tipo_servicio": "Urbano"
+  },
+  "7-2": {
+    "frecuencia_base_min": 30,
+    "tipo_servicio": "Urbano"
+  },
+  "A809": {
+    "frecuencia_base_min": 15,
+    "tipo_servicio": "Urbano"
+  },
+  "H712": {
+    "frecuencia_base_min": 18,
+    "tipo_servicio": "Urbano"
+  },
+  "B925": {
+    "frecuencia_base_min": 16,
+    "tipo_servicio": "Urbano"
+  },
+  "402": {
+    "frecuencia_base_min": 8,
+    "tipo_servicio": "Urbano"
+  },
+  "C160": {
+    "frecuencia_base_min": 9,
+    "tipo_servicio": "Urbano"
+  },
+  "B404": {
+    "frecuencia_base_min": 18,
+    "tipo_servicio": "Urbano"
+  },
+  "C124": {
+    "frecuencia_base_min": 25,
+    "tipo_servicio": "Urbano"
+  },
+  "H605": {
+    "frecuencia_base_min": 23,
+    "tipo_servicio": "Urbano"
+  },
+  "11-8": {
+    "frecuencia_base_min": 13,
+    "tipo_servicio": "Urbano"
+  },
+  "TC10": {
+    "frecuencia_base_min": 13,
+    "tipo_servicio": "Urbano"
+  },
+  "H718": {
+    "frecuencia_base_min": 22,
+    "tipo_servicio": "Urbano"
+  },
+  "3-3": {
+    "frecuencia_base_min": 18,
+    "tipo_servicio": "Urbano"
+  },
+  "13-13": {
+    "frecuencia_base_min": 23,
+    "tipo_servicio": "Urbano"
+  },
+  "19-2": {
+    "frecuencia_base_min": 16,
+    "tipo_servicio": "Urbano"
+  },
+  "201A": {
+    "frecuencia_base_min": 24,
+    "tipo_servicio": "Urbano"
+  },
+  "L510": {
+    "frecuencia_base_min": 13,
+    "tipo_servicio": "Urbano"
+  },
+  "99": {
+    "frecuencia_base_min": 26,
+    "tipo_servicio": "Troncal"
+  },
+  "SE14": {
+    "frecuencia_base_min": 17,
+    "tipo_servicio": "Urbano"
+  },
+  "C154": {
+    "frecuencia_base_min": 29,
+    "tipo_servicio": "Urbano"
+  },
+  "A725": {
+    "frecuencia_base_min": 11,
+    "tipo_servicio": "Urbano"
+  },
+  "10-10": {
+    "frecuencia_base_min": 18,
+    "tipo_servicio": "Urbano"
+  },
+  "927": {
+    "frecuencia_base_min": 22,
+    "tipo_servicio": "Urbano"
+  },
+  "B908": {
+    "frecuencia_base_min": 30,
+    "tipo_servicio": "Urbano"
+  },
+  "A601": {
+    "frecuencia_base_min": 22,
+    "tipo_servicio": "Urbano"
+  },
+  "F404": {
+    "frecuencia_base_min": 20,
+    "tipo_servicio": "Urbano"
+  },
+  "D209": {
+    "frecuencia_base_min": 10,
+    "tipo_servicio": "Urbano"
+  },
+  "B631": {
+    "frecuencia_base_min": 16,
+    "tipo_servicio": "Urbano"
+  },
+  "K714": {
+    "frecuencia_base_min": 22,
+    "tipo_servicio": "Urbano"
+  },
+  "3-5": {
+    "frecuencia_base_min": 22,
+    "tipo_servicio": "Urbano"
+  },
+  "8-3": {
+    "frecuencia_base_min": 20,
+    "tipo_servicio": "Urbano"
+  },
+  "K122": {
+    "frecuencia_base_min": 13,
+    "tipo_servicio": "Urbano"
+  },
+  "6-6": {
+    "frecuencia_base_min": 14,
+    "tipo_servicio": "Urbano"
+  },
+  "K635": {
+    "frecuencia_base_min": 23,
+    "tipo_servicio": "Urbano"
+  },
+  "D335": {
+    "frecuencia_base_min": 16,
+    "tipo_servicio": "Urbano"
+  },
+  "B904": {
+    "frecuencia_base_min": 29,
+    "tipo_servicio": "Urbano"
+  },
+  "T52": {
+    "frecuencia_base_min": 27,
+    "tipo_servicio": "Urbano"
+  },
+  "B916": {
+    "frecuencia_base_min": 17,
+    "tipo_servicio": "Urbano"
+  },
+  "9-2PICO": {
+    "frecuencia_base_min": 28,
+    "tipo_servicio": "Urbano"
+  },
+  "A518": {
+    "frecuencia_base_min": 9,
+    "tipo_servicio": "Urbano"
+  },
+  "G512": {
+    "frecuencia_base_min": 26,
+    "tipo_servicio": "Urbano"
+  },
+  "C29": {
+    "frecuencia_base_min": 8,
+    "tipo_servicio": "Urbano"
+  },
+  "H631": {
+    "frecuencia_base_min": 28,
+    "tipo_servicio": "Urbano"
+  },
+  "11-4": {
+    "frecuencia_base_min": 12,
+    "tipo_servicio": "Urbano"
+  },
+  "K302": {
+    "frecuencia_base_min": 19,
+    "tipo_servicio": "Urbano"
+  },
+  "TC14": {
+    "frecuencia_base_min": 30,
+    "tipo_servicio": "Urbano"
+  },
+  "F419": {
+    "frecuencia_base_min": 27,
+    "tipo_servicio": "Urbano"
+  },
+  "F512": {
+    "frecuencia_base_min": 10,
+    "tipo_servicio": "Urbano"
+  },
+  "D202": {
+    "frecuencia_base_min": 8,
+    "tipo_servicio": "Urbano"
+  },
+  "18-11": {
+    "frecuencia_base_min": 11,
+    "tipo_servicio": "Urbano"
+  },
+  "F401": {
+    "frecuencia_base_min": 21,
+    "tipo_servicio": "Urbano"
+  },
+  "19-9": {
+    "frecuencia_base_min": 17,
+    "tipo_servicio": "Urbano"
+  },
+  "B419": {
+    "frecuencia_base_min": 30,
+    "tipo_servicio": "Urbano"
+  },
+  "G504": {
+    "frecuencia_base_min": 15,
+    "tipo_servicio": "Urbano"
+  },
+  "D81": {
+    "frecuencia_base_min": 30,
+    "tipo_servicio": "Urbano"
+  },
+  "B905": {
+    "frecuencia_base_min": 22,
+    "tipo_servicio": "Urbano"
+  },
+  "A620": {
+    "frecuencia_base_min": 24,
+    "tipo_servicio": "Urbano"
+  },
+  "B902": {
+    "frecuencia_base_min": 27,
+    "tipo_servicio": "Urbano"
+  },
+  "5-2": {
+    "frecuencia_base_min": 26,
+    "tipo_servicio": "Urbano"
+  },
+  "K304": {
+    "frecuencia_base_min": 27,
+    "tipo_servicio": "Urbano"
+  },
+  "9-11": {
+    "frecuencia_base_min": 6,
+    "tipo_servicio": "Urbano"
+  },
+  "M84": {
+    "frecuencia_base_min": 10,
+    "tipo_servicio": "Urbano"
+  },
+  "K206": {
+    "frecuencia_base_min": 17,
+    "tipo_servicio": "Urbano"
+  },
+  "544A": {
+    "frecuencia_base_min": 25,
+    "tipo_servicio": "Urbano"
+  },
+  "B118": {
+    "frecuencia_base_min": 5,
+    "tipo_servicio": "Urbano"
+  },
+  "C130": {
+    "frecuencia_base_min": 30,
+    "tipo_servicio": "Urbano"
+  },
+  "H609": {
+    "frecuencia_base_min": 7,
+    "tipo_servicio": "Urbano"
+  },
+  "G807": {
+    "frecuencia_base_min": 9,
+    "tipo_servicio": "Urbano"
+  },
+  "10-3": {
+    "frecuencia_base_min": 20,
+    "tipo_servicio": "Urbano"
+  },
+  "10-12": {
+    "frecuencia_base_min": 24,
+    "tipo_servicio": "Urbano"
+  },
+  "L416": {
+    "frecuencia_base_min": 18,
+    "tipo_servicio": "Urbano"
+  },
+  "A702": {
+    "frecuencia_base_min": 7,
+    "tipo_servicio": "Urbano"
+  },
+  "K86 (D&F)": {
+    "frecuencia_base_min": 7,
+    "tipo_servicio": "Urbano"
+  },
+  "621": {
+    "frecuencia_base_min": 13,
+    "tipo_servicio": "Urbano"
+  },
+  "B401": {
+    "frecuencia_base_min": 12,
+    "tipo_servicio": "Urbano"
+  },
+  "G208": {
+    "frecuencia_base_min": 16,
+    "tipo_servicio": "Urbano"
+  },
+  "B130": {
+    "frecuencia_base_min": 7,
+    "tipo_servicio": "Urbano"
+  },
+  "C105": {
+    "frecuencia_base_min": 24,
+    "tipo_servicio": "Urbano"
+  },
+  "H327": {
+    "frecuencia_base_min": 6,
+    "tipo_servicio": "Urbano"
+  },
+  "13-7": {
+    "frecuencia_base_min": 28,
+    "tipo_servicio": "Urbano"
+  },
+  "19-11": {
+    "frecuencia_base_min": 17,
+    "tipo_servicio": "Urbano"
+  },
+  "4-1": {
+    "frecuencia_base_min": 17,
+    "tipo_servicio": "Urbano"
+  },
+  "T30": {
+    "frecuencia_base_min": 24,
+    "tipo_servicio": "Urbano"
+  },
+  "T163": {
+    "frecuencia_base_min": 25,
+    "tipo_servicio": "Urbano"
+  },
+  "C321": {
+    "frecuencia_base_min": 21,
+    "tipo_servicio": "Urbano"
+  },
+  "H521": {
+    "frecuencia_base_min": 14,
+    "tipo_servicio": "Urbano"
+  },
+  "2-7": {
+    "frecuencia_base_min": 27,
+    "tipo_servicio": "Urbano"
+  },
+  "G147": {
+    "frecuencia_base_min": 24,
+    "tipo_servicio": "Urbano"
+  },
+  "T26": {
+    "frecuencia_base_min": 6,
+    "tipo_servicio": "Urbano"
+  },
+  "257": {
+    "frecuencia_base_min": 29,
+    "tipo_servicio": "Urbano"
+  },
+  "F416": {
+    "frecuencia_base_min": 10,
+    "tipo_servicio": "Urbano"
+  },
+  "H131": {
+    "frecuencia_base_min": 25,
+    "tipo_servicio": "Urbano"
+  },
+  "C151": {
+    "frecuencia_base_min": 20,
+    "tipo_servicio": "Urbano"
+  },
+  "G521": {
+    "frecuencia_base_min": 19,
+    "tipo_servicio": "Urbano"
+  },
+  "T43A": {
+    "frecuencia_base_min": 5,
+    "tipo_servicio": "Urbano"
+  },
+  "14": {
+    "frecuencia_base_min": 11,
+    "tipo_servicio": "Troncal"
+  },
+  "A410": {
+    "frecuencia_base_min": 26,
+    "tipo_servicio": "Urbano"
+  },
+  "H707": {
+    "frecuencia_base_min": 30,
+    "tipo_servicio": "Urbano"
+  },
+  "614": {
+    "frecuencia_base_min": 21,
+    "tipo_servicio": "Urbano"
+  },
+  "C155": {
+    "frecuencia_base_min": 14,
+    "tipo_servicio": "Urbano"
+  },
+  "C315": {
+    "frecuencia_base_min": 11,
+    "tipo_servicio": "Urbano"
+  },
+  "8-10": {
+    "frecuencia_base_min": 6,
+    "tipo_servicio": "Urbano"
+  },
+  "H817": {
+    "frecuencia_base_min": 30,
+    "tipo_servicio": "Urbano"
+  },
+  "H702": {
+    "frecuencia_base_min": 24,
+    "tipo_servicio": "Urbano"
+  },
+  "D504": {
+    "frecuencia_base_min": 21,
+    "tipo_servicio": "Urbano"
+  },
+  "786": {
+    "frecuencia_base_min": 21,
+    "tipo_servicio": "Urbano"
+  },
+  "G517": {
+    "frecuencia_base_min": 27,
+    "tipo_servicio": "Urbano"
+  },
+  "A134": {
+    "frecuencia_base_min": 12,
+    "tipo_servicio": "Urbano"
+  },
+  "K211": {
+    "frecuencia_base_min": 24,
+    "tipo_servicio": "Urbano"
+  },
+  "K318": {
+    "frecuencia_base_min": 10,
+    "tipo_servicio": "Urbano"
+  },
+  "11-7": {
+    "frecuencia_base_min": 26,
+    "tipo_servicio": "Urbano"
+  },
+  "8-3PICO": {
+    "frecuencia_base_min": 6,
+    "tipo_servicio": "Urbano"
+  },
+  "K527": {
+    "frecuencia_base_min": 16,
+    "tipo_servicio": "Urbano"
+  },
+  "6-9": {
+    "frecuencia_base_min": 12,
+    "tipo_servicio": "Urbano"
+  },
+  "12-1": {
+    "frecuencia_base_min": 25,
+    "tipo_servicio": "Urbano"
+  },
+  "B326": {
+    "frecuencia_base_min": 5,
+    "tipo_servicio": "Urbano"
+  },
+  "T62": {
+    "frecuencia_base_min": 10,
+    "tipo_servicio": "Urbano"
+  },
+  "2-3PICO": {
+    "frecuencia_base_min": 7,
+    "tipo_servicio": "Urbano"
+  },
+  "L820": {
+    "frecuencia_base_min": 13,
+    "tipo_servicio": "Urbano"
+  },
+  "6-12": {
+    "frecuencia_base_min": 29,
+    "tipo_servicio": "Urbano"
+  },
+  "N12": {
+    "frecuencia_base_min": 17,
+    "tipo_servicio": "Urbano"
+  },
+  "A503": {
+    "frecuencia_base_min": 16,
+    "tipo_servicio": "Urbano"
+  },
+  "L805": {
+    "frecuencia_base_min": 26,
+    "tipo_servicio": "Urbano"
+  },
+  "669": {
+    "frecuencia_base_min": 17,
+    "tipo_servicio": "Urbano"
+  },
+  "G511": {
+    "frecuencia_base_min": 17,
+    "tipo_servicio": "Urbano"
+  },
+  "6-18": {
+    "frecuencia_base_min": 23,
+    "tipo_servicio": "Urbano"
+  },
+  "344": {
+    "frecuencia_base_min": 11,
+    "tipo_servicio": "Urbano"
+  },
+  "A522": {
+    "frecuencia_base_min": 21,
+    "tipo_servicio": "Urbano"
+  },
+  "C201": {
+    "frecuencia_base_min": 5,
+    "tipo_servicio": "Urbano"
+  },
+  "7": {
+    "frecuencia_base_min": 28,
+    "tipo_servicio": "Troncal"
+  },
+  "H209": {
+    "frecuencia_base_min": 27,
+    "tipo_servicio": "Urbano"
+  },
+  "L813": {
+    "frecuencia_base_min": 7,
+    "tipo_servicio": "Urbano"
+  },
+  "2-10": {
+    "frecuencia_base_min": 7,
+    "tipo_servicio": "Urbano"
+  },
+  "F405": {
+    "frecuencia_base_min": 22,
+    "tipo_servicio": "Urbano"
+  },
+  "L812": {
+    "frecuencia_base_min": 14,
+    "tipo_servicio": "Urbano"
+  },
+  "TC17": {
+    "frecuencia_base_min": 28,
+    "tipo_servicio": "Urbano"
+  },
+  "F414": {
+    "frecuencia_base_min": 22,
+    "tipo_servicio": "Urbano"
+  },
+  "6-4": {
+    "frecuencia_base_min": 23,
+    "tipo_servicio": "Urbano"
+  },
+  "K306": {
+    "frecuencia_base_min": 16,
+    "tipo_servicio": "Urbano"
+  },
+  "C129": {
+    "frecuencia_base_min": 16,
+    "tipo_servicio": "Urbano"
+  },
+  "K901": {
+    "frecuencia_base_min": 13,
+    "tipo_servicio": "Urbano"
+  },
+  "K905": {
+    "frecuencia_base_min": 12,
+    "tipo_servicio": "Urbano"
+  },
+  "E26A": {
+    "frecuencia_base_min": 24,
+    "tipo_servicio": "Urbano"
+  },
+  "G508": {
+    "frecuencia_base_min": 11,
+    "tipo_servicio": "Urbano"
+  },
+  "H617": {
+    "frecuencia_base_min": 19,
+    "tipo_servicio": "Urbano"
+  },
+  "8-1": {
+    "frecuencia_base_min": 17,
+    "tipo_servicio": "Urbano"
+  },
+  "K332": {
+    "frecuencia_base_min": 23,
+    "tipo_servicio": "Urbano"
+  },
+  "16": {
+    "frecuencia_base_min": 5,
+    "tipo_servicio": "Troncal"
+  },
+  "15-5": {
+    "frecuencia_base_min": 13,
+    "tipo_servicio": "Urbano"
+  },
+  "G513": {
+    "frecuencia_base_min": 10,
+    "tipo_servicio": "Urbano"
+  },
+  "1-3": {
+    "frecuencia_base_min": 18,
+    "tipo_servicio": "Urbano"
+  },
+  "B926": {
+    "frecuencia_base_min": 21,
+    "tipo_servicio": "Urbano"
+  },
+  "D717": {
+    "frecuencia_base_min": 8,
+    "tipo_servicio": "Urbano"
+  },
+  "H610": {
+    "frecuencia_base_min": 22,
+    "tipo_servicio": "Urbano"
+  },
+  "H724": {
+    "frecuencia_base_min": 7,
+    "tipo_servicio": "Urbano"
+  },
+  "37": {
+    "frecuencia_base_min": 21,
+    "tipo_servicio": "Troncal"
+  },
+  "G414": {
+    "frecuencia_base_min": 14,
+    "tipo_servicio": "Urbano"
+  },
+  "T04": {
+    "frecuencia_base_min": 15,
+    "tipo_servicio": "Urbano"
+  },
+  "D627": {
+    "frecuencia_base_min": 8,
+    "tipo_servicio": "Urbano"
+  },
+  "C116": {
+    "frecuencia_base_min": 30,
+    "tipo_servicio": "Urbano"
+  },
+  "Z4B": {
+    "frecuencia_base_min": 21,
+    "tipo_servicio": "Urbano"
+  },
+  "A127": {
+    "frecuencia_base_min": 13,
+    "tipo_servicio": "Urbano"
+  },
+  "A617": {
+    "frecuencia_base_min": 22,
+    "tipo_servicio": "Urbano"
+  },
+  "L325": {
+    "frecuencia_base_min": 30,
+    "tipo_servicio": "Urbano"
+  },
+  "14-1": {
+    "frecuencia_base_min": 23,
+    "tipo_servicio": "Urbano"
+  },
+  "F408": {
+    "frecuencia_base_min": 13,
+    "tipo_servicio": "Urbano"
+  },
+  "661": {
+    "frecuencia_base_min": 27,
+    "tipo_servicio": "Urbano"
+  },
+  "9-8": {
+    "frecuencia_base_min": 19,
+    "tipo_servicio": "Urbano"
+  },
+  "94": {
+    "frecuencia_base_min": 17,
+    "tipo_servicio": "Troncal"
+  },
+  "K629": {
+    "frecuencia_base_min": 23,
+    "tipo_servicio": "Urbano"
+  },
+  "T13": {
+    "frecuencia_base_min": 20,
+    "tipo_servicio": "Urbano"
+  },
+  "K300": {
+    "frecuencia_base_min": 29,
+    "tipo_servicio": "Urbano"
+  },
+  "G527": {
+    "frecuencia_base_min": 12,
+    "tipo_servicio": "Urbano"
+  },
+  "8-6": {
+    "frecuencia_base_min": 29,
+    "tipo_servicio": "Urbano"
+  },
+  "953": {
+    "frecuencia_base_min": 15,
+    "tipo_servicio": "Urbano"
+  },
+  "18-9": {
+    "frecuencia_base_min": 29,
+    "tipo_servicio": "Urbano"
+  },
+  "579": {
+    "frecuencia_base_min": 19,
+    "tipo_servicio": "Urbano"
+  },
+  "D205": {
+    "frecuencia_base_min": 26,
+    "tipo_servicio": "Urbano"
+  },
+  "D203": {
+    "frecuencia_base_min": 19,
+    "tipo_servicio": "Urbano"
+  },
+  "A706": {
+    "frecuencia_base_min": 23,
+    "tipo_servicio": "Urbano"
+  },
+  "A713": {
+    "frecuencia_base_min": 5,
+    "tipo_servicio": "Urbano"
+  },
+  "H711": {
+    "frecuencia_base_min": 20,
+    "tipo_servicio": "Urbano"
+  },
+  "K812": {
+    "frecuencia_base_min": 8,
+    "tipo_servicio": "Urbano"
+  },
+  "F615": {
+    "frecuencia_base_min": 13,
+    "tipo_servicio": "Urbano"
+  },
+  "K305": {
+    "frecuencia_base_min": 7,
+    "tipo_servicio": "Urbano"
+  },
+  "2-4": {
+    "frecuencia_base_min": 17,
+    "tipo_servicio": "Urbano"
+  },
+  "1-2": {
+    "frecuencia_base_min": 25,
+    "tipo_servicio": "Urbano"
+  },
+  "10-11": {
+    "frecuencia_base_min": 30,
+    "tipo_servicio": "Urbano"
+  },
+  "1-4": {
+    "frecuencia_base_min": 12,
+    "tipo_servicio": "Urbano"
+  },
+  "271": {
+    "frecuencia_base_min": 26,
+    "tipo_servicio": "Urbano"
+  },
+  "E26B": {
+    "frecuencia_base_min": 27,
+    "tipo_servicio": "Urbano"
+  },
+  "H606": {
+    "frecuencia_base_min": 12,
+    "tipo_servicio": "Urbano"
+  },
+  "K202": {
+    "frecuencia_base_min": 30,
+    "tipo_servicio": "Urbano"
+  },
+  "2-8": {
+    "frecuencia_base_min": 15,
+    "tipo_servicio": "Urbano"
+  },
+  "H633": {
+    "frecuencia_base_min": 18,
+    "tipo_servicio": "Urbano"
+  },
+  "L304": {
+    "frecuencia_base_min": 16,
+    "tipo_servicio": "Urbano"
+  },
+  "466": {
+    "frecuencia_base_min": 21,
+    "tipo_servicio": "Urbano"
+  },
+  "G510": {
+    "frecuencia_base_min": 22,
+    "tipo_servicio": "Urbano"
+  },
+  "15-4": {
+    "frecuencia_base_min": 5,
+    "tipo_servicio": "Urbano"
+  },
+  "6-2": {
+    "frecuencia_base_min": 27,
+    "tipo_servicio": "Urbano"
+  },
+  "K801": {
+    "frecuencia_base_min": 13,
+    "tipo_servicio": "Urbano"
+  },
+  "L613": {
+    "frecuencia_base_min": 12,
+    "tipo_servicio": "Urbano"
+  },
+  "C110": {
+    "frecuencia_base_min": 14,
+    "tipo_servicio": "Urbano"
+  },
+  "580": {
+    "frecuencia_base_min": 7,
+    "tipo_servicio": "Urbano"
+  },
+  "B927": {
+    "frecuencia_base_min": 17,
+    "tipo_servicio": "Urbano"
+  },
+  "F409": {
+    "frecuencia_base_min": 26,
+    "tipo_servicio": "Urbano"
+  },
+  "359": {
+    "frecuencia_base_min": 28,
+    "tipo_servicio": "Urbano"
+  },
+  "10-2": {
+    "frecuencia_base_min": 15,
+    "tipo_servicio": "Urbano"
+  },
+  "P39": {
+    "frecuencia_base_min": 7,
+    "tipo_servicio": "Urbano"
+  },
+  "F718": {
+    "frecuencia_base_min": 22,
+    "tipo_servicio": "Urbano"
+  },
+  "9-10": {
+    "frecuencia_base_min": 10,
+    "tipo_servicio": "Urbano"
+  },
+  "796A": {
+    "frecuencia_base_min": 20,
+    "tipo_servicio": "Urbano"
+  },
+  "5-1": {
+    "frecuencia_base_min": 15,
+    "tipo_servicio": "Urbano"
+  },
+  "F918": {
+    "frecuencia_base_min": 16,
+    "tipo_servicio": "Urbano"
+  },
+  "5-3": {
+    "frecuencia_base_min": 11,
+    "tipo_servicio": "Urbano"
+  },
+  "L205": {
+    "frecuencia_base_min": 23,
+    "tipo_servicio": "Urbano"
+  },
+  "F423": {
+    "frecuencia_base_min": 13,
+    "tipo_servicio": "Urbano"
+  },
+  "T06": {
+    "frecuencia_base_min": 10,
+    "tipo_servicio": "Urbano"
+  },
+  "16-12": {
+    "frecuencia_base_min": 28,
+    "tipo_servicio": "Urbano"
+  },
+  "2-2": {
+    "frecuencia_base_min": 26,
+    "tipo_servicio": "Urbano"
+  },
+  "C104": {
+    "frecuencia_base_min": 11,
+    "tipo_servicio": "Urbano"
+  },
+  "G311": {
+    "frecuencia_base_min": 20,
+    "tipo_servicio": "Urbano"
+  },
+  "K331": {
+    "frecuencia_base_min": 28,
+    "tipo_servicio": "Urbano"
+  },
+  "G156": {
+    "frecuencia_base_min": 11,
+    "tipo_servicio": "Urbano"
+  },
+  "T795": {
+    "frecuencia_base_min": 12,
+    "tipo_servicio": "Urbano"
+  },
+  "8-5": {
+    "frecuencia_base_min": 28,
+    "tipo_servicio": "Urbano"
+  },
+  "13-5": {
+    "frecuencia_base_min": 12,
+    "tipo_servicio": "Urbano"
+  },
+  "H715": {
+    "frecuencia_base_min": 13,
+    "tipo_servicio": "Urbano"
+  },
+  "H611": {
+    "frecuencia_base_min": 11,
+    "tipo_servicio": "Urbano"
+  },
+  "634": {
+    "frecuencia_base_min": 12,
+    "tipo_servicio": "Urbano"
+  },
+  "C149": {
+    "frecuencia_base_min": 11,
+    "tipo_servicio": "Urbano"
+  },
+  "H636": {
+    "frecuencia_base_min": 12,
+    "tipo_servicio": "Urbano"
+  },
+  "A214": {
+    "frecuencia_base_min": 24,
+    "tipo_servicio": "Urbano"
+  },
+  "C137": {
+    "frecuencia_base_min": 16,
+    "tipo_servicio": "Urbano"
+  },
+  "L149": {
+    "frecuencia_base_min": 9,
+    "tipo_servicio": "Urbano"
+  },
+  "5-4": {
+    "frecuencia_base_min": 29,
+    "tipo_servicio": "Urbano"
+  },
+  "599": {
+    "frecuencia_base_min": 8,
+    "tipo_servicio": "Urbano"
+  },
+  "A153": {
+    "frecuencia_base_min": 8,
+    "tipo_servicio": "Urbano"
+  },
+  "L814": {
+    "frecuencia_base_min": 7,
+    "tipo_servicio": "Urbano"
+  },
+  "10-5": {
+    "frecuencia_base_min": 26,
+    "tipo_servicio": "Urbano"
+  },
+  "M81": {
+    "frecuencia_base_min": 26,
+    "tipo_servicio": "Urbano"
+  },
+  "K333": {
+    "frecuencia_base_min": 20,
+    "tipo_servicio": "Urbano"
+  },
+  "H83": {
+    "frecuencia_base_min": 24,
+    "tipo_servicio": "Urbano"
+  },
+  "1-7": {
+    "frecuencia_base_min": 5,
+    "tipo_servicio": "Urbano"
+  },
+  "C117": {
+    "frecuencia_base_min": 29,
+    "tipo_servicio": "Urbano"
+  },
+  "H627": {
+    "frecuencia_base_min": 22,
+    "tipo_servicio": "Urbano"
+  },
+  "K308": {
+    "frecuencia_base_min": 6,
+    "tipo_servicio": "Urbano"
+  },
+  "C925": {
+    "frecuencia_base_min": 20,
+    "tipo_servicio": "Urbano"
+  },
+  "K324": {
+    "frecuencia_base_min": 16,
+    "tipo_servicio": "Urbano"
+  },
+  "H603": {
+    "frecuencia_base_min": 24,
+    "tipo_servicio": "Urbano"
+  },
+  "385": {
+    "frecuencia_base_min": 15,
+    "tipo_servicio": "Urbano"
+  },
+  "201B": {
+    "frecuencia_base_min": 20,
+    "tipo_servicio": "Urbano"
+  },
+  "K317": {
+    "frecuencia_base_min": 23,
+    "tipo_servicio": "Urbano"
+  },
+  "C123": {
+    "frecuencia_base_min": 13,
+    "tipo_servicio": "Urbano"
+  },
+  "C1": {
+    "frecuencia_base_min": 20,
+    "tipo_servicio": "Troncal"
+  },
+  "A815": {
+    "frecuencia_base_min": 10,
+    "tipo_servicio": "Urbano"
+  },
+  "K803": {
+    "frecuencia_base_min": 29,
+    "tipo_servicio": "Urbano"
+  },
+  "A151": {
+    "frecuencia_base_min": 21,
+    "tipo_servicio": "Urbano"
+  },
+  "H708": {
+    "frecuencia_base_min": 13,
+    "tipo_servicio": "Urbano"
+  },
+  "D214": {
+    "frecuencia_base_min": 17,
+    "tipo_servicio": "Urbano"
+  },
+  "M83": {
+    "frecuencia_base_min": 12,
+    "tipo_servicio": "Urbano"
+  },
+  "A605": {
+    "frecuencia_base_min": 29,
+    "tipo_servicio": "Urbano"
+  },
+  "B903": {
+    "frecuencia_base_min": 23,
+    "tipo_servicio": "Urbano"
+  },
+  "D800": {
+    "frecuencia_base_min": 9,
+    "tipo_servicio": "Urbano"
+  },
+  "H726": {
+    "frecuencia_base_min": 6,
+    "tipo_servicio": "Urbano"
+  },
+  "K334": {
+    "frecuencia_base_min": 21,
+    "tipo_servicio": "Urbano"
+  },
+  "K810": {
+    "frecuencia_base_min": 30,
+    "tipo_servicio": "Urbano"
+  },
+  "19-1": {
+    "frecuencia_base_min": 18,
+    "tipo_servicio": "Urbano"
+  },
+  "H723": {
+    "frecuencia_base_min": 20,
+    "tipo_servicio": "Urbano"
+  },
+  "C84": {
+    "frecuencia_base_min": 22,
+    "tipo_servicio": "Urbano"
+  },
+  "11-4CIR": {
+    "frecuencia_base_min": 6,
+    "tipo_servicio": "Urbano"
+  },
+  "G526": {
+    "frecuencia_base_min": 21,
+    "tipo_servicio": "Urbano"
+  },
+  "8-4": {
+    "frecuencia_base_min": 16,
+    "tipo_servicio": "Urbano"
+  },
+  "59B": {
+    "frecuencia_base_min": 17,
+    "tipo_servicio": "Urbano"
+  },
+  "13-6": {
+    "frecuencia_base_min": 26,
+    "tipo_servicio": "Urbano"
+  },
+  "10-6": {
+    "frecuencia_base_min": 29,
+    "tipo_servicio": "Urbano"
+  },
+  "F407": {
+    "frecuencia_base_min": 10,
+    "tipo_servicio": "Urbano"
+  },
+  "G506": {
+    "frecuencia_base_min": 19,
+    "tipo_servicio": "Urbano"
+  },
+  "H811": {
+    "frecuencia_base_min": 8,
+    "tipo_servicio": "Urbano"
+  },
+  "6-7": {
+    "frecuencia_base_min": 27,
+    "tipo_servicio": "Urbano"
+  },
+  "H526": {
+    "frecuencia_base_min": 21,
+    "tipo_servicio": "Urbano"
+  },
+  "7-1AM": {
+    "frecuencia_base_min": 19,
+    "tipo_servicio": "Urbano"
+  },
+  "G523": {
+    "frecuencia_base_min": 15,
+    "tipo_servicio": "Urbano"
+  },
+  "A302": {
+    "frecuencia_base_min": 27,
+    "tipo_servicio": "Urbano"
+  },
+  "13-4": {
+    "frecuencia_base_min": 5,
+    "tipo_servicio": "Urbano"
+  },
+  "B907": {
+    "frecuencia_base_min": 5,
+    "tipo_servicio": "Urbano"
+  },
+  "16-10": {
+    "frecuencia_base_min": 26,
+    "tipo_servicio": "Urbano"
+  },
+  "N16": {
+    "frecuencia_base_min": 11,
+    "tipo_servicio": "Urbano"
+  },
+  "16-6": {
+    "frecuencia_base_min": 17,
+    "tipo_servicio": "Urbano"
+  },
+  "112B": {
+    "frecuencia_base_min": 23,
+    "tipo_servicio": "Urbano"
+  },
+  "3-14PICO": {
+    "frecuencia_base_min": 8,
+    "tipo_servicio": "Urbano"
+  },
+  "9-9": {
+    "frecuencia_base_min": 15,
+    "tipo_servicio": "Urbano"
+  },
+  "A334": {
+    "frecuencia_base_min": 16,
+    "tipo_servicio": "Urbano"
+  },
+  "C11": {
+    "frecuencia_base_min": 24,
+    "tipo_servicio": "Urbano"
+  },
+  "L816": {
+    "frecuencia_base_min": 13,
+    "tipo_servicio": "Urbano"
+  },
+  "K505": {
+    "frecuencia_base_min": 10,
+    "tipo_servicio": "Urbano"
+  },
+  "G503": {
+    "frecuencia_base_min": 22,
+    "tipo_servicio": "Urbano"
+  },
+  "11-2C": {
+    "frecuencia_base_min": 13,
+    "tipo_servicio": "Urbano"
+  },
+  "9-2": {
+    "frecuencia_base_min": 12,
+    "tipo_servicio": "Urbano"
+  },
+  "H116": {
+    "frecuencia_base_min": 13,
+    "tipo_servicio": "Urbano"
+  },
+  "G501": {
+    "frecuencia_base_min": 20,
+    "tipo_servicio": "Urbano"
+  },
+  "L716": {
+    "frecuencia_base_min": 24,
+    "tipo_servicio": "Urbano"
+  },
+  "128": {
+    "frecuencia_base_min": 15,
+    "tipo_servicio": "Urbano"
+  },
+  "K312": {
+    "frecuencia_base_min": 16,
+    "tipo_servicio": "Urbano"
+  },
+  "A002": {
+    "frecuencia_base_min": 10,
+    "tipo_servicio": "Urbano"
+  },
+  "B901": {
+    "frecuencia_base_min": 20,
+    "tipo_servicio": "Urbano"
+  },
+  "T30B": {
+    "frecuencia_base_min": 18,
+    "tipo_servicio": "Urbano"
+  },
+  "B100": {
+    "frecuencia_base_min": 11,
+    "tipo_servicio": "Urbano"
+  },
+  "A213": {
+    "frecuencia_base_min": 18,
+    "tipo_servicio": "Urbano"
+  },
+  "F418": {
+    "frecuencia_base_min": 27,
+    "tipo_servicio": "Urbano"
+  },
+  "11-3": {
+    "frecuencia_base_min": 29,
+    "tipo_servicio": "Urbano"
+  },
+  "3-13": {
+    "frecuencia_base_min": 16,
+    "tipo_servicio": "Urbano"
+  },
+  "L809": {
+    "frecuencia_base_min": 16,
+    "tipo_servicio": "Urbano"
+  },
+  "320": {
+    "frecuencia_base_min": 17,
+    "tipo_servicio": "Urbano"
+  },
+  "G519": {
+    "frecuencia_base_min": 13,
+    "tipo_servicio": "Urbano"
+  },
+  "L636": {
+    "frecuencia_base_min": 19,
+    "tipo_servicio": "Urbano"
+  },
+  "L312": {
+    "frecuencia_base_min": 10,
+    "tipo_servicio": "Urbano"
+  },
+  "6-3": {
+    "frecuencia_base_min": 23,
+    "tipo_servicio": "Urbano"
+  },
+  "H625": {
+    "frecuencia_base_min": 9,
+    "tipo_servicio": "Urbano"
+  },
+  "H714": {
+    "frecuencia_base_min": 23,
+    "tipo_servicio": "Urbano"
+  },
+  "A915": {
+    "frecuencia_base_min": 26,
+    "tipo_servicio": "Urbano"
+  },
+  "11-5": {
+    "frecuencia_base_min": 12,
+    "tipo_servicio": "Urbano"
+  },
+  "C118": {
+    "frecuencia_base_min": 8,
+    "tipo_servicio": "Urbano"
+  },
+  "H700": {
+    "frecuencia_base_min": 28,
+    "tipo_servicio": "Urbano"
+  },
+  "E17": {
+    "frecuencia_base_min": 13,
+    "tipo_servicio": "Urbano"
+  },
+  "E61": {
+    "frecuencia_base_min": 30,
+    "tipo_servicio": "Urbano"
+  },
+  "C25": {
+    "frecuencia_base_min": 12,
+    "tipo_servicio": "Urbano"
+  },
+  "3-9": {
+    "frecuencia_base_min": 22,
+    "tipo_servicio": "Urbano"
+  },
+  "107A": {
+    "frecuencia_base_min": 18,
+    "tipo_servicio": "Urbano"
+  },
+  "K303": {
+    "frecuencia_base_min": 17,
+    "tipo_servicio": "Urbano"
+  },
+  "H705": {
+    "frecuencia_base_min": 11,
+    "tipo_servicio": "Urbano"
+  },
+  "39": {
+    "frecuencia_base_min": 9,
+    "tipo_servicio": "Troncal"
+  },
+  "11-10PICO": {
+    "frecuencia_base_min": 30,
+    "tipo_servicio": "Urbano"
+  },
+  "191": {
+    "frecuencia_base_min": 28,
+    "tipo_servicio": "Urbano"
+  },
+  "F422": {
+    "frecuencia_base_min": 9,
+    "tipo_servicio": "Urbano"
+  },
+  "H600": {
+    "frecuencia_base_min": 20,
+    "tipo_servicio": "Urbano"
+  },
+  "T38": {
+    "frecuencia_base_min": 30,
+    "tipo_servicio": "Urbano"
+  },
+  "A507": {
+    "frecuencia_base_min": 5,
+    "tipo_servicio": "Urbano"
+  },
+  "576": {
+    "frecuencia_base_min": 10,
+    "tipo_servicio": "Urbano"
+  },
+  "T25": {
+    "frecuencia_base_min": 18,
+    "tipo_servicio": "Urbano"
+  },
+  "117": {
+    "frecuencia_base_min": 20,
+    "tipo_servicio": "Urbano"
+  },
+  "K325": {
+    "frecuencia_base_min": 9,
+    "tipo_servicio": "Urbano"
+  },
+  "F420": {
+    "frecuencia_base_min": 25,
+    "tipo_servicio": "Urbano"
+  },
+  "H720": {
+    "frecuencia_base_min": 21,
+    "tipo_servicio": "Urbano"
+  },
+  "C134": {
+    "frecuencia_base_min": 22,
+    "tipo_servicio": "Urbano"
+  },
+  "19-6": {
+    "frecuencia_base_min": 28,
+    "tipo_servicio": "Urbano"
+  },
+  "C127": {
+    "frecuencia_base_min": 15,
+    "tipo_servicio": "Urbano"
+  },
+  "403B": {
+    "frecuencia_base_min": 30,
+    "tipo_servicio": "Urbano"
+  },
+  "C101": {
+    "frecuencia_base_min": 20,
+    "tipo_servicio": "Urbano"
+  },
+  "H638": {
+    "frecuencia_base_min": 14,
+    "tipo_servicio": "Urbano"
+  },
+  "C131": {
+    "frecuencia_base_min": 13,
+    "tipo_servicio": "Urbano"
+  },
+  "6-9PICO": {
+    "frecuencia_base_min": 22,
+    "tipo_servicio": "Urbano"
+  },
+  "C153": {
+    "frecuencia_base_min": 23,
+    "tipo_servicio": "Urbano"
+  },
+  "K86": {
+    "frecuencia_base_min": 6,
+    "tipo_servicio": "Urbano"
+  },
+  "60": {
+    "frecuencia_base_min": 17,
+    "tipo_servicio": "Troncal"
+  },
+  "G528": {
+    "frecuencia_base_min": 8,
+    "tipo_servicio": "Urbano"
+  },
+  "L329": {
+    "frecuencia_base_min": 27,
+    "tipo_servicio": "Urbano"
+  },
+  "C157": {
+    "frecuencia_base_min": 10,
+    "tipo_servicio": "Urbano"
+  },
+  "13-12": {
+    "frecuencia_base_min": 6,
+    "tipo_servicio": "Urbano"
+  },
+  "H630": {
+    "frecuencia_base_min": 11,
+    "tipo_servicio": "Urbano"
+  },
+  "3-12": {
+    "frecuencia_base_min": 13,
+    "tipo_servicio": "Urbano"
+  },
+  "D208": {
+    "frecuencia_base_min": 20,
+    "tipo_servicio": "Urbano"
+  },
+  "607A": {
+    "frecuencia_base_min": 25,
+    "tipo_servicio": "Urbano"
+  },
+  "H604": {
+    "frecuencia_base_min": 8,
+    "tipo_servicio": "Urbano"
+  },
+  "A611": {
+    "frecuencia_base_min": 19,
+    "tipo_servicio": "Urbano"
+  },
+  "A332": {
+    "frecuencia_base_min": 28,
+    "tipo_servicio": "Urbano"
+  },
+  "12": {
+    "frecuencia_base_min": 15,
+    "tipo_servicio": "Troncal"
+  },
+  "4-3": {
+    "frecuencia_base_min": 13,
+    "tipo_servicio": "Urbano"
+  },
+  "K700": {
+    "frecuencia_base_min": 16,
+    "tipo_servicio": "Urbano"
+  },
+  "B915": {
+    "frecuencia_base_min": 16,
+    "tipo_servicio": "Urbano"
+  },
+  "A129": {
+    "frecuencia_base_min": 22,
+    "tipo_servicio": "Urbano"
+  },
+  "9-1": {
+    "frecuencia_base_min": 22,
+    "tipo_servicio": "Urbano"
+  },
+  "N18": {
+    "frecuencia_base_min": 30,
+    "tipo_servicio": "Urbano"
+  },
+  "10-4": {
+    "frecuencia_base_min": 13,
+    "tipo_servicio": "Urbano"
+  },
+  "H628": {
+    "frecuencia_base_min": 16,
+    "tipo_servicio": "Urbano"
+  },
+  "C630": {
+    "frecuencia_base_min": 5,
+    "tipo_servicio": "Urbano"
+  },
+  "11-9": {
+    "frecuencia_base_min": 18,
+    "tipo_servicio": "Urbano"
+  },
+  "143": {
+    "frecuencia_base_min": 8,
+    "tipo_servicio": "Urbano"
+  },
+  "L508": {
+    "frecuencia_base_min": 16,
+    "tipo_servicio": "Urbano"
+  },
+  "K307": {
+    "frecuencia_base_min": 26,
+    "tipo_servicio": "Urbano"
+  },
+  "19-8": {
+    "frecuencia_base_min": 24,
+    "tipo_servicio": "Urbano"
+  },
+  "F511": {
+    "frecuencia_base_min": 11,
+    "tipo_servicio": "Urbano"
+  },
+  "L307": {
+    "frecuencia_base_min": 23,
+    "tipo_servicio": "Urbano"
+  },
+  "A708": {
+    "frecuencia_base_min": 23,
+    "tipo_servicio": "Urbano"
+  },
+  "56A": {
+    "frecuencia_base_min": 25,
+    "tipo_servicio": "Urbano"
+  },
+  "A405": {
+    "frecuencia_base_min": 25,
+    "tipo_servicio": "Urbano"
+  },
+  "H613": {
+    "frecuencia_base_min": 22,
+    "tipo_servicio": "Urbano"
+  },
+  "A600": {
+    "frecuencia_base_min": 10,
+    "tipo_servicio": "Urbano"
+  },
+  "A704": {
+    "frecuencia_base_min": 29,
+    "tipo_servicio": "Urbano"
+  },
+  "H710": {
+    "frecuencia_base_min": 14,
+    "tipo_servicio": "Urbano"
+  },
+  "H618": {
+    "frecuencia_base_min": 16,
+    "tipo_servicio": "Urbano"
+  },
+  "142": {
+    "frecuencia_base_min": 15,
+    "tipo_servicio": "Urbano"
+  },
+  "L422": {
+    "frecuencia_base_min": 26,
+    "tipo_servicio": "Urbano"
+  },
+  "9-7": {
+    "frecuencia_base_min": 21,
+    "tipo_servicio": "Urbano"
+  },
+  "H719": {
+    "frecuencia_base_min": 20,
+    "tipo_servicio": "Urbano"
+  },
+  "H637": {
+    "frecuencia_base_min": 29,
+    "tipo_servicio": "Urbano"
+  },
+  "D206": {
+    "frecuencia_base_min": 28,
+    "tipo_servicio": "Urbano"
+  },
+  "10-3C": {
+    "frecuencia_base_min": 19,
+    "tipo_servicio": "Urbano"
+  },
+  "C701": {
+    "frecuencia_base_min": 7,
+    "tipo_servicio": "Urbano"
+  },
+  "688": {
+    "frecuencia_base_min": 17,
+    "tipo_servicio": "Urbano"
+  },
+  "11-10": {
+    "frecuencia_base_min": 24,
+    "tipo_servicio": "Urbano"
+  },
+  "742A": {
+    "frecuencia_base_min": 14,
+    "tipo_servicio": "Urbano"
+  },
+  "H620": {
+    "frecuencia_base_min": 19,
+    "tipo_servicio": "Urbano"
+  },
+  "B922": {
+    "frecuencia_base_min": 25,
+    "tipo_servicio": "Urbano"
+  },
+  "H607": {
+    "frecuencia_base_min": 9,
+    "tipo_servicio": "Urbano"
+  },
+  "H615": {
+    "frecuencia_base_min": 10,
+    "tipo_servicio": "Urbano"
+  },
+  "2-11": {
+    "frecuencia_base_min": 25,
+    "tipo_servicio": "Urbano"
+  },
+  "G514": {
+    "frecuencia_base_min": 30,
+    "tipo_servicio": "Urbano"
+  },
+  "K502": {
+    "frecuencia_base_min": 15,
+    "tipo_servicio": "Urbano"
+  },
+  "787A": {
+    "frecuencia_base_min": 18,
+    "tipo_servicio": "Urbano"
+  },
+  "14-3": {
+    "frecuencia_base_min": 25,
+    "tipo_servicio": "Urbano"
+  },
+  "G157": {
+    "frecuencia_base_min": 24,
+    "tipo_servicio": "Urbano"
+  },
+  "9-4": {
+    "frecuencia_base_min": 23,
+    "tipo_servicio": "Urbano"
+  },
+  "B917": {
+    "frecuencia_base_min": 17,
+    "tipo_servicio": "Urbano"
+  },
+  "L818": {
+    "frecuencia_base_min": 7,
+    "tipo_servicio": "Urbano"
+  },
+  "8-2": {
+    "frecuencia_base_min": 7,
+    "tipo_servicio": "Urbano"
+  },
+  "135A": {
+    "frecuencia_base_min": 10,
+    "tipo_servicio": "Urbano"
+  },
+  "F424": {
+    "frecuencia_base_min": 15,
+    "tipo_servicio": "Urbano"
+  },
+  "18-6": {
+    "frecuencia_base_min": 12,
+    "tipo_servicio": "Urbano"
+  },
+  "1-8": {
+    "frecuencia_base_min": 15,
+    "tipo_servicio": "Urbano"
+  },
+  "A619": {
+    "frecuencia_base_min": 15,
+    "tipo_servicio": "Urbano"
+  },
+  "B609": {
+    "frecuencia_base_min": 25,
+    "tipo_servicio": "Urbano"
+  },
+  "16-9": {
+    "frecuencia_base_min": 14,
+    "tipo_servicio": "Urbano"
+  },
+  "F333": {
+    "frecuencia_base_min": 27,
+    "tipo_servicio": "Urbano"
+  },
+  "A523": {
+    "frecuencia_base_min": 13,
+    "tipo_servicio": "Urbano"
+  },
+  "T12": {
+    "frecuencia_base_min": 24,
+    "tipo_servicio": "Urbano"
+  },
+  "A319": {
+    "frecuencia_base_min": 25,
+    "tipo_servicio": "Urbano"
+  },
+  "13-9": {
+    "frecuencia_base_min": 17,
+    "tipo_servicio": "Urbano"
+  },
+  "192": {
+    "frecuencia_base_min": 13,
+    "tipo_servicio": "Urbano"
+  },
+  "K319": {
+    "frecuencia_base_min": 19,
+    "tipo_servicio": "Urbano"
+  },
+  "C323": {
+    "frecuencia_base_min": 29,
+    "tipo_servicio": "Urbano"
+  },
+  "L800": {
+    "frecuencia_base_min": 16,
+    "tipo_servicio": "Urbano"
+  },
+  "T30A": {
+    "frecuencia_base_min": 28,
+    "tipo_servicio": "Urbano"
+  },
+  "17-3": {
+    "frecuencia_base_min": 23,
+    "tipo_servicio": "Urbano"
+  },
+  "13-10": {
+    "frecuencia_base_min": 21,
+    "tipo_servicio": "Urbano"
+  },
+  "3-2": {
+    "frecuencia_base_min": 19,
+    "tipo_servicio": "Urbano"
+  },
+  "SE10": {
+    "frecuencia_base_min": 18,
+    "tipo_servicio": "Urbano"
+  },
+  "9-3": {
+    "frecuencia_base_min": 10,
+    "tipo_servicio": "Urbano"
+  },
+  "T55": {
+    "frecuencia_base_min": 10,
+    "tipo_servicio": "Urbano"
+  },
+  "A001": {
+    "frecuencia_base_min": 5,
+    "tipo_servicio": "Urbano"
+  },
+  "624": {
+    "frecuencia_base_min": 9,
+    "tipo_servicio": "Urbano"
+  },
+  "B314": {
+    "frecuencia_base_min": 28,
+    "tipo_servicio": "Urbano"
+  },
+  "13-2": {
+    "frecuencia_base_min": 12,
+    "tipo_servicio": "Urbano"
+  },
+  "C135": {
+    "frecuencia_base_min": 26,
+    "tipo_servicio": "Urbano"
+  },
+  "H717": {
+    "frecuencia_base_min": 13,
+    "tipo_servicio": "Urbano"
+  },
+  "D213": {
+    "frecuencia_base_min": 28,
+    "tipo_servicio": "Urbano"
+  },
+  "H619": {
+    "frecuencia_base_min": 27,
+    "tipo_servicio": "Urbano"
+  },
+  "16-5": {
+    "frecuencia_base_min": 28,
+    "tipo_servicio": "Urbano"
+  },
+  "A501": {
+    "frecuencia_base_min": 7,
+    "tipo_servicio": "Urbano"
+  },
+  "T07": {
+    "frecuencia_base_min": 11,
+    "tipo_servicio": "Urbano"
+  },
+  "442": {
+    "frecuencia_base_min": 10,
+    "tipo_servicio": "Urbano"
+  },
+  "91": {
+    "frecuencia_base_min": 17,
+    "tipo_servicio": "Troncal"
+  },
+  "H704": {
+    "frecuencia_base_min": 8,
+    "tipo_servicio": "Urbano"
+  },
+  "A606": {
+    "frecuencia_base_min": 8,
+    "tipo_servicio": "Urbano"
+  },
+  "K315": {
+    "frecuencia_base_min": 7,
+    "tipo_servicio": "Urbano"
+  },
+  "G712": {
+    "frecuencia_base_min": 20,
+    "tipo_servicio": "Urbano"
+  },
+  "K311": {
+    "frecuencia_base_min": 22,
+    "tipo_servicio": "Urbano"
+  },
+  "3-4": {
+    "frecuencia_base_min": 6,
+    "tipo_servicio": "Urbano"
+  },
+  "14-6": {
+    "frecuencia_base_min": 5,
+    "tipo_servicio": "Urbano"
+  },
+  "D906": {
+    "frecuencia_base_min": 29,
+    "tipo_servicio": "Urbano"
+  },
+  "16-7": {
+    "frecuencia_base_min": 17,
+    "tipo_servicio": "Urbano"
+  },
+  "C138": {
+    "frecuencia_base_min": 21,
+    "tipo_servicio": "Urbano"
+  },
+  "16-14": {
+    "frecuencia_base_min": 29,
+    "tipo_servicio": "Urbano"
+  },
+  "P44": {
+    "frecuencia_base_min": 7,
+    "tipo_servicio": "Urbano"
+  },
+  "T21": {
+    "frecuencia_base_min": 8,
+    "tipo_servicio": "Urbano"
+  },
+  "Z8": {
+    "frecuencia_base_min": 13,
+    "tipo_servicio": "Troncal"
+  },
+  "H713": {
+    "frecuencia_base_min": 24,
+    "tipo_servicio": "Urbano"
+  },
+  "H608": {
+    "frecuencia_base_min": 9,
+    "tipo_servicio": "Urbano"
+  },
+  "16-8": {
+    "frecuencia_base_min": 7,
+    "tipo_servicio": "Urbano"
+  },
+  "539": {
+    "frecuencia_base_min": 25,
+    "tipo_servicio": "Urbano"
+  },
+  "K916": {
+    "frecuencia_base_min": 17,
+    "tipo_servicio": "Urbano"
+  },
+  "15-3": {
+    "frecuencia_base_min": 14,
+    "tipo_servicio": "Urbano"
+  },
+  "1-9": {
+    "frecuencia_base_min": 12,
+    "tipo_servicio": "Urbano"
+  },
+  "806": {
+    "frecuencia_base_min": 12,
+    "tipo_servicio": "Urbano"
+  },
+  "1-5": {
+    "frecuencia_base_min": 28,
+    "tipo_servicio": "Urbano"
+  },
+  "16-4": {
+    "frecuencia_base_min": 14,
+    "tipo_servicio": "Urbano"
+  },
+  "K321": {
+    "frecuencia_base_min": 19,
+    "tipo_servicio": "Urbano"
+  },
+  "10-8": {
+    "frecuencia_base_min": 25,
+    "tipo_servicio": "Urbano"
+  },
+  "A628": {
+    "frecuencia_base_min": 9,
+    "tipo_servicio": "Urbano"
+  },
+  "L723": {
+    "frecuencia_base_min": 9,
+    "tipo_servicio": "Urbano"
+  },
+  "A324": {
+    "frecuencia_base_min": 21,
+    "tipo_servicio": "Urbano"
+  },
+  "L519": {
+    "frecuencia_base_min": 10,
+    "tipo_servicio": "Urbano"
+  },
+  "H616": {
+    "frecuencia_base_min": 5,
+    "tipo_servicio": "Urbano"
+  },
+  "K314": {
+    "frecuencia_base_min": 6,
+    "tipo_servicio": "Urbano"
+  },
+  "L801": {
+    "frecuencia_base_min": 26,
+    "tipo_servicio": "Urbano"
+  },
+  "D212": {
+    "frecuencia_base_min": 16,
+    "tipo_servicio": "Urbano"
+  },
+  "K323": {
+    "frecuencia_base_min": 15,
+    "tipo_servicio": "Urbano"
+  },
+  "A818": {
+    "frecuencia_base_min": 20,
+    "tipo_servicio": "Urbano"
+  },
+  "4-2": {
+    "frecuencia_base_min": 19,
+    "tipo_servicio": "Urbano"
+  },
+  "A610": {
+    "frecuencia_base_min": 22,
+    "tipo_servicio": "Urbano"
+  },
+  "9-5": {
+    "frecuencia_base_min": 13,
+    "tipo_servicio": "Urbano"
+  },
+  "3-6": {
+    "frecuencia_base_min": 22,
+    "tipo_servicio": "Urbano"
+  },
+  "17-2": {
+    "frecuencia_base_min": 19,
+    "tipo_servicio": "Urbano"
+  },
+  "G137": {
+    "frecuencia_base_min": 9,
+    "tipo_servicio": "Urbano"
+  },
+  "H322": {
+    "frecuencia_base_min": 27,
+    "tipo_servicio": "Urbano"
+  },
+  "B919": {
+    "frecuencia_base_min": 22,
+    "tipo_servicio": "Urbano"
+  },
+  "L807": {
+    "frecuencia_base_min": 10,
+    "tipo_servicio": "Urbano"
+  },
+  "H308": {
+    "frecuencia_base_min": 23,
+    "tipo_servicio": "Urbano"
+  },
+  "2-1": {
+    "frecuencia_base_min": 24,
+    "tipo_servicio": "Urbano"
+  },
+  "19-7": {
+    "frecuencia_base_min": 19,
+    "tipo_servicio": "Urbano"
+  },
+  "3-10": {
+    "frecuencia_base_min": 25,
+    "tipo_servicio": "Urbano"
+  },
+  "9-6": {
+    "frecuencia_base_min": 28,
+    "tipo_servicio": "Urbano"
+  },
+  "G502": {
+    "frecuencia_base_min": 25,
+    "tipo_servicio": "Urbano"
+  },
+  "K903": {
+    "frecuencia_base_min": 23,
+    "tipo_servicio": "Urbano"
+  },
+  "1-10": {
+    "frecuencia_base_min": 18,
+    "tipo_servicio": "Urbano"
+  },
+  "E44": {
+    "frecuencia_base_min": 21,
+    "tipo_servicio": "Urbano"
+  },
+  "K329": {
+    "frecuencia_base_min": 25,
+    "tipo_servicio": "Urbano"
+  },
+  "18-7": {
+    "frecuencia_base_min": 25,
+    "tipo_servicio": "Urbano"
+  },
+  "6-1C": {
+    "frecuencia_base_min": 22,
+    "tipo_servicio": "Urbano"
+  },
+  "16-1": {
+    "frecuencia_base_min": 14,
+    "tipo_servicio": "Urbano"
+  },
+  "TC19": {
+    "frecuencia_base_min": 16,
+    "tipo_servicio": "Urbano"
+  },
+  "H635": {
+    "frecuencia_base_min": 20,
+    "tipo_servicio": "Urbano"
+  },
+  "A720": {
+    "frecuencia_base_min": 22,
+    "tipo_servicio": "Urbano"
+  },
+  "3-14": {
+    "frecuencia_base_min": 12,
+    "tipo_servicio": "Urbano"
+  },
+  "B900": {
+    "frecuencia_base_min": 30,
+    "tipo_servicio": "Urbano"
+  },
+  "N10": {
+    "frecuencia_base_min": 7,
+    "tipo_servicio": "Urbano"
+  },
+  "E25": {
+    "frecuencia_base_min": 19,
+    "tipo_servicio": "Urbano"
+  },
+  "C80": {
+    "frecuencia_base_min": 14,
+    "tipo_servicio": "Urbano"
+  },
+  "18-8": {
+    "frecuencia_base_min": 16,
+    "tipo_servicio": "Urbano"
+  },
+  "P49": {
+    "frecuencia_base_min": 18,
+    "tipo_servicio": "Urbano"
+  },
+  "139": {
+    "frecuencia_base_min": 13,
+    "tipo_servicio": "Urbano"
+  },
+  "G505": {
+    "frecuencia_base_min": 9,
+    "tipo_servicio": "Urbano"
+  },
+  "K322": {
+    "frecuencia_base_min": 14,
+    "tipo_servicio": "Urbano"
+  },
+  "B145": {
+    "frecuencia_base_min": 5,
+    "tipo_servicio": "Urbano"
+  },
+  "B909": {
+    "frecuencia_base_min": 5,
+    "tipo_servicio": "Urbano"
+  },
+  "13-8": {
+    "frecuencia_base_min": 21,
+    "tipo_servicio": "Urbano"
+  },
+  "H529": {
+    "frecuencia_base_min": 29,
+    "tipo_servicio": "Urbano"
+  },
+  "740": {
+    "frecuencia_base_min": 9,
+    "tipo_servicio": "Urbano"
+  },
+  "F410": {
+    "frecuencia_base_min": 16,
+    "tipo_servicio": "Urbano"
+  },
+  "B906": {
+    "frecuencia_base_min": 14,
+    "tipo_servicio": "Urbano"
+  },
+  "166": {
+    "frecuencia_base_min": 20,
+    "tipo_servicio": "Urbano"
+  },
+  "19-12": {
+    "frecuencia_base_min": 22,
+    "tipo_servicio": "Urbano"
+  },
+  "C144": {
+    "frecuencia_base_min": 5,
+    "tipo_servicio": "Urbano"
+  },
+  "L328": {
+    "frecuencia_base_min": 27,
+    "tipo_servicio": "Urbano"
+  },
+  "L815": {
+    "frecuencia_base_min": 20,
+    "tipo_servicio": "Urbano"
+  },
+  "A805": {
+    "frecuencia_base_min": 29,
+    "tipo_servicio": "Urbano"
+  },
+  "C147": {
+    "frecuencia_base_min": 20,
+    "tipo_servicio": "Urbano"
+  },
+  "11-6": {
+    "frecuencia_base_min": 14,
+    "tipo_servicio": "Urbano"
+  },
+  "C156": {
+    "frecuencia_base_min": 5,
+    "tipo_servicio": "Urbano"
+  },
+  "577": {
+    "frecuencia_base_min": 29,
+    "tipo_servicio": "Urbano"
+  },
+  "16-3": {
+    "frecuencia_base_min": 18,
+    "tipo_servicio": "Urbano"
+  },
+  "801A": {
+    "frecuencia_base_min": 30,
+    "tipo_servicio": "Urbano"
+  },
+  "T48": {
+    "frecuencia_base_min": 14,
+    "tipo_servicio": "Urbano"
+  },
+  "D211": {
+    "frecuencia_base_min": 24,
+    "tipo_servicio": "Urbano"
+  },
+  "P500": {
+    "frecuencia_base_min": 12,
+    "tipo_servicio": "Urbano"
+  },
+  "F402": {
+    "frecuencia_base_min": 30,
+    "tipo_servicio": "Urbano"
+  },
+  "120": {
+    "frecuencia_base_min": 5,
+    "tipo_servicio": "Urbano"
+  },
+  "K301": {
+    "frecuencia_base_min": 22,
+    "tipo_servicio": "Urbano"
+  },
+  "G518": {
+    "frecuencia_base_min": 16,
+    "tipo_servicio": "Urbano"
+  },
+  "A633": {
+    "frecuencia_base_min": 11,
+    "tipo_servicio": "Urbano"
+  },
+  "C612": {
+    "frecuencia_base_min": 18,
+    "tipo_servicio": "Urbano"
+  },
+  "M86": {
+    "frecuencia_base_min": 22,
+    "tipo_servicio": "Urbano"
+  },
+  "T08": {
+    "frecuencia_base_min": 18,
+    "tipo_servicio": "Urbano"
+  },
+  "593": {
+    "frecuencia_base_min": 17,
+    "tipo_servicio": "Urbano"
+  },
+  "E43": {
+    "frecuencia_base_min": 12,
+    "tipo_servicio": "Urbano"
+  },
+  "465A": {
+    "frecuencia_base_min": 10,
+    "tipo_servicio": "Urbano"
+  },
+  "19-3": {
+    "frecuencia_base_min": 27,
+    "tipo_servicio": "Urbano"
+  },
+  "D204": {
+    "frecuencia_base_min": 28,
+    "tipo_servicio": "Urbano"
+  },
+  "6-1": {
+    "frecuencia_base_min": 25,
+    "tipo_servicio": "Urbano"
+  },
+  "367": {
+    "frecuencia_base_min": 17,
+    "tipo_servicio": "Urbano"
+  },
+  "733": {
+    "frecuencia_base_min": 17,
+    "tipo_servicio": "Urbano"
+  },
+  "1-6": {
+    "frecuencia_base_min": 12,
+    "tipo_servicio": "Urbano"
+  },
+  "C159": {
+    "frecuencia_base_min": 13,
+    "tipo_servicio": "Urbano"
+  },
+  "C142": {
+    "frecuencia_base_min": 7,
+    "tipo_servicio": "Urbano"
+  },
+  "F603": {
+    "frecuencia_base_min": 18,
+    "tipo_servicio": "Urbano"
+  },
+  "G509": {
+    "frecuencia_base_min": 25,
+    "tipo_servicio": "Urbano"
+  },
+  "193B": {
+    "frecuencia_base_min": 12,
+    "tipo_servicio": "Urbano"
+  },
+  "T11": {
+    "frecuencia_base_min": 21,
+    "tipo_servicio": "Urbano"
+  },
+  "260": {
+    "frecuencia_base_min": 29,
+    "tipo_servicio": "Urbano"
+  },
+  "16-2": {
+    "frecuencia_base_min": 30,
+    "tipo_servicio": "Urbano"
+  },
+  "L82": {
+    "frecuencia_base_min": 24,
+    "tipo_servicio": "Urbano"
+  },
+  "674": {
+    "frecuencia_base_min": 30,
+    "tipo_servicio": "Urbano"
+  },
+  "18-3": {
+    "frecuencia_base_min": 27,
+    "tipo_servicio": "Urbano"
+  },
+  "B303": {
+    "frecuencia_base_min": 26,
+    "tipo_servicio": "Urbano"
+  },
+  "A124": {
+    "frecuencia_base_min": 13,
+    "tipo_servicio": "Urbano"
+  },
+  "K309": {
+    "frecuencia_base_min": 14,
+    "tipo_servicio": "Urbano"
+  },
+  "K904": {
+    "frecuencia_base_min": 25,
+    "tipo_servicio": "Urbano"
+  },
+  "D607": {
+    "frecuencia_base_min": 28,
+    "tipo_servicio": "Urbano"
+  },
+  "492": {
+    "frecuencia_base_min": 22,
+    "tipo_servicio": "Urbano"
+  },
+  "B309": {
+    "frecuencia_base_min": 30,
+    "tipo_servicio": "Urbano"
+  },
+  "B918": {
+    "frecuencia_base_min": 13,
+    "tipo_servicio": "Urbano"
+  },
+  "A103": {
+    "frecuencia_base_min": 18,
+    "tipo_servicio": "Urbano"
+  },
+  "F154": {
+    "frecuencia_base_min": 11,
+    "tipo_servicio": "Urbano"
+  },
+  "P24": {
+    "frecuencia_base_min": 7,
+    "tipo_servicio": "Urbano"
+  },
+  "T40": {
+    "frecuencia_base_min": 10,
+    "tipo_servicio": "Urbano"
+  },
+  "C100": {
+    "frecuencia_base_min": 9,
+    "tipo_servicio": "Urbano"
+  },
+  "L819": {
+    "frecuencia_base_min": 14,
+    "tipo_servicio": "Urbano"
+  },
+  "K707": {
+    "frecuencia_base_min": 8,
+    "tipo_servicio": "Urbano"
+  },
+  "B924": {
+    "frecuencia_base_min": 25,
+    "tipo_servicio": "Urbano"
+  },
+  "K327": {
+    "frecuencia_base_min": 19,
+    "tipo_servicio": "Urbano"
+  },
+  "14-4": {
+    "frecuencia_base_min": 24,
+    "tipo_servicio": "Urbano"
+  },
+  "G902": {
+    "frecuencia_base_min": 19,
+    "tipo_servicio": "Urbano"
+  },
+  "L517": {
+    "frecuencia_base_min": 13,
+    "tipo_servicio": "Urbano"
+  },
+  "10-1": {
+    "frecuencia_base_min": 27,
+    "tipo_servicio": "Urbano"
+  },
+  "3-8": {
+    "frecuencia_base_min": 24,
+    "tipo_servicio": "Urbano"
+  },
+  "H317": {
+    "frecuencia_base_min": 20,
+    "tipo_servicio": "Urbano"
+  },
+  "C15": {
+    "frecuencia_base_min": 11,
+    "tipo_servicio": "Urbano"
+  },
+  "H725": {
+    "frecuencia_base_min": 15,
+    "tipo_servicio": "Urbano"
+  },
+  "K328": {
+    "frecuencia_base_min": 5,
+    "tipo_servicio": "Urbano"
+  },
+  "G525": {
+    "frecuencia_base_min": 9,
+    "tipo_servicio": "Urbano"
+  },
+  "H629": {
+    "frecuencia_base_min": 6,
+    "tipo_servicio": "Urbano"
+  },
+  "TC30": {
+    "frecuencia_base_min": 22,
+    "tipo_servicio": "Urbano"
+  },
+  "L155": {
+    "frecuencia_base_min": 5,
+    "tipo_servicio": "Urbano"
+  },
+  "A814": {
+    "frecuencia_base_min": 10,
+    "tipo_servicio": "Urbano"
+  },
+  "7-1PM": {
+    "frecuencia_base_min": 8,
+    "tipo_servicio": "Urbano"
+  },
+  "G524": {
+    "frecuencia_base_min": 14,
+    "tipo_servicio": "Urbano"
+  },
+  "111": {
+    "frecuencia_base_min": 13,
+    "tipo_servicio": "Urbano"
+  },
+  "114A": {
+    "frecuencia_base_min": 9,
+    "tipo_servicio": "Urbano"
+  },
+  "C917": {
+    "frecuencia_base_min": 27,
+    "tipo_servicio": "Urbano"
+  },
+  "M82": {
+    "frecuencia_base_min": 19,
+    "tipo_servicio": "Urbano"
+  },
+  "603B": {
+    "frecuencia_base_min": 28,
+    "tipo_servicio": "Urbano"
+  },
+  "H632": {
+    "frecuencia_base_min": 5,
+    "tipo_servicio": "Urbano"
+  },
+  "L810": {
+    "frecuencia_base_min": 12,
+    "tipo_servicio": "Urbano"
+  },
+  "L817": {
+    "frecuencia_base_min": 7,
+    "tipo_servicio": "Urbano"
+  },
+  "1-1": {
+    "frecuencia_base_min": 9,
+    "tipo_servicio": "Urbano"
+  },
+  "K622": {
+    "frecuencia_base_min": 5,
+    "tipo_servicio": "Urbano"
+  },
+  "K326": {
+    "frecuencia_base_min": 20,
+    "tipo_servicio": "Urbano"
+  },
+  "18-14": {
+    "frecuencia_base_min": 11,
+    "tipo_servicio": "Urbano"
+  },
+  "C115": {
+    "frecuencia_base_min": 15,
+    "tipo_servicio": "Urbano"
+  },
+  "C122": {
+    "frecuencia_base_min": 18,
+    "tipo_servicio": "Urbano"
+  },
+  "H907": {
+    "frecuencia_base_min": 14,
+    "tipo_servicio": "Urbano"
+  },
+  "731": {
+    "frecuencia_base_min": 30,
+    "tipo_servicio": "Urbano"
+  },
+  "H706": {
+    "frecuencia_base_min": 30,
+    "tipo_servicio": "Urbano"
+  },
+  "403A": {
+    "frecuencia_base_min": 20,
+    "tipo_servicio": "Urbano"
+  },
+  "A513": {
+    "frecuencia_base_min": 16,
+    "tipo_servicio": "Urbano"
+  },
+  "E16A": {
+    "frecuencia_base_min": 19,
+    "tipo_servicio": "Urbano"
+  },
+  "B923": {
+    "frecuencia_base_min": 27,
+    "tipo_servicio": "Urbano"
+  },
+  "256": {
+    "frecuencia_base_min": 30,
+    "tipo_servicio": "Urbano"
+  },
+  "C103": {
+    "frecuencia_base_min": 6,
+    "tipo_servicio": "Urbano"
+  }
+}
