@@ -18,6 +18,12 @@ class GraphService:
         self._settings = get_settings()
         # Try to load from file, fallback to static Caracas graph
         self._graph = self._load_or_build()
+        # In-memory caches (loaded once on startup)
+        self._cache_sitp_paraderos: dict | None = None
+        self._cache_sitp_rutas: dict | None = None
+        self._cache_sitp_shapes: dict | None = None
+        self._cache_tm_rutas: dict | None = None
+        self._cache_frecuencias: dict | None = None
 
     def _load_or_build(self) -> nx.Graph:
         """Load graph from file or build static one."""
@@ -395,7 +401,10 @@ class GraphService:
         return {"rutas": rutas}
 
     def get_sitp_paraderos(self) -> dict:
-        """Load SITP bus stops as GeoJSON."""
+        """Load SITP bus stops as GeoJSON (cached in memory)."""
+        if self._cache_sitp_paraderos is not None:
+            return self._cache_sitp_paraderos
+
         import json
         import os
 
@@ -420,6 +429,7 @@ class GraphService:
             result = cur.fetchone()[0]
             cur.close()
             conn.close()
+            self._cache_sitp_paraderos = result
             return result
         except Exception:
             from pathlib import Path
@@ -442,11 +452,17 @@ class GraphService:
                             "objectid": props.get("OBJECTID", ""),
                         },
                     })
-                return {"type": "FeatureCollection", "features": features}
-            return {"type": "FeatureCollection", "features": []}
+                result = {"type": "FeatureCollection", "features": features}
+                self._cache_sitp_paraderos = result
+                return result
+            self._cache_sitp_paraderos = {"type": "FeatureCollection", "features": []}
+            return self._cache_sitp_paraderos
 
     def get_sitp_rutas(self) -> dict:
-        """Load SITP routes with frequency data."""
+        """Load SITP routes with frequency data (cached in memory)."""
+        if self._cache_sitp_rutas is not None:
+            return self._cache_sitp_rutas
+
         import json
         from pathlib import Path
 
@@ -482,17 +498,23 @@ class GraphService:
                     "paraderos": paraderos,
                 })
 
-        return {"rutas": rutas}
+        self._cache_sitp_rutas = {"rutas": rutas}
+        return self._cache_sitp_rutas
 
     def get_sitp_rutas_shapes(self) -> dict:
-        """Load SITP route shapes GeoJSON."""
+        """Load SITP route shapes GeoJSON (cached in memory)."""
+        if self._cache_sitp_shapes is not None:
+            return self._cache_sitp_shapes
+
         import json
         from pathlib import Path
 
         path = Path("models/sitp_rutas_shapes.geojson")
         if path.exists():
-            return json.loads(path.read_text())
-        return {"type": "FeatureCollection", "features": []}
+            self._cache_sitp_shapes = json.loads(path.read_text())
+        else:
+            self._cache_sitp_shapes = {"type": "FeatureCollection", "features": []}
+        return self._cache_sitp_shapes
 
     def get_rutas_cercanas(self, lat: float, lng: float, radius_m: int) -> dict:
         """Find SITP routes with stops within radius (meters) of a point."""
