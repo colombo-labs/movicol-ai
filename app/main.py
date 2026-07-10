@@ -11,7 +11,6 @@ from app.modules.health.router import router as health_router
 from app.modules.predictions.router import router as predictions_router
 from app.modules.route_prediction.router import router as route_prediction_router
 from app.modules.siniestralidad.router import router as siniestralidad_router
-from app.modules.incidents.router import router as incidents_router
 
 settings = get_settings()
 
@@ -44,7 +43,6 @@ def create_app() -> FastAPI:
     application.include_router(
         siniestralidad_router, prefix="/siniestralidad", tags=["Siniestralidad"]
     )
-    application.include_router(incidents_router, tags=["Incidents & Notifications"])
 
     return application
 
