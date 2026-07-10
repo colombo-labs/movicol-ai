@@ -979,9 +979,7 @@ class RoutePredictionService:
                 if parsed:
                     all_leg_geometries.extend(parsed)
                 else:
-                    all_leg_geometries.extend(
-                        [[] for _ in range(len(batch) - 1)]
-                    )
+                    all_leg_geometries.extend([[] for _ in range(len(batch) - 1)])
             except Exception:
                 all_leg_geometries.extend([[] for _ in range(len(batch) - 1)])
 

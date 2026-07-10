@@ -516,13 +516,15 @@ class GraphService:
                 ruta_code = props.get("ruta", "")
                 coords = f.get("geometry", {}).get("coordinates", [])
                 freq_info = frecuencias.get(ruta_code, {})
-                rutas.append({
-                    "ruta": ruta_code,
-                    "nombre": props.get("nombre", ruta_code),
-                    "tipo": freq_info.get("tipo_servicio", "Urbano"),
-                    "frecuencia_min": freq_info.get("frecuencia_base_min", 15),
-                    "paraderos": self._coords_to_paraderos(coords),
-                })
+                rutas.append(
+                    {
+                        "ruta": ruta_code,
+                        "nombre": props.get("nombre", ruta_code),
+                        "tipo": freq_info.get("tipo_servicio", "Urbano"),
+                        "frecuencia_min": freq_info.get("frecuencia_base_min", 15),
+                        "paraderos": self._coords_to_paraderos(coords),
+                    }
+                )
 
         self._cache_sitp_rutas = {"rutas": rutas}
         return self._cache_sitp_rutas
@@ -543,7 +545,9 @@ class GraphService:
         return self._cache_sitp_shapes
 
     def _find_nearest_paradero(
-        self, lat: float, lng: float,
+        self,
+        lat: float,
+        lng: float,
     ) -> tuple[str, str, float]:
         """Find the nearest paradero. Returns (nombre, cenefa, dist_km)."""
         import math
@@ -604,18 +608,24 @@ class GraphService:
 
             if min_dist <= radius_km:
                 freq_info = frecuencias.get(ruta_code, {})
-                results.append({
-                    "ruta": ruta_code,
-                    "cenefa": nearest_cenefa if nearest_dist <= radius_km else "",
-                    "nombre": props.get("nombre", ruta_code),
-                    "tipo": freq_info.get("tipo_servicio", "Urbano"),
-                    "frecuencia_min": freq_info.get("frecuencia_base_min", 15),
-                    "distanciaMinima": round(min_dist * 1000),
-                    "paraderosCercanos": [{
-                        "nombre": nearest_name,
-                        "distancia": round(nearest_dist * 1000),
-                    }] if nearest_dist <= radius_km else [],
-                })
+                results.append(
+                    {
+                        "ruta": ruta_code,
+                        "cenefa": nearest_cenefa if nearest_dist <= radius_km else "",
+                        "nombre": props.get("nombre", ruta_code),
+                        "tipo": freq_info.get("tipo_servicio", "Urbano"),
+                        "frecuencia_min": freq_info.get("frecuencia_base_min", 15),
+                        "distanciaMinima": round(min_dist * 1000),
+                        "paraderosCercanos": [
+                            {
+                                "nombre": nearest_name,
+                                "distancia": round(nearest_dist * 1000),
+                            }
+                        ]
+                        if nearest_dist <= radius_km
+                        else [],
+                    }
+                )
 
         results.sort(key=lambda x: x["distanciaMinima"])
         return {"rutas": results[:20]}
