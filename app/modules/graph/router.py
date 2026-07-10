@@ -145,3 +145,13 @@ async def get_sitp_rutas():
 async def get_sitp_rutas_shapes():
     """Get SITP route shapes GeoJSON for map rendering."""
     return service.get_sitp_rutas_shapes()
+
+
+@router.get("/rutas-cercanas")
+async def get_rutas_cercanas(
+    lat: float = Query(..., description="Latitude"),
+    lng: float = Query(..., description="Longitude"),
+    radius: int = Query(600, description="Radius in meters"),
+):
+    """Find SITP routes with stops near a given point."""
+    return service.get_rutas_cercanas(lat, lng, radius)

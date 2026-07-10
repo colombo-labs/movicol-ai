@@ -493,3 +493,72 @@ class GraphService:
         if path.exists():
             return json.loads(path.read_text())
         return {"type": "FeatureCollection", "features": []}
+
+    def get_rutas_cercanas(self, lat: float, lng: float, radius_m: int) -> dict:
+        """Find SITP routes with stops within radius (meters) of a point."""
+        import json
+        import math
+        from pathlib import Path
+
+        radius_km = radius_m / 1000.0
+
+        # Load shapes with full coordinates
+        shapes_path = Path("models/sitp_rutas_shapes.geojson")
+        freq_path = Path("models/sitp_rutas_frecuencias.json")
+
+        if not shapes_path.exists():
+            return {"rutas": []}
+
+        shapes = json.loads(shapes_path.read_text())
+        frecuencias = {}
+        if freq_path.exists():
+            frecuencias = json.loads(freq_path.read_text())
+
+        # Find nearby paraderos for context
+        paraderos_data = self.get_sitp_paraderos()
+        nearest_paradero = ""
+        nearest_dist = float("inf")
+        for f in paraderos_data.get("features", []):
+            geom = f.get("geometry")
+            if not geom or not geom.get("coordinates"):
+                continue
+            coords = geom["coordinates"]
+            p_lng, p_lat = coords[0], coords[1]
+            dist = math.sqrt((p_lat - lat) ** 2 + (p_lng - lng) ** 2) * 111
+            if dist < nearest_dist:
+                nearest_dist = dist
+                nearest_paradero = f.get("properties", {}).get("nombre", "")
+                nearest_cenefa = f.get("properties", {}).get("cenefa", "")
+
+        # For each route shape, check if any coordinate is within radius
+        results: list[dict] = []
+        for f in shapes.get("features", []):
+            props = f.get("properties", {})
+            ruta_code = props.get("ruta", "")
+            coords = f.get("geometry", {}).get("coordinates", [])
+
+            min_dist = float("inf")
+            for c in coords:
+                if len(c) < 2:
+                    continue
+                d = math.sqrt((c[1] - lat) ** 2 + (c[0] - lng) ** 2) * 111
+                if d < min_dist:
+                    min_dist = d
+
+            if min_dist <= radius_km:
+                freq_info = frecuencias.get(ruta_code, {})
+                results.append({
+                    "ruta": ruta_code,
+                    "cenefa": nearest_cenefa if nearest_dist <= radius_km else "",
+                    "nombre": props.get("nombre", ruta_code),
+                    "tipo": freq_info.get("tipo_servicio", "Urbano"),
+                    "frecuencia_min": freq_info.get("frecuencia_base_min", 15),
+                    "distanciaMinima": round(min_dist * 1000),
+                    "paraderosCercanos": [{
+                        "nombre": nearest_paradero,
+                        "distancia": round(nearest_dist * 1000),
+                    }] if nearest_dist <= radius_km else [],
+                })
+
+        results.sort(key=lambda x: x["distanciaMinima"])
+        return {"rutas": results[:20]}
