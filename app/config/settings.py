@@ -20,7 +20,7 @@ class Settings(BaseSettings):
     openai_api_key: str = ""
     groq_api_key: str = ""
     llm_model: str = "gpt-4o-mini"
-    groq_model: str = "llama-3.1-70b-versatile"
+    groq_model: str = "llama-3.3-70b-versatile"
 
     # Model paths
     model_path: str = "models/gat_best.pt"
