@@ -23,7 +23,10 @@ class GraphService:
         self._cache_sitp_rutas: dict | None = None
         self._cache_sitp_shapes: dict | None = None
         self._cache_tm_rutas: dict | None = None
+        self._cache_tm_troncales: dict | None = None
+        self._cache_tm_estaciones: dict | None = None
         self._cache_frecuencias: dict | None = None
+        self._cache_heatmap: dict[int, list] = {}  # hour -> results
 
     def _load_or_build(self) -> nx.Graph:
         """Load graph from file or build static one."""
@@ -161,7 +164,10 @@ class GraphService:
         return types
 
     def get_heatmap(self, hour: int) -> list[dict]:
-        """Get congestion predictions for all stations at a given hour."""
+        """Get congestion predictions for all stations at a given hour (cached per hour)."""
+        if hour in self._cache_heatmap:
+            return self._cache_heatmap[hour]
+
         from app.common.congestion import risk_label, time_factor
         from app.modules.predictions.gnn_inference import GNNInference
 
@@ -199,7 +205,8 @@ class GraphService:
                 }
             )
 
-        return sorted(results, key=lambda x: x["congestion"], reverse=True)
+        self._cache_heatmap[hour] = sorted(results, key=lambda x: x["congestion"], reverse=True)
+        return self._cache_heatmap[hour]
 
     def get_nearby(self, lat: float, lon: float, radius_km: float, limit: int) -> list[dict]:
         """Find stations within radius of a point."""
@@ -293,7 +300,10 @@ class GraphService:
         return edges
 
     def get_tm_troncales(self) -> dict:
-        """Load TransMilenio trunk lines from PostGIS as GeoJSON."""
+        """Load TransMilenio trunk lines from PostGIS as GeoJSON (cached)."""
+        if self._cache_tm_troncales is not None:
+            return self._cache_tm_troncales
+
         import json
         import os
 
@@ -318,6 +328,7 @@ class GraphService:
             result = cur.fetchone()[0]
             cur.close()
             conn.close()
+            self._cache_tm_troncales = result
             return result
         except Exception:
             # Fallback to file
@@ -325,11 +336,16 @@ class GraphService:
 
             path = Path("models/tm_troncales.geojson")
             if path.exists():
-                return json.loads(path.read_text())
-            return {"type": "FeatureCollection", "features": []}
+                self._cache_tm_troncales = json.loads(path.read_text())
+                return self._cache_tm_troncales
+            self._cache_tm_troncales = {"type": "FeatureCollection", "features": []}
+            return self._cache_tm_troncales
 
     def get_tm_estaciones(self) -> dict:
-        """Load TransMilenio stations from PostGIS as GeoJSON."""
+        """Load TransMilenio stations from PostGIS as GeoJSON (cached)."""
+        if self._cache_tm_estaciones is not None:
+            return self._cache_tm_estaciones
+
         import json
         import os
 
@@ -354,6 +370,7 @@ class GraphService:
             result = cur.fetchone()[0]
             cur.close()
             conn.close()
+            self._cache_tm_estaciones = result
             return result
         except Exception:
             # Fallback to file
@@ -361,8 +378,10 @@ class GraphService:
 
             path = Path("models/tm_estaciones.geojson")
             if path.exists():
-                return json.loads(path.read_text())
-            return {"type": "FeatureCollection", "features": []}
+                self._cache_tm_estaciones = json.loads(path.read_text())
+                return self._cache_tm_estaciones
+            self._cache_tm_estaciones = {"type": "FeatureCollection", "features": []}
+            return self._cache_tm_estaciones
 
     def get_tm_rutas(self) -> dict:
         """Derive TM routes from troncales + estaciones data."""
