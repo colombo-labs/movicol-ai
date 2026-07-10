@@ -798,6 +798,9 @@ class RoutePredictionService:
         risk_segments, total_distance, total_time = await self._build_sitp_segments(
             sub_stops, speed_factor
         )
+        # Include direction in route_code for UI display
+        dest_name = sub_stops[-1]["nombre"] if sub_stops else ""
+        display_code = f"{ruta_code} → {dest_name}" if dest_name else ruta_code
         return self._build_response(
             total_time,
             total_distance,
@@ -806,7 +809,7 @@ class RoutePredictionService:
             risk_segments,
             station_names,
             departure_time,
-            route_code=ruta_code,
+            route_code=display_code,
         )
 
     @staticmethod
