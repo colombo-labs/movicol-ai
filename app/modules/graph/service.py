@@ -14,6 +14,9 @@ from app.modules.route_prediction.graph_data import build_sitp_graph
 class GraphService:
     """Service for querying the mobility graph."""
 
+    SITP_SHAPES_PATH = "models/sitp_rutas_shapes.geojson"
+    SITP_FREQ_PATH = "models/sitp_rutas_frecuencias.json"
+
     def __init__(self) -> None:
         self._settings = get_settings()
         # Try to load from file, fallback to static Caracas graph
@@ -482,6 +485,14 @@ class GraphService:
             self._cache_sitp_paraderos = {"type": "FeatureCollection", "features": []}
             return self._cache_sitp_paraderos
 
+    @staticmethod
+    def _coords_to_paraderos(coords: list, limit: int = 50) -> list[dict]:
+        """Convert coordinate list to paradero dicts."""
+        return [
+            {"lat": c[1] if len(c) > 1 else 0, "lon": c[0] if len(c) > 0 else 0, "nombre": ""}
+            for c in coords[:limit]
+        ]
+
     def get_sitp_rutas(self) -> dict:
         """Load SITP routes with frequency data (cached in memory)."""
         if self._cache_sitp_rutas is not None:
@@ -490,9 +501,8 @@ class GraphService:
         import json
         from pathlib import Path
 
-        # Load shapes to extract routes with paraderos
-        shapes_path = Path("models/sitp_rutas_shapes.geojson")
-        freq_path = Path("models/sitp_rutas_frecuencias.json")
+        shapes_path = Path(self.SITP_SHAPES_PATH)
+        freq_path = Path(self.SITP_FREQ_PATH)
 
         frecuencias = {}
         if freq_path.exists():
@@ -505,26 +515,14 @@ class GraphService:
                 props = f.get("properties", {})
                 ruta_code = props.get("ruta", "")
                 coords = f.get("geometry", {}).get("coordinates", [])
-                # Build paraderos from coordinates
-                paraderos = []
-                for c in coords[:50]:  # Limit for performance
-                    paraderos.append(
-                        {
-                            "lat": c[1] if len(c) > 1 else 0,
-                            "lon": c[0] if len(c) > 0 else 0,
-                            "nombre": "",
-                        }
-                    )
                 freq_info = frecuencias.get(ruta_code, {})
-                rutas.append(
-                    {
-                        "ruta": ruta_code,
-                        "nombre": props.get("nombre", ruta_code),
-                        "tipo": freq_info.get("tipo_servicio", "Urbano"),
-                        "frecuencia_min": freq_info.get("frecuencia_base_min", 15),
-                        "paraderos": paraderos,
-                    }
-                )
+                rutas.append({
+                    "ruta": ruta_code,
+                    "nombre": props.get("nombre", ruta_code),
+                    "tipo": freq_info.get("tipo_servicio", "Urbano"),
+                    "frecuencia_min": freq_info.get("frecuencia_base_min", 15),
+                    "paraderos": self._coords_to_paraderos(coords),
+                })
 
         self._cache_sitp_rutas = {"rutas": rutas}
         return self._cache_sitp_rutas
@@ -537,84 +535,87 @@ class GraphService:
         import json
         from pathlib import Path
 
-        path = Path("models/sitp_rutas_shapes.geojson")
+        path = Path(self.SITP_SHAPES_PATH)
         if path.exists():
             self._cache_sitp_shapes = json.loads(path.read_text())
         else:
             self._cache_sitp_shapes = {"type": "FeatureCollection", "features": []}
         return self._cache_sitp_shapes
 
-    def get_rutas_cercanas(self, lat: float, lng: float, radius_m: int) -> dict:
-        """Find SITP routes with stops within radius (meters) of a point."""
-        import json
+    def _find_nearest_paradero(
+        self, lat: float, lng: float,
+    ) -> tuple[str, str, float]:
+        """Find the nearest paradero. Returns (nombre, cenefa, dist_km)."""
         import math
-        from pathlib import Path
 
-        radius_km = radius_m / 1000.0
-
-        # Load shapes with full coordinates
-        shapes_path = Path("models/sitp_rutas_shapes.geojson")
-        freq_path = Path("models/sitp_rutas_frecuencias.json")
-
-        if not shapes_path.exists():
-            return {"rutas": []}
-
-        shapes = json.loads(shapes_path.read_text())
-        frecuencias = {}
-        if freq_path.exists():
-            frecuencias = json.loads(freq_path.read_text())
-
-        # Find nearby paraderos for context
         paraderos_data = self.get_sitp_paraderos()
-        nearest_paradero = ""
+        nearest_name, nearest_cenefa = "", ""
         nearest_dist = float("inf")
         for f in paraderos_data.get("features", []):
             geom = f.get("geometry")
             if not geom or not geom.get("coordinates"):
                 continue
             coords = geom["coordinates"]
-            p_lng, p_lat = coords[0], coords[1]
-            dist = math.sqrt((p_lat - lat) ** 2 + (p_lng - lng) ** 2) * 111
+            dist = math.sqrt((coords[1] - lat) ** 2 + (coords[0] - lng) ** 2) * 111
             if dist < nearest_dist:
                 nearest_dist = dist
-                nearest_paradero = f.get("properties", {}).get("nombre", "")
-                nearest_cenefa = f.get("properties", {}).get("cenefa", "")
+                props = f.get("properties", {})
+                nearest_name = props.get("nombre", "")
+                nearest_cenefa = props.get("cenefa", "")
+        return nearest_name, nearest_cenefa, nearest_dist
 
-        # For each route shape, check if any coordinate is within radius
+    @staticmethod
+    def _min_dist_to_coords(lat: float, lng: float, coords: list) -> float:
+        """Get minimum distance (km) from a point to a list of [lon, lat] coords."""
+        import math
+
+        min_d = float("inf")
+        for c in coords:
+            if len(c) < 2:
+                continue
+            d = math.sqrt((c[1] - lat) ** 2 + (c[0] - lng) ** 2) * 111
+            if d < min_d:
+                min_d = d
+        return min_d
+
+    def get_rutas_cercanas(self, lat: float, lng: float, radius_m: int) -> dict:
+        """Find SITP routes with stops within radius (meters) of a point."""
+        import json
+        from pathlib import Path
+
+        radius_km = radius_m / 1000.0
+        shapes_path = Path(self.SITP_SHAPES_PATH)
+        freq_path = Path(self.SITP_FREQ_PATH)
+
+        if not shapes_path.exists():
+            return {"rutas": []}
+
+        shapes = json.loads(shapes_path.read_text())
+        frecuencias = json.loads(freq_path.read_text()) if freq_path.exists() else {}
+
+        nearest_name, nearest_cenefa, nearest_dist = self._find_nearest_paradero(lat, lng)
+
         results: list[dict] = []
         for f in shapes.get("features", []):
             props = f.get("properties", {})
             ruta_code = props.get("ruta", "")
             coords = f.get("geometry", {}).get("coordinates", [])
-
-            min_dist = float("inf")
-            for c in coords:
-                if len(c) < 2:
-                    continue
-                d = math.sqrt((c[1] - lat) ** 2 + (c[0] - lng) ** 2) * 111
-                if d < min_dist:
-                    min_dist = d
+            min_dist = self._min_dist_to_coords(lat, lng, coords)
 
             if min_dist <= radius_km:
                 freq_info = frecuencias.get(ruta_code, {})
-                results.append(
-                    {
-                        "ruta": ruta_code,
-                        "cenefa": nearest_cenefa if nearest_dist <= radius_km else "",
-                        "nombre": props.get("nombre", ruta_code),
-                        "tipo": freq_info.get("tipo_servicio", "Urbano"),
-                        "frecuencia_min": freq_info.get("frecuencia_base_min", 15),
-                        "distanciaMinima": round(min_dist * 1000),
-                        "paraderosCercanos": [
-                            {
-                                "nombre": nearest_paradero,
-                                "distancia": round(nearest_dist * 1000),
-                            }
-                        ]
-                        if nearest_dist <= radius_km
-                        else [],
-                    }
-                )
+                results.append({
+                    "ruta": ruta_code,
+                    "cenefa": nearest_cenefa if nearest_dist <= radius_km else "",
+                    "nombre": props.get("nombre", ruta_code),
+                    "tipo": freq_info.get("tipo_servicio", "Urbano"),
+                    "frecuencia_min": freq_info.get("frecuencia_base_min", 15),
+                    "distanciaMinima": round(min_dist * 1000),
+                    "paraderosCercanos": [{
+                        "nombre": nearest_name,
+                        "distancia": round(nearest_dist * 1000),
+                    }] if nearest_dist <= radius_km else [],
+                })
 
         results.sort(key=lambda x: x["distanciaMinima"])
         return {"rutas": results[:20]}

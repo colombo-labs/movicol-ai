@@ -934,12 +934,25 @@ class RoutePredictionService:
 
         return risk_segments, total_distance, total_time
 
+    @staticmethod
+    def _parse_osrm_legs_to_coords(data: dict) -> list[list]:
+        """Parse OSRM response legs into coordinate lists."""
+        if data.get("code") != "Ok" or not data.get("routes"):
+            return []
+        result = []
+        for leg in data["routes"][0].get("legs", []):
+            leg_coords = []
+            for step in leg.get("steps", []):
+                coords = step.get("geometry", {}).get("coordinates", [])
+                leg_coords.extend([c[1], c[0]] for c in coords)
+            result.append(leg_coords)
+        return result
+
     async def _fetch_osrm_sitp_geometry(self, stops: list) -> list[list]:
         """Fetch exact street geometries for SITP route stops from OSRM."""
         if len(stops) < 2:
             return []
 
-        # OSRM has a limit on waypoints (~100), batch if needed
         max_waypoints = 25
         all_leg_geometries: list[list] = []
 
@@ -962,21 +975,13 @@ class RoutePredictionService:
                     resp = await client.get(url)
                     data = resp.json()
 
-                if data.get("code") == "Ok" and data.get("routes"):
-                    legs = data["routes"][0].get("legs", [])
-                    for leg in legs:
-                        leg_coords = []
-                        for step in leg.get("steps", []):
-                            step_coords = [
-                                [c[1], c[0]]
-                                for c in step.get("geometry", {}).get("coordinates", [])
-                            ]
-                            if step_coords:
-                                leg_coords.extend(step_coords)
-                        all_leg_geometries.append(leg_coords)
+                parsed = self._parse_osrm_legs_to_coords(data)
+                if parsed:
+                    all_leg_geometries.extend(parsed)
                 else:
-                    # Fill with empty for this batch
-                    all_leg_geometries.extend([[] for _ in range(len(batch) - 1)])
+                    all_leg_geometries.extend(
+                        [[] for _ in range(len(batch) - 1)]
+                    )
             except Exception:
                 all_leg_geometries.extend([[] for _ in range(len(batch) - 1)])
 

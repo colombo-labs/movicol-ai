@@ -149,9 +149,9 @@ async def get_sitp_rutas_shapes():
 
 @router.get("/rutas-cercanas")
 async def get_rutas_cercanas(
-    lat: float = Query(..., description="Latitude"),
-    lng: float = Query(..., description="Longitude"),
-    radius: int = Query(600, description="Radius in meters"),
+    lat: Annotated[float, Query(description="Latitude")],
+    lng: Annotated[float, Query(description="Longitude")],
+    radius: Annotated[int, Query(description="Radius in meters")] = 600,
 ):
     """Find SITP routes with stops near a given point."""
     return service.get_rutas_cercanas(lat, lng, radius)
