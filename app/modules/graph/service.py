@@ -384,7 +384,10 @@ class GraphService:
             return self._cache_tm_estaciones
 
     def get_tm_rutas(self) -> dict:
-        """Derive TM routes from troncales + estaciones data."""
+        """Derive TM routes from troncales + estaciones data (cached)."""
+        if self._cache_tm_rutas is not None:
+            return self._cache_tm_rutas
+
         import json
         from pathlib import Path
 
@@ -417,7 +420,8 @@ class GraphService:
             for k, v in rutas_map.items()
             if v
         ]
-        return {"rutas": rutas}
+        self._cache_tm_rutas = {"rutas": rutas}
+        return self._cache_tm_rutas
 
     def get_sitp_paraderos(self) -> dict:
         """Load SITP bus stops as GeoJSON (cached in memory)."""

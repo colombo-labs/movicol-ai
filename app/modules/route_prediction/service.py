@@ -60,6 +60,8 @@ class RoutePredictionService:
         self._tm_graph = build_tm_graph()  # TM-only graph (153 stations, 13 troncales)
         self._sitp_routes = self._load_sitp_route_data()  # {ruta: [{lat,lon,nombre,orden}, ...]}
         self._multimodal_graph = self._build_multimodal_graph()
+        # Precompute spatial indexes for O(1) nearest-station lookups
+        self._spatial_indexes: dict[int, tuple] = {}  # id(graph) -> (node_ids, coords_array)
 
     def _build_multimodal_graph(self) -> nx.Graph:
         """Combine SITP and TM graphs and add walk edges between nearby stations."""
@@ -158,17 +160,24 @@ class RoutePredictionService:
     def _find_nearest_station(self, coords: Coordinates, tipo_filter: str | None = None) -> str:
         return self._find_nearest_in(coords, self._graph)
 
-    @staticmethod
-    def _find_nearest_in(coords: Coordinates, graph: nx.Graph) -> str:
-        best_id, best_dist = "", float("inf")
-        for node_id, data in graph.nodes(data=True):
-            lat = float(data.get("lat", 0))
-            lon = float(data.get("lon", 0))
-            d = (lat - coords.lat) ** 2 + (lon - coords.lng) ** 2
-            if d < best_dist:
-                best_dist = d
-                best_id = node_id
-        return best_id
+    def _find_nearest_in(self, coords: Coordinates, graph: nx.Graph) -> str:
+        """Find nearest node using numpy vectorized distance (precomputed on first call)."""
+        import numpy as np
+
+        graph_id = id(graph)
+        if graph_id not in self._spatial_indexes:
+            node_ids = list(graph.nodes())
+            coords_arr = np.array([
+                [float(graph.nodes[n].get("lat", 0)), float(graph.nodes[n].get("lon", 0))]
+                for n in node_ids
+            ])
+            self._spatial_indexes[graph_id] = (node_ids, coords_arr)
+
+        node_ids, coords_arr = self._spatial_indexes[graph_id]
+        point = np.array([coords.lat, coords.lng])
+        dists = np.sum((coords_arr - point) ** 2, axis=1)
+        idx = np.argmin(dists)
+        return node_ids[idx]
 
     def _get_congestion(self, node_id: str, hour: int, day: int | None = None) -> float:
         """Combined congestion: GNN base + demand from ST-GAT."""
