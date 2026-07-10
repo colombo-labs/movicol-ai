@@ -131,7 +131,11 @@ def find_nearby_routes(lat: float, lng: float, radius: int = 600) -> str:
 
     lines = []
     for r in rutas[:8]:
-        paradero = r.get("paraderosCercanos", [{}])[0].get("nombre", "") if r.get("paraderosCercanos") else ""
+        paradero = (
+            r.get("paraderosCercanos", [{}])[0].get("nombre", "")
+            if r.get("paraderosCercanos")
+            else ""
+        )
         lines.append(
             f"• Ruta {r['ruta']} ({r.get('tipo', 'Urbano')}) — {r['distanciaMinima']}m"
             + (f" — Paradero: {paradero}" if paradero else "")
@@ -141,7 +145,9 @@ def find_nearby_routes(lat: float, lng: float, radius: int = 600) -> str:
 
 @tool
 def get_demand_prediction(station_name: str = "", hour: int = -1) -> str:
-    """Get passenger demand prediction for a station. Use when user asks about crowding or how busy a station is.
+    """Get passenger demand prediction for a station.
+
+    Use when user asks about crowding or how busy a station is.
     Args:
         station_name: Name of the station to check (optional, returns overview if empty)
         hour: Hour to check (0-23). If -1, uses current hour.

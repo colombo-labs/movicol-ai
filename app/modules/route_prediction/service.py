@@ -167,10 +167,12 @@ class RoutePredictionService:
         graph_id = id(graph)
         if graph_id not in self._spatial_indexes:
             node_ids = list(graph.nodes())
-            coords_arr = np.array([
-                [float(graph.nodes[n].get("lat", 0)), float(graph.nodes[n].get("lon", 0))]
-                for n in node_ids
-            ])
+            coords_arr = np.array(
+                [
+                    [float(graph.nodes[n].get("lat", 0)), float(graph.nodes[n].get("lon", 0))]
+                    for n in node_ids
+                ]
+            )
             self._spatial_indexes[graph_id] = (node_ids, coords_arr)
 
         node_ids, coords_arr = self._spatial_indexes[graph_id]
@@ -948,7 +950,10 @@ class RoutePredictionService:
             coords = [f"{s['lon']},{s['lat']}" for s in batch]
             coord_str = ";".join(coords)
             base_url = get_settings().osrm_base_url
-            url = f"{base_url}/route/v1/driving/{coord_str}?geometries=geojson&overview=false&steps=true"
+            url = (
+                f"{base_url}/route/v1/driving/{coord_str}"
+                "?geometries=geojson&overview=false&steps=true"
+            )
 
             try:
                 async with httpx.AsyncClient(
@@ -963,7 +968,8 @@ class RoutePredictionService:
                         leg_coords = []
                         for step in leg.get("steps", []):
                             step_coords = [
-                                [c[1], c[0]] for c in step.get("geometry", {}).get("coordinates", [])
+                                [c[1], c[0]]
+                                for c in step.get("geometry", {}).get("coordinates", [])
                             ]
                             if step_coords:
                                 leg_coords.extend(step_coords)

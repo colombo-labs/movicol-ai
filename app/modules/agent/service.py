@@ -30,7 +30,8 @@ from app.modules.siniestralidad.service import SiniestrosService
 MAX_HISTORY = 20
 
 SYSTEM_PROMPT = """Eres MoviBot, asistente experto en movilidad urbana de Bogota, Colombia.
-Tienes acceso a datos en tiempo real de TransMilenio (13 troncales, 153 estaciones) y SITP (689 rutas zonales, 7694 paraderos).
+Tienes acceso a datos en tiempo real de TransMilenio (13 troncales, 153 estaciones)
+y SITP (689 rutas zonales, 7694 paraderos).
 
 Capacidades:
 - Informacion de estaciones TM y paraderos SITP con ubicacion exacta

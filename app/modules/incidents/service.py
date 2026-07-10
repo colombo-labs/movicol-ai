@@ -12,7 +12,6 @@ from app.modules.incidents.schemas import (
     IncidentCreate,
     IncidentResponse,
     NotificationItem,
-    SystemAlert,
 )
 
 DB_URL = os.environ.get("DATABASE_URL", "")
@@ -88,7 +87,13 @@ class IncidentsService:
                 VALUES (%s, %s, %s, %s, %s, 'user_report')
                 RETURNING id, type, lat, lng, route_code, description, source, votes, created_at
                 """,
-                (incident.type, incident.lat, incident.lng, incident.route_code, incident.description),
+                (
+                    incident.type,
+                    incident.lat,
+                    incident.lng,
+                    incident.route_code,
+                    incident.description,
+                ),
             )
             row = cur.fetchone()
             conn.commit()
@@ -157,7 +162,9 @@ class IncidentsService:
             print(f"Error saving system alerts: {e}")
             return 0
 
-    def get_notifications(self, hours: int = 6, lat: float | None = None, lng: float | None = None) -> list[NotificationItem]:
+    def get_notifications(
+        self, hours: int = 6, lat: float | None = None, lng: float | None = None
+    ) -> list[NotificationItem]:
         """Get recent notifications (incidents + system alerts)."""
         if not DB_URL:
             return []
@@ -179,18 +186,21 @@ class IncidentsService:
                 (since,),
             )
             for row in cur.fetchall():
-                notifications.append(NotificationItem(
-                    id=f"incident-{row['id']}",
-                    title=self._incident_title(row["type"]),
-                    body=row["description"] or f"Reportado por un usuario cerca de la ruta {row['route_code'] or 'desconocida'}",
-                    type="incident",
-                    severity=self._incident_severity(row["type"]),
-                    lat=row["lat"],
-                    lng=row["lng"],
-                    route_codes=[row["route_code"]] if row["route_code"] else [],
-                    created_at=row["created_at"],
-                    source="user_report",
-                ))
+                notifications.append(
+                    NotificationItem(
+                        id=f"incident-{row['id']}",
+                        title=self._incident_title(row["type"]),
+                        body=row["description"]
+                        or f"Reportado cerca de ruta {row['route_code'] or '?'}",
+                        type="incident",
+                        severity=self._incident_severity(row["type"]),
+                        lat=row["lat"],
+                        lng=row["lng"],
+                        route_codes=[row["route_code"]] if row["route_code"] else [],
+                        created_at=row["created_at"],
+                        source="user_report",
+                    )
+                )
 
             # Recent system alerts
             cur.execute(
@@ -204,16 +214,18 @@ class IncidentsService:
                 (since,),
             )
             for row in cur.fetchall():
-                notifications.append(NotificationItem(
-                    id=f"alert-{row['id']}",
-                    title=row["title"],
-                    body=f"Rutas afectadas: {', '.join(row['route_codes'] or [])}",
-                    type="alert",
-                    severity="danger" if row["type"] == "suspended" else "warning",
-                    route_codes=row["route_codes"] or [],
-                    created_at=row["created_at"],
-                    source="scraping",
-                ))
+                notifications.append(
+                    NotificationItem(
+                        id=f"alert-{row['id']}",
+                        title=row["title"],
+                        body=f"Rutas afectadas: {', '.join(row['route_codes'] or [])}",
+                        type="alert",
+                        severity="danger" if row["type"] == "suspended" else "warning",
+                        route_codes=row["route_codes"] or [],
+                        created_at=row["created_at"],
+                        source="scraping",
+                    )
+                )
 
             cur.close()
             conn.close()
@@ -225,7 +237,9 @@ class IncidentsService:
             print(f"Error fetching notifications: {e}")
             return []
 
-    def get_nearby_incidents(self, lat: float, lng: float, radius_km: float = 1.0, hours: int = 2) -> list[IncidentResponse]:
+    def get_nearby_incidents(
+        self, lat: float, lng: float, radius_km: float = 1.0, hours: int = 2
+    ) -> list[IncidentResponse]:
         """Get recent incidents near a location."""
         if not DB_URL:
             return []

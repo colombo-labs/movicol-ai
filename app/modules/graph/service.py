@@ -388,9 +388,6 @@ class GraphService:
         if self._cache_tm_rutas is not None:
             return self._cache_tm_rutas
 
-        import json
-        from pathlib import Path
-
         # Load troncales to build id_trazado -> troncal name mapping
         troncales_data = self.get_tm_troncales()
         id_to_troncal: dict[str, str] = {}
@@ -407,8 +404,12 @@ class GraphService:
         for f in estaciones.get("features", []):
             props = f.get("properties", {})
             # Properties use long names from PostGIS export
-            est_name = props.get("transmisig2.tecnica.estacion_troncal.nom_est", "") or props.get("nombre_est", "")
-            tz_id = props.get("transmisig2.tecnica.estacion_troncal.id_trazado", "") or props.get("id_trazado", "")
+            est_name = props.get("transmisig2.tecnica.estacion_troncal.nom_est", "") or props.get(
+                "nombre_est", ""
+            )
+            tz_id = props.get("transmisig2.tecnica.estacion_troncal.id_trazado", "") or props.get(
+                "id_trazado", ""
+            )
             troncal_name = id_to_troncal.get(tz_id, tz_id)
             if troncal_name and est_name:
                 if troncal_name not in rutas_map:
@@ -416,9 +417,7 @@ class GraphService:
                 rutas_map[troncal_name].append(est_name)
 
         rutas = [
-            {"nombre": k, "estaciones": v, "tipo": "Troncal"}
-            for k, v in rutas_map.items()
-            if v
+            {"nombre": k, "estaciones": v, "tipo": "Troncal"} for k, v in rutas_map.items() if v
         ]
         self._cache_tm_rutas = {"rutas": rutas}
         return self._cache_tm_rutas
@@ -464,17 +463,19 @@ class GraphService:
                 features = []
                 for f in raw.get("features", []):
                     props = f.get("properties", {})
-                    features.append({
-                        "type": "Feature",
-                        "geometry": f.get("geometry"),
-                        "id": props.get("OBJECTID", f.get("id")),
-                        "properties": {
-                            "cenefa": props.get("NTRCODIGO", ""),
-                            "nombre": props.get("NTRNOMBRE", ""),
-                            "direccion_bandera": props.get("NTRDIRECCION", ""),
-                            "objectid": props.get("OBJECTID", ""),
-                        },
-                    })
+                    features.append(
+                        {
+                            "type": "Feature",
+                            "geometry": f.get("geometry"),
+                            "id": props.get("OBJECTID", f.get("id")),
+                            "properties": {
+                                "cenefa": props.get("NTRCODIGO", ""),
+                                "nombre": props.get("NTRNOMBRE", ""),
+                                "direccion_bandera": props.get("NTRDIRECCION", ""),
+                                "objectid": props.get("OBJECTID", ""),
+                            },
+                        }
+                    )
                 result = {"type": "FeatureCollection", "features": features}
                 self._cache_sitp_paraderos = result
                 return result
@@ -507,19 +508,23 @@ class GraphService:
                 # Build paraderos from coordinates
                 paraderos = []
                 for c in coords[:50]:  # Limit for performance
-                    paraderos.append({
-                        "lat": c[1] if len(c) > 1 else 0,
-                        "lon": c[0] if len(c) > 0 else 0,
-                        "nombre": "",
-                    })
+                    paraderos.append(
+                        {
+                            "lat": c[1] if len(c) > 1 else 0,
+                            "lon": c[0] if len(c) > 0 else 0,
+                            "nombre": "",
+                        }
+                    )
                 freq_info = frecuencias.get(ruta_code, {})
-                rutas.append({
-                    "ruta": ruta_code,
-                    "nombre": props.get("nombre", ruta_code),
-                    "tipo": freq_info.get("tipo_servicio", "Urbano"),
-                    "frecuencia_min": freq_info.get("frecuencia_base_min", 15),
-                    "paraderos": paraderos,
-                })
+                rutas.append(
+                    {
+                        "ruta": ruta_code,
+                        "nombre": props.get("nombre", ruta_code),
+                        "tipo": freq_info.get("tipo_servicio", "Urbano"),
+                        "frecuencia_min": freq_info.get("frecuencia_base_min", 15),
+                        "paraderos": paraderos,
+                    }
+                )
 
         self._cache_sitp_rutas = {"rutas": rutas}
         return self._cache_sitp_rutas
@@ -592,18 +597,24 @@ class GraphService:
 
             if min_dist <= radius_km:
                 freq_info = frecuencias.get(ruta_code, {})
-                results.append({
-                    "ruta": ruta_code,
-                    "cenefa": nearest_cenefa if nearest_dist <= radius_km else "",
-                    "nombre": props.get("nombre", ruta_code),
-                    "tipo": freq_info.get("tipo_servicio", "Urbano"),
-                    "frecuencia_min": freq_info.get("frecuencia_base_min", 15),
-                    "distanciaMinima": round(min_dist * 1000),
-                    "paraderosCercanos": [{
-                        "nombre": nearest_paradero,
-                        "distancia": round(nearest_dist * 1000),
-                    }] if nearest_dist <= radius_km else [],
-                })
+                results.append(
+                    {
+                        "ruta": ruta_code,
+                        "cenefa": nearest_cenefa if nearest_dist <= radius_km else "",
+                        "nombre": props.get("nombre", ruta_code),
+                        "tipo": freq_info.get("tipo_servicio", "Urbano"),
+                        "frecuencia_min": freq_info.get("frecuencia_base_min", 15),
+                        "distanciaMinima": round(min_dist * 1000),
+                        "paraderosCercanos": [
+                            {
+                                "nombre": nearest_paradero,
+                                "distancia": round(nearest_dist * 1000),
+                            }
+                        ]
+                        if nearest_dist <= radius_km
+                        else [],
+                    }
+                )
 
         results.sort(key=lambda x: x["distanciaMinima"])
         return {"rutas": results[:20]}
