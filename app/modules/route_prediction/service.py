@@ -892,12 +892,14 @@ class RoutePredictionService:
     async def _build_sitp_segments(
         self, stops: list, speed_factor: float
     ) -> tuple[list[RiskSegment], float, float]:
-        """Build risk segments for SITP from ordered stop list.
-        Connects stops with direct lines (not OSRM pedestrian routing).
-        """
+        """Build risk segments for SITP using OSRM for real street geometries."""
         risk_segments: list[RiskSegment] = []
         total_distance = 0.0
         total_time = 0.0
+
+        # Use OSRM to get real street geometry between all stops
+        osrm_geometries = await self._fetch_osrm_sitp_geometry(stops)
+        use_osrm = len(osrm_geometries) == (len(stops) - 1)
 
         for i in range(len(stops) - 1):
             s1, s2 = stops[i], stops[i + 1]
@@ -907,12 +909,60 @@ class RoutePredictionService:
             total_distance += dist_km
             total_time += adj_time
 
-            seg_coords = [[s1["lat"], s1["lon"]], [s2["lat"], s2["lon"]]]
+            seg_coords = (
+                osrm_geometries[i]
+                if (use_osrm and osrm_geometries[i])
+                else [[s1["lat"], s1["lon"]], [s2["lat"], s2["lon"]]]
+            )
             risk_segments.append(
                 self._make_segment(s1["nombre"], s2["nombre"], congestion, seg_coords, mode="sitp")
             )
 
         return risk_segments, total_distance, total_time
+
+    async def _fetch_osrm_sitp_geometry(self, stops: list) -> list[list]:
+        """Fetch exact street geometries for SITP route stops from OSRM."""
+        if len(stops) < 2:
+            return []
+
+        # OSRM has a limit on waypoints (~100), batch if needed
+        max_waypoints = 25
+        all_leg_geometries: list[list] = []
+
+        for batch_start in range(0, len(stops) - 1, max_waypoints - 1):
+            batch_end = min(batch_start + max_waypoints, len(stops))
+            batch = stops[batch_start:batch_end]
+
+            coords = [f"{s['lon']},{s['lat']}" for s in batch]
+            coord_str = ";".join(coords)
+            base_url = get_settings().osrm_base_url
+            url = f"{base_url}/route/v1/driving/{coord_str}?geometries=geojson&overview=false&steps=true"
+
+            try:
+                async with httpx.AsyncClient(
+                    timeout=15, follow_redirects=True, max_redirects=3
+                ) as client:
+                    resp = await client.get(url)
+                    data = resp.json()
+
+                if data.get("code") == "Ok" and data.get("routes"):
+                    legs = data["routes"][0].get("legs", [])
+                    for leg in legs:
+                        leg_coords = []
+                        for step in leg.get("steps", []):
+                            step_coords = [
+                                [c[1], c[0]] for c in step.get("geometry", {}).get("coordinates", [])
+                            ]
+                            if step_coords:
+                                leg_coords.extend(step_coords)
+                        all_leg_geometries.append(leg_coords)
+                else:
+                    # Fill with empty for this batch
+                    all_leg_geometries.extend([[] for _ in range(len(batch) - 1)])
+            except Exception:
+                all_leg_geometries.extend([[] for _ in range(len(batch) - 1)])
+
+        return all_leg_geometries
 
     async def _fetch_osrm_transit_geometry(self, graph: nx.Graph, path: list) -> list[list]:
         """Fetch exact street geometries passing through path nodes from OSRM."""
