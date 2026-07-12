@@ -37,7 +37,7 @@ def create_app() -> FastAPI:
     application.include_router(graph_router, prefix="/graph", tags=["Graph"])
     application.include_router(agent_router, prefix="/agent", tags=["Agent"])
     application.include_router(
-        route_prediction_router, prefix="/api/v1/predict-route", tags=["Route Prediction"]
+        route_prediction_router, prefix="/route-prediction", tags=["Route Prediction"]
     )
     application.include_router(demand_router, prefix="/demand", tags=["Demand Prediction"])
     application.include_router(

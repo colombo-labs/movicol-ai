@@ -60,6 +60,8 @@ class RoutePredictionService:
         self._tm_graph = build_tm_graph()  # TM-only graph (153 stations, 13 troncales)
         self._sitp_routes = self._load_sitp_route_data()  # {ruta: [{lat,lon,nombre,orden}, ...]}
         self._multimodal_graph = self._build_multimodal_graph()
+        # Precompute spatial indexes for O(1) nearest-station lookups
+        self._spatial_indexes: dict[int, tuple] = {}  # id(graph) -> (node_ids, coords_array)
 
     def _build_multimodal_graph(self) -> nx.Graph:
         """Combine SITP and TM graphs and add walk edges between nearby stations."""
@@ -158,17 +160,26 @@ class RoutePredictionService:
     def _find_nearest_station(self, coords: Coordinates, tipo_filter: str | None = None) -> str:
         return self._find_nearest_in(coords, self._graph)
 
-    @staticmethod
-    def _find_nearest_in(coords: Coordinates, graph: nx.Graph) -> str:
-        best_id, best_dist = "", float("inf")
-        for node_id, data in graph.nodes(data=True):
-            lat = float(data.get("lat", 0))
-            lon = float(data.get("lon", 0))
-            d = (lat - coords.lat) ** 2 + (lon - coords.lng) ** 2
-            if d < best_dist:
-                best_dist = d
-                best_id = node_id
-        return best_id
+    def _find_nearest_in(self, coords: Coordinates, graph: nx.Graph) -> str:
+        """Find nearest node using numpy vectorized distance (precomputed on first call)."""
+        import numpy as np
+
+        graph_id = id(graph)
+        if graph_id not in self._spatial_indexes:
+            node_ids = list(graph.nodes())
+            coords_arr = np.array(
+                [
+                    [float(graph.nodes[n].get("lat", 0)), float(graph.nodes[n].get("lon", 0))]
+                    for n in node_ids
+                ]
+            )
+            self._spatial_indexes[graph_id] = (node_ids, coords_arr)
+
+        node_ids, coords_arr = self._spatial_indexes[graph_id]
+        point = np.array([coords.lat, coords.lng])
+        dists = np.sum((coords_arr - point) ** 2, axis=1)
+        idx = np.argmin(dists)
+        return node_ids[idx]
 
     def _get_congestion(self, node_id: str, hour: int, day: int | None = None) -> float:
         """Combined congestion: GNN base + demand from ST-GAT."""
@@ -789,6 +800,9 @@ class RoutePredictionService:
         risk_segments, total_distance, total_time = await self._build_sitp_segments(
             sub_stops, speed_factor
         )
+        # Include direction in route_code for UI display
+        dest_name = sub_stops[-1]["nombre"] if sub_stops else ""
+        display_code = f"{ruta_code} → {dest_name}" if dest_name else ruta_code
         return self._build_response(
             total_time,
             total_distance,
@@ -797,7 +811,7 @@ class RoutePredictionService:
             risk_segments,
             station_names,
             departure_time,
-            route_code=ruta_code,
+            route_code=display_code,
         )
 
     @staticmethod
@@ -892,12 +906,14 @@ class RoutePredictionService:
     async def _build_sitp_segments(
         self, stops: list, speed_factor: float
     ) -> tuple[list[RiskSegment], float, float]:
-        """Build risk segments for SITP from ordered stop list.
-        Connects stops with direct lines (not OSRM pedestrian routing).
-        """
+        """Build risk segments for SITP using OSRM for real street geometries."""
         risk_segments: list[RiskSegment] = []
         total_distance = 0.0
         total_time = 0.0
+
+        # Use OSRM to get real street geometry between all stops
+        osrm_geometries = await self._fetch_osrm_sitp_geometry(stops)
+        use_osrm = len(osrm_geometries) == (len(stops) - 1)
 
         for i in range(len(stops) - 1):
             s1, s2 = stops[i], stops[i + 1]
@@ -907,12 +923,67 @@ class RoutePredictionService:
             total_distance += dist_km
             total_time += adj_time
 
-            seg_coords = [[s1["lat"], s1["lon"]], [s2["lat"], s2["lon"]]]
+            seg_coords = (
+                osrm_geometries[i]
+                if (use_osrm and osrm_geometries[i])
+                else [[s1["lat"], s1["lon"]], [s2["lat"], s2["lon"]]]
+            )
             risk_segments.append(
                 self._make_segment(s1["nombre"], s2["nombre"], congestion, seg_coords, mode="sitp")
             )
 
         return risk_segments, total_distance, total_time
+
+    @staticmethod
+    def _parse_osrm_legs_to_coords(data: dict) -> list[list]:
+        """Parse OSRM response legs into coordinate lists."""
+        if data.get("code") != "Ok" or not data.get("routes"):
+            return []
+        result = []
+        for leg in data["routes"][0].get("legs", []):
+            leg_coords = []
+            for step in leg.get("steps", []):
+                coords = step.get("geometry", {}).get("coordinates", [])
+                leg_coords.extend([c[1], c[0]] for c in coords)
+            result.append(leg_coords)
+        return result
+
+    async def _fetch_osrm_sitp_geometry(self, stops: list) -> list[list]:
+        """Fetch exact street geometries for SITP route stops from OSRM."""
+        if len(stops) < 2:
+            return []
+
+        max_waypoints = 25
+        all_leg_geometries: list[list] = []
+
+        for batch_start in range(0, len(stops) - 1, max_waypoints - 1):
+            batch_end = min(batch_start + max_waypoints, len(stops))
+            batch = stops[batch_start:batch_end]
+
+            coords = [f"{s['lon']},{s['lat']}" for s in batch]
+            coord_str = ";".join(coords)
+            base_url = get_settings().osrm_base_url
+            url = (
+                f"{base_url}/route/v1/driving/{coord_str}"
+                "?geometries=geojson&overview=false&steps=true"
+            )
+
+            try:
+                async with httpx.AsyncClient(
+                    timeout=15, follow_redirects=True, max_redirects=3
+                ) as client:
+                    resp = await client.get(url)
+                    data = resp.json()
+
+                parsed = self._parse_osrm_legs_to_coords(data)
+                if parsed:
+                    all_leg_geometries.extend(parsed)
+                else:
+                    all_leg_geometries.extend([[] for _ in range(len(batch) - 1)])
+            except Exception:
+                all_leg_geometries.extend([[] for _ in range(len(batch) - 1)])
+
+        return all_leg_geometries
 
     async def _fetch_osrm_transit_geometry(self, graph: nx.Graph, path: list) -> list[list]:
         """Fetch exact street geometries passing through path nodes from OSRM."""

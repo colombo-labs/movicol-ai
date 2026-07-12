@@ -113,6 +113,69 @@ def list_troncales() -> str:
     return f"TransMilenio tiene {len(TRONCALES)} troncales:\n" + "\n".join(lines)
 
 
+@tool
+def find_nearby_routes(lat: float, lng: float, radius: int = 600) -> str:
+    """Find SITP bus routes near a location. Use when user asks what routes pass nearby.
+    Args:
+        lat: Latitude of the location
+        lng: Longitude of the location
+        radius: Search radius in meters (default 600)
+    """
+    from app.modules.graph.service import GraphService
+
+    svc = GraphService()
+    result = svc.get_rutas_cercanas(lat, lng, radius)
+    rutas = result.get("rutas", [])
+    if not rutas:
+        return f"No encontré rutas SITP dentro de {radius}m de esa ubicación."
+
+    lines = []
+    for r in rutas[:8]:
+        paradero = (
+            r.get("paraderosCercanos", [{}])[0].get("nombre", "")
+            if r.get("paraderosCercanos")
+            else ""
+        )
+        lines.append(
+            f"• Ruta {r['ruta']} ({r.get('tipo', 'Urbano')}) — {r['distanciaMinima']}m"
+            + (f" — Paradero: {paradero}" if paradero else "")
+        )
+    return f"{len(rutas)} rutas SITP cercanas:\n" + "\n".join(lines)
+
+
+@tool
+def get_demand_prediction(station_name: str = "", hour: int = -1) -> str:
+    """Get passenger demand prediction for a station.
+
+    Use when user asks about crowding or how busy a station is.
+    Args:
+        station_name: Name of the station to check (optional, returns overview if empty)
+        hour: Hour to check (0-23). If -1, uses current hour.
+    """
+    from datetime import datetime as dt
+
+    if hour == -1:
+        hour = dt.now().hour
+
+    level = CONGESTION_BY_HOUR.get(hour, 0.3)
+
+    if level > 0.7:
+        demand = "MUY ALTA — estaciones llenas, espera tiempos de 10-15 min"
+    elif level > 0.5:
+        demand = "ALTA — bastante gente, viaje de pie probable"
+    elif level > 0.3:
+        demand = "MODERADA — flujo normal, posible asiento"
+    else:
+        demand = "BAJA — pocas personas, viaje cómodo"
+
+    response = f"Demanda a las {hour}:00: {demand} (congestión: {int(level * 100)}%)."
+    if station_name:
+        response = f"Estación {station_name} — " + response
+    if 6 <= hour <= 9 or 17 <= hour <= 20:
+        response += "\nRecomendación: salir 30 min antes o después para evitar aglomeraciones."
+    return response
+
+
 # All available tools for the agent
 AGENT_TOOLS = [
     plan_route,
@@ -121,6 +184,8 @@ AGENT_TOOLS = [
     get_congestion,
     get_risk_by_zone,
     list_troncales,
+    find_nearby_routes,
+    get_demand_prediction,
 ]
 
 

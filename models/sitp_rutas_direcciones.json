@@ -1,0 +1,5885 @@
+{
+  "BC917": [
+    {
+      "origen": "TERMINAL NORTE",
+      "destino": "VILLA CINDY",
+      "nombre": "VILLA CINDY - TERMINAL NORTE",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    },
+    {
+      "origen": "VILLA CINDY",
+      "destino": "TERMINAL NORTE",
+      "nombre": "VILLA CINDY - TERMINAL NORTE",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "661": [
+    {
+      "origen": "TERMINAL NORTE",
+      "destino": "PENÍNSULA",
+      "nombre": "TERMINAL NORTE - PENÍNSULA",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    },
+    {
+      "origen": "PENÍNSULA",
+      "destino": "TERMINAL NORTE",
+      "nombre": "TERMINAL NORTE - PENÍNSULA",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "GL519": [
+    {
+      "origen": "OLARTE",
+      "destino": "LOS LACHES",
+      "nombre": "OLARTE - LOS LACHES",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    },
+    {
+      "origen": "LOS LACHES",
+      "destino": "OLARTE",
+      "nombre": "OLARTE - LOS LACHES",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "HA600": [
+    {
+      "origen": "JERUSALÉN",
+      "destino": "CHAPINERO",
+      "nombre": "JERUSALEN - CHAPINERO",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    },
+    {
+      "origen": "CHAPINERO",
+      "destino": "JERUSALÉN",
+      "nombre": "JERUSALEN - CHAPINERO",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "T06": [
+    {
+      "origen": "LA SURENA",
+      "destino": "PORCIÚNCULA",
+      "nombre": "LA SURENA - PORCIUNCULA",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "10-12": [
+    {
+      "origen": "MOCHUELO BAJO",
+      "destino": "PARAÍSO",
+      "nombre": "MOCHUELO BAJO - PARAÍSO",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    }
+  ],
+  "FA405": [
+    {
+      "origen": "CENTRO INTERNACIONAL",
+      "destino": "CAMELIA",
+      "nombre": "CAMELIA - CENTRO INTERNACIONAL",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    },
+    {
+      "origen": "CAMELIA",
+      "destino": "CENTRO INTERNACIONAL",
+      "nombre": "CAMELIA - CENTRO INTERNACIONAL",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "139": [
+    {
+      "origen": "JUAN REY",
+      "destino": "BOSA SAN JOSÉ",
+      "nombre": "BOSA SAN JOSE - JUAN REY",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    },
+    {
+      "origen": "BOSA SAN JOSÉ",
+      "destino": "JUAN REY",
+      "nombre": "BOSA SAN JOSE - JUAN REY",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    }
+  ],
+  "KA332": [
+    {
+      "origen": "LA PORCIÚNCULA",
+      "destino": "EL RECODO",
+      "nombre": "EL RECODO - LA PORCIÚNCULA",
+      "tipo_servicio": 1,
+      "operador": "ZMO FONTIBON V"
+    },
+    {
+      "origen": "EL RECODO",
+      "destino": "LA PORCIÚNCULA",
+      "nombre": "EL RECODO - LA PORCIÚNCULA",
+      "tipo_servicio": 1,
+      "operador": "ZMO FONTIBON V"
+    }
+  ],
+  "6-2": [
+    {
+      "origen": "PORTAL TUNAL",
+      "destino": "SAN FRANCISCO",
+      "nombre": "SAN FRANCISCO",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    }
+  ],
+  "HK700": [
+    {
+      "origen": "TERMINAL SALITRE",
+      "destino": "BELLAVISTA",
+      "nombre": "BELLAVISTA - TERMINAL SALITRE",
+      "tipo_servicio": 1,
+      "operador": "GRAN AMERICAS USME"
+    },
+    {
+      "origen": "BELLAVISTA",
+      "destino": "TERMINAL SALITRE",
+      "nombre": "BELLAVISTA - TERMINAL SALITRE",
+      "tipo_servicio": 1,
+      "operador": "GRAN AMERICAS USME"
+    }
+  ],
+  "KB326": [
+    {
+      "origen": "PUERTA DE TEJA",
+      "destino": "UNICENTRO",
+      "nombre": "PUERTA DE TEJA - UNICENTRO",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    },
+    {
+      "origen": "UNICENTRO",
+      "destino": "PUERTA DE TEJA",
+      "nombre": "PUERTA DE TEJA - UNICENTRO",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "19-7": [
+    {
+      "origen": "CALLE 146",
+      "destino": "LA SIRENA",
+      "nombre": "CANTABRIA",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - SO"
+    }
+  ],
+  "CB162": [
+    {
+      "origen": "VILLA GLORIA",
+      "destino": "SAN CRISTÓBAL NORTE",
+      "nombre": "VILLA GLORIA - SAN CRISTÓBAL NORTE",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    },
+    {
+      "origen": "SAN CRISTÓBAL NORTE",
+      "destino": "VILLA GLORIA",
+      "nombre": "VILLA GLORIA - SAN CRISTÓBAL NORTE",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "DK206": [
+    {
+      "origen": "BACHUÉ",
+      "destino": "GOBERNACIÓN",
+      "nombre": "BACHUE - GOBERNACION",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    },
+    {
+      "origen": "CENTRO",
+      "destino": "BACHUÉ",
+      "nombre": "BACHUE - CENTRO",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    }
+  ],
+  "LD800": [
+    {
+      "origen": "GAVIOTAS",
+      "destino": "VILLA GLADYS",
+      "nombre": "GAVIOTAS - VILLA GLADYS",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    },
+    {
+      "origen": "VILLA GLADYS",
+      "destino": "GAVIOTAS",
+      "nombre": "GAVIOTAS - VILLA GLADYS",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    }
+  ],
+  "KC315": [
+    {
+      "origen": "PUENTE GRANDE",
+      "destino": "SUBA LISBOA",
+      "nombre": "PUENTE GRANDE - SUBA LISBOA",
+      "tipo_servicio": 1,
+      "operador": "GRAN AMERICAS FONTIBON I"
+    },
+    {
+      "origen": "SUBA LISBOA",
+      "destino": "PUENTE GRANDE",
+      "nombre": "PUENTE GRANDE - SUBA LISBOA",
+      "tipo_servicio": 1,
+      "operador": "GRAN AMERICAS FONTIBON I"
+    }
+  ],
+  "CL149": [
+    {
+      "origen": "BILBAO",
+      "destino": "EST- AV. 1 DE MAYO",
+      "nombre": "EST- AV. 1 DE MAYO - BILBAO",
+      "tipo_servicio": 1,
+      "operador": "EMASIVO 16"
+    },
+    {
+      "origen": "EST- AV. 1 DE MAYO",
+      "destino": "BILBAO",
+      "nombre": "EST- AV. 1 DE MAYO - BILBAO",
+      "tipo_servicio": 1,
+      "operador": "EMASIVO 16"
+    }
+  ],
+  "HF603": [
+    {
+      "origen": "CORABASTOS",
+      "destino": "SANTO DOMINGO",
+      "nombre": "CORABASTOS - SANTO DOMINGO",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    },
+    {
+      "origen": "SANTO DOMINGO",
+      "destino": "CORABASTOS",
+      "nombre": "CORABASTOS - SANTO DOMINGO",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "192": [
+    {
+      "origen": "UNICENTRO",
+      "destino": "CATALINA",
+      "nombre": "UNICENTRO - CATALINA",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    },
+    {
+      "origen": "CATALINA",
+      "destino": "UNICENTRO",
+      "nombre": "UNICENTRO - CATALINA",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "P24": [
+    {
+      "origen": "BOSA SAN JOSÉ",
+      "destino": "SAN BLASS",
+      "nombre": "SAN BLASS - BOSA SAN JOSE",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    },
+    {
+      "origen": "SAN BLASS",
+      "destino": "BOSA SAN JOSÉ",
+      "nombre": "SAN BLASS - BOSA SAN JOSE",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "HD607": [
+    {
+      "origen": "ARBORIZADORA ALTA",
+      "destino": "MORATO",
+      "nombre": "ARBORIZADORA ALTA - MORATO",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    },
+    {
+      "origen": "MORATO",
+      "destino": "ARBORIZADORA ALTA",
+      "nombre": "ARBORIZADORA ALTA - MORATO",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    }
+  ],
+  "97": [
+    {
+      "origen": "RINCON DE VENECIA",
+      "destino": "GALERÍAS",
+      "nombre": "RINCON DE VENECIA - GALERIAS",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "10-1": [
+    {
+      "origen": "PORTAL SUR",
+      "destino": "AVENIDA BOSA",
+      "nombre": "AVENIDA BOSA",
+      "tipo_servicio": 4,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "T25": [
+    {
+      "origen": "TERMINAL NORTE",
+      "destino": "POTOSÍ",
+      "nombre": "POTOSI - TERMINAL NORTE",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    },
+    {
+      "origen": "POTOSÍ",
+      "destino": "TERMINAL NORTE",
+      "nombre": "POTOSI - TERMINAL NORTE",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "C101": [
+    {
+      "origen": "PROVIDENCIA",
+      "destino": "EL PALMAR",
+      "nombre": "PROVIDENCIA - EL PALMAR",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    },
+    {
+      "origen": "EL PALMAR",
+      "destino": "PROVIDENCIA",
+      "nombre": "PROVIDENCIA - EL PALMAR",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    }
+  ],
+  "60": [
+    {
+      "origen": "ZARAZOTA",
+      "destino": "BACHUÉ",
+      "nombre": "BACHUÉ - ZARAZOTA",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    },
+    {
+      "origen": "BACHUÉ",
+      "destino": "ZARAZOTA",
+      "nombre": "BACHUÉ - ZARAZOTA",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    }
+  ],
+  "DA215": [
+    {
+      "origen": "BACHUÉ",
+      "destino": "GERMANÍA",
+      "nombre": "BACHUÉ - GERMANÍA",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    }
+  ],
+  "CB161": [
+    {
+      "origen": "UNICENTRO",
+      "destino": "VILLA GLORIA",
+      "nombre": "UNICENTRO - VILLA GLORIA",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    },
+    {
+      "origen": "VILLA GLORIA",
+      "destino": "UNICENTRO",
+      "nombre": "UNICENTRO - VILLA GLORIA",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "GG536": [
+    {
+      "origen": "SENA",
+      "destino": "SANTA ISABEL",
+      "nombre": "SENA - SANTA ISABEL",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "11-3": [
+    {
+      "origen": "PORTAL SUBA",
+      "destino": "VILLA MARÍA",
+      "nombre": "VILLA MARÍA",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    }
+  ],
+  "T163": [
+    {
+      "origen": "CALLE 222",
+      "destino": "PERDOMO",
+      "nombre": "PERDOMO - CALLE 222",
+      "tipo_servicio": 4,
+      "operador": "MASIVO CAPITAL - SO"
+    },
+    {
+      "origen": "PERDOMO",
+      "destino": "CALLE 222",
+      "nombre": "PERDOMO - CALLE 222",
+      "tipo_servicio": 4,
+      "operador": "MASIVO CAPITAL - SO"
+    }
+  ],
+  "HB631": [
+    {
+      "origen": "AV. CALLE 134",
+      "destino": "PARAÍSO",
+      "nombre": "PARAÍSO - AV. CALLE 134",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    },
+    {
+      "origen": "PARAÍSO",
+      "destino": "AV. CALLE 134",
+      "nombre": "PARAÍSO - AV. CALLE 134",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    }
+  ],
+  "14-1": [
+    {
+      "origen": "BICENTENARIO",
+      "destino": "LAS CRUCES",
+      "nombre": "LAS CRUCES",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    }
+  ],
+  "GH530": [
+    {
+      "origen": "FISCALA ALTA",
+      "destino": "METROVIVIENDA",
+      "nombre": "METROVIVIENDA - FISCALA ALTA",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    },
+    {
+      "origen": "METROVIVIENDA",
+      "destino": "FISCALA ALTA",
+      "nombre": "METROVIVIENDA - FISCALA ALTA",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "HA617": [
+    {
+      "origen": "CENTRO",
+      "destino": "PERDOMO",
+      "nombre": "PERDOMO - CENTRO",
+      "tipo_servicio": 1,
+      "operador": "ODT LA ROLITA"
+    },
+    {
+      "origen": "PERDOMO",
+      "destino": "CENTRO",
+      "nombre": "PERDOMO - CENTRO",
+      "tipo_servicio": 1,
+      "operador": "ODT LA ROLITA"
+    }
+  ],
+  "BB926": [
+    {
+      "origen": "EST. MAZUREN",
+      "destino": "SIRENA",
+      "nombre": "EST. MAZUREN",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "13-2": [
+    {
+      "origen": "PROVIDENCIA ALTA",
+      "destino": "RESTREPO",
+      "nombre": "PROVIDENCIA ALTA - RESTREPO",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    }
+  ],
+  "99": [
+    {
+      "origen": "BOSA LA PRIMAVERA",
+      "destino": "GERMANIA",
+      "nombre": "BOSA LA PRIMAVERA - GERMANIA",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "16-12": [
+    {
+      "origen": "PORTAL EL DORADO",
+      "destino": "BELÉN",
+      "nombre": "BELÉN - PORTAL EL DORADO",
+      "tipo_servicio": 1,
+      "operador": "GRAN AMERICAS FONTIBON I"
+    }
+  ],
+  "HH640": [
+    {
+      "origen": "PORTAL SUR",
+      "destino": "SANTO DOMINGO",
+      "nombre": "SANTO DOMINGO AM",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    }
+  ],
+  "HK627": [
+    {
+      "origen": "ALPES",
+      "destino": "SALITRE",
+      "nombre": "ALPES - SALITRE",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    },
+    {
+      "origen": "SALITRE",
+      "destino": "ALPES",
+      "nombre": "ALPES - SALITRE",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    }
+  ],
+  "13-7": [
+    {
+      "origen": "PORTAL 20 JULIO",
+      "destino": "LA PENÍNSULA",
+      "nombre": "LA PENÍNSULA",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    }
+  ],
+  "HA708": [
+    {
+      "origen": "CHICÓ NORTE",
+      "destino": "ANTONIO J. DE SUCRE",
+      "nombre": "ANTONIO J. DE SUCRE - CHICO NORTE",
+      "tipo_servicio": 1,
+      "operador": "GRAN AMERICAS USME"
+    },
+    {
+      "origen": "ANTONIO J. DE SUCRE",
+      "destino": "CHICÓ NORTE",
+      "nombre": "ANTONIO J. DE SUCRE - CHICO NORTE",
+      "tipo_servicio": 1,
+      "operador": "GRAN AMERICAS USME"
+    }
+  ],
+  "402": [
+    {
+      "origen": "SABANA DEL DORADO",
+      "destino": "AUTO NORTE EST. TERMINAL",
+      "nombre": "AUTO NORTE EST. TERMINAL - SABANA DEL DORADO",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    },
+    {
+      "origen": "AUTO NORTE EST. TERMINAL",
+      "destino": "SABANA DEL DORADO",
+      "nombre": "AUTO NORTE EST. TERMINAL - SABANA DEL DORADO",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    }
+  ],
+  "LA809": [
+    {
+      "origen": "MARLY",
+      "destino": "SANTA RITA S.O.",
+      "nombre": "SANTA RITA S.O. - MARLY",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    },
+    {
+      "origen": "SANTA RITA S.O.",
+      "destino": "MARLY",
+      "nombre": "SANTA RITA S.O. - MARLY",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    }
+  ],
+  "T48": [
+    {
+      "origen": "NUEVA CASTILLA",
+      "destino": "PUENTE ARANDA",
+      "nombre": "NUEVA CASTILLA - PUENTE ARANDA",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - TZ"
+    }
+  ],
+  "HH632": [
+    {
+      "origen": "VILLA GLORIA",
+      "destino": "EST. GRAL SANTANDER",
+      "nombre": "VILLA GLORIA - EST. GRAL SANTANDER",
+      "tipo_servicio": 1,
+      "operador": "ODT LA ROLITA"
+    }
+  ],
+  "GH521": [
+    {
+      "origen": "SAN BERNARDINO",
+      "destino": "USME CHIGUAZA",
+      "nombre": "SAN BERNANDINO - USME CHIGUAZA",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    },
+    {
+      "origen": "USME CHIGUAZA",
+      "destino": "SAN BERNARDINO",
+      "nombre": "SAN BERNANDINO - USME CHIGUAZA",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "12": [
+    {
+      "origen": "SAN PABLO",
+      "destino": "PORCIÚNCULA",
+      "nombre": "SAN PABLO - PORCIÚNCULA",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    }
+  ],
+  "271": [
+    {
+      "origen": "LOMAS",
+      "destino": "GRAN GRANADA",
+      "nombre": "LOMAS - GRAN GRANADA",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    },
+    {
+      "origen": "GRAN GRANADA",
+      "destino": "LOMAS",
+      "nombre": "LOMAS - GRAN GRANADA",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    }
+  ],
+  "KL331": [
+    {
+      "origen": "NUEVA DELHI",
+      "destino": "FONTIBÓN BRISAS",
+      "nombre": "FONTIBON BRISAS - NUEVA DELHI",
+      "tipo_servicio": 1,
+      "operador": "ZMO FONTIBON V"
+    },
+    {
+      "origen": "FONTIBÓN BRISAS",
+      "destino": "NUEVA DELHI",
+      "nombre": "FONTIBON BRISAS - NUEVA DELHI",
+      "tipo_servicio": 1,
+      "operador": "ZMO FONTIBON V"
+    }
+  ],
+  "9-3": [
+    {
+      "origen": "PORTAL AMERICAS",
+      "destino": "BOSA LA LIBERTAD",
+      "nombre": "BOSA LA LIBERTAD",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "GH543": [
+    {
+      "origen": "GRAL SANTANDER",
+      "destino": "TIMIZA",
+      "nombre": "TIMIZA - EST G. SANTANDER",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    },
+    {
+      "origen": "TIMIZA",
+      "destino": "GRAL SANTANDER",
+      "nombre": "TIMIZA - EST G. SANTANDER",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "HC612": [
+    {
+      "origen": "SAN JOAQUÍN",
+      "destino": "VILLA MARÍA",
+      "nombre": "SAN JOAQUIN - VILLA MARIA",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    },
+    {
+      "origen": "VILLA MARÍA",
+      "destino": "SAN JOAQUÍN",
+      "nombre": "SAN JOAQUIN - VILLA MARIA",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    }
+  ],
+  "LL822": [
+    {
+      "origen": "AV 1 MAYO",
+      "destino": "SIDEL",
+      "nombre": "EST. AV. DE MAYO - SIDEL",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    }
+  ],
+  "CL155": [
+    {
+      "origen": "GAVIOTAS",
+      "destino": "SUBA GAITANA",
+      "nombre": "SUBA GAITANA - GAVIOTAS",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    },
+    {
+      "origen": "SUBA GAITANA",
+      "destino": "GAVIOTAS",
+      "nombre": "SUBA GAITANA - GAVIOTAS",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "GK505": [
+    {
+      "origen": "BOSA SAN DIEGO",
+      "destino": "CORFERIAS",
+      "nombre": "BOSA SAN DIEGO - CORFERIAS",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    },
+    {
+      "origen": "CORFERIAS",
+      "destino": "BOSA SAN DIEGO",
+      "nombre": "BOSA SAN DIEGO - CORFERIAS",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "AA002": [
+    {
+      "origen": "SAN LUIS",
+      "destino": "EST. MOVISTAR ARENA",
+      "nombre": "SAN LUIS - EST. MOVISTAR ARENA",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "19-11": [
+    {
+      "origen": "CANODROMO",
+      "destino": "PRADO VERANIEGO",
+      "nombre": "CANODROMO",
+      "tipo_servicio": 3,
+      "operador": "MASIVO CAPITAL - SO"
+    }
+  ],
+  "HC705": [
+    {
+      "origen": "EST. SUBA CALLE 100",
+      "destino": "ALFONSO LÓPEZ",
+      "nombre": "ALFONSO LOPEZ - EST. SUBA CALLE 100",
+      "tipo_servicio": 1,
+      "operador": "GRAN AMERICAS USME"
+    },
+    {
+      "origen": "ALFONSO LÓPEZ",
+      "destino": "EST. SUBA CALLE 100",
+      "nombre": "ALFONSO LOPEZ - EST. SUBA CALLE 100",
+      "tipo_servicio": 1,
+      "operador": "GRAN AMERICAS USME"
+    }
+  ],
+  "13-12": [
+    {
+      "origen": "PORTAL DE 20 JULIO",
+      "destino": "LOS LIBERTADORES",
+      "nombre": "LOS LIBERTADORES",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    }
+  ],
+  "HB609": [
+    {
+      "origen": "UNICENTRO",
+      "destino": "ARBORIZADORA ALTA",
+      "nombre": "ARBORIZADORA ALTA - UNICENTRO",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    },
+    {
+      "origen": "ARBORIZADORA ALTA",
+      "destino": "UNICENTRO",
+      "nombre": "ARBORIZADORA ALTA - UNICENTRO",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    }
+  ],
+  "SE10": [
+    {
+      "origen": "ENGATIVÁ CENTRO",
+      "destino": "GERMANIA",
+      "nombre": "ENGATIVA CENTRO - GERMANIA",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    }
+  ],
+  "5-1": [
+    {
+      "origen": "GRANJA",
+      "destino": "SUBA RINCÓN",
+      "nombre": "SUBA RINCÓN",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    }
+  ],
+  "HL723": [
+    {
+      "origen": "USME CENTRO",
+      "destino": "PORTAL 20 DE JULIO",
+      "nombre": "USME CENTRO - PORTAL 20 DE JULIO",
+      "tipo_servicio": 1,
+      "operador": "MUEVE USME"
+    }
+  ],
+  "4-1": [
+    {
+      "origen": "MOLINOS",
+      "destino": "BOCHICA",
+      "nombre": "BOCHICA",
+      "tipo_servicio": 1,
+      "operador": "E-SOMOS ALIMENTACION"
+    }
+  ],
+  "HA643": [
+    {
+      "origen": "SAN JOAQUÍN",
+      "destino": "PALOQUEMAO",
+      "nombre": "PALOQUEMAO - SAN JOAQUÍN",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    },
+    {
+      "origen": "PALOQUEMAO",
+      "destino": "SAN JOAQUÍN",
+      "nombre": "PALOQUEMAO - SAN JOAQUÍN",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    }
+  ],
+  "HA702": [
+    {
+      "origen": "LAS NIEVES",
+      "destino": "EL UVAL",
+      "nombre": "EL UVAL - LAS NIEVES",
+      "tipo_servicio": 1,
+      "operador": "GRAN AMERICAS USME"
+    },
+    {
+      "origen": "EL UVAL",
+      "destino": "LAS NIEVES",
+      "nombre": "EL UVAL - LAS NIEVES",
+      "tipo_servicio": 1,
+      "operador": "GRAN AMERICAS USME"
+    }
+  ],
+  "BB924": [
+    {
+      "origen": "PORTAL NORTE",
+      "destino": "GUAYMARAL",
+      "nombre": "GUAYMARAL",
+      "tipo_servicio": 4,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "16-3": [
+    {
+      "origen": "PORTAL EL DORADO",
+      "destino": "AV. ELDORADO - ALAMOS",
+      "nombre": "AV. ELDORADO - ALAMOS",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    }
+  ],
+  "19-2": [
+    {
+      "origen": "ALCALA",
+      "destino": "COLINA",
+      "nombre": "COLINA",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - SO"
+    }
+  ],
+  "CB118": [
+    {
+      "origen": "SUBA GAITANA",
+      "destino": "SAN CRISTÓBAL NORTE",
+      "nombre": "SAN CRISTOBAL NTE - SUBA GAITANA",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    },
+    {
+      "origen": "SAN CRISTÓBAL NORTE",
+      "destino": "SUBA GAITANA",
+      "nombre": "SAN CRISTOBAL NTE - SUBA GAITANA",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "HA606": [
+    {
+      "origen": "CHICÓ NORTE",
+      "destino": "SAN JOAQUÍN",
+      "nombre": "SAN JOAQUÍN - CHICÓ NORTE",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    },
+    {
+      "origen": "SAN JOAQUÍN",
+      "destino": "CHICÓ NORTE",
+      "nombre": "SAN JOAQUÍN - CHICÓ NORTE",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    }
+  ],
+  "8-4": [
+    {
+      "origen": "BANDERAS",
+      "destino": "CORABASTOS",
+      "nombre": "CORABASTOS",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "HL636": [
+    {
+      "origen": "RINCÓN DE VENECIA",
+      "destino": "SAN BLAS II",
+      "nombre": "RINCON DE VENECIA - SAN BLAS II",
+      "tipo_servicio": 1,
+      "operador": "ODT LA ROLITA"
+    },
+    {
+      "origen": "SAN BLAS II",
+      "destino": "RINCÓN DE VENECIA",
+      "nombre": "RINCON DE VENECIA - SAN BLAS II",
+      "tipo_servicio": 1,
+      "operador": "ODT LA ROLITA"
+    }
+  ],
+  "1-4": [
+    {
+      "origen": "PORTAL 80",
+      "destino": "CORTIJO",
+      "nombre": "CORTIJO",
+      "tipo_servicio": 1,
+      "operador": "EMASIVO 10"
+    }
+  ],
+  "7-2": [
+    {
+      "origen": "CALLE 40 SUR",
+      "destino": "TUNAL",
+      "nombre": "TUNAL",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    }
+  ],
+  "HK721": [
+    {
+      "origen": "TERMINAL SALITRE",
+      "destino": "EL TUNO",
+      "nombre": "EL TUNO - TERMINAL SALITRE",
+      "tipo_servicio": 1,
+      "operador": "MUEVE USME"
+    },
+    {
+      "origen": "EL TUNO",
+      "destino": "TERMINAL SALITRE",
+      "nombre": "EL TUNO - TERMINAL SALITRE",
+      "tipo_servicio": 1,
+      "operador": "MUEVE USME"
+    }
+  ],
+  "P7": [
+    {
+      "origen": "PORVENIR",
+      "destino": "PINARES",
+      "nombre": "PINARES - PORVENIR",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL-CONSORCIO EXPRESS"
+    },
+    {
+      "origen": "PINARES",
+      "destino": "PORVENIR",
+      "nombre": "PINARES - PORVENIR",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL-CONSORCIO EXPRESS"
+    }
+  ],
+  "599": [
+    {
+      "origen": "SUBA GAITANA",
+      "destino": "BOSA SAN DIEGO",
+      "nombre": "BOSA SAN DIEGO - SUBA GAITANA",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    },
+    {
+      "origen": "BOSA SAN DIEGO",
+      "destino": "SUBA GAITANA",
+      "nombre": "BOSA SAN DIEGO - SUBA GAITANA",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "TC10": [
+    {
+      "origen": "PORTAL NORTE",
+      "destino": "ABASTOS DEL NORTE",
+      "nombre": "PORTAL NORTE",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "260": [
+    {
+      "origen": "UNICENTRO",
+      "destino": "ARABIA",
+      "nombre": "ARABIA - UNICENTRO",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    },
+    {
+      "origen": "ARABIA",
+      "destino": "UNICENTRO",
+      "nombre": "ARABIA - UNICENTRO",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    }
+  ],
+  "HA706": [
+    {
+      "origen": "EL UVAL",
+      "destino": "SAN DIEGO",
+      "nombre": "EL UVAL - SAN DIEGO",
+      "tipo_servicio": 1,
+      "operador": "GRAN AMERICAS USME"
+    },
+    {
+      "origen": "SAN DIEGO",
+      "destino": "EL UVAL",
+      "nombre": "EL UVAL - SAN DIEGO",
+      "tipo_servicio": 1,
+      "operador": "GRAN AMERICAS USME"
+    }
+  ],
+  "LG807": [
+    {
+      "origen": "SAN BLAS",
+      "destino": "BOSA CARBONELL",
+      "nombre": "SAN BLAS - BOSA CARBONELL",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    },
+    {
+      "origen": "BOSA CARBONELL",
+      "destino": "SAN BLAS",
+      "nombre": "SAN BLAS - BOSA CARBONELL",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    }
+  ],
+  "GA537": [
+    {
+      "origen": "PALERMO",
+      "destino": "VILLA DEL RÍO",
+      "nombre": "VILLA DEL RIO - PALERMO",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    },
+    {
+      "origen": "VILLA DEL RÍO",
+      "destino": "PALERMO",
+      "nombre": "VILLA DEL RIO - PALERMO",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "KH322": [
+    {
+      "origen": "FONTIBÓN BRISAS",
+      "destino": "CERROS DE ORIENTE",
+      "nombre": "FONTIBON BRISAS - CERROS DE ORIENTE",
+      "tipo_servicio": 1,
+      "operador": "MUEVE FONTIBON"
+    },
+    {
+      "origen": "CERROS DE ORIENTE",
+      "destino": "FONTIBÓN BRISAS",
+      "nombre": "FONTIBON BRISAS - CERROS DE ORIENTE",
+      "tipo_servicio": 1,
+      "operador": "MUEVE FONTIBON"
+    }
+  ],
+  "539": [
+    {
+      "origen": "EL UVAL",
+      "destino": "ENGATIVÁ CENTRO",
+      "nombre": "EL UVAL - ENGATIVÁ CENTRO",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    },
+    {
+      "origen": "ENGATIVÁ CENTRO",
+      "destino": "EL UVAL",
+      "nombre": "EL UVAL - ENGATIVÁ CENTRO",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    }
+  ],
+  "3-3": [
+    {
+      "origen": "PORTAL USME",
+      "destino": "CHUNIZA",
+      "nombre": "CHUNIZA",
+      "tipo_servicio": 1,
+      "operador": "E-SOMOS ALIMENTACION"
+    }
+  ],
+  "BA915": [
+    {
+      "origen": "PORCIÚNCULA",
+      "destino": "TOBERÍN",
+      "nombre": "TOBERÍN - PORCIÚNCULA",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    },
+    {
+      "origen": "TOBERÍN",
+      "destino": "PORCIÚNCULA",
+      "nombre": "TOBERÍN - PORCIÚNCULA",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "HA725": [
+    {
+      "origen": "EL TUNO",
+      "destino": "LAS NIEVES",
+      "nombre": "EL TUNO - LAS NIEVES",
+      "tipo_servicio": 1,
+      "operador": "MUEVE USME"
+    }
+  ],
+  "14-6": [
+    {
+      "origen": "EL VERJÓN",
+      "destino": "EL VERJON",
+      "nombre": "EL VERJÓN",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    }
+  ],
+  "166": [
+    {
+      "origen": "METROVIVIENDA",
+      "destino": "PORCIUNCULA",
+      "nombre": "METROVIVIENDA - PORCIUNCULA",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "P44": [
+    {
+      "origen": "ARABIA",
+      "destino": "BOSA SANTA FÉ",
+      "nombre": "BOSA SANTA FE - ARABIA",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    },
+    {
+      "origen": "BOSA SANTA FÉ",
+      "destino": "ARABIA",
+      "nombre": "BOSA SANTA FE - ARABIA",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    }
+  ],
+  "HH639": [
+    {
+      "origen": "ARBORIZADORA ALTA",
+      "destino": "VILLA MAYOR",
+      "nombre": "ARBORIZADORA ALTA - VILLA MAYOR",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    },
+    {
+      "origen": "VILLA MAYOR",
+      "destino": "ARBORIZADORA ALTA",
+      "nombre": "ARBORIZADORA ALTA - VILLA MAYOR",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    }
+  ],
+  "621": [
+    {
+      "origen": "SANTO DOMINGO",
+      "destino": "BACHUÉ",
+      "nombre": "BACHUÉ - SANTO DOMINGO",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    },
+    {
+      "origen": "BACHUÉ",
+      "destino": "SANTO DOMINGO",
+      "nombre": "BACHUÉ - SANTO DOMINGO",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    }
+  ],
+  "HL602": [
+    {
+      "origen": "LOS LACHES",
+      "destino": "GALICIA",
+      "nombre": "GALICIA - LOS LACHES",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    },
+    {
+      "origen": "GALICIA",
+      "destino": "LOS LACHES",
+      "nombre": "GALICIA - LOS LACHES",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "16-9": [
+    {
+      "origen": "PORTAL EL DORADO",
+      "destino": "FONTIBÓN CENTRO",
+      "nombre": "FONTIBÓN CENTRO",
+      "tipo_servicio": 1,
+      "operador": "GRAN AMERICAS FONTIBON I"
+    },
+    {
+      "origen": "PORTAL EL DORADO",
+      "destino": "FONTIBON CENTRO",
+      "nombre": "FONTIBON CENTRO",
+      "tipo_servicio": 1,
+      "operador": "USME ZN II"
+    }
+  ],
+  "E26B": [
+    {
+      "origen": "CORPAS",
+      "destino": "CANTON NORTE",
+      "nombre": "CORPAS - CANTON NORTE",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    },
+    {
+      "origen": "CANTON NORTE",
+      "destino": "CORPAS",
+      "nombre": "CORPAS - CANTON NORTE",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "11-7": [
+    {
+      "origen": "PORTAL SUBA",
+      "destino": "PINAR",
+      "nombre": "PINAR",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    }
+  ],
+  "GA516": [
+    {
+      "origen": "PORTAL SUR",
+      "destino": "CHAPINERO",
+      "nombre": "PORTAL SUR - CHAPINERO",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    },
+    {
+      "origen": "CHAPINERO",
+      "destino": "PORTAL SUR",
+      "nombre": "PORTAL SUR - CHAPINERO",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "1-1": [
+    {
+      "origen": "PORTAL CALLE 80",
+      "destino": "ÁLAMOS",
+      "nombre": "ÁLAMOS",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    }
+  ],
+  "P39": [
+    {
+      "origen": "ARABIA",
+      "destino": "ZONA FRANCA",
+      "nombre": "ARABIA - ZONA FRANCA",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    },
+    {
+      "origen": "ZONA FRANCA",
+      "destino": "ARABIA",
+      "nombre": "ARABIA - ZONA FRANCA",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    }
+  ],
+  "CB144": [
+    {
+      "origen": "CLINICA EL BOSQUE",
+      "destino": "BILBAO",
+      "nombre": "BILBAO - CLINICA EL BOSQUE",
+      "tipo_servicio": 1,
+      "operador": "EMASIVO 16"
+    },
+    {
+      "origen": "BILBAO",
+      "destino": "CLINICA EL BOSQUE",
+      "nombre": "BILBAO - CLINICA EL BOSQUE",
+      "tipo_servicio": 1,
+      "operador": "EMASIVO 16"
+    }
+  ],
+  "LH811": [
+    {
+      "origen": "RESTREPO",
+      "destino": "AGUAS CLARAS",
+      "nombre": "AGUAS CLARAS - RESTREPO",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    },
+    {
+      "origen": "AGUAS CLARAS",
+      "destino": "RESTREPO",
+      "nombre": "AGUAS CLARAS - RESTREPO",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    }
+  ],
+  "13-13": [
+    {
+      "origen": "PORTAL 20 JULIO",
+      "destino": "RESURRECCIÓN",
+      "nombre": "RESURRECCIÓN",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    }
+  ],
+  "KH308": [
+    {
+      "origen": "PUENTE GRANDE",
+      "destino": "EL TUNO",
+      "nombre": "PUENTE GRANDE - EL TUNO",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    },
+    {
+      "origen": "EL TUNO",
+      "destino": "PUENTE GRANDE",
+      "nombre": "PUENTE GRANDE - EL TUNO",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    }
+  ],
+  "6-6": [
+    {
+      "origen": "PORTAL TUNAL",
+      "destino": "JUAN JOSÉ RONDÓN",
+      "nombre": "JUAN JOSÉ RONDÓN",
+      "tipo_servicio": 4,
+      "operador": "SUMA - BC"
+    }
+  ],
+  "BA900": [
+    {
+      "origen": "GALERÍAS",
+      "destino": "LA ESTRELLITA",
+      "nombre": "LA ESTRELLITA - GALERÍAS",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    },
+    {
+      "origen": "LA ESTRELLITA",
+      "destino": "GALERÍAS",
+      "nombre": "LA ESTRELLITA - GALERÍAS",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "HK715": [
+    {
+      "origen": "EL UVAL",
+      "destino": "CORFERIAS",
+      "nombre": "CORFERIAS - EL UVAL",
+      "tipo_servicio": 1,
+      "operador": "GRAN AMERICAS USME"
+    },
+    {
+      "origen": "CORFERIAS",
+      "destino": "EL UVAL",
+      "nombre": "CORFERIAS - EL UVAL",
+      "tipo_servicio": 1,
+      "operador": "GRAN AMERICAS USME"
+    }
+  ],
+  "FH733": [
+    {
+      "origen": "CERROS DE ORIENTE",
+      "destino": "TIERRA BUENA",
+      "nombre": "TIERRA BUENA - CERROS DE ORIENTE",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    },
+    {
+      "origen": "TIERRA BUENA",
+      "destino": "CERROS DE ORIENTE",
+      "nombre": "TIERRA BUENA - CERROS DE ORIENTE",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "6-7": [
+    {
+      "origen": "PORTAL TUNAL",
+      "destino": "SAN JOAQUÍN",
+      "nombre": "SAN JOAQUÍN",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    }
+  ],
+  "GF512": [
+    {
+      "origen": "PORTAL AMÉRICAS",
+      "destino": "PARQUES DE BOGOTA",
+      "nombre": "PARQUES DE BOGOTA - PORTAL AMERICAS",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    },
+    {
+      "origen": "PARQUES DE BOGOTA",
+      "destino": "PORTAL AMÉRICAS",
+      "nombre": "PARQUES DE BOGOTA - PORTAL AMERICAS",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "CA153": [
+    {
+      "origen": "CENTRO",
+      "destino": "SUBA LA GAITANA",
+      "nombre": "SUBA LA GAITANA - CENTRO",
+      "tipo_servicio": 1,
+      "operador": "EMASIVO 16"
+    },
+    {
+      "origen": "SUBA LA GAITANA",
+      "destino": "CENTRO",
+      "nombre": "SUBA LA GAITANA - CENTRO",
+      "tipo_servicio": 1,
+      "operador": "EMASIVO 16"
+    }
+  ],
+  "13-6": [
+    {
+      "origen": "PORTAL 20 JULIO",
+      "destino": "JUAN REY",
+      "nombre": "JUAN REY",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    }
+  ],
+  "18-11": [
+    {
+      "origen": "UNICERROS",
+      "destino": "UNICERROS",
+      "nombre": "UNICERROS AM",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    },
+    {
+      "origen": "UNICERROS",
+      "destino": "UNICERROS",
+      "nombre": "UNICERROS PM",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "BD909": [
+    {
+      "origen": "MAZURÉN",
+      "destino": "VILLAS DE GRANADA",
+      "nombre": "MAZUREN - VILLAS DE GRANADA",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    },
+    {
+      "origen": "VILLAS DE GRANADA",
+      "destino": "MAZURÉN",
+      "nombre": "MAZUREN - VILLAS DE GRANADA",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    }
+  ],
+  "10-11": [
+    {
+      "origen": "BELLA FLOR",
+      "destino": "BELLA FLOR",
+      "nombre": "BELLA FLOR",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    }
+  ],
+  "3-2": [
+    {
+      "origen": "PORTAL USME",
+      "destino": "SANTA LIBRADA",
+      "nombre": "SANTA LIBRADA",
+      "tipo_servicio": 1,
+      "operador": "E-SOMOS ALIMENTACION"
+    }
+  ],
+  "T62": [
+    {
+      "origen": "CASABLANCA",
+      "destino": "METROVIVIENDA",
+      "nombre": "METROVIVIENDA - CASABLANCA",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    },
+    {
+      "origen": "METROVIVIENDA",
+      "destino": "CASABLANCA",
+      "nombre": "METROVIVIENDA - CASABLANCA",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "CA127": [
+    {
+      "origen": "GERMANÍA",
+      "destino": "FONTANAR DEL RÍO",
+      "nombre": "FONTANAR DEL RÍO - GERMANÍA",
+      "tipo_servicio": 1,
+      "operador": "EMASIVO 10"
+    },
+    {
+      "origen": "FONTANAR DEL RÍO",
+      "destino": "GERMANÍA",
+      "nombre": "FONTANAR DEL RÍO - GERMANÍA",
+      "tipo_servicio": 1,
+      "operador": "EMASIVO 10"
+    }
+  ],
+  "T53": [
+    {
+      "origen": "ALCALA",
+      "destino": "COLINA",
+      "nombre": "EST. ALCALA - COLINA",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - SO"
+    }
+  ],
+  "2-2": [
+    {
+      "origen": "PORTAL NORTE",
+      "destino": "JARDINES",
+      "nombre": "JARDINES",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "CA124": [
+    {
+      "origen": "BILBAO",
+      "destino": "CENTRO",
+      "nombre": "BILBAO - CENTRO",
+      "tipo_servicio": 1,
+      "operador": "EMASIVO 10"
+    },
+    {
+      "origen": "CENTRO",
+      "destino": "BILBAO",
+      "nombre": "BILBAO - CENTRO",
+      "tipo_servicio": 1,
+      "operador": "EMASIVO 10"
+    }
+  ],
+  "607A": [
+    {
+      "origen": "PONTEVEDRA",
+      "destino": "SAN BERNARDINO",
+      "nombre": "SAN BERNARDINO - PONTEVEDRA",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    },
+    {
+      "origen": "SAN BERNARDINO",
+      "destino": "PONTEVEDRA",
+      "nombre": "SAN BERNARDINO - PONTEVEDRA",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "16-8": [
+    {
+      "origen": "PORTAL EL DORADO",
+      "destino": "ZONA FRANCA",
+      "nombre": "ZONA FRANCA",
+      "tipo_servicio": 1,
+      "operador": "GRAN AMERICAS FONTIBON I"
+    }
+  ],
+  "10-2": [
+    {
+      "origen": "PORTAL SUR",
+      "destino": "BOSA CENTRO",
+      "nombre": "BOSA CENTRO",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "KL325": [
+    {
+      "origen": "FONTIBÓN BRISAS",
+      "destino": "EL DORADO",
+      "nombre": "LAS BRISAS - EL DORADO",
+      "tipo_servicio": 1,
+      "operador": "ZMO FONTIBON V"
+    },
+    {
+      "origen": "EL DORADO",
+      "destino": "FONTIBÓN BRISAS",
+      "nombre": "LAS BRISAS - EL DORADO",
+      "tipo_servicio": 1,
+      "operador": "ZMO FONTIBON V"
+    }
+  ],
+  "HH604": [
+    {
+      "origen": "EST. GRAL SANTANDER",
+      "destino": "SANTO DOMINGO",
+      "nombre": "SANTO DOMINGO - EST. GRAL SANTANDER",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    },
+    {
+      "origen": "SANTO DOMINGO",
+      "destino": "EST. GRAL SANTANDER",
+      "nombre": "SANTO DOMINGO - EST. GRAL SANTANDER",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "2-5": [
+    {
+      "origen": "PORTAL NORTE",
+      "destino": "SAN CRISTÓBAL",
+      "nombre": "SAN CRISTÓBAL",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    },
+    {
+      "origen": "PORTAL NORTE",
+      "destino": "SAN CRISTÓBAL",
+      "nombre": "SAN CRISTÓBAL",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "GA522": [
+    {
+      "origen": "METROVIVIENDA",
+      "destino": "GERMANÍA",
+      "nombre": "METROVIVIENDA - GERMANÍA",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    },
+    {
+      "origen": "GERMANÍA",
+      "destino": "METROVIVIENDA",
+      "nombre": "METROVIVIENDA - GERMANÍA",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "15-5": [
+    {
+      "origen": "BICENTENARIO",
+      "destino": "LA MARÍA",
+      "nombre": "LA MARÍA",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    }
+  ],
+  "3-11": [
+    {
+      "origen": "PORTAL USME",
+      "destino": "FISCALA",
+      "nombre": "FISCALA",
+      "tipo_servicio": 1,
+      "operador": "E-SOMOS ALIMENTACION"
+    }
+  ],
+  "DG208": [
+    {
+      "origen": "METROVIVIENDA",
+      "destino": "PUENTE DE GUADUA",
+      "nombre": "PUENTE DE GUADUA - METROVIVIENDA",
+      "tipo_servicio": 1,
+      "operador": "EMASIVO 10"
+    },
+    {
+      "origen": "PUENTE DE GUADUA",
+      "destino": "METROVIVIENDA",
+      "nombre": "PUENTE DE GUADUA - METROVIVIENDA",
+      "tipo_servicio": 1,
+      "operador": "EMASIVO 10"
+    }
+  ],
+  "6-9": [
+    {
+      "origen": "PORTAL TUNAL",
+      "destino": "ARBORIZADORA ALTA",
+      "nombre": "ARBORIZADORA ALTA",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    }
+  ],
+  "18-7": [
+    {
+      "origen": "SORATAMA",
+      "destino": "SORATAMA",
+      "nombre": "SORATAMA",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "GA506": [
+    {
+      "origen": "GALERÍAS",
+      "destino": "CATALINA II",
+      "nombre": "CATALINA II - GALERÍAS",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    },
+    {
+      "origen": "CATALINA II",
+      "destino": "GALERÍAS",
+      "nombre": "CATALINA II - GALERÍAS",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "T52": [
+    {
+      "origen": "TOBERÍN",
+      "destino": "CALLE 167",
+      "nombre": "CALLE 167",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - SO"
+    }
+  ],
+  "HH622": [
+    {
+      "origen": "RINCON DE VENECIA",
+      "destino": "LA FISCALA",
+      "nombre": "RINCON DE VENECIA - LA FISCALA",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    },
+    {
+      "origen": "LA FISCALA",
+      "destino": "RINCON DE VENECIA",
+      "nombre": "RINCON DE VENECIA - LA FISCALA",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "1-3": [
+    {
+      "origen": "PORTAL 80",
+      "destino": "VILLAS DE GRANADA",
+      "nombre": "VILLAS DE GRANADA",
+      "tipo_servicio": 1,
+      "operador": "objectid *"
+    }
+  ],
+  "CG156": [
+    {
+      "origen": "EL RECREO",
+      "destino": "BILBAO",
+      "nombre": "BILBAO - EL RECREO",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    },
+    {
+      "origen": "BILBAO",
+      "destino": "EL RECREO",
+      "nombre": "BILBAO - EL RECREO",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "CH131": [
+    {
+      "origen": "BILBAO",
+      "destino": "DIANA TURBAY",
+      "nombre": "BILBAO - DIANA TURBAY",
+      "tipo_servicio": 1,
+      "operador": "EMASIVO 10"
+    },
+    {
+      "origen": "DIANA TURBAY",
+      "destino": "BILBAO",
+      "nombre": "BILBAO - DIANA TURBAY",
+      "tipo_servicio": 1,
+      "operador": "EMASIVO 10"
+    }
+  ],
+  "16-10": [
+    {
+      "origen": "PORTAL EL DORADO",
+      "destino": "VILLEMAR",
+      "nombre": "VILLEMAR",
+      "tipo_servicio": 1,
+      "operador": "GRAN AMERICAS FONTIBON I"
+    }
+  ],
+  "927": [
+    {
+      "origen": "BOSA SAN JOSÉ",
+      "destino": "AEROPUERTO",
+      "nombre": "BOSA SAN JOSE - AEROPUERTO",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    },
+    {
+      "origen": "BOSA SAN JOSÉ",
+      "destino": "AEROPUERTO",
+      "nombre": "BOSA SAN JOSE - AEROPUERTO",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "19-8": [
+    {
+      "origen": "CALLE 85",
+      "destino": "LA CABRERA",
+      "nombre": "LA CABRERA",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "16-4": [
+    {
+      "origen": "PORTAL EL DORADO",
+      "destino": "EL MUELLE",
+      "nombre": "EL MUELLE",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    }
+  ],
+  "CC146": [
+    {
+      "origen": "CASABLANCA NORTE",
+      "destino": "EST. CALLE 106",
+      "nombre": "CASABLANCA - EST. CALLE 106",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - SO"
+    }
+  ],
+  "KL328": [
+    {
+      "origen": "PUERTA DE TEJA",
+      "destino": "EST. AV 1 DE MAYO",
+      "nombre": "PUERTA DE TEJA - EST. AV 1 MAYO",
+      "tipo_servicio": 1,
+      "operador": "ZMO FONTIBON III"
+    },
+    {
+      "origen": "EST. AV 1 DE MAYO",
+      "destino": "PUERTA DE TEJA",
+      "nombre": "PUERTA DE TEJA - EST. AV 1 MAYO",
+      "tipo_servicio": 1,
+      "operador": "ZMO FONTIBON III"
+    }
+  ],
+  "18-3": [
+    {
+      "origen": "AUTONORTE EST. TERMINAL",
+      "destino": "GERMANIA",
+      "nombre": "AUTONORTE EST. TERMINAL - GERMANIA",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "CA117": [
+    {
+      "origen": "VILLA CINDY",
+      "destino": "CHAPINERO",
+      "nombre": "VILLA CINDY - CHAPINERO",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - SO"
+    },
+    {
+      "origen": "CHAPINERO",
+      "destino": "VILLA CINDY",
+      "nombre": "VILLA CINDY - CHAPINERO",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - SO"
+    }
+  ],
+  "P49": [
+    {
+      "origen": "TERMINAL NORTE",
+      "destino": "VILLA GLADYS",
+      "nombre": "VILLA GLADYS - TERMINAL NORTE",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    },
+    {
+      "origen": "VILLA GLADYS",
+      "destino": "TERMINAL NORTE",
+      "nombre": "VILLA GLADYS - TERMINAL NORTE",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "GA501": [
+    {
+      "origen": "SAN JOSÉ",
+      "destino": "GERMANIA",
+      "nombre": "SAN JOSE - GERMANIA",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    },
+    {
+      "origen": "GERMANIA",
+      "destino": "SAN JOSÉ",
+      "nombre": "SAN JOSE - GERMANIA",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "HL613": [
+    {
+      "origen": "PERDOMO",
+      "destino": "HORACIO ORJUELA",
+      "nombre": "PERDOMO - HORACIO ORJUELA",
+      "tipo_servicio": 1,
+      "operador": "ODT LA ROLITA"
+    },
+    {
+      "origen": "HORACIO ORJUELA",
+      "destino": "PERDOMO",
+      "nombre": "PERDOMO",
+      "tipo_servicio": 1,
+      "operador": "ODT LA ROLITA"
+    }
+  ],
+  "LA818": [
+    {
+      "origen": "AGUAS CLARAS",
+      "destino": "GALERÍAS",
+      "nombre": "AGUAS CLARAS - GALERÍAS",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    },
+    {
+      "origen": "GALERÍAS",
+      "destino": "AGUAS CLARAS",
+      "nombre": "AGUAS CLARAS - GALERÍAS",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    }
+  ],
+  "HG712": [
+    {
+      "origen": "BOSA LA ESTACION",
+      "destino": "ALFONSO LÓPEZ",
+      "nombre": "ALFONSO LOPEZ - BOSA LA ESTACION",
+      "tipo_servicio": 1,
+      "operador": "GRAN AMERICAS USME"
+    },
+    {
+      "origen": "ALFONSO LÓPEZ",
+      "destino": "BOSA LA ESTACION",
+      "nombre": "ALFONSO LOPEZ - BOSA LA ESTACION",
+      "tipo_servicio": 1,
+      "operador": "GRAN AMERICAS USME"
+    }
+  ],
+  "KA305": [
+    {
+      "origen": "EST. CALLE 100",
+      "destino": "EL RECODO",
+      "nombre": "EL RECODO - EST. CALLE 100",
+      "tipo_servicio": 1,
+      "operador": "E-SOMOS FONTIBON"
+    },
+    {
+      "origen": "EL RECODO",
+      "destino": "EST. CALLE 100",
+      "nombre": "EL RECODO - EST. CALLE 100",
+      "tipo_servicio": 1,
+      "operador": "E-SOMOS FONTIBON"
+    }
+  ],
+  "HD630": [
+    {
+      "origen": "MORATO",
+      "destino": "ARBORIZADORA ALTA",
+      "nombre": "ARBORIZADORA ALTA -  MORATO",
+      "tipo_servicio": 1,
+      "operador": "ODT LA ROLITA"
+    },
+    {
+      "origen": "ARBORIZADORA ALTA",
+      "destino": "MORATO",
+      "nombre": "ARBORIZADORA ALTA -  MORATO",
+      "tipo_servicio": 1,
+      "operador": "ODT LA ROLITA"
+    }
+  ],
+  "CA103": [
+    {
+      "origen": "PORTALES DEL NORTE",
+      "destino": "EST. CALLE 76",
+      "nombre": "PORTALES DEL NTE - EST. CALLE 76",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - SO"
+    },
+    {
+      "origen": "EST. CALLE 76",
+      "destino": "PORTALES DEL NORTE",
+      "nombre": "PORTALES DEL NTE - EST. CALLE 76",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - SO"
+    }
+  ],
+  "FA426": [
+    {
+      "origen": "EST. COMUNEROS",
+      "destino": "GALÁN",
+      "nombre": "EST. COMUNEROS - GALÁN",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    },
+    {
+      "origen": "GALÁN",
+      "destino": "EST. COMUNEROS",
+      "nombre": "EST. COMUNEROS - GALÁN",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "GA507": [
+    {
+      "origen": "METROVIVIENDA",
+      "destino": "CHAPINERO",
+      "nombre": "CHAPINERO - METROVIVIENDA",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    },
+    {
+      "origen": "CHAPINERO",
+      "destino": "METROVIVIENDA",
+      "nombre": "CHAPINERO - METROVIVIENDA",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "HK724": [
+    {
+      "origen": "CIUDADELA USME",
+      "destino": "MONTEVIDEO",
+      "nombre": "CIUDADELA USME - MONTEVIDEO",
+      "tipo_servicio": 1,
+      "operador": "MUEVE USME"
+    },
+    {
+      "origen": "MONTEVIDEO",
+      "destino": "CIUDADELA USME",
+      "nombre": "CIUDADELA USME - MONTEVIDEO",
+      "tipo_servicio": 1,
+      "operador": "MUEVE USME"
+    }
+  ],
+  "E61": [
+    {
+      "origen": "CASABLANCA",
+      "destino": "PORCIÚNCULA",
+      "nombre": "CASABLANCA - PORCIUNCULA",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - SO"
+    }
+  ],
+  "11-10_p": [
+    {
+      "origen": "PORTAL SUBA",
+      "destino": "BILBAO",
+      "nombre": "BILBAO",
+      "tipo_servicio": 4,
+      "operador": "ESTE ES MI BUS - CO"
+    }
+  ],
+  "579": [
+    {
+      "origen": "EL RECREO",
+      "destino": "MARLY",
+      "nombre": "EL RECREO - MARLY",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "HL716": [
+    {
+      "origen": "MOLINOS II",
+      "destino": "EST. 1 DE MAYO",
+      "nombre": "MOLINOS II - EST. 1 DE MAYO",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    },
+    {
+      "origen": "EST. 1 DE MAYO",
+      "destino": "MOLINOS II",
+      "nombre": "MOLINOS II - EST. 1 DE MAYO",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    }
+  ],
+  "806": [
+    {
+      "origen": "PROVIDENCIA ALTA",
+      "destino": "SABANA DEL DORADO",
+      "nombre": "PROVIDENCIA ALTA - SABANA DEL DORADO",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    },
+    {
+      "origen": "SABANA DEL DORADO",
+      "destino": "PROVIDENCIA ALTA",
+      "nombre": "PROVIDENCIA ALTA - SABANA DEL DORADO",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    }
+  ],
+  "56A": [
+    {
+      "origen": "ISLA DEL SOL",
+      "destino": "PORCIUNCULA",
+      "nombre": "ISLA DEL SOL - PORCIUNCULA",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "4-3": [
+    {
+      "origen": "MOLINOS",
+      "destino": "MOLINOS II",
+      "nombre": "MOLINOS II",
+      "tipo_servicio": 1,
+      "operador": "E-SOMOS ALIMENTACION"
+    }
+  ],
+  "634": [
+    {
+      "origen": "BOSA SAN DIEGO",
+      "destino": "CALLE 153",
+      "nombre": "BOSA SAN DIEGO - CALLE 153",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    },
+    {
+      "origen": "CALLE 153",
+      "destino": "BOSA SAN DIEGO",
+      "nombre": "BOSA SAN DIEGO - CALLE 153",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "T08": [
+    {
+      "origen": "PORTAL SUBA",
+      "destino": "TUNA ALTA",
+      "nombre": "PORTAL SUBA - TUNA ALTA",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - SO"
+    }
+  ],
+  "1-5": [
+    {
+      "origen": "PORTAL 80",
+      "destino": "COLSUBSIDIO",
+      "nombre": "COLSUBSIDIO",
+      "tipo_servicio": 1,
+      "operador": "EMASIVO 10"
+    }
+  ],
+  "HA704": [
+    {
+      "origen": "EL UVAL",
+      "destino": "GERMANÍA",
+      "nombre": "EL UVAL - GERMANIA",
+      "tipo_servicio": 1,
+      "operador": "GRAN AMERICAS USME"
+    },
+    {
+      "origen": "GERMANÍA",
+      "destino": "EL UVAL",
+      "nombre": "EL UVAL - GERMANIA",
+      "tipo_servicio": 1,
+      "operador": "GRAN AMERICAS USME"
+    }
+  ],
+  "C25": [
+    {
+      "origen": "SABANA DEL DORADO",
+      "destino": "UNICENTRO",
+      "nombre": "SABANA DEL DORADO - UNICENTRO",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N-GMOVIL"
+    },
+    {
+      "origen": "UNICENTRO",
+      "destino": "SABANA DEL DORADO",
+      "nombre": "SABANA DEL DORADO - UNICENTRO",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N-GMOVIL"
+    }
+  ],
+  "6-1": [
+    {
+      "origen": "PORTAL TUNAL",
+      "destino": "CANDELARIA",
+      "nombre": "CANDELARIA",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    }
+  ],
+  "1-10": [
+    {
+      "origen": "PORTAL 80",
+      "destino": "BOLIVIA BOCHICA II",
+      "nombre": "BOLIVIA BOCHICA II",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    }
+  ],
+  "KH317": [
+    {
+      "origen": "AEROPUERTO",
+      "destino": "TUNAL",
+      "nombre": "AEROPUERTO - TUNAL",
+      "tipo_servicio": 1,
+      "operador": "E-SOMOS FONTIBON"
+    },
+    {
+      "origen": "TUNAL",
+      "destino": "AEROPUERTO",
+      "nombre": "AEROPUERTO - TUNAL",
+      "tipo_servicio": 1,
+      "operador": "E-SOMOS FONTIBON"
+    }
+  ],
+  "HA610": [
+    {
+      "origen": "PARAÍSO",
+      "destino": "CHICÓ NORTE",
+      "nombre": "PARAÍSO - CHICÓ NORTE",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    },
+    {
+      "origen": "CHICÓ NORTE",
+      "destino": "PARAÍSO",
+      "nombre": "PARAÍSO - CHICÓ NORTE",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    }
+  ],
+  "LA805": [
+    {
+      "origen": "GAVIOTAS",
+      "destino": "SIETE DE AGOSTO",
+      "nombre": "GAVIOTAS - SIETE DE AGOSTO",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    },
+    {
+      "origen": "SIETE DE AGOSTO",
+      "destino": "GAVIOTAS",
+      "nombre": "GAVIOTAS - SIETE DE AGOSTO",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    }
+  ],
+  "117": [
+    {
+      "origen": "LIBERTADORES",
+      "destino": "SAN BERNARDINO",
+      "nombre": "SAN BERNARDINO - LIBERTADORES",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    },
+    {
+      "origen": "SAN BERNARDINO",
+      "destino": "LIBERTADORES",
+      "nombre": "SAN BERNARDINO - LIBERTADORES",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "SanMateo": [
+    {
+      "origen": "PORTAL SUR",
+      "destino": "SAN MATEO",
+      "nombre": "SAN MATEO - PORTAL SUR",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "E17": [
+    {
+      "origen": "VILLA GLORIA",
+      "destino": "CHICÓ",
+      "nombre": "VILLA GLORIA - CHICO",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "T40": [
+    {
+      "origen": "CATALINA II",
+      "destino": "MARLY",
+      "nombre": "CATALINA II - MARLY",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "CB100": [
+    {
+      "origen": "EST. ALCALA",
+      "destino": "CASABLANCA",
+      "nombre": "EST. ALCALA - CASABLANCA",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - SO"
+    }
+  ],
+  "KA302": [
+    {
+      "origen": "EL RECODO",
+      "destino": "CENTRO",
+      "nombre": "EL RECODO - CENTRO",
+      "tipo_servicio": 1,
+      "operador": "E-SOMOS FONTIBON"
+    },
+    {
+      "origen": "CENTRO",
+      "destino": "EL RECODO",
+      "nombre": "EL RECODO - CENTRO",
+      "tipo_servicio": 1,
+      "operador": "E-SOMOS FONTIBON"
+    }
+  ],
+  "359": [
+    {
+      "origen": "GERMANIA",
+      "destino": "ZN. IN ALAMOS",
+      "nombre": "ZN. IN ALAMOS - GERMANIA",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    },
+    {
+      "origen": "ZN. IN ALAMOS",
+      "destino": "GERMANIA",
+      "nombre": "ZN. IN ALAMOS - GERMANIA",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    }
+  ],
+  "CA129": [
+    {
+      "origen": "BILBAO",
+      "destino": "GERMANÍA",
+      "nombre": "BILBAO - GERMANÍA",
+      "tipo_servicio": 1,
+      "operador": "EMASIVO 10"
+    },
+    {
+      "origen": "GERMANÍA",
+      "destino": "BILBAO",
+      "nombre": "BILBAO - GERMANÍA",
+      "tipo_servicio": 1,
+      "operador": "EMASIVO 10"
+    }
+  ],
+  "KA319": [
+    {
+      "origen": "FONTIBÓN BRISAS",
+      "destino": "CENTRO ANDINO",
+      "nombre": "FONTIBON BRISAS - CENTRO ANDINO",
+      "tipo_servicio": 1,
+      "operador": "MUEVE FONTIBON"
+    },
+    {
+      "origen": "CENTRO ANDINO",
+      "destino": "FONTIBÓN BRISAS",
+      "nombre": "FONTIBON BRISAS - CENTRO ANDINO",
+      "tipo_servicio": 1,
+      "operador": "MUEVE FONTIBON"
+    }
+  ],
+  "BH907": [
+    {
+      "origen": "TERMINAL NORTE",
+      "destino": "USME CENTRO",
+      "nombre": "TERMINAL NORTE - USME CENTRO",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    },
+    {
+      "origen": "USME CENTRO",
+      "destino": "TERMINAL NORTE",
+      "nombre": "TERMINAL NORTE - USME CENTRO",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "T43A": [
+    {
+      "origen": "GAVIOTAS",
+      "destino": "MUSEO NACIONAL",
+      "nombre": "MUSEO NACIONAL - GAVIOTAS",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    }
+  ],
+  "TC14": [
+    {
+      "origen": "PORTAL SUR",
+      "destino": "NUEVA ROMA",
+      "nombre": "NUEVA ROMA - PORTAL SUR",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "19-6": [
+    {
+      "origen": "CALLE 142",
+      "destino": "CEDRITOS",
+      "nombre": "CEDRITOS",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "GA541": [
+    {
+      "origen": "BOSA CENTRO",
+      "destino": "CHAPINERO",
+      "nombre": "BOSA CENTRO - CHAPINERO",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    },
+    {
+      "origen": "CHAPINERO",
+      "destino": "BOSA CENTRO",
+      "nombre": "BOSA CENTRO - CHAPINERO",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "DA203": [
+    {
+      "origen": "BACHUÉ",
+      "destino": "CHICÓ NORTE",
+      "nombre": "BACHUÉ - CHICÓ NORTE",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    },
+    {
+      "origen": "CHICÓ NORTE",
+      "destino": "BACHUÉ",
+      "nombre": "BACHUÉ - CHICÓ NORTE",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    }
+  ],
+  "8-1": [
+    {
+      "origen": "BANDERAS",
+      "destino": "KENNEDY CENTRAL",
+      "nombre": "KENNEDY CENTRAL",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "13-8": [
+    {
+      "origen": "PORTAL 20 JULIO",
+      "destino": "ALTAMIRA",
+      "nombre": "PORTAL 20 DE JULIO - ALTAMIRA",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    }
+  ],
+  "KA334": [
+    {
+      "origen": "FONTIBÓN VERSALLES",
+      "destino": "LA PORCIÚNCULA",
+      "nombre": "FONTIBÓN VERSALLES - LA PORCIÚNCULA",
+      "tipo_servicio": 1,
+      "operador": "E-SOMOS FONTIBON"
+    },
+    {
+      "origen": "LA PORCIÚNCULA",
+      "destino": "FONTIBÓN VERSALLES",
+      "nombre": "FONTIBÓN VERSALLES - LA PORCIÚNCULA",
+      "tipo_servicio": 1,
+      "operador": "E-SOMOS FONTIBON"
+    }
+  ],
+  "10-3C": [
+    {
+      "origen": "PORTAL SUR",
+      "destino": "ALAMEDA",
+      "nombre": "ALAMEDA",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "HD717": [
+    {
+      "origen": "BONANZA",
+      "destino": "USME CENTRO",
+      "nombre": "USME CENTRO - BONANZA",
+      "tipo_servicio": 1,
+      "operador": "MUEVE USME"
+    },
+    {
+      "origen": "USME CENTRO",
+      "destino": "BONANZA",
+      "nombre": "USME CENTRO - BONANZA",
+      "tipo_servicio": 1,
+      "operador": "MUEVE USME"
+    }
+  ],
+  "LA814": [
+    {
+      "origen": "PORCIÚNCULA",
+      "destino": "HORACIO ORJUELA",
+      "nombre": "HORACIO ORJUELA - PORCIÚNCULA",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    },
+    {
+      "origen": "HORACIO ORJUELA",
+      "destino": "PORCIÚNCULA",
+      "nombre": "HORACIO ORJUELA - PORCIÚNCULA",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "614": [
+    {
+      "origen": "BOLONIA USME",
+      "destino": "MONTEVIDEO",
+      "nombre": "BOLONIA USME - MONTEVIDEO",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    },
+    {
+      "origen": "MONTEVIDEO",
+      "destino": "BOLONIA USME",
+      "nombre": "BOLONIA USME - MONTEVIDEO",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    }
+  ],
+  "HH625": [
+    {
+      "origen": "PORTAL TUNAL",
+      "destino": "POTOSI",
+      "nombre": "POTOSI - PORTAL TUNAL",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    }
+  ],
+  "11-4": [
+    {
+      "origen": "PORTAL SUBA",
+      "destino": "AURES",
+      "nombre": "AURES",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    }
+  ],
+  "GK527": [
+    {
+      "origen": "METROVIVIENDA",
+      "destino": "CAN",
+      "nombre": "METROVIVIENDA - CAN",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    },
+    {
+      "origen": "CAN",
+      "destino": "METROVIVIENDA",
+      "nombre": "METROVIVIENDA - CAN",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "BK903": [
+    {
+      "origen": "AEROPUERTO",
+      "destino": "SAN CRISTOBAL NORTE",
+      "nombre": "SAN CRISTOBAL NORTE - AEROPUERTO",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    },
+    {
+      "origen": "SAN CRISTOBAL NORTE",
+      "destino": "AEROPUERTO",
+      "nombre": "SAN CRISTOBAL NORTE - AEROPUERTO",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "6-5C": [
+    {
+      "origen": "PORTAL TUNAL",
+      "destino": "ARABIA",
+      "nombre": "ARABIA",
+      "tipo_servicio": 4,
+      "operador": "SUMA - BC"
+    }
+  ],
+  "HH726": [
+    {
+      "origen": "BOLONIA",
+      "destino": "EST. GRAL SANTANDER",
+      "nombre": "BOLONIA - EST. GRAL SANTANDER",
+      "tipo_servicio": 1,
+      "operador": "MUEVE USME"
+    }
+  ],
+  "CA151": [
+    {
+      "origen": "CENTRO",
+      "destino": "TIBABUYES",
+      "nombre": "TIBABUYES - CENTRO",
+      "tipo_servicio": 1,
+      "operador": "EMASIVO 16"
+    },
+    {
+      "origen": "TIBABUYES",
+      "destino": "CENTRO",
+      "nombre": "TIBABUYES - CENTRO",
+      "tipo_servicio": 1,
+      "operador": "EMASIVO 16"
+    }
+  ],
+  "1-8": [
+    {
+      "origen": "PORTAL 80",
+      "destino": "CALLE 80",
+      "nombre": "CALLE 80",
+      "tipo_servicio": 4,
+      "operador": "ESTE ES MI BUS - CO"
+    }
+  ],
+  "59B": [
+    {
+      "origen": "BACHUÉ",
+      "destino": "CHAPINERO",
+      "nombre": "BACHUE - CHAPINERO",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    }
+  ],
+  "8-5": [
+    {
+      "origen": "BANDERAS",
+      "destino": "BIBLIOTECA TINTAL",
+      "nombre": "BIBLIOTECA TINTAL",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - TZ"
+    }
+  ],
+  "KL312": [
+    {
+      "origen": "MORALBA",
+      "destino": "SAN PABLO",
+      "nombre": "FONTIBON BRISAS - MORALBA",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    },
+    {
+      "origen": "SAN PABLO",
+      "destino": "MORALBA",
+      "nombre": "FONTIBON BRISAS - MORALBA",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    }
+  ],
+  "BK905": [
+    {
+      "origen": "HAYUELOS",
+      "destino": "LA ESTRELLITA",
+      "nombre": "LA ESTRELLITA - HAYUELOS",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    },
+    {
+      "origen": "LA ESTRELLITA",
+      "destino": "HAYUELOS",
+      "nombre": "LA ESTRELLITA - HAYUELOS",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "10-8": [
+    {
+      "origen": "PORTAL SUR",
+      "destino": "OLARTE - TIMIZA",
+      "nombre": "OLARTE - TIMIZA",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "576": [
+    {
+      "origen": "ENGATIVÁ",
+      "destino": "BOSA SANTA FE",
+      "nombre": "BOSA SANTA FE - ENGATIVA",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL KE-GMOVIL"
+    },
+    {
+      "origen": "BOSA SANTA FE",
+      "destino": "ENGATIVÁ",
+      "nombre": "BOSA SANTA FE - ENGATIVA",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL KE-GMOVIL"
+    }
+  ],
+  "HH728": [
+    {
+      "origen": "DANUBIO",
+      "destino": "EST. MOLINOS",
+      "nombre": "DANUBIO - EST. MOLINOS",
+      "tipo_servicio": 1,
+      "operador": "E-SOMOS ALIMENTACION"
+    }
+  ],
+  "6-4": [
+    {
+      "origen": "PORTAL TUNAL",
+      "destino": "PARAÍSO",
+      "nombre": "PARAÍSO",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    }
+  ],
+  "N16": [
+    {
+      "origen": "AV 1 MAYO",
+      "destino": "GAVIOTAS",
+      "nombre": "GAVIOTAS - EST. 1RO MAYO",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    },
+    {
+      "origen": "GAVIOTAS",
+      "destino": "AV 1 MAYO",
+      "nombre": "GAVIOTAS - EST. 1RO MAYO",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    }
+  ],
+  "13-5": [
+    {
+      "origen": "AV 1 MAYO",
+      "destino": "LAS PACES",
+      "nombre": "LAS PACES -  EST. AV 1 MAYO",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    }
+  ],
+  "17-3": [
+    {
+      "origen": "AV ROJAS",
+      "destino": "MODELIA",
+      "nombre": "MODELIA",
+      "tipo_servicio": 1,
+      "operador": "GRAN AMERICAS FONTIBON I"
+    }
+  ],
+  "193B": [
+    {
+      "origen": "BACHUÉ",
+      "destino": "MARLY",
+      "nombre": "BACHUÉ - MARLY",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    }
+  ],
+  "15-4": [
+    {
+      "origen": "AV 1 MAYO",
+      "destino": "RAMAJAL",
+      "nombre": "RAMAJAL",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    }
+  ],
+  "LH817": [
+    {
+      "origen": "GAVIOTAS",
+      "destino": "EST. NARIÑO",
+      "nombre": "GAVIOTAS - EST. NARINO",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    }
+  ],
+  "3-6": [
+    {
+      "origen": "PORTAL USME",
+      "destino": "DANUBIO",
+      "nombre": "DANUBIO",
+      "tipo_servicio": 1,
+      "operador": "E-SOMOS ALIMENTACION"
+    }
+  ],
+  "BB920": [
+    {
+      "origen": "EST. CALLE 127",
+      "destino": "SANTA BARBARA",
+      "nombre": "ESTACION CALLE 127",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "18-14": [
+    {
+      "origen": "TORCA",
+      "destino": "TIBABITA",
+      "nombre": "TORCA - TIBABITA",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "2-4": [
+    {
+      "origen": "PORTAL NORTE",
+      "destino": "EL CODITO",
+      "nombre": "EL CODITO",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "FB419": [
+    {
+      "origen": "NUEVA CASTILLA",
+      "destino": "LIJACÁ",
+      "nombre": "NUEVA CASTILLA - LIJACA",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - TZ"
+    },
+    {
+      "origen": "LIJACÁ",
+      "destino": "NUEVA CASTILLA",
+      "nombre": "NUEVA CASTILLA - LIJACA",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - TZ"
+    }
+  ],
+  "FG414": [
+    {
+      "origen": "VILLA ALEXANDRA",
+      "destino": "HOSPITAL KENNEDY",
+      "nombre": "VILLA ALEXANDRA - HOSPITAL KENNEDY",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "T26": [
+    {
+      "origen": "PALERMO SUR",
+      "destino": "COUNTRY CLUB",
+      "nombre": "PALERMO SUR - COUNTRY CLUB",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "KG311": [
+    {
+      "origen": "PUENTE GRANDE",
+      "destino": "BOSA SAN JOSÉ",
+      "nombre": "BOSA SAN JOSE - PUENTE GRANDE",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    },
+    {
+      "origen": "BOSA SAN JOSÉ",
+      "destino": "PUENTE GRANDE",
+      "nombre": "BOSA SAN JOSE - PUENTE GRANDE",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "C701": [
+    {
+      "origen": "PARQUES DE BOGOTA",
+      "destino": "LA ROCA",
+      "nombre": "PARQUES DE BOGOTA - LA ROCA",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "12-1": [
+    {
+      "origen": "GENERAL SANTANDER",
+      "destino": "FATIMA",
+      "nombre": "FATIMA",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "FF423": [
+    {
+      "origen": "BANDERAS",
+      "destino": "FAVIDI",
+      "nombre": "FAVIDI A.M.",
+      "tipo_servicio": 2,
+      "operador": "ESTE ES MI BUS - TZ"
+    }
+  ],
+  "5-3": [
+    {
+      "origen": "GRANJA",
+      "destino": "SERENA CEREZOS",
+      "nombre": "SERENA CEREZOS",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    }
+  ],
+  "T12": [
+    {
+      "origen": "SAN JOAQUÍN",
+      "destino": "CALLE 100",
+      "nombre": "SAN JOAQUIN - CALLE 100",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    }
+  ],
+  "HA720": [
+    {
+      "origen": "CIUDADELA USME",
+      "destino": "7 DE AGOSTO",
+      "nombre": "CIUDADELA USME - 7 DE AGOSTO",
+      "tipo_servicio": 1,
+      "operador": "MUEVE USME"
+    },
+    {
+      "origen": "7 DE AGOSTO",
+      "destino": "CIUDADELA USME",
+      "nombre": "CIUDADELA USME - 7 DE AGOSTO",
+      "tipo_servicio": 1,
+      "operador": "MUEVE USME"
+    }
+  ],
+  "KC321": [
+    {
+      "origen": "TIBABUYES",
+      "destino": "FONTIBÓN BRISAS",
+      "nombre": "FONTIBON BRISAS - TIBABUYES",
+      "tipo_servicio": 1,
+      "operador": "MUEVE FONTIBON"
+    },
+    {
+      "origen": "FONTIBÓN BRISAS",
+      "destino": "TIBABUYES",
+      "nombre": "FONTIBON BRISAS - TIBABUYES",
+      "tipo_servicio": 1,
+      "operador": "MUEVE FONTIBON"
+    }
+  ],
+  "1-6": [
+    {
+      "origen": "PORTAL 80",
+      "destino": "BOLIVIA ORIENTAL",
+      "nombre": "BOLIVIA ORIENTAL",
+      "tipo_servicio": 1,
+      "operador": "EMASIVO 10"
+    }
+  ],
+  "LK810": [
+    {
+      "origen": "GAVIOTAS",
+      "destino": "FONTIBÓN BRISAS",
+      "nombre": "GAVIOTAS - FONTIBON BRISAS",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    },
+    {
+      "origen": "FONTIBÓN BRISAS",
+      "destino": "GAVIOTAS",
+      "nombre": "GAVIOTAS - FONTIBON BRISAS",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    }
+  ],
+  "19-9": [
+    {
+      "origen": "CARDIO INFANTIL",
+      "destino": "BARRANCAS NORTE",
+      "nombre": "BARRANCAS NORTE",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "BK904": [
+    {
+      "origen": "LA ESTRELLITA",
+      "destino": "TERMINAL SALITRE",
+      "nombre": "LA ESTRELLITA - TERMINAL SALITRE",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    },
+    {
+      "origen": "TERMINAL SALITRE",
+      "destino": "LA ESTRELLITA",
+      "nombre": "LA ESTRELLITA - TERMINAL SALITRE",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "HB608": [
+    {
+      "origen": "AV. CALLE 134",
+      "destino": "ARABIA",
+      "nombre": "ARABIA - AV. CALLE 134",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    },
+    {
+      "origen": "ARABIA",
+      "destino": "AV. CALLE 134",
+      "nombre": "ARABIA - AV. CALLE 134",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    }
+  ],
+  "HA611": [
+    {
+      "origen": "EST. CALLE 100",
+      "destino": "SANTO DOMINGO",
+      "nombre": "EST. CALLE 100 - SANTO DOMINGO",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    },
+    {
+      "origen": "SANTO DOMINGO",
+      "destino": "EST. CALLE 100",
+      "nombre": "EST. CALLE 100 - SANTO DOMINGO",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "8-3": [
+    {
+      "origen": "BANDERAS",
+      "destino": "CASTILLA",
+      "nombre": "CASTILLA",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - TZ"
+    }
+  ],
+  "11-8": [
+    {
+      "origen": "PORTAL SUBA",
+      "destino": "LA GAITANA",
+      "nombre": "LA GAITANA",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    }
+  ],
+  "7-1": [
+    {
+      "origen": "CALLE 40 SUR",
+      "destino": "URIBE URIBE",
+      "nombre": "URIBE URIBE",
+      "tipo_servicio": 6,
+      "operador": "E-SOMOS ALIMENTACION"
+    },
+    {
+      "origen": "CALLE 40 SUR",
+      "destino": "URIBE URIBE",
+      "nombre": "URIBE URIBE",
+      "tipo_servicio": 2,
+      "operador": "E-SOMOS ALIMENTACION"
+    }
+  ],
+  "KB314": [
+    {
+      "origen": "FONTIBON REFUGIO",
+      "destino": "EL CODITO",
+      "nombre": "FONTIBON REFUGIO - EL CODITO",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    },
+    {
+      "origen": "EL CODITO",
+      "destino": "FONTIBON REFUGIO",
+      "nombre": "FONTIBON REFUGIO - EL CODITO",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "T55": [
+    {
+      "origen": "PORTAL NORTE",
+      "destino": "PORTAL SUBA",
+      "nombre": "PORTAL NORTE - PORTAL SUBA",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - SO"
+    }
+  ],
+  "13-9": [
+    {
+      "origen": "PORTAL 20 JULIO",
+      "destino": "TIHUAQUE",
+      "nombre": "TIHUAQUE",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    }
+  ],
+  "8-6": [
+    {
+      "origen": "BANDERAS",
+      "destino": "TIMIZA",
+      "nombre": "TIMIZA",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "740": [
+    {
+      "origen": "PENINSULA",
+      "destino": "ENGATIVÁ",
+      "nombre": "PENINSULA - ENGATIVA",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    },
+    {
+      "origen": "ENGATIVÁ",
+      "destino": "PENINSULA",
+      "nombre": "PENINSULA - ENGATIVA",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    }
+  ],
+  "114A": [
+    {
+      "origen": "ALTOS DEL ZUQUE",
+      "destino": "PALOQUEMAO",
+      "nombre": "ALTOS DEL ZUQUE - PALOQUEMAO",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    }
+  ],
+  "9-5": [
+    {
+      "origen": "PORTAL AMERICAS",
+      "destino": "AV. TINTAL",
+      "nombre": "AV. TINTAL",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "T795": [
+    {
+      "origen": "CORPAS",
+      "destino": "ESTACI",
+      "nombre": "CORPAS - ESTACICN CALLE 100",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "3-5": [
+    {
+      "origen": "PORTAL USME",
+      "destino": "USMINIA",
+      "nombre": "USMINIA",
+      "tipo_servicio": 1,
+      "operador": "E-SOMOS ALIMENTACION"
+    }
+  ],
+  "CF154": [
+    {
+      "origen": "SUBA NOGALES",
+      "destino": "PUENTE ARANDA",
+      "nombre": "SUBA NOGALES - PUENTE ARANDA",
+      "tipo_servicio": 1,
+      "operador": "EMASIVO 16"
+    },
+    {
+      "origen": "PUENTE ARANDA",
+      "destino": "SUBA NOGALES",
+      "nombre": "SUBA NOGALES - PUENTE ARANDA",
+      "tipo_servicio": 1,
+      "operador": "EMASIVO 16"
+    }
+  ],
+  "SE14": [
+    {
+      "origen": "ENGATIVÁ CENTRO",
+      "destino": "DIANA TURBAY CULTIVOS",
+      "nombre": "DIANA TURBAY CULTIVOS - ENGATIVA CENTRO",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL-SUMA"
+    },
+    {
+      "origen": "DIANA TURBAY CULTIVOS",
+      "destino": "ENGATIVÁ CENTRO",
+      "nombre": "DIANA TURBAY CULTIVOS - ENGATIVA CENTRO",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL-SUMA"
+    }
+  ],
+  "E44": [
+    {
+      "origen": "EL UVAL",
+      "destino": "MIRANDELA",
+      "nombre": "MIRANDELA - EL UVAL",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    },
+    {
+      "origen": "MIRANDELA",
+      "destino": "EL UVAL",
+      "nombre": "MIRANDELA - EL UVAL",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "FC404": [
+    {
+      "origen": "CALLE 170",
+      "destino": "PATIO BONITO",
+      "nombre": "PATIO BONITO - CALLE 170",
+      "tipo_servicio": 4,
+      "operador": "MASIVO CAPITAL - KE"
+    },
+    {
+      "origen": "PATIO BONITO",
+      "destino": "CALLE 170",
+      "nombre": "PATIO BONITO - CALLE 170",
+      "tipo_servicio": 4,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "3-14": [
+    {
+      "origen": "PORTAL USME",
+      "destino": "EL UVAL",
+      "nombre": "EL UVAL",
+      "tipo_servicio": 1,
+      "operador": "E-SOMOS ALIMENTACION"
+    }
+  ],
+  "DL205": [
+    {
+      "origen": "BOSQUE SAN CARLOS",
+      "destino": "BACHUÉ",
+      "nombre": "BACHUE - BOSQUE SAN CARLOS",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    },
+    {
+      "origen": "BACHUÉ",
+      "destino": "BOSQUE SAN CARLOS",
+      "nombre": "BACHUE - BOSQUE SAN CARLOS",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    }
+  ],
+  "GG524": [
+    {
+      "origen": "PARQUES DE BOGOTÁ",
+      "destino": "PORTAL SUR",
+      "nombre": "PARQUES DE BOGOTA - PORTAL SUR",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "LA821": [
+    {
+      "origen": "BICENTENARIO",
+      "destino": "UNIVERSIDADES",
+      "nombre": "EST. BICENTENARIO - EST. UNIVERSIDADES",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    }
+  ],
+  "Z8": [
+    {
+      "origen": "METROVIVIENDA",
+      "destino": "TOBERÍN",
+      "nombre": "METROVIVIENDA - TOBERIN",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    },
+    {
+      "origen": "TOBERÍN",
+      "destino": "METROVIVIENDA",
+      "nombre": "METROVIVIENDA - TOBERIN",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "10-6": [
+    {
+      "origen": "PORTAL SUR",
+      "destino": "PERDOMO",
+      "nombre": "PERDOMO",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "742A": [
+    {
+      "origen": "PARAÍSO",
+      "destino": "BULEVAR NIZA",
+      "nombre": "PARAISO - BULEVAR NIZA",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    },
+    {
+      "origen": "BULEVAR NIZA",
+      "destino": "PARAÍSO",
+      "nombre": "PARAISO - BULEVAR NIZA",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    }
+  ],
+  "2-7": [
+    {
+      "origen": "PORTAL NORTE",
+      "destino": "SAN JOSÉ",
+      "nombre": "SAN JOSÉ",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - SO"
+    }
+  ],
+  "HF615": [
+    {
+      "origen": "EST. BIBLIOTECA TINTAL",
+      "destino": "ARBORIZADORA ALTA",
+      "nombre": "ARBORIZADORA ALTA - EST. BIBLIOTECA TINTAL",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    },
+    {
+      "origen": "ARBORIZADORA ALTA",
+      "destino": "EST. BIBLIOTECA TINTAL",
+      "nombre": "ARBORIZADORA ALTA - EST. BIBLIOTECA TINTAL",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    }
+  ],
+  "19-3": [
+    {
+      "origen": "CALLE 100",
+      "destino": "CHICÓ NORTE",
+      "nombre": "CHICÓ NORTE",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "3-12": [
+    {
+      "origen": "PORTAL USME",
+      "destino": "LA ESPERANZA SUR",
+      "nombre": "LA ESPERANZA SUR",
+      "tipo_servicio": 1,
+      "operador": "E-SOMOS ALIMENTACION"
+    }
+  ],
+  "BK916": [
+    {
+      "origen": "BALMORAL NTE",
+      "destino": "FONTIBON REFUGIO",
+      "nombre": "BALMORAL NTE - FONTIBON REFUGIO",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    },
+    {
+      "origen": "FONTIBON REFUGIO",
+      "destino": "BALMORAL NTE",
+      "nombre": "BALMORAL NTE - FONTIBON REFUGIO",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "191": [
+    {
+      "origen": "METROVIVIENDA",
+      "destino": "UNICENTRO",
+      "nombre": "UNICENTRO - METROVIVIENDA",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    },
+    {
+      "origen": "UNICENTRO",
+      "destino": "METROVIVIENDA",
+      "nombre": "UNICENTRO - METROVIVIENDA",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "577": [
+    {
+      "origen": "EL PALMAR",
+      "destino": "DIANA TURBAY",
+      "nombre": "EL PALMAR - DIANA TURBAY",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    },
+    {
+      "origen": "DIANA TURBAY",
+      "destino": "EL PALMAR",
+      "nombre": "EL PALMAR - DIANA TURBAY",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    }
+  ],
+  "CK102": [
+    {
+      "origen": "SUBA FONTANAR",
+      "destino": "SALITRE EL GRECO",
+      "nombre": "SUBA FONTANAR - SALITRE EL GRECO",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    },
+    {
+      "origen": "SALITRE EL GRECO",
+      "destino": "SUBA FONTANAR",
+      "nombre": "SUBA FONTANAR - SALITRE EL GRECO",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    }
+  ],
+  "9-2": [
+    {
+      "origen": "PORTAL AMERICAS",
+      "destino": "METROVIVIENDA",
+      "nombre": "METROVIVIENDA",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "KA336": [
+    {
+      "origen": "GERMANÍA",
+      "destino": "PUENTE GRANDE HB",
+      "nombre": "PUENTE GRANDE HB - GERMANÍA",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - TZ"
+    },
+    {
+      "origen": "PUENTE GRANDE HB",
+      "destino": "GERMANÍA",
+      "nombre": "PUENTE GRANDE HB - GERMANÍA",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - TZ"
+    }
+  ],
+  "HH729": [
+    {
+      "origen": "PORTAL USME",
+      "destino": "LA AURORA",
+      "nombre": "LA AURORA",
+      "tipo_servicio": 4,
+      "operador": "MUEVE USME"
+    }
+  ],
+  "688": [
+    {
+      "origen": "LA MAGDALENA",
+      "destino": "GERMANIA",
+      "nombre": "LA MAGDALENA - GERMANIA",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - TZ"
+    }
+  ],
+  "GG525": [
+    {
+      "origen": "PORVENIR",
+      "destino": "BOSA ESTACIÓN",
+      "nombre": "PORVENIR - BOSA ESTACION",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "FF407": [
+    {
+      "origen": "LA MAGDALENA",
+      "destino": "BANDERAS",
+      "nombre": "EST .BANDERAS - LA MAGDALENA",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - TZ"
+    }
+  ],
+  "3-14_p": [
+    {
+      "origen": "PORTAL USME",
+      "destino": "EL UVAL",
+      "nombre": "EL UVAL",
+      "tipo_servicio": 4,
+      "operador": "E-SOMOS ALIMENTACION"
+    }
+  ],
+  "6-1C": [
+    {
+      "origen": "PORTAL TUNAL",
+      "destino": "CASALINDA",
+      "nombre": "CASALINDA",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    }
+  ],
+  "BC925": [
+    {
+      "origen": "MAZURÉN",
+      "destino": "NIZA CL 127",
+      "nombre": "EST. MAZUREN - EST. NIZA-CL 127",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - SO"
+    }
+  ],
+  "91": [
+    {
+      "origen": "BOSA SAN JOSÉ",
+      "destino": "PORCIÚNCULA",
+      "nombre": "BOSA SAN JOSE - PORCIUNCULA",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "16-1": [
+    {
+      "origen": "PORTAL EL DORADO",
+      "destino": "TIERRA GRATA",
+      "nombre": "TIERRA GRATA",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    }
+  ],
+  "466": [
+    {
+      "origen": "CHICÓ NORTE",
+      "destino": "SABANA DEL DORADO",
+      "nombre": "SABANA DEL DORADO - CHICÓ NORTE",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    },
+    {
+      "origen": "SABANA DEL DORADO",
+      "destino": "CHICÓ NORTE",
+      "nombre": "SABANA DEL DORADO - CHICÓ NORTE",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    }
+  ],
+  "HA642": [
+    {
+      "origen": "RINCÓN DE VENECIA",
+      "destino": "PORCIÚNCULA",
+      "nombre": "RINCÓN DE VENECIA - PORCIÚNCULA",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "LG816": [
+    {
+      "origen": "VILLA DEL RÍO",
+      "destino": "DOÑA LILIANA",
+      "nombre": "DONA LILIANA - VILLA DEL RIO",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    },
+    {
+      "origen": "DOÑA LILIANA",
+      "destino": "VILLA DEL RÍO",
+      "nombre": "DONA LILIANA - VILLA DEL RIO",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    }
+  ],
+  "CH116": [
+    {
+      "origen": "SAN CARLOS",
+      "destino": "FONTANAR DEL RÍO",
+      "nombre": "SAN CARLOS - FONTANAR DEL RIO",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    },
+    {
+      "origen": "FONTANAR DEL RÍO",
+      "destino": "SAN CARLOS",
+      "nombre": "SAN CARLOS - FONTANAR DEL RIO",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    }
+  ],
+  "HA605": [
+    {
+      "origen": "ARBORIZADORA ALTA",
+      "destino": "POLO",
+      "nombre": "ARBORIZADORA ALTA-POLO",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    },
+    {
+      "origen": "POLO",
+      "destino": "ARBORIZADORA ALTA",
+      "nombre": "ARBORIZADORA ALTA-POLO",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    }
+  ],
+  "11-5": [
+    {
+      "origen": "PORTAL SUBA",
+      "destino": "AVENIDA CALI",
+      "nombre": "AVENIDA CALI",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    }
+  ],
+  "C159": [
+    {
+      "origen": "VILLA CINDY",
+      "destino": "SUBA PUEBLO",
+      "nombre": "VILLA CINDY - SUBA PUEBLO",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - SO"
+    }
+  ],
+  "KC323": [
+    {
+      "origen": "SUBA COMPARTIR",
+      "destino": "EL RECODO",
+      "nombre": "EL RECODO - SUBA COMPARTIR",
+      "tipo_servicio": 1,
+      "operador": "MUEVE FONTIBON"
+    },
+    {
+      "origen": "EL RECODO",
+      "destino": "SUBA COMPARTIR",
+      "nombre": "EL RECODO - SUBA COMPARTIR",
+      "tipo_servicio": 1,
+      "operador": "MUEVE FONTIBON"
+    }
+  ],
+  "8-2": [
+    {
+      "origen": "BANDERAS",
+      "destino": "KENNEDY HOSPITAL",
+      "nombre": "KENNEDY HOSPITAL",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "544A": [
+    {
+      "origen": "BOSA SAN DIEGO",
+      "destino": "GERMANIA",
+      "nombre": "BOSA SAN DIEGO - GERMANIA",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "143": [
+    {
+      "origen": "COMPARTIR",
+      "destino": "GERMANIA",
+      "nombre": "COMPARTIR - GERMANIA",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    }
+  ],
+  "DD204": [
+    {
+      "origen": "GRAN GRANADA",
+      "destino": "PORTAL CALLE 80",
+      "nombre": "GRAN GRANADA - PORTAL CALLE 80",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    }
+  ],
+  "15-3": [
+    {
+      "origen": "AV 1 MAYO",
+      "destino": "HORACIO ORJUELA",
+      "nombre": "HORACIO ORJUELA",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    }
+  ],
+  "5-4": [
+    {
+      "origen": "GRANJA",
+      "destino": "FLORIDA",
+      "nombre": "FLORIDA",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    }
+  ],
+  "18-9": [
+    {
+      "origen": "CERRO NORTE",
+      "destino": "CERRO NORTE",
+      "nombre": "CERRO NORTE",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "2-11": [
+    {
+      "origen": "PORTAL NORTE",
+      "destino": "ANDALUCÍA",
+      "nombre": "ANDALUCÍA",
+      "tipo_servicio": 5,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "9-4": [
+    {
+      "origen": "PORTAL AMERICAS",
+      "destino": "PATIO BONITO",
+      "nombre": "PATIO BONITO",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "6-3": [
+    {
+      "origen": "PORTAL TUNAL",
+      "destino": "SIERRA MORENA",
+      "nombre": "SIERRA MORENA",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    }
+  ],
+  "T13": [
+    {
+      "origen": "VILLA CINDY",
+      "destino": "HOSPITAL SAN BLAS",
+      "nombre": "VILLA CINDY - HOSPITAL SAN BLAS",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    },
+    {
+      "origen": "HOSPITAL SAN BLAS",
+      "destino": "VILLA CINDY",
+      "nombre": "VILLA CINDY - HOSPITAL SAN BLAS",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    }
+  ],
+  "CB130": [
+    {
+      "origen": "SUBA BERLÍN",
+      "destino": "CARDIO INFANTIL",
+      "nombre": "SUBA BERLIN - CARDIOINFANTIL",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    },
+    {
+      "origen": "CARDIO INFANTIL",
+      "destino": "SUBA BERLÍN",
+      "nombre": "SUBA BERLIN - CARDIOINFANTIL",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "KA324": [
+    {
+      "origen": "EL REFUGIO",
+      "destino": "PERSEVERANCIA",
+      "nombre": "EL REFUGIO - PERSEVERANCIA",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    }
+  ],
+  "E25": [
+    {
+      "origen": "ENGATIVÁ CENTRO",
+      "destino": "LOURDES",
+      "nombre": "ENGATIVA CENTRO - LOURDES",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    }
+  ],
+  "19-10": [
+    {
+      "origen": "PRADO",
+      "destino": "CIUDAD JARDIN NORTE",
+      "nombre": "PRADO",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - SO"
+    }
+  ],
+  "HK707": [
+    {
+      "origen": "EL UVAL",
+      "destino": "EL REFUGIO",
+      "nombre": "EL UVAL - EL REFUGIO",
+      "tipo_servicio": 1,
+      "operador": "GRAN AMERICAS USME"
+    },
+    {
+      "origen": "EL REFUGIO",
+      "destino": "EL UVAL",
+      "nombre": "EL UVAL - EL REFUGIO",
+      "tipo_servicio": 1,
+      "operador": "GRAN AMERICAS USME"
+    }
+  ],
+  "3-13": [
+    {
+      "origen": "PORTAL USME",
+      "destino": "NEBRASKA",
+      "nombre": "NEBRASKA",
+      "tipo_servicio": 1,
+      "operador": "E-SOMOS ALIMENTACION"
+    }
+  ],
+  "16-5": [
+    {
+      "origen": "PORTAL EL DORADO",
+      "destino": "VILLA AMALIA",
+      "nombre": "VILLA AMALIA",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    }
+  ],
+  "FF424": [
+    {
+      "origen": "BANDERAS",
+      "destino": "FAVIDI",
+      "nombre": "FAVIDI P.M.",
+      "tipo_servicio": 6,
+      "operador": "ESTE ES MI BUS - TZ"
+    }
+  ],
+  "6-5": [
+    {
+      "origen": "PORTAL TUNAL",
+      "destino": "TESORO",
+      "nombre": "TESORO",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    }
+  ],
+  "19-12": [
+    {
+      "origen": "TOBERÍN",
+      "destino": "CANTALEJO",
+      "nombre": "CANTALEJO",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - SO"
+    }
+  ],
+  "Z4B": [
+    {
+      "origen": "TERMINAL NORTE",
+      "destino": "TERMINAL SALITRE",
+      "nombre": "EST. TERMINAL - TERMINAL SALITRE",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    },
+    {
+      "origen": "TERMINAL SALITRE",
+      "destino": "TERMINAL NORTE",
+      "nombre": "EST. TERMINAL - TERMINAL SALITRE",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "9-10": [
+    {
+      "origen": "PORTAL AMERICAS",
+      "destino": "ROMA",
+      "nombre": "ROMA",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "P500": [
+    {
+      "origen": "AEROPUERTO",
+      "destino": "CENTRO ANDINO",
+      "nombre": "AEROPUERTO - CENTRO ANDINO",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    }
+  ],
+  "CB138": [
+    {
+      "origen": "BILBAO",
+      "destino": "CEDRITOS",
+      "nombre": "BILBAO - CEDRITOS",
+      "tipo_servicio": 1,
+      "operador": "EMASIVO 16"
+    },
+    {
+      "origen": "CEDRITOS",
+      "destino": "BILBAO",
+      "nombre": "BILBAO - CEDRITOS",
+      "tipo_servicio": 1,
+      "operador": "EMASIVO 16"
+    }
+  ],
+  "AA001": [
+    {
+      "origen": "UNICERROS",
+      "destino": "UNICENTRO",
+      "nombre": "UNICERROS - UNICENTRO",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    },
+    {
+      "origen": "UNICENTRO",
+      "destino": "UNICERROS",
+      "nombre": "UNICERROS - UNICENTRO",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "T21": [
+    {
+      "origen": "CLINICA CORPAS-CONEJERA",
+      "destino": "CANTÓN NORTE",
+      "nombre": "CLINICA CORPAS-CONEJERA - CANTON NORTE",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "9-7": [
+    {
+      "origen": "PORTAL AMERICAS",
+      "destino": "BOSA LA INDEPENDENCIA",
+      "nombre": "BOSA LA INDEPENDENCIA",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "1-7": [
+    {
+      "origen": "PORTAL 80",
+      "destino": "QUIRIGUA",
+      "nombre": "QUIRIGUA",
+      "tipo_servicio": 1,
+      "operador": "EMASIVO 10"
+    }
+  ],
+  "786": [
+    {
+      "origen": "METROVIVIENDA",
+      "destino": "DIANA TURBAY-PUENTES",
+      "nombre": "METROVIVIENDA - DIANA TURBAY-PUENTES",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    },
+    {
+      "origen": "DIANA TURBAY-PUENTES",
+      "destino": "METROVIVIENDA",
+      "nombre": "METROVIVIENDA - DIANA TURBAY-PUENTES",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    }
+  ],
+  "HH641": [
+    {
+      "origen": "PORTAL SUR",
+      "destino": "SANTO DOMINGO",
+      "nombre": "SANTO DOMINGO PM",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    }
+  ],
+  "2-10": [
+    {
+      "origen": "PORTAL NORTE",
+      "destino": "VERBENAL",
+      "nombre": "VERBENAL",
+      "tipo_servicio": 5,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "10-4": [
+    {
+      "origen": "PORTAL SUR",
+      "destino": "BOSA LAURELES",
+      "nombre": "BOSA LAURELES",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "TC30": [
+    {
+      "origen": "PUERTA AL LLANO",
+      "destino": "PORTAL USME",
+      "nombre": "PUERTA AL LLANO - PORTAL USME",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "C1": [
+    {
+      "origen": "ROMA",
+      "destino": "GERMANIA",
+      "nombre": "ROMA - GERMANIA",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "KK301": [
+    {
+      "origen": "EST. EL TIEMPO",
+      "destino": "LA FELICIDAD",
+      "nombre": "LA FELICIDAD",
+      "tipo_servicio": 1,
+      "operador": "GRAN AMERICAS FONTIBON I"
+    }
+  ],
+  "DA214": [
+    {
+      "origen": "BACHUÉ",
+      "destino": "PARKWAY",
+      "nombre": "BACHUÉ - PARKWAY",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    }
+  ],
+  "669": [
+    {
+      "origen": "GALÁN",
+      "destino": "GRAN GRANADA",
+      "nombre": "GRAN GRANADA - GALÁN",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    },
+    {
+      "origen": "GRAN GRANADA",
+      "destino": "GALAN",
+      "nombre": "GRAN GRANADA - GALÁN",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    }
+  ],
+  "731": [
+    {
+      "origen": "BOSA SAN JOSE",
+      "destino": "PALERMO",
+      "nombre": "BOSA SAN JOSE - PALERMO",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "CC110": [
+    {
+      "origen": "PORTAL DE SUBA",
+      "destino": "CHORRILLOS",
+      "nombre": "CHORRILLOS - PORTAL DE SUBA",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    }
+  ],
+  "5-2": [
+    {
+      "origen": "AV CALI",
+      "destino": "CARRERA 91",
+      "nombre": "CARRERA 91",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    }
+  ],
+  "13-4": [
+    {
+      "origen": "AV 1 MAYO",
+      "destino": "DIANA TURBAY",
+      "nombre": "DIANA TURBAY - EST. AV 1 MAYO",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    }
+  ],
+  "9-8": [
+    {
+      "origen": "PORTAL AMERICAS",
+      "destino": "PORVENIR",
+      "nombre": "PORVENIR",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "T27": [
+    {
+      "origen": "AV 1 MAYO",
+      "destino": "BELLO HORIZONTE",
+      "nombre": "ESTACION AV. 1",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    }
+  ],
+  "CB109": [
+    {
+      "origen": "TIBABUYES",
+      "destino": "CANTON NORTE",
+      "nombre": "TIBABUYES - CANTON NORTE",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "DH216": [
+    {
+      "origen": "LA FLORIDA",
+      "destino": "VILLA MAYOR",
+      "nombre": "LA FLORIDA - VILLA MAYOR",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    },
+    {
+      "origen": "VILLA MAYOR",
+      "destino": "LA FLORIDA",
+      "nombre": "LA FLORIDA - VILLA MAYOR",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    }
+  ],
+  "580": [
+    {
+      "origen": "BOSA SAN JOSÉ",
+      "destino": "EST. BICENTENARIO",
+      "nombre": "BOSA SAN JOSÉ - EST. BICENTENARIO",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    },
+    {
+      "origen": "BOSA SAN JOSÉ",
+      "destino": "EST. BICENTENARIO",
+      "nombre": "BOSA SAN JOSÉ - EST. BICENTENARIO",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "2-1": [
+    {
+      "origen": "PORTAL NORTE",
+      "destino": "MIRANDELA",
+      "nombre": "MIRANDELA",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - SO"
+    }
+  ],
+  "DD212": [
+    {
+      "origen": "ENGATIVÁ CENTRO",
+      "destino": "PORTAL 80",
+      "nombre": "ENGATIVA CENTRO - PORTAL 80",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    }
+  ],
+  "KK300": [
+    {
+      "origen": "PORTAL EL DORADO",
+      "destino": "PUENTE GRANDE",
+      "nombre": "PUENTE GRANDE",
+      "tipo_servicio": 1,
+      "operador": "GRAN AMERICAS FONTIBON I"
+    }
+  ],
+  "19-1": [
+    {
+      "origen": "ALCALA",
+      "destino": "AK 7",
+      "nombre": "ESTACION ALCALA",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "HH710": [
+    {
+      "origen": "PORTAL USME",
+      "destino": "COMPOSTELA",
+      "nombre": "PORTAL USME - COMPOSTELA",
+      "tipo_servicio": 1,
+      "operador": "GRAN AMERICAS USME"
+    }
+  ],
+  "9-11": [
+    {
+      "origen": "PORTAL AMERICAS",
+      "destino": "FRANJA SECA",
+      "nombre": "FRANJA SECA",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "3-9": [
+    {
+      "origen": "PORTAL USME",
+      "destino": "MARICHUELA",
+      "nombre": "MARICHUELA",
+      "tipo_servicio": 1,
+      "operador": "E-SOMOS ALIMENTACION"
+    }
+  ],
+  "7-3": [
+    {
+      "origen": "CALLE 40 SUR",
+      "destino": "INGLÉS",
+      "nombre": "INGLÉS",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    }
+  ],
+  "16-14": [
+    {
+      "origen": "PORTAL EL DORADO",
+      "destino": "AEROPUERTO",
+      "nombre": "AEROPUERTO",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    }
+  ],
+  "11-9": [
+    {
+      "origen": "PORTAL SUBA",
+      "destino": "LISBOA",
+      "nombre": "LISBOA",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    }
+  ],
+  "1-2": [
+    {
+      "origen": "PORTAL 80",
+      "destino": "GARCÉS NAVAS",
+      "nombre": "GARCÉS NAVAS",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    }
+  ],
+  "E43": [
+    {
+      "origen": "VILLA GLORIA",
+      "destino": "CHICÓ",
+      "nombre": "VILLA GLORIA - CHICO",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "GF511": [
+    {
+      "origen": "PORVENIR",
+      "destino": "PORTAL AMÉRICAS",
+      "nombre": "PORTAL AMERICAS - PORVENIR",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "T04": [
+    {
+      "origen": "PORTAL SUR",
+      "destino": "POTOSÍ",
+      "nombre": "POTOSI - PORTAL SUR",
+      "tipo_servicio": 1,
+      "operador": "ODT LA ROLITA"
+    }
+  ],
+  "11-2": [
+    {
+      "origen": "PORTAL SUBA",
+      "destino": "SAN ANDRÉS",
+      "nombre": "SAN ANDRÉS",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    }
+  ],
+  "AA003": [
+    {
+      "origen": "EST. UNIVERSIDAD NACIONAL",
+      "destino": "EST. MARLY",
+      "nombre": "EST. UNIVERSIDAD NACIONAL",
+      "tipo_servicio": 1,
+      "operador": "ZMO FONTIBON III"
+    }
+  ],
+  "T26r": [
+    {
+      "origen": "PALERMO SUR",
+      "destino": "MOLINOS",
+      "nombre": "PALERMO SUR REFUERZO MOLINOS",
+      "tipo_servicio": 4,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "10-5": [
+    {
+      "origen": "PORTAL SUR",
+      "destino": "TERMINAL SUR",
+      "nombre": "TERMINAL SUR",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "C104": [
+    {
+      "origen": "PORTAL SUBA",
+      "destino": "SUBA COMPARTIR",
+      "nombre": "SUBA COMPARTIR",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    }
+  ],
+  "13-10": [
+    {
+      "origen": "PORTAL 20 JULIO",
+      "destino": "VILLA DEL CERRO",
+      "nombre": "VILLA DEL CERRO",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    }
+  ],
+  "6-8": [
+    {
+      "origen": "PORTAL TUNAL",
+      "destino": "VISTA HERMOSA",
+      "nombre": "VISTA HERMOSA",
+      "tipo_servicio": 4,
+      "operador": "SUMA - BC"
+    }
+  ],
+  "BB908": [
+    {
+      "origen": "PEPE SIERRA",
+      "destino": "HACIENDA SANTA BARBARA",
+      "nombre": "EST. PEPE SIERRA",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "GG528": [
+    {
+      "origen": "EST. VENECIA",
+      "destino": "BOITA",
+      "nombre": "EST. VENECIA",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "9-1": [
+    {
+      "origen": "PORTAL AMERICAS",
+      "destino": "CASABLANCA",
+      "nombre": "CASABLANCA",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "C15": [
+    {
+      "origen": "BOSA SAN DIEGO",
+      "destino": "CHAPINERO",
+      "nombre": "BOSA SAN DIEGO - CHAPINERO",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "FF425": [
+    {
+      "origen": "BANDERAS",
+      "destino": "TIMIZA",
+      "nombre": "CIRCULAR TIMIZA",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "3-8": [
+    {
+      "origen": "PORTAL USME",
+      "destino": "VIRREY",
+      "nombre": "VIRREY",
+      "tipo_servicio": 1,
+      "operador": "E-SOMOS ALIMENTACION"
+    }
+  ],
+  "LL820": [
+    {
+      "origen": "PORTAL 20 JULIO",
+      "destino": "SAN ISIDRO",
+      "nombre": "SAN ISIDRO",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    }
+  ],
+  "CC160": [
+    {
+      "origen": "ORQUIDEAS",
+      "destino": "EST. CAMPI├æA",
+      "nombre": "ORQUIDEAS - EST. CAMPI├æA",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - SO"
+    }
+  ],
+  "9-9": [
+    {
+      "origen": "PORTAL AMERICAS",
+      "destino": "BOSA SANTA FE",
+      "nombre": "BOSA SANTA FE",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "6-18": [
+    {
+      "origen": "PORTAL TUNAL",
+      "destino": "SAN CARLOS - PASQUILLA",
+      "nombre": "SAN CARLOS - PASQUILLA",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    }
+  ],
+  "16-7": [
+    {
+      "origen": "PORTAL EL DORADO",
+      "destino": "LA ESTANCIA",
+      "nombre": "LA ESTANCIA",
+      "tipo_servicio": 1,
+      "operador": "GRAN AMERICAS FONTIBON I"
+    }
+  ],
+  "CB145": [
+    {
+      "origen": "BILBAO",
+      "destino": "SAN CRISTÓBAL NORTE",
+      "nombre": "BILBAO - SAN CRISTÓBAL NORTE",
+      "tipo_servicio": 1,
+      "operador": "EMASIVO 16"
+    },
+    {
+      "origen": "SAN CRISTÓBAL NORTE",
+      "destino": "BILBAO",
+      "nombre": "BILBAO - SAN CRISTÓBAL NORTE",
+      "tipo_servicio": 1,
+      "operador": "EMASIVO 16"
+    }
+  ],
+  "KB309": [
+    {
+      "origen": "SAN PABLO",
+      "destino": "LIJACÁ",
+      "nombre": "SAN PABLO - LIJACÁ",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    },
+    {
+      "origen": "LIJACÁ",
+      "destino": "SAN PABLO",
+      "nombre": "SAN PABLO - LIJACÁ",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    }
+  ],
+  "6-12": [
+    {
+      "origen": "PORTAL TUNAL",
+      "destino": "VILLA GLORIA",
+      "nombre": "VILLA GLORIA",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    }
+  ],
+  "CG137": [
+    {
+      "origen": "SUBA CORPAS",
+      "destino": "METROVIVIENDA",
+      "nombre": "SUBA CORPAS - METROVIVIENDA",
+      "tipo_servicio": 1,
+      "operador": "EMASIVO 16"
+    },
+    {
+      "origen": "METROVIVIENDA",
+      "destino": "SUBA CORPAS",
+      "nombre": "SUBA CORPAS - METROVIVIENDA",
+      "tipo_servicio": 1,
+      "operador": "EMASIVO 16"
+    }
+  ],
+  "BD237": [
+    {
+      "origen": "UNICENTRO",
+      "destino": "ENGATIVÁ",
+      "nombre": "ENGATIVA - UNICENTRO",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    }
+  ],
+  "11-10": [
+    {
+      "origen": "PORTAL SUBA",
+      "destino": "BILBAO",
+      "nombre": "BILBAO",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    }
+  ],
+  "LL813": [
+    {
+      "origen": "BICENTENARIO",
+      "destino": "AV 1 DE MAYO",
+      "nombre": "EST BICENTENARIO - EST AV 1 DE MAYO",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    }
+  ],
+  "GL517": [
+    {
+      "origen": "POTRERITOS",
+      "destino": "CANADÁ GÜIRA",
+      "nombre": "CANADA GUIRA - POTRERITOS",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    },
+    {
+      "origen": "CANADÁ GÜIRA",
+      "destino": "POTRERITOS",
+      "nombre": "CANADA GUIRA - POTRERITOS",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "GA538": [
+    {
+      "origen": "BOITÁ",
+      "destino": "EL RETIRO",
+      "nombre": "BOITA - EL RETIRO",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    },
+    {
+      "origen": "EL RETIRO",
+      "destino": "BOITÁ",
+      "nombre": "BOITA - EL RETIRO",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "GK502": [
+    {
+      "origen": "VILLA DEL RIO",
+      "destino": "AEROPUERTO",
+      "nombre": "VILLA DEL RIO - AEROPUERTO",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    },
+    {
+      "origen": "VILLA DEL RIO",
+      "destino": "AEROPUERTO",
+      "nombre": "VILLA DEL RIO - AEROPUERTO",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "GA535": [
+    {
+      "origen": "BOSA SAN JOSE",
+      "destino": "GERMANIA",
+      "nombre": "BOSA SAN JOSE - GERMANIA",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "BD995": [
+    {
+      "origen": "EST. AVENIDA CHILE",
+      "destino": "AC 134 COUNTRY",
+      "nombre": "AC 134 COUNTRY - ESTACIÓN AVENIDA CHILE",
+      "tipo_servicio": 1,
+      "operador": "MUEVE FONTIBON"
+    }
+  ],
+  "8-10": [
+    {
+      "origen": "MUNDO AVENTURA",
+      "destino": "PROVIVIENDA ORIENTAL",
+      "nombre": "MUNDO AVENTURA",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "HH735": [
+    {
+      "origen": "EL UVAL",
+      "destino": "PORTAL USME",
+      "nombre": "PORTAL USME - EL UVAL",
+      "tipo_servicio": 1,
+      "operador": "E-SOMOS ALIMENTACION"
+    }
+  ],
+  "KL329": [
+    {
+      "origen": "FONTIBÓN BRISAS",
+      "destino": "SAN MARTIN DE LOBA",
+      "nombre": "FONTIBON BRISAS - SAN MARTIN DE LOBA",
+      "tipo_servicio": 1,
+      "operador": "ZMO FONTIBON III\r\n"
+    },
+    {
+      "origen": "SAN MARTIN DE LOBA",
+      "destino": "FONTIBÓN BRISAS",
+      "nombre": "FONTIBON BRISAS - SAN MARTIN DE LOBA",
+      "tipo_servicio": 1,
+      "operador": "ZMO FONTIBON III\r\n"
+    }
+  ],
+  "4-2": [
+    {
+      "origen": "MOLINOS",
+      "destino": "DIANA TURBAY",
+      "nombre": "DIANA TURBAY",
+      "tipo_servicio": 1,
+      "operador": "E-SOMOS ALIMENTACION"
+    }
+  ],
+  "3-10": [
+    {
+      "origen": "PORTAL USME",
+      "destino": "USME CENTRO",
+      "nombre": "USME CENTRO",
+      "tipo_servicio": 1,
+      "operador": "E-SOMOS ALIMENTACION"
+    }
+  ],
+  " CB913": [
+    {
+      "origen": "EST. MAZURÉN",
+      "destino": "AV. BOYACÁ",
+      "nombre": "EST. MAZURÉN - AV. BOYACÁ",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL"
+    },
+    {
+      "origen": "AV. BOYACÁ",
+      "destino": "EST. MAZURÉN",
+      "nombre": "EST. MAZURÉN - AV. BOYACÁ",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL"
+    }
+  ],
+  "3-4": [
+    {
+      "origen": "PORTAL USME",
+      "destino": "ALFONSO LÓPEZ",
+      "nombre": "ALFONSO LÓPEZ",
+      "tipo_servicio": 1,
+      "operador": "E-SOMOS ALIMENTACION"
+    }
+  ],
+  "T11": [
+    {
+      "origen": "ALPES",
+      "destino": "CALLE 222",
+      "nombre": "ALPES - CALLE 222",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL SO-SUMA"
+    },
+    {
+      "origen": "CALLE 222",
+      "destino": "ALPES",
+      "nombre": "ALPES - CALLE 222",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL SO-SUMA"
+    }
+  ],
+  "11-6": [
+    {
+      "origen": "PORTAL SUBA",
+      "destino": "LAS MERCEDES",
+      "nombre": "LAS MERCEDES",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    }
+  ],
+  "GK542": [
+    {
+      "origen": "METROVIVIENDA",
+      "destino": "CHAPINERO CENTRAL",
+      "nombre": "METROVIVIENDA - ESTACION MODELIA",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL"
+    }
+  ],
+  "FA427": [
+    {
+      "origen": "CALANDAIMA",
+      "destino": "CENTRO ANDINO",
+      "nombre": "CALANDAIMA - CENTRO ANDINO",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - TZ"
+    }
+  ],
+  "AF019": [
+    {
+      "origen": "AC3 COMUNEROS",
+      "destino": "AC3 AK68",
+      "nombre": "AC 3/COMUNEROS - AC3/AK68",
+      "tipo_servicio": 6,
+      "operador": "ESOMOS"
+    },
+    {
+      "origen": "AC3 AK68",
+      "destino": "AC3 COMUNEROS",
+      "nombre": "AC 3/COMUNEROS - AC3/AK68",
+      "tipo_servicio": 6,
+      "operador": "ESOMOS"
+    }
+  ],
+  "BL919": [
+    {
+      "origen": "TERMINAL NORTE",
+      "destino": "GAVIOTAS",
+      "nombre": "TERMINAL NORTE - GAVIOTAS",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    },
+    {
+      "origen": "GAVIOTAS",
+      "destino": "TERMINAL NORTE",
+      "nombre": "TERMINAL NORTE - GAVIOTAS",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "DL219": [
+    {
+      "origen": "LA ROCA",
+      "destino": "ENGATIVÁ CENTRO",
+      "nombre": "LA ROCA - ENGATIVÁ CENTRO",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    },
+    {
+      "origen": "ENGATIVÁ CENTRO",
+      "destino": "LA ROCA",
+      "nombre": "LA ROCA - ENGATIVÁ CENTRO",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    }
+  ],
+  "AB020": [
+    {
+      "origen": "LA CASTELLANA",
+      "destino": "CALLE 134",
+      "nombre": "LA CASTELLANA - CALLE 134",
+      "tipo_servicio": 4,
+      "operador": "SUMA"
+    }
+  ],
+  "HA633": [
+    {
+      "origen": "ACAPULCO",
+      "destino": "RICAURTE",
+      "nombre": "RICAURTE - ACAPULCO",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    }
+  ],
+  "DA218": [
+    {
+      "origen": "ENGATIVÁ CENTRO",
+      "destino": "CENTRO",
+      "nombre": "ENGATIVÁ CENTRO - CENTRO",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    }
+  ],
+  "HH711": [
+    {
+      "origen": "LOS SOCHES",
+      "destino": "PORTAL USME",
+      "nombre": "LOS SOCHES - PORTAL USME",
+      "tipo_servicio": 1,
+      "operador": "GRAN AMERICAS USME"
+    }
+  ],
+  "KL304": [
+    {
+      "origen": "HB/FONTIBÓN",
+      "destino": "SAN CRISTOBAL SUR",
+      "nombre": "HB/FONTIBON - SAN CRISTOBAL SUR",
+      "tipo_servicio": 1,
+      "operador": "E-SOMOS FONTIBON"
+    },
+    {
+      "origen": "SAN CRISTOBAL SUR",
+      "destino": "HB/FONTIBÓN",
+      "nombre": "HB/FONTIBON - SAN CRISTOBAL SUR",
+      "tipo_servicio": 1,
+      "operador": "E-SOMOS FONTIBON"
+    }
+  ],
+  "KB303": [
+    {
+      "origen": "HB-FONTIBON",
+      "destino": "UNICENTRO",
+      "nombre": "HB-FONTIBON - UNICENTRO",
+      "tipo_servicio": 1,
+      "operador": "E-SOMOS FONTIBON"
+    },
+    {
+      "origen": "UNICENTRO",
+      "destino": "HB-FONTIBON",
+      "nombre": "HB-FONTIBON - UNICENTRO",
+      "tipo_servicio": 1,
+      "operador": "E-SOMOS FONTIBON"
+    }
+  ],
+  "LH803": [
+    {
+      "origen": "GAVIOTAS",
+      "destino": "TERMINAL SALITRE",
+      "nombre": "GAVIOTAS - TERMINAL SALITRE",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    },
+    {
+      "origen": "TERMINAL SALITRE",
+      "destino": "GAVIOTAS",
+      "nombre": "GAVIOTAS - TERMINAL SALITRE",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    }
+  ],
+  "HK635": [
+    {
+      "origen": "ARBORIZADORA ALTA",
+      "destino": "MONTEVIDEO",
+      "nombre": "ARBORIZADORA ALTA - MONTEVIDEO",
+      "tipo_servicio": 1,
+      "operador": "ODT LA ROLITA"
+    },
+    {
+      "origen": "MONTEVIDEO",
+      "destino": "ARBORIZADORA ALTA",
+      "nombre": "ARBORIZADORA ALTA - MONTEVIDEO",
+      "tipo_servicio": 1,
+      "operador": "ODT LA ROLITA"
+    }
+  ],
+  "KH327": [
+    {
+      "origen": "PUENTE GRANDE",
+      "destino": "ACACIAS",
+      "nombre": "PUENTE GRANDE - ACACIAS",
+      "tipo_servicio": 1,
+      "operador": "ZMO FONTIBON V"
+    },
+    {
+      "origen": "ACACIAS",
+      "destino": "PUENTE GRANDE",
+      "nombre": "PUENTE GRANDE - ACACIAS",
+      "tipo_servicio": 1,
+      "operador": "ZMO FONTIBON V\r\n"
+    }
+  ],
+  "KF333": [
+    {
+      "origen": "EST. AV ROJAS",
+      "destino": "CIUDAD ALSACIA",
+      "nombre": "EST. AV ROJAS - CIUDAD ALSACIA",
+      "tipo_servicio": 1,
+      "operador": "GRAN AMERICAS FONTIBON I"
+    },
+    {
+      "origen": "CIUDAD ALSACIA",
+      "destino": "EST. AV ROJAS",
+      "nombre": "EST. AV ROJAS - CIUDAD ALSACIA",
+      "tipo_servicio": 1,
+      "operador": "GRAN AMERICAS FONTIBON I"
+    }
+  ],
+  "HA601": [
+    {
+      "origen": "PERDOMO",
+      "destino": "SAN DIEGO",
+      "nombre": "PERDOMO - SAN DIEGO",
+      "tipo_servicio": 1,
+      "operador": "ODT LA ROLITA"
+    },
+    {
+      "origen": "SAN DIEGO",
+      "destino": "PERDOMO",
+      "nombre": "PERDOMO - SAN DIEGO",
+      "tipo_servicio": 1,
+      "operador": "ODT LA ROLITA"
+    }
+  ],
+  "BB927": [
+    {
+      "origen": "LOMITAS",
+      "destino": "TERMINAL NORTE",
+      "nombre": "LOMITAS - TERMINAL NORTE",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "GA567": [
+    {
+      "origen": "PORCIÚNCULA",
+      "destino": "SAN BERNARDINO",
+      "nombre": "PORCIÚNCULA - SAN BERNARDINO",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "BG902": [
+    {
+      "origen": "METROVIVIENDA",
+      "destino": "CALLE 222",
+      "nombre": "METROVIVIENDA - CALLE 222",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    },
+    {
+      "origen": "CALLE 222",
+      "destino": "METROVIVIENDA",
+      "nombre": "METROVIVIENDA - CALLE 222",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "GH545": [
+    {
+      "origen": "El Ensueño",
+      "destino": "CC Villa del Río",
+      "nombre": "CC VILLA DEL RIO - EL ENSUEÑO",
+      "tipo_servicio": 1,
+      "operador": "Etib - Bo"
+    },
+    {
+      "origen": "CC Villa del Río",
+      "destino": "El Ensueño",
+      "nombre": "CC VILLA DEL RIO - EL ENSUEÑO",
+      "tipo_servicio": 1,
+      "operador": "Etib - Bo"
+    }
+  ],
+  "HK629": [
+    {
+      "origen": "ARBORIZADORA ALTA",
+      "destino": "FONTIBON CENTRO",
+      "nombre": "FONTIBON CENTRO - ARBORIZADORA ALTA",
+      "tipo_servicio": 1,
+      "operador": "ODT LA ROLITA"
+    },
+    {
+      "origen": "FONTIBON CENTRO",
+      "destino": "ARBORIZADORA ALTA",
+      "nombre": "FONTIBON CENTRO - ARBORIZADORA ALTA",
+      "tipo_servicio": 1,
+      "operador": "ODT LA ROLITA"
+    }
+  ],
+  "KA306": [
+    {
+      "origen": "CENTRO ANDINO",
+      "destino": "ZONA FRANCA",
+      "nombre": "ZONA FRANCA - CENTRO ANDINO",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - TZ"
+    },
+    {
+      "origen": "ZONA FRANCA",
+      "destino": "CENTRO ANDINO",
+      "nombre": "ZONA FRANCA - CENTRO ANDINO",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - TZ"
+    }
+  ],
+  "E16A": [
+    {
+      "origen": "COLINA/CL153",
+      "destino": "BOSA SAN JOSÉ",
+      "nombre": "BOSA SAN JOSE - COLINA/CL153",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    },
+    {
+      "origen": "BOSA SAN JOSÉ",
+      "destino": "COLINA/CL153",
+      "nombre": "BOSA SAN JOSE - COLINA/CL153",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "HA618": [
+    {
+      "origen": "GERMANIA",
+      "destino": "SANTO DOMINGO",
+      "nombre": "SANTO DOMINGO - GERMANIA",
+      "tipo_servicio": 1,
+      "operador": "ODT LA ROLITA"
+    },
+    {
+      "origen": "SANTO DOMINGO",
+      "destino": "GERMANIA",
+      "nombre": "SANTO DOMINGO - GERMANIA",
+      "tipo_servicio": 1,
+      "operador": "ODT LA ROLITA"
+    }
+  ],
+  "TC6": [
+    {
+      "origen": "PORTAL EL DORADO",
+      "destino": "SAN PABLO JERICO",
+      "nombre": "SAN PABLO JERICO",
+      "tipo_servicio": 1,
+      "operador": "GRAN AMERICAS FONTIBON I"
+    }
+  ],
+  "1-9": [
+    {
+      "origen": "PORTAL 80",
+      "destino": "VILLAS DEL DORADO",
+      "nombre": "VILLAS DEL DORADO",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    }
+  ],
+  "330": [
+    {
+      "origen": "LA ESTRELLITA",
+      "destino": "EL UVAL",
+      "nombre": "EL UVAL - LA ESTRELLITA",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    },
+    {
+      "origen": "EL UVAL",
+      "destino": "LA ESTRELLITA",
+      "nombre": "EL UVAL - LA ESTRELLITA",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "LA856": [
+    {
+      "origen": "RICAURTE",
+      "destino": "TIHUAQUE",
+      "nombre": "RICAURTE - TIHUAQUE",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    }
+  ],
+  "GG514": [
+    {
+      "origen": "PORTAL SUR",
+      "destino": "SAN JOSE",
+      "nombre": "SAN JOSE - PORTAL SUR",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    },
+    {
+      "origen": "SAN JOSE",
+      "destino": "PORTAL SUR",
+      "nombre": "SAN JOSE - PORTAL SUR",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "624": [
+    {
+      "origen": "20 DE JULIO",
+      "destino": "VERBENAL DEL SUR",
+      "nombre": "20 DE JULIO - VERBENAL DEL SUR",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    },
+    {
+      "origen": "VERBENAL DEL SUR",
+      "destino": "20 DE JULIO",
+      "nombre": "20 DE JULIO - VERBENAL DEL SUR",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    }
+  ],
+  "CA164": [
+    {
+      "origen": "Suba Tibabuyes",
+      "destino": "Porciúncula",
+      "nombre": "SUBA TIBABUYES - PORCIÚNCULA",
+      "tipo_servicio": 4,
+      "operador": "EMASIVO 10"
+    },
+    {
+      "origen": "Porciúncula",
+      "destino": "Suba Tibabuyes",
+      "nombre": "SUBA TIBABUYES - PORCIÚNCULA",
+      "tipo_servicio": 4,
+      "operador": "EMASIVO 10"
+    }
+  ],
+  "CB165": [
+    {
+      "origen": "Suba Rincón",
+      "destino": "Unicentro",
+      "nombre": "SUBA RINCÓN - UNICENTRO",
+      "tipo_servicio": 4,
+      "operador": "MASIVO CAPITAL"
+    }
+  ],
+  "CA134": [
+    {
+      "origen": "PQ. CENTRAL BAVARIA",
+      "destino": "TIBABUYES",
+      "nombre": "TIBABUYES - PQ. CENTRAL BAVARIA",
+      "tipo_servicio": 1,
+      "operador": "EMASIVO 16"
+    },
+    {
+      "origen": "TIBABUYES",
+      "destino": "PQ. CENTRAL BAVARIA",
+      "nombre": "TIBABUYES - PQ. CENTRAL BAVARIA",
+      "tipo_servicio": 1,
+      "operador": "EMASIVO 16"
+    }
+  ],
+  "GF546": [
+    {
+      "origen": "LA MARLENE",
+      "destino": "PORTAL AMERICAS",
+      "nombre": "LA MARLENE - PORTAL AMERICAS",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "HH719": [
+    {
+      "origen": "USME CENTRO",
+      "destino": "EL DESTINO",
+      "nombre": "EL DESTINO",
+      "tipo_servicio": 1,
+      "operador": "MUEVE USME"
+    }
+  ],
+  "GH529": [
+    {
+      "origen": "DIANA TURBAY",
+      "destino": "EL RECREO",
+      "nombre": "DIANA TURBAY - EL RECREO",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    },
+    {
+      "origen": "EL RECREO",
+      "destino": "DIANA TURBAY",
+      "nombre": "DIANA TURBAY - EL RECREO",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "HH737": [
+    {
+      "origen": "BOLONIA",
+      "destino": "PORTAL USME",
+      "nombre": "BOLONIA - PORTAL USME",
+      "tipo_servicio": 1,
+      "operador": "USME ZN II"
+    }
+  ],
+  "LL819": [
+    {
+      "origen": "PORTAL 20 DE JULIO",
+      "destino": "-",
+      "nombre": "PORTAL 20 DE JULIO",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    }
+  ],
+  "DK211": [
+    {
+      "origen": "SALITRE EL GRECO",
+      "destino": "GRAN GRANADA",
+      "nombre": "GRAN GRANADA - SALITRE EL GRECO",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    }
+  ],
+  "DA213": [
+    {
+      "origen": "VILLA  TERESITA",
+      "destino": "GALERÍAS",
+      "nombre": "VILLA TERESITA - GALERÍAS",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    }
+  ],
+  "16-2": [
+    {
+      "origen": "PORTAL EL DORADO",
+      "destino": "ENGATIVÁ CENTRO",
+      "nombre": "ENGATIVA CENTRO",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    }
+  ],
+  "LK812": [
+    {
+      "origen": "VILLA DEL CERRO",
+      "destino": "FONTIBÓN BRISAS",
+      "nombre": "VILLA DEL CERRO - FONTIBON BRISAS",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    },
+    {
+      "origen": "FONTIBÓN BRISAS",
+      "destino": "VILLA DEL CERRO",
+      "nombre": "VILLA DEL CERRO - FONTIBON BRISAS",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    }
+  ],
+  "142": [
+    {
+      "origen": "ENGATIVÁ",
+      "destino": "CENTRO",
+      "nombre": "ENGATIVÁ - CENTRO",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    }
+  ],
+  "CG147": [
+    {
+      "origen": "METROVIVIENDA",
+      "destino": "BILBAO",
+      "nombre": "BILBAO - METROVIVIENDA",
+      "tipo_servicio": 1,
+      "operador": "EMASIVO 10"
+    },
+    {
+      "origen": "BILBAO",
+      "destino": "METROVIVIENDA",
+      "nombre": "BILBAO - METROVIVIENDA",
+      "tipo_servicio": 1,
+      "operador": "EMASIVO 10"
+    }
+  ],
+  "442": [
+    {
+      "origen": "MIRANDELA",
+      "destino": "VILLA GLADYS",
+      "nombre": "MIRANDELA - VILLA GLADYS",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "120": [
+    {
+      "origen": "BOSA SAN DIEGO",
+      "destino": "EGIPTO",
+      "nombre": "BOSA SAN DIEGO - EGIPTO",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "C29": [
+    {
+      "origen": "BOSA SAN DIEGO",
+      "destino": "CENTRO",
+      "nombre": "BOSA SAN DIEGO - CENTRO",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    },
+    {
+      "origen": "CENTRO",
+      "destino": "BOSA SAN DIEGO",
+      "nombre": "BOSA SAN DIEGO - CENTRO",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "DB217": [
+    {
+      "origen": "SABANA DEL DORADO",
+      "destino": "UNICENTRO",
+      "nombre": "SABANA DEL DORADO - UNICENTRO",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "16-6": [
+    {
+      "origen": "PORTAL EL DORADO",
+      "destino": "LA FAENA",
+      "nombre": "LA FAENA",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    }
+  ],
+  "T30B": [
+    {
+      "origen": "TIHUAQUE",
+      "destino": "PATIO BONITO",
+      "nombre": "PATIO BONITO - TIHUAQUE",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    },
+    {
+      "origen": "PATIO BONITO",
+      "destino": "TIHUAQUE",
+      "nombre": "PATIO BONITO - TIHUAQUE",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    }
+  ],
+  "KL307": [
+    {
+      "origen": "LA CASTAÑA",
+      "destino": "EL RECODO",
+      "nombre": "EL RECODO - LA CASTALA",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    }
+  ],
+  "CG157": [
+    {
+      "origen": "EL RECREO",
+      "destino": "SUBA CORPAS",
+      "nombre": "SUBA CORPAS - EL RECREO",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    },
+    {
+      "origen": "SUBA CORPAS",
+      "destino": "EL RECREO",
+      "nombre": "SUBA CORPAS - EL RECREO",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "FA410": [
+    {
+      "origen": "TIERRA BUENA",
+      "destino": "CHICÓ NORTE",
+      "nombre": "TIERRA BUENA - CHICÓ NORTE",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    },
+    {
+      "origen": "CHICÓ NORTE",
+      "destino": "TIERRA BUENA",
+      "nombre": "TIERRA BUENA - CHICÓ NORTE",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "HA680": [
+    {
+      "origen": "ISLA DEL SOL",
+      "destino": "LAS AGUAS",
+      "nombre": "ISLA DEL SOL - LAS AGUAS",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    },
+    {
+      "origen": "ISLA DEL SOL",
+      "destino": "LAS AGUAS",
+      "nombre": "ISLA DEL SOL - LAS AGUAS",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "953": [
+    {
+      "origen": "TIERRA BUENA",
+      "destino": "LA FISCALA ALTA",
+      "nombre": "TIERRA BUENA - LA FISCALA ALTA",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    },
+    {
+      "origen": "LA FISCALA ALTA",
+      "destino": "TIERRA BUENA",
+      "nombre": "TIERRA BUENA - LA FISCALA ALTA",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "7": [
+    {
+      "origen": "PALMITAS",
+      "destino": "CONSUELO",
+      "nombre": "CONSUELO - PALMITAS",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    },
+    {
+      "origen": "CONSUELO",
+      "destino": "PALMITAS",
+      "nombre": "CONSUELO - PALMITAS",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "94": [
+    {
+      "origen": "SUBA CORPAS",
+      "destino": "BOSA SAN DIEGO",
+      "nombre": "BOSA SAN DIEGO - SUBA CORPAS",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    },
+    {
+      "origen": "BOSA SAN DIEGO",
+      "destino": "SUBA CORPAS",
+      "nombre": "BOSA SAN DIEGO - SUBA CORPAS",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "LL815": [
+    {
+      "origen": "VILLA DEL CERRO",
+      "destino": "GERMANIA",
+      "nombre": "VILLA DEL CERRO - GERMANIA",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    },
+    {
+      "origen": "GERMANIA",
+      "destino": "VILLA DEL CERRO",
+      "nombre": "VILLA DEL CERRO - GERMANIA",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    }
+  ],
+  "KH318": [
+    {
+      "origen": "FONTIBON BRISAS",
+      "destino": "EL UVAL",
+      "nombre": "FONTIBON BRISAS - EL UVAL",
+      "tipo_servicio": 1,
+      "operador": "GRAN AMERICAS USME"
+    },
+    {
+      "origen": "EL UVAL",
+      "destino": "FONTIBÓN BRISAS",
+      "nombre": "FONTIBON BRISAS - EL UVAL",
+      "tipo_servicio": 1,
+      "operador": "GRAN AMERICAS USME"
+    }
+  ],
+  "FL416": [
+    {
+      "origen": "LA CASTAÑA",
+      "destino": "JAZMÍN OCCIDENTAL",
+      "nombre": "JAZMIN OCCIDENTAL - LA CASTANA",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    },
+    {
+      "origen": "JAZMÍN OCCIDENTAL",
+      "destino": "LA CASTAÑA",
+      "nombre": "JAZMIN OCCIDENTAL - LA CASTANA",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "FF409": [
+    {
+      "origen": "BIBLIOTECA TINTAL",
+      "destino": "TIERRA BUENA",
+      "nombre": "EST. BIBLIOTECA TINTAL",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "787A": [
+    {
+      "origen": "METROVIVIENDA/POTRERITOS",
+      "destino": "TEUSAQUILLO",
+      "nombre": "METROVIVIENDA/POTRERITOS - TEUSAQUILLO",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "GL533": [
+    {
+      "origen": "METROVIVIENDA",
+      "destino": "DOÑA LILIANA",
+      "nombre": "METROVIVIENDA-DO├æA LILIANA",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    },
+    {
+      "origen": "DOÑA LILIANA",
+      "destino": "METROVIVIENDA",
+      "nombre": "METROVIVIENDA-DO├æA LILIANA",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "GA518": [
+    {
+      "origen": "CHAPINERO",
+      "destino": "POTRERITOS",
+      "nombre": "CHAPINERO - POTRERITOS",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    },
+    {
+      "origen": "POTRERITOS",
+      "destino": "CHAPINERO",
+      "nombre": "CHAPINERO - POTRERITOS",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "HA620": [
+    {
+      "origen": "LA ESTANCIA",
+      "destino": "SAN DIEGO",
+      "nombre": "LA ESTANCIA - SAN DIEGO",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "DH209": [
+    {
+      "origen": "GALICIA",
+      "destino": "VILLA TERESITA",
+      "nombre": "VILLA TERESITA - GALICIA",
+      "tipo_servicio": 1,
+      "operador": "GMOVIL - E"
+    }
+  ],
+  "2-8": [
+    {
+      "origen": "PORTAL NORTE",
+      "destino": "EXPRESO ORIENTAL 170",
+      "nombre": "EXPRESO ORIENTAL 170",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "FF402": [
+    {
+      "origen": "PALMITAS",
+      "destino": "BANDERAS",
+      "nombre": "PALMITAS - EST. BANDERAS",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "291": [
+    {
+      "origen": "TERMINAL NORTE MAKRO",
+      "destino": "TIERRA BUENA",
+      "nombre": "TERMINAL NORTE MAKRO - TIERRA BUENA",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS-ESTE ES MI BUS"
+    },
+    {
+      "origen": "TIERRA BUENA",
+      "destino": "TERMINAL NORTE MAKRO",
+      "nombre": "TERMINAL NORTE MAKRO - TIERRA BUENA",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS-ESTE ES MI BUS"
+    }
+  ],
+  "C201": [
+    {
+      "origen": "PATIO BONITO",
+      "destino": "PARAÍSO",
+      "nombre": "PARAISO - PATIO BONITO",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    },
+    {
+      "origen": "PARAÍSO",
+      "destino": "PATIO BONITO",
+      "nombre": "PARAISO - PATIO BONITO",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "AG018": [
+    {
+      "origen": "EST. NQS CL 38A S",
+      "destino": "EST. COMUNEROS",
+      "nombre": "EST. COMUNEROS - EST. NQS CL 38A S",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "FH408": [
+    {
+      "origen": "DIANA TURBAY",
+      "destino": "TIERRA BUENA",
+      "nombre": "TIERRA BUENA - DIANA TURBAY",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    },
+    {
+      "origen": "TIERRA BUENA",
+      "destino": "DIANA TURBAY",
+      "nombre": "TIERRA BUENA - DIANA TURBAY",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "FC401": [
+    {
+      "origen": "TIERRA BUENA",
+      "destino": "CALLE 170",
+      "nombre": "TIERRA BUENA - CALLE 170",
+      "tipo_servicio": 4,
+      "operador": "MASIVO CAPITAL - KE"
+    },
+    {
+      "origen": "CALLE 170",
+      "destino": "TIERRA BUENA",
+      "nombre": "TIERRA BUENA - CALLE 170",
+      "tipo_servicio": 4,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "FL422": [
+    {
+      "origen": "PATIO BONITO",
+      "destino": "LACHES-EL DORADO",
+      "nombre": "PATIO BONITO - LACHES-EL DORADO",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - TZ"
+    },
+    {
+      "origen": "LACHES-EL DORADO",
+      "destino": "PATIO BONITO",
+      "nombre": "PATIO BONITO - LACHES-EL DORADO",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - TZ"
+    }
+  ],
+  "39": [
+    {
+      "origen": "PATIO BONITO",
+      "destino": "DIANA TURBAY",
+      "nombre": "PATIO BONITO - DIANA TURBAY",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    },
+    {
+      "origen": "DIANA TURBAY",
+      "destino": "PATIO BONITO",
+      "nombre": "PATIO BONITO - DIANA TURBAY",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "111": [
+    {
+      "origen": "METROVIVIENDA",
+      "destino": "GAVIOTAS",
+      "nombre": "METROVIVIENDA - GAVIOTAS",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    },
+    {
+      "origen": "GAVIOTAS",
+      "destino": "METROVIVIENDA",
+      "nombre": "METROVIVIENDA - GAVIOTAS",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS D"
+    }
+  ],
+  "GC509": [
+    {
+      "origen": "CORPAS",
+      "destino": "METROVIVIENDA",
+      "nombre": "METROVIVIENDA - CORPAS",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    },
+    {
+      "origen": "METROVIVIENDA",
+      "destino": "CORPAS",
+      "nombre": "METROVIVIENDA - CORPAS",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "GA520": [
+    {
+      "origen": "BOSA SAN DIEGO",
+      "destino": "EST. LAS NIEVES",
+      "nombre": "BOSA SAN DIEGO - EST. LAS NIEVES",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "593": [
+    {
+      "origen": "METROVIVIENDA",
+      "destino": "CHICÓ",
+      "nombre": "METROVIVIENDA - CHICÓ",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "GA532": [
+    {
+      "origen": "METROVIVIENDA",
+      "destino": "CHAPINERO",
+      "nombre": "METROVIVIENDA-CHAPINERO",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    },
+    {
+      "origen": "CHAPINERO",
+      "destino": "METROVIVIENDA",
+      "nombre": "METROVIVIENDA-CHAPINERO",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "HF718": [
+    {
+      "origen": "LA RIVERA",
+      "destino": "USME CENTRO",
+      "nombre": "USME CENTRO - LA RIVERA",
+      "tipo_servicio": 1,
+      "operador": "MUEVE USME"
+    },
+    {
+      "origen": "USME CENTRO",
+      "destino": "LA RIVERA",
+      "nombre": "USME CENTRO - LA RIVERA",
+      "tipo_servicio": 1,
+      "operador": "MUEVE USME"
+    }
+  ],
+  "BF918": [
+    {
+      "origen": "PATIO BONITO",
+      "destino": "TERMINAL NORTE",
+      "nombre": "TERMINAL NORTE - PATIO BONITO",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    },
+    {
+      "origen": "TERMINAL NORTE",
+      "destino": "PATIO BONITO",
+      "nombre": "TERMINAL NORTE - PATIO BONITO",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "2-3": [
+    {
+      "origen": "PORTAL NORTE",
+      "destino": "SAN ANTONIO",
+      "nombre": "SAN ANTONIO",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "CD122": [
+    {
+      "origen": "ZONA INDUSTRIAL",
+      "destino": "AURES II",
+      "nombre": "AURES II - ZONA INDUSTRIAL",
+      "tipo_servicio": 1,
+      "operador": "ESTE ES MI BUS - CO"
+    }
+  ],
+  "BD906": [
+    {
+      "origen": "VILLA GLADYS",
+      "destino": "TOBERÍN",
+      "nombre": "VILLA GLADYS - TOBERIN",
+      "tipo_servicio": 1,
+      "operador": "CONSORCIO EXPRESS N"
+    }
+  ],
+  "FF417": [
+    {
+      "origen": "TIERRA BUENA",
+      "destino": "BIBLIOTECA TINTAL",
+      "nombre": "EST. BIBL. TINTAL",
+      "tipo_servicio": 1,
+      "operador": "MASIVO CAPITAL - KE"
+    }
+  ],
+  "10-3": [
+    {
+      "origen": "PORTAL SUR",
+      "destino": "ALBAN CARBONELL",
+      "nombre": "ALBAN CARBONELL",
+      "tipo_servicio": 1,
+      "operador": "ETIB - BO"
+    }
+  ],
+  "796A": [
+    {
+      "origen": "MOCHUELO BAJO",
+      "destino": "TEUSAQUILLO",
+      "nombre": "MOCHUELO BAJO - TEUSAQUILLO",
+      "tipo_servicio": 1,
+      "operador": "SUMA - BC"
+    }
+  ]
+}
