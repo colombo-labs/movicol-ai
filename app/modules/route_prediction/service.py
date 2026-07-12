@@ -1042,15 +1042,25 @@ class RoutePredictionService:
         if len(path) < 2:
             return []
 
+        # Limit waypoints to avoid erratic OSRM routes (max 12 points)
+        max_waypoints = 12
+        if len(path) > max_waypoints:
+            step = len(path) // (max_waypoints - 1)
+            sampled = [path[i] for i in range(0, len(path), step)]
+            if path[-1] not in sampled:
+                sampled.append(path[-1])
+            sample_path = sampled
+        else:
+            sample_path = path
+
         coords = []
-        for n in path:
+        for n in sample_path:
             d = graph.nodes.get(n, {})
-            # geojson coordinates are lon, lat
             coords.append(f"{float(d.get('lon', 0))},{float(d.get('lat', 0))}")
 
         coord_str = ";".join(coords)
         base_url = get_settings().osrm_base_url
-        url = f"{base_url}/route/v1/foot/{coord_str}?geometries=geojson&overview=false&steps=true"
+        url = f"{base_url}/route/v1/driving/{coord_str}?geometries=geojson&overview=full&steps=false"
 
         try:
             async with httpx.AsyncClient(
@@ -1060,18 +1070,22 @@ class RoutePredictionService:
                 data = resp.json()
 
             if data.get("code") == "Ok" and data.get("routes"):
-                legs = data["routes"][0].get("legs", [])
-                leg_geometries = []
-                for leg in legs:
-                    leg_coords = []
-                    for step in leg.get("steps", []):
-                        # Convert from [lon, lat] (GeoJSON) to [lat, lon] for Leaflet
-                        step_coords = [
-                            [c[1], c[0]] for c in step.get("geometry", {}).get("coordinates", [])
-                        ]
-                        if step_coords:
-                            leg_coords.extend(step_coords)
-                    leg_geometries.append(leg_coords)
+                # Use the full overview geometry — one clean polyline
+                full_coords = data["routes"][0].get("geometry", {}).get("coordinates", [])
+                if full_coords:
+                    # Convert [lon, lat] to [lat, lon] for Leaflet
+                    all_coords = [[c[1], c[0]] for c in full_coords]
+                    # Split into segments matching original path length
+                    n_segments = len(path) - 1
+                    if n_segments <= 1:
+                        return [all_coords]
+                    chunk_size = max(1, len(all_coords) // n_segments)
+                    leg_geometries = []
+                    for i in range(n_segments):
+                        start = i * chunk_size
+                        end = (i + 1) * chunk_size + 1 if i < n_segments - 1 else len(all_coords)
+                        leg_geometries.append(all_coords[start:end])
+                    return leg_geometries
                 return leg_geometries
         except Exception as e:
             print("OSRM multipoint transit fetch failed:", e)
