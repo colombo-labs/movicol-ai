@@ -109,7 +109,8 @@ class RoutePredictionService:
             # Also try models/ folder inside the AI repo
             p = Path(__file__).parent.parent.parent.parent / "models" / "sitp_rutas_paraderos.geojson"
         if not p.exists():
-            print("[RoutePrediction] SITP local file not found — will lazy-fetch from backend")
+            print("[RoutePrediction] SITP local file not found — SITP routing disabled")
+            self._sitp_fetch_failed = True  # Skip lazy fetch attempts
             return {}
         with open(p, encoding="utf-8") as f:
             data = json.load(f)
