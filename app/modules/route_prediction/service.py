@@ -139,13 +139,15 @@ class RoutePredictionService:
         """Lazy-fetch SITP data from NestJS backend if not loaded from file."""
         if self._sitp_routes:
             return  # Already loaded
+        if hasattr(self, '_sitp_fetch_failed'):
+            return  # Already tried and failed — don't retry on every request
 
         settings = get_settings()
         url = f"{settings.backend_internal_url}/graph/sitp/rutas"
         print(f"[RoutePrediction] Fetching SITP data from backend: {url}")
 
         try:
-            async with httpx.AsyncClient(timeout=20) as client:
+            async with httpx.AsyncClient(timeout=5) as client:
                 resp = await client.get(url)
                 if resp.status_code != 200:
                     print(f"[RoutePrediction] Backend returned {resp.status_code} for SITP data")
@@ -179,6 +181,7 @@ class RoutePredictionService:
             self._spatial_indexes.pop(graph_id, None)
 
         except Exception as e:
+            self._sitp_fetch_failed = True
             print(f"[RoutePrediction] Failed to fetch SITP from backend: {e}")
 
     def _load_graph(self) -> nx.Graph:
