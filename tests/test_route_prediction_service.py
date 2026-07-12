@@ -1,7 +1,11 @@
 """Tests for RoutePredictionService."""
 
+from unittest.mock import AsyncMock, Mock
+
+import networkx as nx
 import pytest
 
+from app.modules.route_prediction import graph_data
 from app.modules.route_prediction.schemas import Coordinates
 from app.modules.route_prediction.service import RoutePredictionService
 
@@ -116,3 +120,52 @@ class TestRoutePredictionService:
         )
 
         assert "no opera" in result.explanation.lower() or "AVISO" in result.explanation
+
+    @pytest.mark.asyncio
+    async def test_transit_geometry_uses_complete_path(self):
+        service = RoutePredictionService.__new__(RoutePredictionService)
+        graph = nx.path_graph(50)
+        for node in graph.nodes:
+            graph.nodes[node].update(
+                name=f"Station {node}",
+                lat=4.6 + node * 0.001,
+                lon=-74.1,
+                troncal="Caracas",
+            )
+        for first, second in graph.edges:
+            graph.edges[first, second].update(distance_km=0.1, troncal="Caracas")
+
+        service._tm_graph = graph
+        service._sitp_routes = {}
+        service._find_nearest_in = Mock(side_effect=[0, 49])
+        service._build_transit_segments_async = AsyncMock(return_value=([], 4.9, 12.0))
+        service._derive_route_code = Mock(return_value="A60")
+
+        result = await service._predict_transit(
+            Coordinates(lat=4.6, lon=-74.1),
+            Coordinates(lat=4.649, lon=-74.1),
+            "2026-07-06T08:00:00",
+            "transmilenio",
+        )
+
+        geometry_path = service._build_transit_segments_async.await_args.args[1]
+        route_code_path = service._derive_route_code.call_args.args[1]
+        assert geometry_path == list(range(50))
+        assert route_code_path == list(range(50))
+        assert len(result.stations) < len(geometry_path)
+        assert result.stations[0] == "Station 0"
+        assert result.stations[-1] == "Station 49"
+
+    def test_match_tm_route_respects_direction(self, monkeypatch):
+        forward = {
+            "codigo": "F23",
+            "coords": [[4.6, -74.1], [4.61, -74.09], [4.62, -74.08]],
+        }
+        reverse = {
+            "codigo": "J23",
+            "coords": list(reversed(forward["coords"])),
+        }
+        monkeypatch.setattr(graph_data, "TM_RUTAS", [forward, reverse])
+
+        assert RoutePredictionService._match_tm_ruta(forward["coords"]) == "F23"
+        assert RoutePredictionService._match_tm_ruta(reverse["coords"]) == "J23"

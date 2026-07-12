@@ -868,7 +868,7 @@ class RoutePredictionService:
         max_display = 40 if mode == "multimodal" else 25
         display_path = self._limit_path(path, max_display)
         risk_segments, total_distance, total_time = await self._build_transit_segments_async(
-            graph, display_path, speed_factor, hour
+            graph, path, speed_factor, hour
         )
         station_names = [
             graph.nodes.get(n, {}).get("name", "")
@@ -876,7 +876,7 @@ class RoutePredictionService:
             or str(n)
             for n in display_path
         ]
-        route_code = self._derive_route_code(graph, display_path)
+        route_code = self._derive_route_code(graph, path)
 
         main_mode = self._determine_mode(risk_segments)
 
@@ -1026,18 +1026,18 @@ class RoutePredictionService:
         return []
 
     async def _build_transit_segments_async(
-        self, graph: nx.Graph, display_path: list, speed_factor: float, hour: int
+        self, graph: nx.Graph, path: list, speed_factor: float, hour: int
     ) -> tuple[list[RiskSegment], float, float]:
         """Build risk segments for a transit path, using OSRM multipoint routing."""
         risk_segments: list[RiskSegment] = []
         total_distance, total_time = 0.0, 0.0
 
         # Obtener los trazos exactos de la calle
-        leg_geometries = await self._fetch_osrm_transit_geometry(graph, display_path)
-        use_osrm = len(leg_geometries) == (len(display_path) - 1)
+        leg_geometries = await self._fetch_osrm_transit_geometry(graph, path)
+        use_osrm = len(leg_geometries) == (len(path) - 1)
 
-        for i in range(len(display_path) - 1):
-            from_id, to_id = display_path[i], display_path[i + 1]
+        for i in range(len(path) - 1):
+            from_id, to_id = path[i], path[i + 1]
             from_data = graph.nodes.get(from_id, {})
             to_data = graph.nodes.get(to_id, {})
 
@@ -1085,17 +1085,17 @@ class RoutePredictionService:
 
         return risk_segments, total_distance, total_time
 
-    def _derive_route_code(self, graph: nx.Graph, display_path: list) -> str:
+    def _derive_route_code(self, graph: nx.Graph, path: list) -> str:
         """Derive TM route code from path troncal data and route matching."""
         from collections import Counter
 
         from app.modules.route_prediction.graph_data import TM_RUTAS
 
-        troncales_in_path = [graph.nodes.get(n, {}).get("troncal", "") for n in display_path]
+        troncales_in_path = [graph.nodes.get(n, {}).get("troncal", "") for n in path]
         troncales_in_path = [t for t in troncales_in_path if t]
         route_code = Counter(troncales_in_path).most_common(1)[0][0] if troncales_in_path else ""
 
-        if not TM_RUTAS or len(display_path) < 2:
+        if not TM_RUTAS or len(path) < 2:
             return route_code
 
         path_coords = [
@@ -1103,34 +1103,63 @@ class RoutePredictionService:
                 float(graph.nodes.get(n, {}).get("lat", 0)),
                 float(graph.nodes.get(n, {}).get("lon", 0)),
             )
-            for n in display_path[:5]
+            for n in path
+            if graph.nodes.get(n, {}).get("troncal") != "SITP"
+            and graph.nodes.get(n, {}).get("type") != "sitp"
         ]
         matched = self._match_tm_ruta(path_coords)
         return matched or route_code
 
     @staticmethod
     def _match_tm_ruta(path_coords: list[tuple[float, float]]) -> str:
-        """Match path coordinates to a specific TM route."""
+        """Match path coordinates to an official TM route in the same direction."""
         from app.modules.route_prediction.graph_data import TM_RUTAS
 
-        best_ruta, best_score = "", 0
+        if len(path_coords) < 2:
+            return ""
+
+        sample_count = min(8, len(path_coords))
+        sample_indexes = {
+            round(i * (len(path_coords) - 1) / (sample_count - 1)) for i in range(sample_count)
+        }
+        samples = [path_coords[i] for i in sorted(sample_indexes)]
+
+        best_ruta = ""
+        best_score = float("inf")
         for ruta in TM_RUTAS:
             coords = ruta.get("coords", [])
-            if not coords:
+            if len(coords) < 2:
                 continue
-            score = sum(
-                1
-                for plat, plon in path_coords
-                if any(
-                    abs(plat - clat) < 0.003 and abs(plon - clon) < 0.003
-                    for clat, clon in coords[::20]
+
+            nearest = [
+                min(
+                    (
+                        (
+                            RoutePredictionService._haversine_km(plat, plon, clat, clon),
+                            index,
+                        )
+                        for index, (clat, clon) in enumerate(coords)
+                    ),
+                    key=lambda match: match[0],
                 )
-            )
-            if score > best_score:
+                for plat, plon in samples
+            ]
+            distances = [match[0] for match in nearest]
+            indexes = [match[1] for match in nearest]
+            if distances[0] > 1.0 or distances[-1] > 1.0:
+                continue
+            if indexes[-1] <= indexes[0]:
+                continue
+
+            backwards = sum(1 for first, second in zip(indexes, indexes[1:]) if second < first)
+            average_distance = sum(distances) / len(distances)
+            last_index = len(coords) - 1
+            endpoint_penalty = indexes[0] / last_index + (last_index - indexes[-1]) / last_index
+            score = average_distance + backwards * 2 + endpoint_penalty
+            if score < best_score and average_distance < 1.2:
                 best_score = score
-                nombre = ruta.get("nombre", "")
-                best_ruta = nombre.split()[0] if nombre else ruta.get("codigo", "").split("-")[0]
-        return best_ruta if best_score >= 2 else ""
+                best_ruta = str(ruta.get("codigo", "") or ruta.get("nombre", "")).strip()
+        return best_ruta
 
     def get_route_safety(self, ruta: str, hour: int) -> dict:
         """Calculate safety score for a SITP route based on avg congestion of its stops."""
