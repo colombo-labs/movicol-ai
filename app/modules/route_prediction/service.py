@@ -384,7 +384,7 @@ class RoutePredictionService:
 
         try:
             async with httpx.AsyncClient(
-                timeout=15, follow_redirects=True, max_redirects=3
+                timeout=8, follow_redirects=True, max_redirects=3
             ) as client:
                 resp = await client.get(url)
                 data = resp.json()
@@ -496,7 +496,7 @@ class RoutePredictionService:
         )
         try:
             async with httpx.AsyncClient(
-                timeout=15, follow_redirects=True, max_redirects=3
+                timeout=8, follow_redirects=True, max_redirects=3
             ) as client:
                 resp = await client.get(url)
                 data = resp.json()
@@ -568,7 +568,7 @@ class RoutePredictionService:
         )
         hour = _parse_hour(departure_time)
         try:
-            async with httpx.AsyncClient(timeout=15) as client:
+            async with httpx.AsyncClient(timeout=8) as client:
                 resp = await client.get(url)
                 data = resp.json()
 
@@ -838,7 +838,7 @@ class RoutePredictionService:
 
         ruta_code, stops, o_idx, d_idx = result
         sub_stops = stops[o_idx : d_idx + 1]
-        max_display = 40
+        max_display = 20
         if len(sub_stops) > max_display:
             step = len(sub_stops) // max_display
             sub_stops = [sub_stops[i] for i in range(0, len(sub_stops), step)]
@@ -917,7 +917,7 @@ class RoutePredictionService:
         except (nx.NetworkXNoPath, nx.NodeNotFound):
             path = [origin_id, dest_id]
 
-        max_display = 40 if mode == "multimodal" else 25
+        max_display = 15
         display_path = self._limit_path(path, max_display)
         risk_segments, total_distance, total_time = await self._build_transit_segments_async(
             graph, path, speed_factor, hour
@@ -1022,7 +1022,7 @@ class RoutePredictionService:
 
             try:
                 async with httpx.AsyncClient(
-                    timeout=15, follow_redirects=True, max_redirects=3
+                    timeout=8, follow_redirects=True, max_redirects=3
                 ) as client:
                     resp = await client.get(url)
                     data = resp.json()
@@ -1064,7 +1064,7 @@ class RoutePredictionService:
 
         try:
             async with httpx.AsyncClient(
-                timeout=15, follow_redirects=True, max_redirects=3
+                timeout=8, follow_redirects=True, max_redirects=3
             ) as client:
                 resp = await client.get(url)
                 data = resp.json()
