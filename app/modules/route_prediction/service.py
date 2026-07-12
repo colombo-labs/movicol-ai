@@ -1102,9 +1102,9 @@ class RoutePredictionService:
         risk_segments: list[RiskSegment] = []
         total_distance, total_time = 0.0, 0.0
 
-        # Obtener los trazos exactos de la calle
-        leg_geometries = await self._fetch_osrm_transit_geometry(graph, path)
-        use_osrm = len(leg_geometries) == (len(path) - 1)
+
+
+        use_osrm = False
 
         for i in range(len(path) - 1):
             from_id, to_id = path[i], path[i + 1]
