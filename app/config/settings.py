@@ -30,6 +30,7 @@ class Settings(BaseSettings):
     osrm_base_url: str = ""
     ors_api_key: str = ""
     ors_base_url: str = "https://api.openrouteservice.org/v2/directions"
+    backend_internal_url: str = "http://movicol-backend.railway.internal:3001"
 
     class Config:
         env_file = ".env"

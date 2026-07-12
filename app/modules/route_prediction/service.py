@@ -95,7 +95,7 @@ class RoutePredictionService:
         return g
 
     def _load_sitp_route_data(self) -> dict:
-        """Load SITP route data grouped by route, sorted by orden."""
+        """Load SITP route data from local file (dev) or mark for lazy fetch (prod)."""
         import json
 
         p = (
@@ -106,7 +106,10 @@ class RoutePredictionService:
             / "sitp_rutas_paraderos.geojson"
         )
         if not p.exists():
-            print(f"Warning: SITP paraderos file not found at {p}")
+            # Also try models/ folder inside the AI repo
+            p = Path(__file__).parent.parent.parent.parent / "models" / "sitp_rutas_paraderos.geojson"
+        if not p.exists():
+            print("[RoutePrediction] SITP local file not found — will lazy-fetch from backend")
             return {}
         with open(p, encoding="utf-8") as f:
             data = json.load(f)
@@ -129,8 +132,54 @@ class RoutePredictionService:
         # Sort each route by its orden field
         for ruta in by_route:
             by_route[ruta].sort(key=lambda s: s["orden"])
-        print(f"SITP routes loaded: {len(by_route)} routes")
+        print(f"[RoutePrediction] SITP routes loaded from file: {len(by_route)} routes")
         return by_route
+
+    async def _ensure_sitp_loaded(self) -> None:
+        """Lazy-fetch SITP data from NestJS backend if not loaded from file."""
+        if self._sitp_routes:
+            return  # Already loaded
+
+        settings = get_settings()
+        url = f"{settings.backend_internal_url}/graph/sitp/rutas"
+        print(f"[RoutePrediction] Fetching SITP data from backend: {url}")
+
+        try:
+            async with httpx.AsyncClient(timeout=20) as client:
+                resp = await client.get(url)
+                if resp.status_code != 200:
+                    print(f"[RoutePrediction] Backend returned {resp.status_code} for SITP data")
+                    return
+                data = resp.json()
+
+            rutas = data.get("rutas", [])
+            by_route: dict = {}
+            for ruta_obj in rutas:
+                ruta_code = ruta_obj.get("ruta", "")
+                if not ruta_code:
+                    continue
+                stops = []
+                for i, p in enumerate(ruta_obj.get("paraderos", [])):
+                    stops.append({
+                        "lat": p["lat"],
+                        "lon": p["lon"],
+                        "nombre": p.get("nombre", ""),
+                        "orden": i,
+                    })
+                if stops:
+                    by_route[ruta_code] = stops
+
+            self._sitp_routes = by_route
+            print(f"[RoutePrediction] SITP routes fetched from backend: {len(by_route)} routes")
+
+            # Rebuild multimodal graph with SITP data now available
+            self._multimodal_graph = self._build_multimodal_graph()
+            # Clear spatial indexes so they get rebuilt with new graph
+            graph_id = id(self._multimodal_graph)
+            self._spatial_indexes.pop(graph_id, None)
+
+        except Exception as e:
+            print(f"[RoutePrediction] Failed to fetch SITP from backend: {e}")
 
     def _load_graph(self) -> nx.Graph:
         settings = get_settings()
@@ -840,6 +889,9 @@ class RoutePredictionService:
         mode: str,
     ) -> RoutePredictionResponse:
         """Transit routing: TransMilenio, SITP, or Multimodal."""
+        # Ensure SITP data is available (lazy-fetches from backend if needed)
+        await self._ensure_sitp_loaded()
+
         hour = _parse_hour(departure_time)
         schedule_warning = self._check_service_hours(departure_time)
 
