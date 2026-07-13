@@ -109,8 +109,19 @@ class RoutePredictionService:
             # Also try models/ folder inside the AI repo
             p = Path(__file__).parent.parent.parent.parent / "models" / "sitp_rutas_paraderos.geojson"
         if not p.exists():
-            print("[RoutePrediction] SITP local file not found — SITP routing disabled")
-            self._sitp_fetch_failed = True  # Skip lazy fetch attempts
+            print("[RoutePrediction] SITP local file not found — will retry fetch after backend warms up")
+            # Schedule a background retry after 30s (gives backend time to warm ArcGIS cache)
+            import asyncio
+            import threading
+
+            def _schedule_retry():
+                import time
+                time.sleep(30)
+                loop = asyncio.new_event_loop()
+                loop.run_until_complete(self._ensure_sitp_loaded())
+                loop.close()
+
+            threading.Thread(target=_schedule_retry, daemon=True).start()
             return {}
         with open(p, encoding="utf-8") as f:
             data = json.load(f)
@@ -140,8 +151,6 @@ class RoutePredictionService:
         """Lazy-fetch SITP data from NestJS backend if not loaded from file."""
         if self._sitp_routes:
             return  # Already loaded
-        if hasattr(self, '_sitp_fetch_failed'):
-            return  # Already tried and failed — don't retry on every request
 
         settings = get_settings()
         url = f"{settings.backend_internal_url}/graph/sitp/rutas"
@@ -893,8 +902,7 @@ class RoutePredictionService:
         mode: str,
     ) -> RoutePredictionResponse:
         """Transit routing: TransMilenio, SITP, or Multimodal."""
-        # Ensure SITP data is available (lazy-fetches from backend if needed)
-        await self._ensure_sitp_loaded()
+        # SITP data loads in background — don't block here
 
         hour = _parse_hour(departure_time)
         schedule_warning = self._check_service_hours(departure_time)
