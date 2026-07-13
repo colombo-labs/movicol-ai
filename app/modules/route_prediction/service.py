@@ -161,12 +161,14 @@ class RoutePredictionService:
                     continue
                 stops = []
                 for i, p in enumerate(ruta_obj.get("paraderos", [])):
-                    stops.append({
-                        "lat": p["lat"],
-                        "lon": p["lon"],
-                        "nombre": p.get("nombre", ""),
-                        "orden": i,
-                    })
+                    stops.append(
+                        {
+                            "lat": p["lat"],
+                            "lon": p["lon"],
+                            "nombre": p.get("nombre", ""),
+                            "orden": i,
+                        }
+                    )
                 if stops:
                     by_route[ruta_code] = stops
 
@@ -1062,8 +1064,7 @@ class RoutePredictionService:
         coord_str = ";".join(coords)
         base_url = get_settings().osrm_base_url
         url = (
-            f"{base_url}/route/v1/driving/{coord_str}"
-            "?geometries=geojson&overview=full&steps=false"
+            f"{base_url}/route/v1/driving/{coord_str}?geometries=geojson&overview=full&steps=false"
         )
 
         try:
@@ -1102,9 +1103,6 @@ class RoutePredictionService:
         risk_segments: list[RiskSegment] = []
         total_distance, total_time = 0.0, 0.0
 
-
-
-
         for i in range(len(path) - 1):
             from_id, to_id = path[i], path[i + 1]
             from_data = graph.nodes.get(from_id, {})
@@ -1129,11 +1127,6 @@ class RoutePredictionService:
             to_name = to_data.get("nombre", "") or to_data.get("name", "") or str(to_id)
 
             segment_coords = [[lat1, lon1], [lat2, lon2]]
-
-
-
-
-
 
             troncal = edge.get("troncal", "")
             if troncal == "walk" or troncal == "transbordo":

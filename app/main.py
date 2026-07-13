@@ -59,6 +59,7 @@ async def load_sitp_data():
         await asyncio.sleep(10)  # Wait for backend to be ready
         try:
             from app.modules.route_prediction.router import service
+
             await service._ensure_sitp_loaded()
         except Exception as e:
             print(f"[Startup] SITP fetch failed (non-critical): {e}")
