@@ -943,6 +943,24 @@ class RoutePredictionService:
             )
         return ""
 
+    @staticmethod
+    def _enforce_single_troncal(graph: nx.Graph, path: list, origin_id: str, dest_id: str) -> list:
+        """Re-route without transbordo edges if the path crosses troncales."""
+        has_transbordo = any(
+            graph.edges.get((path[i], path[i + 1]), {}).get("troncal") == "transbordo"
+            for i in range(len(path) - 1)
+        )
+        if not has_transbordo:
+            return path
+        non_transbordo_edges = [
+            (u, v) for u, v, d in graph.edges(data=True) if d.get("troncal") != "transbordo"
+        ]
+        subgraph = graph.edge_subgraph(non_transbordo_edges)
+        try:
+            return nx.shortest_path(subgraph, origin_id, dest_id, weight="distance_km")
+        except (nx.NetworkXNoPath, nx.NodeNotFound):
+            return path  # Keep original if no single-troncal alternative
+
     async def _predict_transit(
         self,
         origin: Coordinates,
@@ -978,21 +996,9 @@ class RoutePredictionService:
         except (nx.NetworkXNoPath, nx.NodeNotFound):
             path = [origin_id, dest_id]
 
-        # For non-multimodal: if path uses transbordo edges, retry without them
+        # For non-multimodal: enforce single-troncal path
         if mode != "multimodal" and len(path) > 2:
-            has_transbordo = any(
-                graph.edges.get((path[i], path[i + 1]), {}).get("troncal") == "transbordo"
-                for i in range(len(path) - 1)
-            )
-            if has_transbordo:
-                non_transbordo_edges = [
-                    (u, v) for u, v, d in graph.edges(data=True) if d.get("troncal") != "transbordo"
-                ]
-                subgraph = graph.edge_subgraph(non_transbordo_edges)
-                try:
-                    path = nx.shortest_path(subgraph, origin_id, dest_id, weight="distance_km")
-                except (nx.NetworkXNoPath, nx.NodeNotFound):
-                    pass  # Keep original path if no single-troncal alternative
+            path = self._enforce_single_troncal(graph, path, origin_id, dest_id)
 
         max_display = 15
         display_path = self._limit_path(path, max_display)
