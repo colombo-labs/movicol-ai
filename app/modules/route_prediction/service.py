@@ -214,41 +214,34 @@ class RoutePredictionService:
 
     def _get_segment_geometry(self, from_data: dict, to_data: dict) -> list[list[float]] | None:
         """Find the sub-polyline of a troncal between two stations."""
-        if not hasattr(self, "_troncal_coords") or not self._troncal_coords:
-            return None
-
-        # Get troncal name from station data
-        troncal = (from_data.get("troncal", "") or "").lower()
-        if not troncal or troncal not in self._troncal_coords:
-            return None
-
-        coords = self._troncal_coords[troncal]
-        if len(coords) < 2:
-            return None
-
-        lat1, lon1 = float(from_data.get("lat", 0)), float(from_data.get("lon", 0))
-        lat2, lon2 = float(to_data.get("lat", 0)), float(to_data.get("lon", 0))
-
-        # Find closest point on troncal to from_station and to_station
-        def closest_idx(lat: float, lon: float) -> int:
-            best_i, best_d = 0, float("inf")
-            for i, c in enumerate(coords):
-                d = (c[0] - lat) ** 2 + (c[1] - lon) ** 2
-                if d < best_d:
-                    best_d, best_i = d, i
-            return best_i
-
-        idx1 = closest_idx(lat1, lon1)
-        idx2 = closest_idx(lat2, lon2)
-
-        if idx1 == idx2:
-            return None
-
-        # Extract sub-polyline (handle both directions)
-        if idx1 < idx2:
-            return coords[idx1 : idx2 + 1]
-        else:
+        try:
+            if not hasattr(self, "_troncal_coords") or not self._troncal_coords:
+                return None
+            troncal = (from_data.get("troncal", "") or "").lower()
+            if not troncal or troncal not in self._troncal_coords:
+                return None
+            coords = self._troncal_coords[troncal]
+            if len(coords) < 2:
+                return None
+            lat1 = float(from_data.get("lat", 0))
+            lon1 = float(from_data.get("lon", 0))
+            lat2 = float(to_data.get("lat", 0))
+            lon2 = float(to_data.get("lon", 0))
+            idx1 = min(
+                range(len(coords)),
+                key=lambda i: (coords[i][0] - lat1) ** 2 + (coords[i][1] - lon1) ** 2,
+            )
+            idx2 = min(
+                range(len(coords)),
+                key=lambda i: (coords[i][0] - lat2) ** 2 + (coords[i][1] - lon2) ** 2,
+            )
+            if idx1 == idx2:
+                return None
+            if idx1 < idx2:
+                return coords[idx1 : idx2 + 1]
             return list(reversed(coords[idx2 : idx1 + 1]))
+        except Exception:
+            return None
 
     def _load_graph(self) -> nx.Graph:
         settings = get_settings()
