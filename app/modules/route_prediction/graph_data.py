@@ -153,7 +153,7 @@ def _add_transfer_edges(graph: nx.Graph, hav_fn) -> None:
                 continue
             dist = hav_fn(float(d1["lat"]), float(d1["lon"]), float(d2["lat"]), float(d2["lon"]))
             if dist < 0.8:
-                graph.add_edge(n1, n2, troncal="transbordo", distance_km=round(dist, 3))
+                graph.add_edge(n1, n2, troncal="transbordo", distance_km=round(dist + 2.0, 3))
 
 
 def build_caracas_graph() -> nx.Graph:
