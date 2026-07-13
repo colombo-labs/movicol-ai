@@ -864,7 +864,7 @@ class RoutePredictionService:
         )
         # Include direction in route_code for UI display
         dest_name = sub_stops[-1]["nombre"] if sub_stops else ""
-        display_code = f"{ruta_code} → {dest_name}" if dest_name else ruta_code
+        display_code = ruta_code
         return self._build_response(
             total_time,
             total_distance,
