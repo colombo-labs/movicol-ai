@@ -52,7 +52,7 @@ app = create_app()
 
 @app.on_event("startup")
 async def load_sitp_data():
-    """Fetch SITP route data from backend after startup (non-blocking)."""
+    """Fetch SITP route data and TM troncal geometries from backend after startup."""
     import asyncio
 
     async def _fetch():
@@ -61,7 +61,8 @@ async def load_sitp_data():
             from app.modules.route_prediction.router import service
 
             await service._ensure_sitp_loaded()
+            await service._load_troncal_geometries()
         except Exception as e:
-            print(f"[Startup] SITP fetch failed (non-critical): {e}")
+            print(f"[Startup] Data fetch failed (non-critical): {e}")
 
     _task = asyncio.create_task(_fetch())  # noqa: F841

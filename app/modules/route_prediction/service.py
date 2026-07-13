@@ -181,9 +181,74 @@ class RoutePredictionService:
             graph_id = id(self._multimodal_graph)
             self._spatial_indexes.pop(graph_id, None)
 
-        except Exception as e:
+        except Exception:
             self._sitp_fetch_failed = True
-            print(f"[RoutePrediction] Failed to fetch SITP from backend: {e}")
+
+    async def _load_troncal_geometries(self) -> None:
+        """Fetch TM troncal LineString geometries from backend for smooth route rendering."""
+        if hasattr(self, "_troncal_coords") and self._troncal_coords:
+            return
+
+        settings = get_settings()
+        url = f"{settings.backend_internal_url}/graph/tm/troncales"
+        print(f"[RoutePrediction] Fetching troncal geometries from: {url}")
+
+        try:
+            async with httpx.AsyncClient(timeout=10) as client:
+                resp = await client.get(url)
+                if resp.status_code != 200:
+                    return
+                data = resp.json()
+
+            self._troncal_coords: dict[str, list[list[float]]] = {}
+            for feat in data.get("features", []):
+                name = feat.get("properties", {}).get("troncal", "").lower()
+                coords = feat.get("geometry", {}).get("coordinates", [])
+                if name and coords:
+                    # Convert [lon,lat] to [lat,lon]
+                    self._troncal_coords[name] = [[c[1], c[0]] for c in coords]
+
+            print(f"[RoutePrediction] Troncal geometries loaded: {len(self._troncal_coords)}")
+        except Exception:
+            print("[RoutePrediction] Failed to fetch troncal geometries")
+
+    def _get_segment_geometry(self, from_data: dict, to_data: dict) -> list[list[float]] | None:
+        """Find the sub-polyline of a troncal between two stations."""
+        if not hasattr(self, "_troncal_coords") or not self._troncal_coords:
+            return None
+
+        # Get troncal name from station data
+        troncal = (from_data.get("troncal", "") or "").lower()
+        if not troncal or troncal not in self._troncal_coords:
+            return None
+
+        coords = self._troncal_coords[troncal]
+        if len(coords) < 2:
+            return None
+
+        lat1, lon1 = float(from_data.get("lat", 0)), float(from_data.get("lon", 0))
+        lat2, lon2 = float(to_data.get("lat", 0)), float(to_data.get("lon", 0))
+
+        # Find closest point on troncal to from_station and to_station
+        def closest_idx(lat: float, lon: float) -> int:
+            best_i, best_d = 0, float("inf")
+            for i, c in enumerate(coords):
+                d = (c[0] - lat) ** 2 + (c[1] - lon) ** 2
+                if d < best_d:
+                    best_d, best_i = d, i
+            return best_i
+
+        idx1 = closest_idx(lat1, lon1)
+        idx2 = closest_idx(lat2, lon2)
+
+        if idx1 == idx2:
+            return None
+
+        # Extract sub-polyline (handle both directions)
+        if idx1 < idx2:
+            return coords[idx1 : idx2 + 1]
+        else:
+            return list(reversed(coords[idx2 : idx1 + 1]))
 
     def _load_graph(self) -> nx.Graph:
         settings = get_settings()
@@ -1092,8 +1157,8 @@ class RoutePredictionService:
                         leg_geometries.append(all_coords[start:end])
                     return leg_geometries
                 return leg_geometries
-        except Exception as e:
-            print("OSRM multipoint transit fetch failed:", e)
+        except Exception:
+            print("[RoutePrediction] OSRM transit fetch failed")
         return []
 
     async def _build_transit_segments_async(
@@ -1131,7 +1196,9 @@ class RoutePredictionService:
             from_name = from_data.get("nombre", "") or from_data.get("name", "") or str(from_id)
             to_name = to_data.get("nombre", "") or to_data.get("name", "") or str(to_id)
 
-            segment_coords = [[lat1, lon1], [lat2, lon2]]
+            # Use troncal geometry if available, otherwise straight line
+            troncal_geom = self._get_segment_geometry(from_data, to_data)
+            segment_coords = troncal_geom if troncal_geom else [[lat1, lon1], [lat2, lon2]]
 
             # For single-mode routes, force all segments to that mode
             if route_mode != "multimodal":
