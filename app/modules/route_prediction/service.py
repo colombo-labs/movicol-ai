@@ -109,19 +109,7 @@ class RoutePredictionService:
             # Also try models/ folder inside the AI repo
             p = Path(__file__).parent.parent.parent.parent / "models" / "sitp_rutas_paraderos.geojson"
         if not p.exists():
-            print("[RoutePrediction] SITP local file not found — will retry fetch after backend warms up")
-            # Schedule a background retry after 30s (gives backend time to warm ArcGIS cache)
-            import asyncio
-            import threading
-
-            def _schedule_retry():
-                import time
-                time.sleep(30)
-                loop = asyncio.new_event_loop()
-                loop.run_until_complete(self._ensure_sitp_loaded())
-                loop.close()
-
-            threading.Thread(target=_schedule_retry, daemon=True).start()
+            print("[RoutePrediction] SITP local file not found — SITP routing disabled in prod")
             return {}
         with open(p, encoding="utf-8") as f:
             data = json.load(f)
