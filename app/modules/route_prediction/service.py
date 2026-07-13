@@ -181,9 +181,74 @@ class RoutePredictionService:
             graph_id = id(self._multimodal_graph)
             self._spatial_indexes.pop(graph_id, None)
 
-        except Exception as e:
+        except Exception:
             self._sitp_fetch_failed = True
-            print(f"[RoutePrediction] Failed to fetch SITP from backend: {e}")
+
+    async def _load_troncal_geometries(self) -> None:
+        """Fetch TM troncal LineString geometries from backend for smooth route rendering."""
+        if hasattr(self, "_troncal_coords") and self._troncal_coords:
+            return
+
+        settings = get_settings()
+        url = f"{settings.backend_internal_url}/graph/tm/troncales"
+        print(f"[RoutePrediction] Fetching troncal geometries from: {url}")
+
+        try:
+            async with httpx.AsyncClient(timeout=10) as client:
+                resp = await client.get(url)
+                if resp.status_code != 200:
+                    return
+                data = resp.json()
+
+            self._troncal_coords: dict[str, list[list[float]]] = {}
+            for feat in data.get("features", []):
+                name = feat.get("properties", {}).get("troncal", "").lower()
+                coords = feat.get("geometry", {}).get("coordinates", [])
+                if name and coords:
+                    # Convert [lon,lat] to [lat,lon]
+                    self._troncal_coords[name] = [[c[1], c[0]] for c in coords]
+
+            print(f"[RoutePrediction] Troncal geometries loaded: {len(self._troncal_coords)}")
+        except Exception:
+            print("[RoutePrediction] Failed to fetch troncal geometries")
+
+    def _get_segment_geometry(self, from_data: dict, to_data: dict) -> list[list[float]] | None:
+        """Find the sub-polyline of a troncal between two stations."""
+        if not hasattr(self, "_troncal_coords") or not self._troncal_coords:
+            return None
+
+        # Get troncal name from station data
+        troncal = (from_data.get("troncal", "") or "").lower()
+        if not troncal or troncal not in self._troncal_coords:
+            return None
+
+        coords = self._troncal_coords[troncal]
+        if len(coords) < 2:
+            return None
+
+        lat1, lon1 = float(from_data.get("lat", 0)), float(from_data.get("lon", 0))
+        lat2, lon2 = float(to_data.get("lat", 0)), float(to_data.get("lon", 0))
+
+        # Find closest point on troncal to from_station and to_station
+        def closest_idx(lat: float, lon: float) -> int:
+            best_i, best_d = 0, float("inf")
+            for i, c in enumerate(coords):
+                d = (c[0] - lat) ** 2 + (c[1] - lon) ** 2
+                if d < best_d:
+                    best_d, best_i = d, i
+            return best_i
+
+        idx1 = closest_idx(lat1, lon1)
+        idx2 = closest_idx(lat2, lon2)
+
+        if idx1 == idx2:
+            return None
+
+        # Extract sub-polyline (handle both directions)
+        if idx1 < idx2:
+            return coords[idx1 : idx2 + 1]
+        else:
+            return list(reversed(coords[idx2 : idx1 + 1]))
 
     def _load_graph(self) -> nx.Graph:
         settings = get_settings()
@@ -923,7 +988,7 @@ class RoutePredictionService:
         max_display = 15
         display_path = self._limit_path(path, max_display)
         risk_segments, total_distance, total_time = await self._build_transit_segments_async(
-            graph, path, speed_factor, hour
+            graph, path, speed_factor, hour, mode
         )
         station_names = [
             graph.nodes.get(n, {}).get("name", "")
@@ -1040,29 +1105,45 @@ class RoutePredictionService:
 
         return all_leg_geometries
 
+    @staticmethod
+    def _sample_path(path: list, max_waypoints: int = 12) -> list:
+        """Sample path to limit OSRM waypoints."""
+        if len(path) <= max_waypoints:
+            return path
+        step = len(path) // (max_waypoints - 1)
+        sampled = [path[i] for i in range(0, len(path), step)]
+        if path[-1] not in sampled:
+            sampled.append(path[-1])
+        return sampled
+
+    @staticmethod
+    def _split_coords_into_legs(all_coords: list, n_segments: int) -> list[list]:
+        """Split a polyline into N equal-ish segments."""
+        if n_segments <= 1:
+            return [all_coords]
+        chunk_size = max(1, len(all_coords) // n_segments)
+        legs = []
+        for i in range(n_segments):
+            start = i * chunk_size
+            end = (i + 1) * chunk_size + 1 if i < n_segments - 1 else len(all_coords)
+            legs.append(all_coords[start:end])
+        return legs
+
     async def _fetch_osrm_transit_geometry(self, graph: nx.Graph, path: list) -> list[list]:
-        """Fetch exact street geometries passing through path nodes from OSRM."""
+        """Fetch street geometries for a transit path from OSRM."""
         if len(path) < 2:
             return []
 
-        # Limit waypoints to avoid erratic OSRM routes (max 12 points)
-        max_waypoints = 12
-        if len(path) > max_waypoints:
-            step = len(path) // (max_waypoints - 1)
-            sampled = [path[i] for i in range(0, len(path), step)]
-            if path[-1] not in sampled:
-                sampled.append(path[-1])
-            sample_path = sampled
-        else:
-            sample_path = path
-
+        sample_path = self._sample_path(path)
         coords = []
         for n in sample_path:
-            d = graph.nodes.get(n, {})
-            coords.append(f"{float(d.get('lon', 0))},{float(d.get('lat', 0))}")
+            nd = graph.nodes.get(n, {})
+            lon = float(nd.get("lon", 0))
+            lat = float(nd.get("lat", 0))
+            coords.append(f"{lon},{lat}")
 
-        coord_str = ";".join(coords)
         base_url = get_settings().osrm_base_url
+        coord_str = ";".join(coords)
         url = (
             f"{base_url}/route/v1/driving/{coord_str}?geometries=geojson&overview=full&steps=false"
         )
@@ -1074,30 +1155,26 @@ class RoutePredictionService:
                 resp = await client.get(url)
                 data = resp.json()
 
-            if data.get("code") == "Ok" and data.get("routes"):
-                # Use the full overview geometry — one clean polyline
-                full_coords = data["routes"][0].get("geometry", {}).get("coordinates", [])
-                if full_coords:
-                    # Convert [lon, lat] to [lat, lon] for Leaflet
-                    all_coords = [[c[1], c[0]] for c in full_coords]
-                    # Split into segments matching original path length
-                    n_segments = len(path) - 1
-                    if n_segments <= 1:
-                        return [all_coords]
-                    chunk_size = max(1, len(all_coords) // n_segments)
-                    leg_geometries = []
-                    for i in range(n_segments):
-                        start = i * chunk_size
-                        end = (i + 1) * chunk_size + 1 if i < n_segments - 1 else len(all_coords)
-                        leg_geometries.append(all_coords[start:end])
-                    return leg_geometries
-                return leg_geometries
-        except Exception as e:
-            print("OSRM multipoint transit fetch failed:", e)
+            full_coords = (
+                data.get("routes", [{}])[0].get("geometry", {}).get("coordinates", [])
+                if data.get("code") == "Ok"
+                else []
+            )
+            if not full_coords:
+                return []
+            all_coords = [[c[1], c[0]] for c in full_coords]
+            return self._split_coords_into_legs(all_coords, len(path) - 1)
+        except Exception:
+            print("[RoutePrediction] OSRM transit fetch failed")
         return []
 
     async def _build_transit_segments_async(
-        self, graph: nx.Graph, path: list, speed_factor: float, hour: int
+        self,
+        graph: nx.Graph,
+        path: list,
+        speed_factor: float,
+        hour: int,
+        route_mode: str = "transmilenio",
     ) -> tuple[list[RiskSegment], float, float]:
         """Build risk segments for a transit path, using OSRM multipoint routing."""
         risk_segments: list[RiskSegment] = []
@@ -1126,15 +1203,21 @@ class RoutePredictionService:
             from_name = from_data.get("nombre", "") or from_data.get("name", "") or str(from_id)
             to_name = to_data.get("nombre", "") or to_data.get("name", "") or str(to_id)
 
-            segment_coords = [[lat1, lon1], [lat2, lon2]]
+            # Use troncal geometry if available, otherwise straight line
+            troncal_geom = self._get_segment_geometry(from_data, to_data)
+            segment_coords = troncal_geom if troncal_geom else [[lat1, lon1], [lat2, lon2]]
 
-            troncal = edge.get("troncal", "")
-            if troncal == "walk" or troncal == "transbordo":
-                seg_mode = "walk"
-            elif troncal == "SITP":
-                seg_mode = "sitp"
+            # For single-mode routes, force all segments to that mode
+            if route_mode != "multimodal":
+                seg_mode = route_mode
             else:
-                seg_mode = "transmilenio"
+                troncal = edge.get("troncal", "")
+                if troncal == "walk" or troncal == "transbordo":
+                    seg_mode = "walk"
+                elif troncal == "SITP":
+                    seg_mode = "sitp"
+                else:
+                    seg_mode = "transmilenio"
 
             risk_segments.append(
                 self._make_segment(
