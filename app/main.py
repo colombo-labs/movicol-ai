@@ -63,4 +63,4 @@ async def load_sitp_data():
         except Exception as e:
             print(f"[Startup] SITP fetch failed (non-critical): {e}")
 
-    asyncio.create_task(_fetch())
+    _task = asyncio.create_task(_fetch())  # noqa: F841
