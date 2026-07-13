@@ -978,6 +978,22 @@ class RoutePredictionService:
         except (nx.NetworkXNoPath, nx.NodeNotFound):
             path = [origin_id, dest_id]
 
+        # For non-multimodal: if path uses transbordo edges, retry without them
+        if mode != "multimodal" and len(path) > 2:
+            has_transbordo = any(
+                graph.edges.get((path[i], path[i + 1]), {}).get("troncal") == "transbordo"
+                for i in range(len(path) - 1)
+            )
+            if has_transbordo:
+                non_transbordo_edges = [
+                    (u, v) for u, v, d in graph.edges(data=True) if d.get("troncal") != "transbordo"
+                ]
+                subgraph = graph.edge_subgraph(non_transbordo_edges)
+                try:
+                    path = nx.shortest_path(subgraph, origin_id, dest_id, weight="distance_km")
+                except (nx.NetworkXNoPath, nx.NodeNotFound):
+                    pass  # Keep original path if no single-troncal alternative
+
         max_display = 15
         display_path = self._limit_path(path, max_display)
         risk_segments, total_distance, total_time = await self._build_transit_segments_async(
