@@ -1135,12 +1135,18 @@ class RoutePredictionService:
             return []
 
         sample_path = self._sample_path(path)
-        coords = [
-            f"{float(graph.nodes.get(n, {}).get('lon', 0))},{float(graph.nodes.get(n, {}).get('lat', 0))}"
-            for n in sample_path
-        ]
+        coords = []
+        for n in sample_path:
+            nd = graph.nodes.get(n, {})
+            lon = float(nd.get("lon", 0))
+            lat = float(nd.get("lat", 0))
+            coords.append(f"{lon},{lat}")
+
         base_url = get_settings().osrm_base_url
-        url = f"{base_url}/route/v1/driving/{';'.join(coords)}?geometries=geojson&overview=full&steps=false"
+        coord_str = ";".join(coords)
+        url = (
+            f"{base_url}/route/v1/driving/{coord_str}?geometries=geojson&overview=full&steps=false"
+        )
 
         try:
             async with httpx.AsyncClient(
