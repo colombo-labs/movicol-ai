@@ -923,7 +923,7 @@ class RoutePredictionService:
         max_display = 15
         display_path = self._limit_path(path, max_display)
         risk_segments, total_distance, total_time = await self._build_transit_segments_async(
-            graph, path, speed_factor, hour
+            graph, path, speed_factor, hour, mode
         )
         station_names = [
             graph.nodes.get(n, {}).get("name", "")
@@ -1097,7 +1097,12 @@ class RoutePredictionService:
         return []
 
     async def _build_transit_segments_async(
-        self, graph: nx.Graph, path: list, speed_factor: float, hour: int
+        self,
+        graph: nx.Graph,
+        path: list,
+        speed_factor: float,
+        hour: int,
+        route_mode: str = "transmilenio",
     ) -> tuple[list[RiskSegment], float, float]:
         """Build risk segments for a transit path, using OSRM multipoint routing."""
         risk_segments: list[RiskSegment] = []
@@ -1128,13 +1133,17 @@ class RoutePredictionService:
 
             segment_coords = [[lat1, lon1], [lat2, lon2]]
 
-            troncal = edge.get("troncal", "")
-            if troncal == "walk" or troncal == "transbordo":
-                seg_mode = "walk"
-            elif troncal == "SITP":
-                seg_mode = "sitp"
+            # For single-mode routes, force all segments to that mode
+            if route_mode != "multimodal":
+                seg_mode = route_mode
             else:
-                seg_mode = "transmilenio"
+                troncal = edge.get("troncal", "")
+                if troncal == "walk" or troncal == "transbordo":
+                    seg_mode = "walk"
+                elif troncal == "SITP":
+                    seg_mode = "sitp"
+                else:
+                    seg_mode = "transmilenio"
 
             risk_segments.append(
                 self._make_segment(
