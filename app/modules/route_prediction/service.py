@@ -606,6 +606,7 @@ class RoutePredictionService:
                         f"Tramo {i // chunk_size + 2}",
                         seg_congestion,
                         seg_coords,
+                        mode=mode_name,
                     )
                 )
 
@@ -674,7 +675,7 @@ class RoutePredictionService:
                 "Destino",
                 congestion,
                 [[origin.lat, origin.lng], [destination.lat, destination.lng]],
-                mode="vehiculo",
+                mode=mode_name,
             )
         ]
         return self._build_response(
