@@ -2,7 +2,7 @@
 
 ## Estructura
 
-```
+```text
 tests/
 ├── test_agent_full.py          → Intents, tools, schemas (34 tests)
 ├── test_agent_service.py       → Chat service flow completo (19 tests)
