@@ -899,11 +899,11 @@ class RoutePredictionService:
         departure_time: str,
         speed_factor: float,
     ) -> RoutePredictionResponse | None:
-        result = self._find_best_sitp_route(origin, destination)
-        if not result:
+        alternatives = self._find_sitp_alternatives(origin, destination)
+        if not alternatives:
             return None
 
-        ruta_code, stops, o_idx, d_idx = result
+        ruta_code, stops, o_idx, d_idx = alternatives[0]
         sub_stops = stops[o_idx : d_idx + 1]
         max_display = 20
         if len(sub_stops) > max_display:
@@ -916,9 +916,8 @@ class RoutePredictionService:
         risk_segments, total_distance, total_time = await self._build_sitp_segments(
             sub_stops, speed_factor
         )
-        # Include direction in route_code for UI display
         display_code = ruta_code
-        return self._build_response(
+        response = self._build_response(
             total_time,
             total_distance,
             "$3.550",
@@ -928,6 +927,35 @@ class RoutePredictionService:
             departure_time,
             route_code=display_code,
         )
+
+        # Build alternatives (2nd and 3rd best routes)
+        alt_responses = []
+        for alt_code, alt_stops, alt_o, alt_d in alternatives[1:]:
+            alt_sub = alt_stops[alt_o : alt_d + 1]
+            if len(alt_sub) > max_display:
+                step = len(alt_sub) // max_display
+                alt_sub = [alt_sub[i] for i in range(0, len(alt_sub), step)]
+                if alt_stops[alt_d] not in alt_sub:
+                    alt_sub.append(alt_stops[alt_d])
+            alt_names = [s["nombre"] for s in alt_sub]
+            alt_segs, alt_dist, alt_time = await self._build_sitp_segments(alt_sub, speed_factor)
+            alt_responses.append(
+                self._build_response(
+                    alt_time,
+                    alt_dist,
+                    "$3.550",
+                    "sitp",
+                    alt_segs,
+                    alt_names,
+                    departure_time,
+                    route_code=alt_code,
+                )
+            )
+
+        if alt_responses:
+            response.alternatives = alt_responses
+
+        return response
 
     @staticmethod
     def _check_service_hours(departure_time: str) -> str:
