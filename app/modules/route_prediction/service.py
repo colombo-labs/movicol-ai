@@ -710,6 +710,9 @@ class RoutePredictionService:
                     )
                 )
 
+            # Extract navigation steps from ORS segments
+            nav_steps = self._parse_ors_steps(feat.get("properties", {}), mode_name)
+
             return self._build_response(
                 duration_min,
                 distance_km,
@@ -718,9 +721,55 @@ class RoutePredictionService:
                 segments,
                 [],
                 departure_time,
+                navigation_steps=nav_steps,
             )
         except Exception:
             return self._fallback_vehicle(origin, destination, departure_time, hour, mode_name, 0)
+
+    @staticmethod
+    def _parse_ors_steps(properties: dict, mode_name: str) -> list:
+        """Parse ORS segments[].steps[] into NavigationStep list."""
+        from app.modules.route_prediction.schemas import NavigationStep
+
+        # ORS type → maneuver mapping
+        type_map = {
+            0: "straight",  # left
+            1: "right",
+            2: "left",  # sharp left
+            3: "right",  # sharp right
+            4: "straight",  # slight left
+            5: "straight",  # slight right
+            6: "straight",
+            10: "depart",
+            11: "arrive",
+            12: "straight",  # roundabout
+            13: "straight",  # u-turn
+        }
+
+        nav_steps: list[NavigationStep] = []
+        for seg in properties.get("segments", []):
+            for step in seg.get("steps", []):
+                instruction = step.get("instruction", "")
+                street = step.get("name", "")
+                distance_m = int(step.get("distance", 0))
+                duration_s = int(step.get("duration", 0))
+                step_type = step.get("type", 6)
+                maneuver = type_map.get(step_type, "straight")
+
+                # Skip trivial steps
+                if distance_m < 5 and maneuver not in ("depart", "arrive"):
+                    continue
+
+                nav_steps.append(
+                    NavigationStep(
+                        instruction=instruction,
+                        street=street,
+                        distance_m=distance_m,
+                        duration_s=duration_s,
+                        maneuver=maneuver,
+                    )
+                )
+        return nav_steps
 
     def _route_to_response(
         self,
