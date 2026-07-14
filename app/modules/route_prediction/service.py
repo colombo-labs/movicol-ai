@@ -1016,7 +1016,8 @@ class RoutePredictionService:
         ]
         route_code = self._derive_route_code(graph, path)
 
-        main_mode = self._determine_mode(risk_segments)
+        # If route_code matches a known TM route, unify all segments to TM
+        main_mode = self._unify_tm_mode(risk_segments, route_code)
 
         return self._build_response(
             total_time,
@@ -1029,6 +1030,26 @@ class RoutePredictionService:
             route_code=route_code,
             explanation=schedule_warning,
         )
+
+    def _unify_tm_mode(self, risk_segments: list, route_code: str) -> str:
+        """Determine mode, unifying to TM if route_code is a known TM route."""
+        main_mode = self._determine_mode(risk_segments)
+        if route_code and self._is_tm_route(route_code):
+            main_mode = "transmilenio"
+            for seg in risk_segments:
+                if seg.mode != "walk":
+                    seg.mode = "transmilenio"
+        return main_mode
+
+    @staticmethod
+    def _is_tm_route(route_code: str) -> bool:
+        """Check if route_code belongs to a known TransMilenio route."""
+        from app.modules.route_prediction.graph_data import TM_RUTAS
+
+        if not TM_RUTAS:
+            return False
+        tm_codes = {r.get("codigo", "") for r in TM_RUTAS}
+        return route_code in tm_codes
 
     @staticmethod
     def _determine_mode(segments) -> str:
