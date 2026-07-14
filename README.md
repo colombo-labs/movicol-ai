@@ -1,6 +1,7 @@
 # MoviCol AI Service
 
-Servicio de inteligencia artificial para predicción de rutas y congestión — FastAPI + NetworkX + PyTorch.
+Servicio de IA para predicción de rutas y congestión —
+FastAPI + NetworkX + PyTorch.
 
 ## Stack
 
@@ -20,33 +21,37 @@ pytest tests/ -v      # 17 tests
 
 ## Endpoints
 
-| Método | Endpoint | Descripción |
-|--------|----------|-------------|
-| POST | `/api/v1/predict-route` | Predicción de ruta (TM/SITP/Vehículo) |
-| POST | `/api/v1/predict-route/alternatives` | Alternativas vehiculares (OSRM) |
-| GET | `/api/v1/predict-route/alerts` | Alertas scrapeadas de TransMilenio |
-| GET | `/api/v1/predict-route/safety` | Safety score por ruta SITP |
-| GET | `/graph/stations` | Estaciones del grafo |
-| GET | `/graph/stats` | Nodos y edges |
-| GET | `/graph/heatmap` | Congestión por estación |
-| POST | `/predictions` | Predicción GNN individual |
-| POST | `/predictions/batch` | Predicciones batch |
-| GET | `/demand/predict` | Predicción demanda ST-GAT |
-| POST | `/agent/chat` | Agente conversacional |
-| GET | `/health` | Health check |
+| Método | Endpoint                              | Descripción                      |
+| ------ | ------------------------------------- | -------------------------------- |
+| POST   | `/api/v1/predict-route`               | Predicción de ruta (TM/SITP/Veh) |
+| POST   | `/api/v1/predict-route/alternatives`  | Alternativas vehiculares (OSRM)  |
+| GET    | `/api/v1/predict-route/alerts`        | Alertas de TransMilenio          |
+| GET    | `/api/v1/predict-route/safety`        | Safety score por ruta SITP       |
+| GET    | `/graph/stations`                     | Estaciones del grafo             |
+| GET    | `/graph/stats`                        | Nodos y edges                    |
+| GET    | `/graph/heatmap`                      | Congestión por estación          |
+| POST   | `/predictions`                        | Predicción GNN individual        |
+| POST   | `/predictions/batch`                  | Predicciones batch               |
+| GET    | `/demand/predict`                     | Predicción demanda ST-GAT        |
+| POST   | `/agent/chat`                         | Agente conversacional            |
+| GET    | `/health`                             | Health check                     |
 
 ## Modelos
 
 | Modelo | Archivo | Descripción |
-|--------|---------|-------------|
-| GNN (GAT) | `gat_best.pt` | Predicción de congestión por nodo |
-| ST-GAT | `st_gat_model.pt` | Predicción de demanda espacio-temporal |
-| Grafo | `grafo_movilidad_bogota_enriched.graphml` | Grafo SITP (7290 nodos) |
-| TM Graph | `tm_stations_all.json` + `tm_rutas_all.json` | 153 estaciones, 125 rutas TM |
+| ------ | ------- | ----------- |
+| GNN | `gat_best.pt` | Predicción congestión por nodo |
+| ST-GAT | `st_gat_model.pt` | Predicción demanda espacio-temporal |
+| Grafo | `grafo_movilidad_bogota_*.graphml` | Grafo SITP (7290 nodos) |
+| TM | `tm_stations_all.json` | 153 estaciones, 125 rutas TM |
 
 ## Congestión
 
-Fórmula: `congestion = (GNN_base * 0.6 + ST_GAT_demand * 0.4) * hour_factor * day_factor`
+Fórmula:
+
+```text
+congestion = (GNN_base * 0.6 + ST_GAT * 0.4) * hour * day
+```
 
 - `hour_factor`: 0.2 (madrugada) → 1.0 (hora pico)
 - `day_factor`: L-J=1.0, Vie=1.05, Sáb=0.6, Dom=0.4
@@ -54,7 +59,7 @@ Fórmula: `congestion = (GNN_base * 0.6 + ST_GAT_demand * 0.4) * hour_factor * d
 ## Routing Vehicular
 
 - Usa OSRM público (`router.project-osrm.org`) via HTTP
-- Retorna geometría real, pasos de navegación, calles con nombres
+- Retorna geometría real, pasos de navegación, calles
 - `alternatives=true` para rutas alternativas
 - Fallback euclidiano si OSRM no disponible
 
