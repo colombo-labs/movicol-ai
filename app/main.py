@@ -56,12 +56,19 @@ async def load_sitp_data():
     import asyncio
 
     async def _fetch():
-        await asyncio.sleep(10)  # Wait for backend to be ready
+        await asyncio.sleep(15)  # Wait for backend to be ready
         try:
             from app.modules.route_prediction.router import service
 
             await service._ensure_sitp_loaded()
             await service._load_troncal_geometries()
+
+            # Retry SITP once if first attempt failed (backend may need cache warm-up)
+            if not service._sitp_routes:
+                print("[Startup] SITP not loaded, retrying in 20s...")
+                await asyncio.sleep(20)
+                service._sitp_fetch_failed = False
+                await service._ensure_sitp_loaded()
         except Exception as e:
             print(f"[Startup] Data fetch failed (non-critical): {e}")
 

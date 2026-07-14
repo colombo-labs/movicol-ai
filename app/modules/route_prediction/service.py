@@ -146,7 +146,7 @@ class RoutePredictionService:
         print(f"[RoutePrediction] Fetching SITP data from backend: {url}")
 
         try:
-            async with httpx.AsyncClient(timeout=5) as client:
+            async with httpx.AsyncClient(timeout=30) as client:
                 resp = await client.get(url)
                 if resp.status_code != 200:
                     print(f"[RoutePrediction] Backend returned {resp.status_code} for SITP data")
@@ -181,7 +181,8 @@ class RoutePredictionService:
             graph_id = id(self._multimodal_graph)
             self._spatial_indexes.pop(graph_id, None)
 
-        except Exception:
+        except Exception as e:
+            print(f"[RoutePrediction] SITP fetch failed: {e}")
             self._sitp_fetch_failed = True
 
     async def _load_troncal_geometries(self) -> None:
