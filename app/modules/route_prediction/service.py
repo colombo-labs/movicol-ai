@@ -577,9 +577,9 @@ class RoutePredictionService:
                 segments, street_names, cost, adjusted_time, distance_km = self._parse_osrm_route(
                     route, congestion
                 )
-                speed_map = {"vehiculo": 25, "moto": 35, "bicicleta": 15, "caminando": 5}
-                speed_kmh = speed_map.get(mode_name, 25)
-                adjusted_time = (distance_km / speed_kmh) * 60 * (1 + congestion * 0.3)
+                # Use OSRM's real duration instead of hardcoded speed
+                osrm_duration_min = route["duration"] / 60
+                adjusted_time = osrm_duration_min * (1 + congestion * 0.3)
                 if cost_per_km == 0:
                     cost = "$0"
                 else:
@@ -683,8 +683,11 @@ class RoutePredictionService:
         """Convert a single OSRM route dict into a RoutePredictionResponse."""
         congestion = _time_factor(hour) * 0.7
         segments, street_names, cost, _, distance_km = self._parse_osrm_route(route, congestion)
-        speed_kmh = {"driving": 25, "cycling": 15, "foot": 5}.get(profile, 25)
-        adjusted_time = (distance_km / speed_kmh) * 60 * (1 + congestion * 0.3)
+
+        # Use OSRM's real duration (accounts for road type/speed limits)
+        osrm_duration_min = route["duration"] / 60
+        adjusted_time = osrm_duration_min * (1 + congestion * 0.3)
+
         if cost_per_km == 0:
             cost = "$0"
         else:
