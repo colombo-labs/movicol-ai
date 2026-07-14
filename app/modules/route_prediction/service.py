@@ -130,11 +130,50 @@ class RoutePredictionService:
                     "orden": props.get("orden", ""),
                 }
             )
-        # Sort each route by its orden field
+        # Sort each route by its orden field, then split into ida/vuelta
+        split_routes: dict = {}
         for ruta in by_route:
             by_route[ruta].sort(key=lambda s: s["orden"])
-        print(f"[RoutePrediction] SITP routes loaded from file: {len(by_route)} routes")
-        return by_route
+            stops = by_route[ruta]
+            if len(stops) < 4:
+                split_routes[ruta] = stops
+                continue
+            ida, vuelta = RoutePredictionService._split_route_directions(stops)
+            split_routes[ruta] = ida
+            if len(vuelta) >= 3:
+                split_routes[f"{ruta}_v"] = vuelta
+        print(f"[RoutePrediction] SITP routes loaded from file: {len(split_routes)} directions")
+        return split_routes
+
+    @staticmethod
+    def _split_route_directions(stops: list) -> tuple[list, list]:
+        """Split a SITP route's concatenated stops into ida and vuelta.
+
+        Strategy: find the stop farthest from the first stop (turning point).
+        Stops before it = ida, stops from it onward = vuelta.
+        """
+        if len(stops) < 6:
+            return stops, []
+
+        start_lat, start_lon = stops[0]["lat"], stops[0]["lon"]
+
+        # Find turning point: stop with max distance from start
+        max_dist = 0.0
+        turn_idx = len(stops) // 2  # fallback to midpoint
+        for i, s in enumerate(stops):
+            d = (s["lat"] - start_lat) ** 2 + (s["lon"] - start_lon) ** 2
+            if d > max_dist:
+                max_dist = d
+                turn_idx = i
+
+        # Ensure turning point is between 20% and 80% of stops
+        min_turn = len(stops) // 5
+        max_turn = len(stops) * 4 // 5
+        turn_idx = max(min_turn, min(max_turn, turn_idx))
+
+        ida = stops[: turn_idx + 1]
+        vuelta = stops[turn_idx:]
+        return ida, vuelta
 
     async def _ensure_sitp_loaded(self) -> None:
         """Lazy-fetch SITP data from NestJS backend if not loaded from file."""
@@ -169,11 +208,19 @@ class RoutePredictionService:
                             "orden": i,
                         }
                     )
-                if stops:
-                    by_route[ruta_code] = stops
+                if len(stops) < 4:
+                    continue
+                # Split into ida/vuelta by detecting turning point
+                ida, vuelta = self._split_route_directions(stops)
+                by_route[ruta_code] = ida
+                if len(vuelta) >= 3:
+                    by_route[f"{ruta_code}_v"] = vuelta
 
             self._sitp_routes = by_route
-            print(f"[RoutePrediction] SITP routes fetched from backend: {len(by_route)} routes")
+            print(
+                f"[RoutePrediction] SITP routes fetched from backend: "
+                f"{len(by_route)} directions (from {len(rutas)} routes)"
+            )
 
             # Rebuild multimodal graph with SITP data now available
             self._multimodal_graph = self._build_multimodal_graph()
@@ -828,9 +875,9 @@ class RoutePredictionService:
             if o_idx == d_idx:
                 continue
 
-            # Ensure origin comes before destination in route order
-            if o_idx > d_idx:
-                o_idx, d_idx = d_idx, o_idx
+            # Route must go in correct direction (origin before destination)
+            if o_idx >= d_idx:
+                continue
 
             n_stops_between = d_idx - o_idx
             if n_stops_between < 1:
@@ -878,9 +925,7 @@ class RoutePredictionService:
             )
             if d_km > max_walk_km or o_idx == d_idx:
                 continue
-            if o_idx > d_idx:
-                o_idx, d_idx = d_idx, o_idx
-            if d_idx - o_idx < 1:
+            if o_idx >= d_idx:
                 continue
 
             o_km = self._haversine_km(
@@ -916,7 +961,7 @@ class RoutePredictionService:
         risk_segments, total_distance, total_time = await self._build_sitp_segments(
             sub_stops, speed_factor
         )
-        display_code = ruta_code
+        display_code = ruta_code.removesuffix("_v")
         response = self._build_response(
             total_time,
             total_distance,
@@ -948,7 +993,7 @@ class RoutePredictionService:
                     alt_segs,
                     alt_names,
                     departure_time,
-                    route_code=alt_code,
+                    route_code=alt_code.removesuffix("_v"),
                 )
             )
 
