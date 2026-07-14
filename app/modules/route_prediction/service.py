@@ -50,6 +50,9 @@ def _parse_day(departure_time: str) -> int:
         return datetime.now().weekday()
 
 
+TRANSIT_FARE = "$3.550"
+
+
 class RoutePredictionService:
     """Route prediction: TM/SITP via graph Dijkstra + GNN, vehiculo via OSRM."""
 
@@ -965,7 +968,7 @@ class RoutePredictionService:
         response = self._build_response(
             total_time,
             total_distance,
-            "$3.550",
+            TRANSIT_FARE,
             "sitp",
             risk_segments,
             station_names,
@@ -988,7 +991,7 @@ class RoutePredictionService:
                 self._build_response(
                     alt_time,
                     alt_dist,
-                    "$3.550",
+                    TRANSIT_FARE,
                     "sitp",
                     alt_segs,
                     alt_names,
@@ -1096,7 +1099,7 @@ class RoutePredictionService:
         return self._build_response(
             total_time,
             total_distance,
-            "$3.550",
+            TRANSIT_FARE,
             main_mode,
             risk_segments,
             station_names,
